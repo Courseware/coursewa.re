@@ -10,7 +10,7 @@ namespace :doc do
   end
 
   desc 'Start a server for viewing project documentation'
-  task :server => [:build] do
+  task server: [:build] do
     sh "yard server"
   end
 

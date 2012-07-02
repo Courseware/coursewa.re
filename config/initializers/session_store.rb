@@ -1,6 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
-Courseware::Application.config.session_store :cookie_store, key: '_coursewa.re_session'
+Courseware::Application.config.session_store(
+  :cookie_store, key: '_courseware_session'
+)
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
