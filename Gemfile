@@ -21,6 +21,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'fabrication'
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'rspec-rails'

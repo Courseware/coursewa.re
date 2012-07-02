@@ -38,6 +38,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fabrication (2.0.3)
     ffi (1.0.11)
     guard (1.2.2)
       listen (>= 0.4.2)
@@ -158,6 +159,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby
   bootstrap-sass
+  fabrication
   guard-rspec
   guard-spork
   haml-rails
