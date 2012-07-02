@@ -5,6 +5,10 @@ Rake::TaskManager.class_eval do
   end
 end
 
-%w(test test:single test:uncommitted test:recent db:seed db:fixtures:load).each do |task|
+%w(
+  test test:single test:uncommitted test:recent
+  db:seed db:fixtures:load
+  doc:app
+).each do |task|
   Rake.application.remove_task task
 end
