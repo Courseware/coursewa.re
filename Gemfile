@@ -9,6 +9,7 @@ gem 'puma'
 
 group :development do
   gem 'sqlite3'
+  gem 'yard'
 end
 
 group :assets do
