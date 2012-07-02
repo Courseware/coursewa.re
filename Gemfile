@@ -10,6 +10,7 @@ gem 'puma'
 group :development do
   gem 'sqlite3'
   gem 'yard'
+  gem 'rails_best_practices'
 end
 
 group :assets do
