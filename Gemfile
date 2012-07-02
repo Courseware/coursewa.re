@@ -17,3 +17,9 @@ group :assets do
   gem 'sass-rails'
   gem 'bootstrap-sass'
 end
+
+group :development, :test do
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'rspec-rails'
+end
