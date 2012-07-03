@@ -1,0 +1,35 @@
+%h1 Sign up
+
+= form_for @user do |f|
+  -if @user.errors.any?
+    %div.alert-box.alert
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+      %a.close &times;
+
+  %div.row
+    %div.two.mobile-one.columns
+      = f.label :username, class: :right
+    %div.row.collapse
+      %div.eight.mobile-three.columns
+        = f.text_field :username
+      %div.four.mobile-one.columns
+        %span.postfix
+          \.
+          = Courseware.config.domain_name
+
+  %div.row
+    %div.two.mobile-one.columns
+      = f.label :password, class: :right
+    %div.ten.mobile-three.columns
+      = f.password_field :password
+
+  %div.row
+    %div.two.mobile-one.columns
+      = f.label :password_confirmation, class: :right
+    %div.ten.mobile-three.columns
+      = f.password_field :password_confirmation
+
+  .actions
+    = f.submit

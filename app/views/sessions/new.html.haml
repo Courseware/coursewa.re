@@ -1,0 +1,34 @@
+%h1 Log in
+
+-if flash[:alert]
+  %div.alert-box.alert
+    = flash[:alert]
+    %a.close &times;
+
+= form_tag sessions_path do
+
+  %div.row
+    %div.two.mobile-one.columns
+      = label_tag :username, class: :right
+    %div.row.collapse
+      %div.eight.mobile-three.columns
+        = text_field_tag :username, params[:username]
+      %div.four.mobile-one.columns
+        %span.postfix .#{Courseware.config.domain_name}
+
+  %div.row
+    %div.two.mobile-one.columns
+      = label_tag :password, class: :right
+    %div.ten.mobile-three.columns
+      = password_field_tag :password
+
+  %div.row
+    %div.two.mobile-one.columns
+      = label_tag :remember_me, class: :right
+    %div.ten.mobile-three.columns
+      = check_box_tag :remember_me
+      %span.custom.checkbox
+      Keep me logged in
+
+  .actions
+    = submit_tag
