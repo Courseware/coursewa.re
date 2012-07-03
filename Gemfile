@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'pg'
-gem 'bcrypt-ruby'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'puma'
+gem 'sorcery'
 
 group :development do
   gem 'sqlite3'
