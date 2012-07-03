@@ -47,6 +47,7 @@ GEM
     fabrication (2.0.3)
     faraday (0.8.1)
       multipart-post (~> 1.1)
+    ffaker (1.14.0)
     ffi (1.0.11)
     fssm (0.2.9)
     guard (1.2.3)
@@ -177,6 +178,7 @@ PLATFORMS
 DEPENDENCIES
   compass-rails
   fabrication
+  ffaker
   guard-rspec
   guard-spork
   haml-rails
