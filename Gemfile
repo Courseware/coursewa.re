@@ -16,8 +16,8 @@ end
 group :assets do
   gem 'uglifier'
   gem 'therubyracer'
-  gem 'sass-rails'
-  gem 'bootstrap-sass'
+  gem 'compass-rails'
+  gem 'zurb-foundation', '~> 3.0.1'
 end
 
 group :development, :test do
