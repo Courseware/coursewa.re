@@ -49,6 +49,7 @@ Rails.application.config.sorcery.configure do |config|
   # Default: `false`
   #
   # config.session_timeout_from_last_action =
+  config.session_timeout_from_last_action = true
 
 
   # -- http_basic_auth --
