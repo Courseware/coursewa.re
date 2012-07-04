@@ -1,0 +1,74 @@
+# English translations for version package.
+# Copyright (C) 2012 THE version'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the version package.
+# Stas <stas@coursewa.re>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: version 0.0.1\n"
+"POT-Creation-Date: 2012-07-04 18:12+0300\n"
+"PO-Revision-Date: 2012-07-04 17:49+0300\n"
+"Last-Translator: Stas <stas@coursewa.re>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Email or password was invalid."
+msgstr ""
+
+msgid "First log in to view this page."
+msgstr ""
+
+msgid "Hello, %s"
+msgstr ""
+
+msgid "Keep me logged in"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Logged out!"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Thanks for teaching with Coursewa.re"
+msgstr ""
+
+msgid "To choose a new password, just follow this link: %s."
+msgstr ""
+
+msgid "To login to the site, just follow this link: %s."
+msgstr ""
+
+msgid "User was successfully activated."
+msgstr ""
+
+msgid "User was successfully created."
+msgstr ""
+
+msgid "Welcome to Courseware, %s"
+msgstr ""
+
+msgid "Welcome to My Awesome Site"
+msgstr ""
+
+msgid "You have requested to reset your password."
+msgstr ""
+
+msgid "You have successfully activated your account: %s."
+msgstr ""
+
+msgid "You have successfully signed up, your username is: %s."
+msgstr ""
+
+msgid "Your account is now activated"
+msgstr ""
+
+msgid "Your password has been reset"
+msgstr ""
