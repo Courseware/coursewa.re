@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
       if @user.save
-        redirect_to(@user, :notice => 'User was successfully created.')
+        redirect_to(@user, :notice => _('User was successfully created.'))
       else
         render :new
       end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
-      redirect_to(login_path, :notice => 'User was successfully activated.')
+      redirect_to(login_path, :notice => _('User was successfully activated.'))
     else
       not_authenticated
     end

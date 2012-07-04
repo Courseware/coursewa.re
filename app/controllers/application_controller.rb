@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   private
     # Sorcery method overwritten to customize error message
     def not_authenticated
-      redirect_to login_url, alert: 'First log in to view this page.'
+      redirect_to login_url, :alert => _('First log in to view this page.')
     end
 end

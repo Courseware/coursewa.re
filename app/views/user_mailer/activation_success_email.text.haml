@@ -1,9 +1,8 @@
-Welcome to Courseware, #{@user.username}
-===============================================
+= _('Welcome to Courseware, %s', @user.username)
+================================================
 
-You have successfully activated your account,
-your username is: #{@user.username}.
+= _('You have successfully activated your account: %s.', @user.username)
 
-To login to the site, just follow this link: #{@url}.
+= _('To login to the site, just follow this link: %s.', @url)
 
-Thanks for teaching with Coursewa.re!
+= _('Thanks for teaching with Coursewa.re')
