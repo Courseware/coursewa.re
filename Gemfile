@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'puma'
 gem 'sorcery'
 gem 'delayed_job_active_record'
+gem 'gettext_i18n_rails'
 
 group :production do
   gem 'pg'
@@ -15,6 +16,8 @@ group :development do
   gem 'sqlite3'
   gem 'yard'
   gem 'rails_best_practices'
+  gem 'gettext', :require => false
+  gem 'ruby_parser', :require => false
 end
 
 group :assets do
