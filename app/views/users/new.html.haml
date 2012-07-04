@@ -10,26 +10,24 @@
 
   %div.row
     %div.two.mobile-one.columns
-      = f.label :username, class: :right
+      = f.label(:username, :class => :right)
     %div.row.collapse
       %div.eight.mobile-three.columns
-        = f.text_field :username
+        = f.text_field(:username)
       %div.four.mobile-one.columns
-        %span.postfix
-          \.
-          = Courseware.config.domain_name
+        %span.postfix .#{Courseware.config.domain_name}
 
   %div.row
     %div.two.mobile-one.columns
-      = f.label :password, class: :right
+      = f.label(:password, :class => :right)
     %div.ten.mobile-three.columns
-      = f.password_field :password
+      = f.password_field(:password)
 
   %div.row
     %div.two.mobile-one.columns
-      = f.label :password_confirmation, class: :right
+      = f.label(:password_confirmation, :class => :right)
     %div.ten.mobile-three.columns
-      = f.password_field :password_confirmation
+      = f.password_field(:password_confirmation)
 
   .actions
     = f.submit
