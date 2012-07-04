@@ -1,6 +1,6 @@
 # User emails handler class
 class UserMailer < ActionMailer::Base
-  default from: Courseware.config.domain_name
+  default from: Courseware.config.default_email_address
 
   # Sends an activation email to the user
   # Subject can be set in your I18n file at config/locales/en.yml
