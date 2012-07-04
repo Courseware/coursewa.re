@@ -4,7 +4,8 @@
     %title Coursewa.re
     %meta{ :charset => 'utf-8' }
     %meta{ 'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1' }
-    %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0' }
+    %meta{ :name => 'viewport', :content => 'width=device-width' }
+    %meta{ :name => :generator, :content => 'Coursewa.re' }
     /[if lt IE 9]
       = stylesheet_link_tag 'foundation/ie'
       %script{ :src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js' }
@@ -12,18 +13,17 @@
     = stylesheet_link_tag :application
     = javascript_include_tag :application
     = csrf_meta_tags
-  %body
-    %header
-      %div.container
-        %div.row
-          %div.twelve.columns
 
-    %div.container
-      = yield
+  %body.off-canvas
+    %header#header.row
+      = render('shared/navigation')
 
-    %footer
-      %div.container
-        %div.row
-          %div.eight.columns
-          %div.four.columns
-            %p ~2012 &copy; Coursewa.re
+    %div.row
+      %section{ :role => :main }
+        = render('shared/alerts')
+        = yield
+
+    %footer.row
+      %div.three.columns.centered
+        %div#copyright
+          %p ~2012 &copy; Coursewa.re
