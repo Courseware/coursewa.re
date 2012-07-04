@@ -1,11 +1,15 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'pg'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'puma'
 gem 'sorcery'
+gem 'delayed_job_active_record'
+
+group :production do
+  gem 'pg'
+end
 
 group :development do
   gem 'sqlite3'
