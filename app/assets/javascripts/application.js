@@ -9,7 +9,19 @@
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
-//
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
+
+
+// =require ./_webfont
+
+// =require jquery
+// require jquery_ujs
+// require_tree .
+
+// =require foundation/modernizr.foundation
+// =require foundation/jquery.customforms
+// require foundation/jquery.orbit-1.4.0
+// =require foundation/jquery.placeholder.min
+// =require foundation/jquery.reveal
+// require foundation/jquery.tooltips
+
+// =require ./_courseware
