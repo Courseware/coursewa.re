@@ -2,6 +2,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  # Setup locale
+  before_filter :set_gettext_locale
+
   # Ask users to authenticate
   before_filter :require_login
 
