@@ -1,6 +1,8 @@
 # Courseware Users Controller class
 class UsersController < ApplicationController
 
+  skip_before_filter :require_login, :only => [:new, :create, :activate]
+
   # Handles user creation screen
   def new
     @user = User.new
@@ -26,5 +28,9 @@ class UsersController < ApplicationController
       not_authenticated
     end
   end
+
+  # TODO:
+  # * Password reset (https://github.com/NoamB/sorcery/wiki/Reset-password)
+  # * Profile edit... etc.
 
 end

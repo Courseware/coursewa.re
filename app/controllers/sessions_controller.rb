@@ -1,5 +1,8 @@
 # Courseware Sessions Controller
 class SessionsController < ApplicationController
+
+  skip_before_filter :require_login, :except => [:destroy]
+
   # New session screen handler
   def new
   end

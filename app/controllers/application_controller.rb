@@ -2,6 +2,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  # Ask users to authenticate
+  before_filter :require_login
+
   private
     # Sorcery method overwritten to customize error message
     def not_authenticated
