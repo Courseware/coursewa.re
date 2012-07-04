@@ -15,7 +15,7 @@ end
 group :development do
   gem 'sqlite3'
   gem 'yard'
-  gem 'rails_best_practices'
+  gem 'rails_best_practices', :require => false
   gem 'gettext', :require => false
   gem 'ruby_parser', :require => false
 end
