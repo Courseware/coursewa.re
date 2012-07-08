@@ -1,0 +1,20 @@
+header {
+  #topbar {
+    background: $mainColor;
+    color: $white;
+
+    ul.items > li {
+      list-style: none;
+      line-height: 2.8;
+    }
+
+    .branding h1 {
+      line-height: 0.6;
+      font-size: 25px;
+    }
+
+    .button {
+      background: $mainColor;
+    }
+  }
+}
