@@ -2,7 +2,7 @@
   %ul.items
     %li.branding.left
       %h1
-        Courseware
+        = link_to _('Courseware'), root_path
     %li.right{ :class => logged_in? ? :logout : :login }
       -if logged_in?
         %div.small.button.radius.split.dropdown
