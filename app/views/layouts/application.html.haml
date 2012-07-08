@@ -1,7 +1,9 @@
 !!! 5
 %html
   %head
-    %title Coursewa.re
+    %title
+      = yield(:title)
+      &bull; Coursewa.re
     %meta{ :charset => 'utf-8' }
     %meta{ 'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1' }
     %meta{ :name => 'viewport', :content => 'width=device-width' }
@@ -18,13 +20,15 @@
     %header
       %div#topbar
         = render('shared/topbar')
+      %div#header
+        = render('shared/header')
 
-    %div.row
-      %section{ :role => :main }
+    %section#content{ :role => :main }
+      %div.row
         = render('shared/alerts')
         = yield
 
-    %footer.row
-      %div.three.columns.centered
-        %div#copyright
+    %footer
+      %div.row
+        %div#copyright.right
           %p ~2012 &copy; Coursewa.re
