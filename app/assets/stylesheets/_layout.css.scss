@@ -1,3 +1,7 @@
+body {
+  background: lighten($black, 34%);
+}
+
 header {
   #topbar {
     background: $mainColor;
@@ -11,10 +15,46 @@ header {
     .branding h1 {
       line-height: 0.6;
       font-size: 25px;
+      a {
+        color: $white;
+      }
     }
 
     .button {
       background: $mainColor;
     }
+  }
+
+  #header {
+    background: url('/assets/graphy.png') 45px 20px;
+
+    h1 {
+      color: $mainColor;
+    }
+  }
+}
+
+#content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: $white;
+  border-top: 1px solid $mainColor;
+
+  #notifications {
+    .alert-box {
+      font-size: 12px;
+    }
+    .close {
+      padding: 6px;
+    }
+  }
+}
+
+footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: $secondaryColor;
+  #copyright p {
+    font-size: 90%;
   }
 }
