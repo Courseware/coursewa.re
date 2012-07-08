@@ -1,0 +1,20 @@
+%div.row
+  %ul.items
+    %li.branding.left
+      %h1
+        Courseware
+    %li.right{ :class => logged_in? ? :logout : :login }
+      -if logged_in?
+        %div.small.button.radius.split.dropdown
+          = link_to _('Sign out'), logout_path
+          %span
+          %ul
+            %li
+              = link_to _('Profile'), '#'
+      -else
+        %div.small.button.radius.split.dropdown
+          = link_to _('Sign in'), login_path
+          %span
+          %ul
+            %li
+              = link_to _('Sign up'), signup_path

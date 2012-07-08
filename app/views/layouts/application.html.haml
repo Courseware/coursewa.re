@@ -15,8 +15,9 @@
     = csrf_meta_tags
 
   %body.off-canvas
-    %header#header.row
-      = render('shared/navigation')
+    %header
+      %div#topbar
+        = render('shared/topbar')
 
     %div.row
       %section{ :role => :main }
