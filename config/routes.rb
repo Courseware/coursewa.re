@@ -1,9 +1,11 @@
 Courseware::Application.routes.draw do
-  get 'logout' => 'sessions#destroy', :as => 'logout'
-  get 'login' => 'sessions#new', :as => 'login'
-  post 'login' => 'sessions#create', :as => 'login_post'
+
   get 'signup' => 'users#new', :as => 'signup'
+  get 'login' => 'sessions#new', :as => 'login'
+  get 'logout' => 'sessions#destroy', :as => 'logout'
+
   post 'signup' => 'users#create', :as => 'signup_post'
+  post 'login' => 'sessions#create', :as => 'login_post'
 
   resources :users, :only => [:new, :create] do
     member do

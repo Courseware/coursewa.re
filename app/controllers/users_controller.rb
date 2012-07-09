@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       )
       render :new
     end
+
   end
 
   # Handles user activation
@@ -34,9 +35,5 @@ class UsersController < ApplicationController
       not_authenticated
     end
   end
-
-  # TODO:
-  # * Password reset (https://github.com/NoamB/sorcery/wiki/Reset-password)
-  # * Profile edit... etc.
 
 end
