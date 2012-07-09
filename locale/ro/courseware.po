@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2012-07-04 18:12+0300\n"
+"POT-Creation-Date: 2012-07-09 18:46+0300\n"
 "PO-Revision-Date: 2012-07-04 17:50+0300\n"
 "Last-Translator: Stas <stas@coursewa.re>\n"
 "Language-Team: Romanian\n"
@@ -16,16 +16,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 
+msgid "Courseware"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
 msgid "Email or password was invalid."
 msgstr ""
 
 msgid "First log in to view this page."
 msgstr "Pagină restricționată, cere autentificare!"
 
-msgid "Hello, %s"
-msgstr ""
-
-msgid "Keep me logged in"
+msgid "Hello, %{username}"
 msgstr ""
 
 msgid "Log in"
@@ -34,41 +37,71 @@ msgstr ""
 msgid "Logged out!"
 msgstr ""
 
+msgid "Password"
+msgstr ""
+
+msgid "Password confirmation"
+msgstr ""
+
+msgid "Please check your email to finish registration."
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
+msgid "Remember me"
+msgstr ""
+
+msgid "Sign in"
+msgstr ""
+
+msgid "Sign me up!"
+msgstr ""
+
+msgid "Sign out"
+msgstr ""
+
 msgid "Sign up"
+msgstr ""
+
+msgid "Success! Your account was activated."
 msgstr ""
 
 msgid "Thanks for teaching with Coursewa.re"
 msgstr ""
 
-msgid "To choose a new password, just follow this link: %s."
+msgid "To choose a new password, just follow this link: %{url}."
 msgstr ""
 
-msgid "To login to the site, just follow this link: %s."
+msgid "To login to the site, just follow this link: %{url}."
 msgstr ""
 
-msgid "User was successfully activated."
+msgid "Username"
 msgstr ""
 
-msgid "User was successfully created."
+msgid "We encountered errors. Please correct the highlighted fields."
 msgstr ""
 
-msgid "Welcome to Courseware, %s"
+msgid "Welcome Courseware"
 msgstr ""
 
-msgid "Welcome to My Awesome Site"
+msgid "Welcome back %{name}!"
+msgstr ""
+
+msgid "Welcome to Courseware, %{username}"
 msgstr ""
 
 msgid "You have requested to reset your password."
 msgstr ""
 
-msgid "You have successfully activated your account: %s."
+msgid "You have successfully activated your account: %{username}"
 msgstr ""
 
-msgid "You have successfully signed up, your username is: %s."
+msgid "You have successfully signed up, your username is: %{username}"
 msgstr ""
 
-msgid "Your account is now activated"
+msgid "Your Courseware account was activated"
 msgstr ""
 
-msgid "Your password has been reset"
+msgid "Your Courseware password has been reset"
 msgstr ""
