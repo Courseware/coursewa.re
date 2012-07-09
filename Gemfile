@@ -7,6 +7,7 @@ gem 'puma'
 gem 'sorcery'
 gem 'delayed_job_active_record'
 gem 'gettext_i18n_rails'
+gem 'roadie'
 
 group :production do
   gem 'pg'
