@@ -1,8 +1,8 @@
-= _('Welcome to Courseware, %s', @user.username)
+= _('Welcome to Courseware, %{username}') % {:username => @user.username}
 ================================================
 
-= _('You have successfully activated your account: %s.', @user.username)
+= _('You have successfully activated your account: %{username}') % {:username => @user.username}
 
-= _('To login to the site, just follow this link: %s.', @url)
+= _('To login to the site, just follow this link: %{url}.') % {:url => @url}
 
 = _('Thanks for teaching with Coursewa.re')
