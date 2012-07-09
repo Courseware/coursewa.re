@@ -10,13 +10,17 @@ class UsersController < ApplicationController
 
   # Handles user creation
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user].except(:username))
+    @user.username = params[:user][:username]
 
-      if @user.save
-        redirect_to(@user, :notice => _('User was successfully created.'))
-      else
-        render :new
-      end
+    if @user.save
+      redirect_to(@user, :notice => _('User was successfully created.'))
+    else
+      flash.now[:alert] = _(
+        'We encountered errors. Please correct the highlighted fields.'
+      )
+      render :new
+    end
   end
 
   # Handles user activation
