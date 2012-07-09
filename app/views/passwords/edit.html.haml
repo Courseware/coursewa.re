@@ -1,0 +1,22 @@
+= title _('Change password for %{name}') % {:name => @user.username}
+
+%div.six.columns.centered
+
+  = form_tag password_path, :method => 'put' do
+
+    = hidden_field_tag :token, @token
+
+    %div.row
+      %div.five.columns
+        = label_tag(:password, _('Password'), :class => [:right, :inline])
+      %div.seven.columns.end
+        = password_field_tag(:password)
+
+    %div.row
+      %div.five.columns
+        = label_tag(:password_confirmation, _('Password confirmation'), :class => [:right, :inline])
+      %div.seven.columns.end
+        = password_field_tag(:password_field_tag)
+
+    .actions.right
+      = submit_tag(_('Update'), :class => [:button, :small, :radius])

@@ -1,0 +1,15 @@
+= title _('Account recovery')
+
+%div.six.columns.centered
+
+  = form_tag passwords_path do
+
+    %div.row
+      %div.five.columns
+        = label_tag(:email, _('Your account email'), :class => [:right, :inline])
+      %div.seven.columns.end
+        = text_field_tag(:email)
+
+    .actions.right
+      = link_to(_('Nevermind, found it...'), login_path, :class => [:button, :small, :radius, :secondary])
+      = submit_tag(_('Recover'), :class => [:button, :small, :radius])
