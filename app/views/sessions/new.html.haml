@@ -1,34 +1,30 @@
 = title _('Log in')
 
--if flash[:alert]
-  %div.alert-box.alert
-    = flash[:alert]
-    %a.close &times;
+%div.six.columns.centered
 
-= form_tag sessions_path do
+  = form_tag login_post_path do
 
-  %div.row
-    %div.two.mobile-one.columns
-      = label_tag(:username, :class => :right)
-    %div.row.collapse
-      %div.eight.mobile-three.columns
-        = text_field_tag(:username, params[:username])
-      %div.four.mobile-one.columns
-        %span.postfix .#{Courseware.config.domain_name}
+    %div.row
+      %div.five.columns
+        = label_tag(:username, _('Username'), :class => [:right, :inline])
+      %div.seven.columns
+        %div.row.collapse
+          %div.seven.columns
+            = text_field_tag(:username)
+          %div.five.columns
+            %span.postfix .#{Courseware.config.domain_name}
 
-  %div.row
-    %div.two.mobile-one.columns
-      = label_tag(:password, :class => :right)
-    %div.ten.mobile-three.columns
-      = password_field_tag(:password)
+    %div.row
+      %div.five.columns
+        = label_tag(:password, _('Password'), :class => [:right, :inline])
+      %div.seven.columns.end
+        = password_field_tag(:password)
 
-  %div.row
-    %div.two.mobile-one.columns
-      = label_tag(:remember_me, :class => :right)
-    %div.ten.mobile-three.columns
-      = check_box_tag(:remember_me)
-      %span.custom.checkbox
-      = _('Keep me logged in')
+    %div.row
+      %div.five.columns
+        = label_tag(:remember_me, _('Remember me'), :class => [:right, :inline])
+      %div.seven.columns
+        = check_box_tag(:remember_me)
 
-  .actions
-    = submit_tag
+    .actions.right
+      = submit_tag(_('Sign in'), :class => [:button, :small, :radius])
