@@ -13,6 +13,8 @@ Courseware::Application.routes.draw do
     end
   end
 
+  resources :passwords, :only => [:new, :create, :update, :edit]
+
   resources :sessions, :only => [:new, :create, :destroy]
 
   root :to => 'home#index'
