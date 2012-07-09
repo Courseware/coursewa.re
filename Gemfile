@@ -34,4 +34,5 @@ group :development, :test do
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'rspec-rails'
+  gem 'letter_opener'
 end
