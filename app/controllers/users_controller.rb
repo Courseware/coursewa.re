@@ -14,7 +14,8 @@ class UsersController < ApplicationController
     @user.username = params[:user][:username]
 
     if @user.save
-      redirect_to(@user, :notice => _('User was successfully created.'))
+      flash[:success] = _('Please check your email to finish registration.')
+      redirect_to(root_url)
     else
       flash.now[:alert] = _(
         'We encountered errors. Please correct the highlighted fields.'
@@ -26,8 +27,9 @@ class UsersController < ApplicationController
   # Handles user activation
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
+      flash[:success] = _('Success! Your account was activated.')
       @user.activate!
-      redirect_to(login_path, :notice => _('User was successfully activated.'))
+      redirect_to(login_path)
     else
       not_authenticated
     end
