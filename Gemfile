@@ -8,6 +8,7 @@ gem 'sorcery'
 gem 'delayed_job_active_record'
 gem 'gettext_i18n_rails'
 gem 'roadie'
+gem 'cancan'
 
 group :production do
   gem 'pg'

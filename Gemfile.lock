@@ -33,6 +33,7 @@ GEM
     awesome_print (1.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
+    cancan (1.6.8)
     chunky_png (1.2.5)
     colored (1.2)
     compass (0.12.2)
@@ -214,6 +215,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cancan
   compass-rails
   database_cleaner
   delayed_job_active_record
