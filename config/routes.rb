@@ -7,15 +7,16 @@ Courseware::Application.routes.draw do
   post 'signup' => 'users#create', :as => 'signup_post'
   post 'login' => 'sessions#create', :as => 'login_post'
 
+  resources :sessions, :only => [:new, :create, :destroy]
+  resources :passwords, :only => [
+    :new, :create, :update, :edit
+  ]
   resources :users, :only => [:new, :create] do
     member do
       get :activate
     end
   end
 
-  resources :passwords, :only => [:new, :create, :update, :edit]
-
-  resources :sessions, :only => [:new, :create, :destroy]
 
   root :to => 'home#index'
 end
