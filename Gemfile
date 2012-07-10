@@ -36,4 +36,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rspec-rails'
   gem 'letter_opener'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'simplecov', :require => false
 end
