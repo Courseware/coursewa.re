@@ -3,15 +3,7 @@ sqlite: &sqlite
   database: 'db/development.sqlite3'
   timeout: 5000
 
-
-development:
-  <<: *sqlite
-
-test:
-  <<: *sqlite
-  database: 'db/test.sqlite3'
-
-production:
+production: &production
   adapter: postgresql
   encoding: unicode
   database: courseware_production
@@ -19,3 +11,11 @@ production:
   username: courseware
   password:
   host: localhost
+
+development:
+  <<: *sqlite
+
+test:
+  <<: *sqlite
+  # /dev/shm means shared memory, fixes any :memory: option hacks
+  database: '/dev/shm/courseware-tests.sqlite3'
