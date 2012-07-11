@@ -3,8 +3,7 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       # Core fields
-      t.string :username,                           null: false
-      t.string :email,                              default: nil
+      t.string :email,                              null: false
       t.string :crypted_password,                   default: nil
       t.string :salt,                               default: nil
 
@@ -39,6 +38,7 @@ class CreateUsers < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :users, :email
     add_index :users, :activation_token
     add_index :users, :remember_me_token
     add_index :users, :reset_password_token

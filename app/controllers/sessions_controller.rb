@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     user = login(params[:email], params[:password], params[:remember_me])
     if user
       flash[:notice] = _(
-        'Welcome back %{name}!' % {:name => user.username}
+        'Welcome back %{name}!' % {:name => user.name}
       )
       redirect_back_or_to(root_url)
     else

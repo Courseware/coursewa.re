@@ -30,8 +30,7 @@ ActiveRecord::Schema.define(:version => 20120704112115) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "users", :force => true do |t|
-    t.string   "username",                                       :null => false
-    t.string   "email"
+    t.string   "email",                                          :null => false
     t.string   "crypted_password"
     t.string   "salt"
     t.string   "first_name"
@@ -55,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20120704112115) do
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"

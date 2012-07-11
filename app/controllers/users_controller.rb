@@ -10,8 +10,7 @@ class UsersController < ApplicationController
 
   # Handles user creation
   def create
-    @user = User.new(params[:user].except(:username))
-    @user.username = params[:user][:username]
+    @user = User.new(params[:user])
 
     if @user.save
       flash[:success] = _('Please check your email to finish registration.')

@@ -6,13 +6,9 @@
 
     %div.row
       %div.five.columns
-        = label_tag(:username, _('Username'), :class => [:right, :inline])
-      %div.seven.columns
-        %div.row.collapse
-          %div.seven.columns
-            = text_field_tag(:username)
-          %div.five.columns
-            %span.postfix .#{Courseware.config.domain_name}
+        = label_tag(:email, _('Email'), :class => [:right, :inline])
+      %div.seven.columns.end
+        = text_field_tag(:email)
 
     %div.row
       %div.five.columns

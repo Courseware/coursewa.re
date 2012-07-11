@@ -140,6 +140,7 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `[:username]`
     #
     # user.username_attribute_names =
+    user.username_attribute_names = [:email]
 
 
     # change *virtual* password attribute,
