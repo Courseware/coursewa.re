@@ -1,3 +1,4 @@
+# Courseware helpers
 module ApplicationHelper
   # Helper to set page title
   #
