@@ -29,6 +29,8 @@ class UsersController < ApplicationController
     if (@user = User.load_from_activation_token(params[:id]))
       flash[:success] = _('Success! Your account was activated.')
       @user.activate!
+      # Generate user's first activity
+      @user.activities.create('activity.user.create')
       redirect_to(login_path)
     else
       not_authenticated
