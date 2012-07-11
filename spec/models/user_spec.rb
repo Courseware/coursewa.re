@@ -17,6 +17,6 @@ describe User do
 
   describe 'with no first/last name' do
     subject{ Fabricate(:user, :first_name => nil, :last_name => nil) }
-    its(:name) { should match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/) }
+    its(:name) { should match(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/) }
   end
 end
