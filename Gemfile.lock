@@ -61,6 +61,7 @@ GEM
     fast_gettext (0.6.8)
     ffaker (1.14.0)
     ffi (1.0.11)
+    friendly_id (4.0.7)
     fssm (0.2.9)
     gettext (2.2.1)
       locale
@@ -230,6 +231,7 @@ DEPENDENCIES
   delayed_job_active_record
   fabrication
   ffaker
+  friendly_id
   gettext
   gettext_i18n_rails
   guard-rspec

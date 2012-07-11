@@ -11,6 +11,7 @@ gem 'roadie'
 gem 'cancan'
 gem 'public_activity'
 gem 'pusher', :require => false # Do not require since we do not use it
+gem 'friendly_id'
 
 group :production do
   gem 'pg'
