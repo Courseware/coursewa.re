@@ -9,6 +9,8 @@ gem 'delayed_job_active_record'
 gem 'gettext_i18n_rails'
 gem 'roadie'
 gem 'cancan'
+gem 'public_activity'
+gem 'pusher', :require => false # Do not require since we do not use it
 
 group :production do
   gem 'pg'
