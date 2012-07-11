@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation
 
+  # Relationships
+  has_many :groups, :dependent => :destroy
+
   # Validations
   validates_confirmation_of :password
   validates_presence_of :password, { on: :create }

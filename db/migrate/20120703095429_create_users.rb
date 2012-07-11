@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration
       # Custom fields
       t.string :first_name,                         default: nil
       t.string :last_name,                          default: nil
+      t.integer :groups_count,                      default: 0
 
       # Remember me support
       t.string    :remember_me_token,               default: nil

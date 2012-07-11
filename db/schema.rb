@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711135621) do
+ActiveRecord::Schema.define(:version => 20120711151059) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -40,12 +40,25 @@ ActiveRecord::Schema.define(:version => 20120711135621) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "groups", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "slug",        :null => false
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "groups", ["slug"], :name => "index_groups_on_slug", :unique => true
+  add_index "groups", ["user_id"], :name => "index_groups_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "email",                                          :null => false
     t.string   "crypted_password"
     t.string   "salt"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "groups_count",                    :default => 0
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_token"
