@@ -42,5 +42,6 @@ group :development, :test do
   gem 'letter_opener'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'capybara'
   gem 'simplecov', :require => false
 end
