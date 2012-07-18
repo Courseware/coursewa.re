@@ -9,6 +9,6 @@ module Courseware
   @config = OpenStruct.new(
     domain_name: 'coursewa.re',
     default_email_address: 'no-reply@coursewa.re',
-    domain_blacklist: %w(www blog api support help mail ftp dashboard)
+    domain_blacklist: %w(blog api support help mail ftp dashboard)
   )
 end
