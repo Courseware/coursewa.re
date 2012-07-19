@@ -2,7 +2,7 @@
 
 %div.six.columns.centered
 
-  = form_tag passwords_path do
+  = form_tag passwords_path, :id => :recover do
 
     %div.row
       %div.five.columns
@@ -12,4 +12,4 @@
 
     .actions.right
       = link_to(_('Nevermind, found it...'), login_path, :class => [:button, :small, :radius, :secondary])
-      = submit_tag(_('Recover'), :class => [:button, :small, :radius])
+      = submit_tag(_('Recover'), :class => [:button, :small, :radius], :id => :submit_recover)

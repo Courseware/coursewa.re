@@ -2,7 +2,7 @@
 
 %div.six.columns.centered
 
-  = form_tag password_path, :method => 'put' do
+  = form_tag password_path, :method => 'put', :id => :password_update do
 
     = hidden_field_tag :token, @token
 
@@ -19,4 +19,4 @@
         = password_field_tag(:password_field_tag)
 
     .actions.right
-      = submit_tag(_('Update'), :class => [:button, :small, :radius])
+      = submit_tag(_('Update'), :class => [:button, :small, :radius], :id => :submit_password)

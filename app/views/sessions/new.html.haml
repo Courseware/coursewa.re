@@ -2,7 +2,7 @@
 
 %div.six.columns.centered
 
-  = form_tag login_post_path do
+  = form_tag login_post_path, :id => :login do
 
     %div.row
       %div.five.columns
@@ -23,4 +23,4 @@
         = check_box_tag(:remember_me)
 
     .actions.right
-      = submit_tag(_('Sign in'), :class => [:button, :small, :radius])
+      = submit_tag(_('Sign in'), :class => [:button, :small, :radius], :id => :submit_login)
