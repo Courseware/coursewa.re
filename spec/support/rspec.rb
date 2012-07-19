@@ -15,6 +15,6 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   # Add support for named routes
-  config.include(Rails.application.routes.url_helpers)
+  config.include(Rails.application.routes.url_helpers, :type => :controllers)
 end
 
