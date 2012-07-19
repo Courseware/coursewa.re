@@ -1,4 +1,4 @@
-= title _('Change password for %{name}') % {:name => @user.username}
+= title _('Change password for %{name}') % {:name => @user.name}
 
 %div.six.columns.centered
 
@@ -16,7 +16,7 @@
       %div.five.columns
         = label_tag(:password_confirmation, _('Password confirmation'), :class => [:right, :inline])
       %div.seven.columns.end
-        = password_field_tag(:password_field_tag)
+        = password_field_tag(:password_confirmation)
 
     .actions.right
       = submit_tag(_('Update'), :class => [:button, :small, :radius], :id => :submit_password)
