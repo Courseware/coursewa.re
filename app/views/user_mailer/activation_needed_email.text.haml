@@ -3,6 +3,6 @@
 
 = _('You have successfully signed up, your name is: %{name}') % {:name => @user.name}
 
-= _('To login to the site, just follow this link: %{url}.') % {:url => @url}
+= _('To login to the site, just follow this link: %{url}.') % {:url => activate_user_url(@user.activation_token)}
 
 = _('Thanks for teaching with Coursewa.re')

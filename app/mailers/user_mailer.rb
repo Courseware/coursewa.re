@@ -7,8 +7,7 @@ class UserMailer < ActionMailer::Base
   # @param user {User}, to send email to
   def activation_needed_email(user)
     @user = user
-    @url  = activate_user_path(user.activation_token)
-    mail(:to => user.email, :subject => _('Welcome Courseware'))
+    mail(:to => user.email, :subject => _('Welcome to Courseware'))
   end
 
   # Sends an activation confirmation email to the user
@@ -16,7 +15,6 @@ class UserMailer < ActionMailer::Base
   # @param user {User}, to send email to
   def activation_success_email(user)
     @user = user
-    @url  = login_path
     mail(
       :to => user.email,
       :subject => _('Your Courseware account was activated')
@@ -28,7 +26,6 @@ class UserMailer < ActionMailer::Base
   # @param user {User}, to send email to
   def reset_password_email(user)
     @user = user
-    @url  = login_path
     mail(
       :to => user.email,
       :subject => _('Your Courseware password has been reset')
