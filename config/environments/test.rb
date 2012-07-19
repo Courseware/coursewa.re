@@ -33,4 +33,7 @@ Courseware::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Set lvh.me as default host
+  config.action_mailer.default_url_options = {:host => 'lvh.me', :port => 3000}
 end

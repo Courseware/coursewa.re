@@ -36,4 +36,7 @@ Courseware::Application.configure do
 
   # Use letter opener for handling emails
   config.action_mailer.delivery_method = :letter_opener
+
+  # Set lvh.me as default host
+  config.action_mailer.default_url_options = {:host => 'lvh.me', :port => 3000}
 end
