@@ -7,6 +7,8 @@ describe Classroom do
   it { should validate_presence_of(:slug) }
   it { should validate_presence_of(:description) }
 
+  it { should belong_to(:user) }
+
   Courseware.config.domain_blacklist.each do |domain|
     it { should_not allow_value(domain).for(:title) }
   end
@@ -16,8 +18,6 @@ describe Classroom do
 
     it { should validate_uniqueness_of(:title) }
     it { should respond_to(:slug) }
-
-    it { should belong_to(:user) }
 
     its(:user) { should be_a(User) }
     its(:slug) { should match(/^[\w\-0-9]+$/) }

@@ -1,10 +1,10 @@
 class CreateClassrooms < ActiveRecord::Migration
   def change
     create_table :classrooms do |t|
-      t.string :title
-      t.text :description
-      t.string :slug,       :null => false
-      t.references :user
+      t.string      :title
+      t.text        :description
+      t.string      :slug, :null => false
+      t.references  :user
 
       t.timestamps
     end
