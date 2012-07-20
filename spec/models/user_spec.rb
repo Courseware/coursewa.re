@@ -6,6 +6,8 @@ describe User do
   it { should ensure_length_of(:password).is_at_least(6).is_at_most(32) }
   it { should validate_presence_of(:email) }
 
+  it { should have_one(:plan) }
+
   describe 'with all attributes' do
     subject{ Fabricate(:user) }
 

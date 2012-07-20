@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   # Relationships
   has_many :classrooms, :dependent => :destroy
+  has_one :plan
 
   # Validations
   validates_confirmation_of :password
