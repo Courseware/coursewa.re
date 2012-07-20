@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711151059) do
+ActiveRecord::Schema.define(:version => 20120720161738) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(:version => 20120711151059) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "plans", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "allowed_classrooms"
+    t.integer  "allowed_space"
+    t.date     "expires_in"
+    t.string   "slug"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "plans", ["user_id"], :name => "index_plans_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                          :null => false
