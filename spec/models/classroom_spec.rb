@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Group do
+describe Classroom do
 
   it { should validate_presence_of(:title) }
   it { should ensure_length_of(:title).is_at_least(4).is_at_most(32) }
@@ -12,7 +12,7 @@ describe Group do
   end
 
   describe 'with all attributes' do
-    subject{ Fabricate(:group) }
+    subject{ Fabricate(:classroom) }
 
     it { should validate_uniqueness_of(:title) }
     it { should respond_to(:slug) }

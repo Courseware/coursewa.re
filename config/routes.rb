@@ -19,7 +19,7 @@ Courseware::Application.routes.draw do
 
   # Route groups to own subdomains
   match '/' => 'home#index', :constraints => { :subdomain => /^www$/ }
-  match '/' => 'groups#show', :constraints => { :subdomain => /.+/ }
+  match '/' => 'classrooms#show', :constraints => { :subdomain => /.+/ }
   # Route to homepage by default
   root :to => 'home#index'
 end

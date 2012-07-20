@@ -1,5 +1,5 @@
-# Courseware group model
-class Group < ActiveRecord::Base
+# Courseware classroom model
+class Classroom < ActiveRecord::Base
   extend FriendlyId
 
   attr_accessible :description, :title
