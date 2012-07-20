@@ -11,6 +11,9 @@ gem 'roadie'
 gem 'cancan'
 gem 'public_activity', :github => 'pokonski/public_activity', :branch => '0.4.0-wip'
 gem 'friendly_id'
+# Speedup a bit things
+gem 'multi_json'
+gem 'oj'
 
 group :production do
   gem 'pg'
