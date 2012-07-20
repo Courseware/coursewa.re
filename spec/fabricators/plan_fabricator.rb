@@ -1,7 +1,6 @@
 Fabricator(:plan) do
   transient           :plan
   allowed_classrooms  { |attrs|
-    $stdout.puts(attrs.inspect)
     Courseware.config.plans[ attrs[:plan] || :free ][:allowed_classrooms]
   }
   allowed_space       { |attrs|
