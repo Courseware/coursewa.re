@@ -1,5 +1,7 @@
 # Courseware User model
 class User < ActiveRecord::Base
+  include PublicActivity::Model
+
   authenticates_with_sorcery!
 
   attr_accessible :email, :password, :password_confirmation

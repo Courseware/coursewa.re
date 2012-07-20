@@ -58,7 +58,8 @@ describe UsersController, :type => :request do
     page.should have_css('#notifications .alert-box.success')
 
     # Ignore any caches
-    User.find(user).activation_state.should eq('active')
+    user.reload.activation_state.should eq('active')
+    user.activities.last.key.should eq('activity.user.create')
   end
 
   it 'should handle invalid user activation' do
