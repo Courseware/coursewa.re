@@ -12,31 +12,31 @@ module Courseware
     :domain_blacklist => %w(blog api support help mail ftp dashboard),
     :plans => {
       :free => {
-        :title => _('Free'),
+        :slug => :free,
         :allowed_classrooms => 1,
         :allowed_space => 100.megabytes,
         :expires_in => nil,
         :cost => 0
       },
       :micro => {
-        :title => _('Micro'),
+        :slug => :micro,
         :allowed_classrooms => 5,
         :allowed_space => 5.gigabytes,
-        :expires_in => 30.days,
+        :expires_in => Time.now + 1.month,
         :cost => 7
       },
       :small => {
-        :title => _('Small'),
+        :slug => :small,
         :allowed_classrooms => 10,
         :allowed_space => 10.gigabytes,
-        :expires_in => 30.days,
+        :expires_in => Time.now + 1.month,
         :cost => 12
       },
       :medium => {
-        :title => _('Medium'),
+        :slug => :medium,
         :allowed_classrooms => 20,
         :allowed_space => 20.gigabytes,
-        :expires_in => 30.days,
+        :expires_in => Time.now + 1.month,
         :cost => 22
       }
     }
