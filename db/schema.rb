@@ -28,13 +28,13 @@ ActiveRecord::Schema.define(:version => 20120720161738) do
     t.string   "title"
     t.text     "description"
     t.string   "slug",        :null => false
-    t.integer  "user_id"
+    t.integer  "owner_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "classrooms", ["owner_id"], :name => "index_classrooms_on_owner_id"
   add_index "classrooms", ["slug"], :name => "index_classrooms_on_slug", :unique => true
-  add_index "classrooms", ["user_id"], :name => "index_classrooms_on_user_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

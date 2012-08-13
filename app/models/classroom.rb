@@ -5,7 +5,7 @@ class Classroom < ActiveRecord::Base
   attr_accessible :description, :title
 
   # Relationships
-  belongs_to :user, :counter_cache => true
+  belongs_to :owner, :counter_cache => true, :class_name => User
 
   # Validations
   validates_presence_of :title, :slug, :description
