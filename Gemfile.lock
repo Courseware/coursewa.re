@@ -40,7 +40,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.8)
     arel (3.0.2)
-    awesome_print (1.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     cancan (1.6.8)
@@ -54,7 +53,6 @@ GEM
     childprocess (0.3.4)
       ffi (~> 1.0, >= 1.0.6)
     chunky_png (1.2.5)
-    colored (1.2)
     compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -137,7 +135,6 @@ GEM
     oj (1.3.0)
     pg (0.14.0)
     polyglot (0.3.3)
-    progressbar (0.11.0)
     puma (1.5.0)
       rack (~> 1.2)
     rack (1.4.1)
@@ -155,14 +152,6 @@ GEM
       activesupport (= 3.2.6)
       bundler (~> 1.0)
       railties (= 3.2.6)
-    rails_best_practices (1.10.1)
-      activesupport
-      awesome_print
-      colored
-      erubis
-      i18n
-      progressbar
-      sexp_processor
     railties (3.2.6)
       actionpack (= 3.2.6)
       activesupport (= 3.2.6)
@@ -271,7 +260,6 @@ DEPENDENCIES
   public_activity!
   puma
   rails
-  rails_best_practices
   roadie
   rspec-rails
   ruby_parser
