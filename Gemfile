@@ -21,9 +21,10 @@ end
 
 group :development do
   gem 'sqlite3'
-  gem 'yard'
+  gem 'yard', :require => false
   gem 'gettext', :require => false
   gem 'ruby_parser', :require => false
+  gem 'cane', :require => false
 end
 
 group :assets do
