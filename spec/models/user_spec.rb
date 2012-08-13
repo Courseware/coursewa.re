@@ -13,11 +13,18 @@ describe User do
 
     it { should validate_uniqueness_of(:email) }
 
+    its(:role) { should be_nil }
     its(:name) { should match(/\w?+ \w?+/) }
   end
 
   describe 'with no first/last name' do
     subject{ Fabricate(:user, :first_name => nil, :last_name => nil) }
     its(:name) { should match(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/) }
+  end
+
+  describe 'with all attributes' do
+    subject{ Fabricate(:admin) }
+
+    its(:role) { should eq(:admin) }
   end
 end

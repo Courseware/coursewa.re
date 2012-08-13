@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :salt,                               default: nil
 
       # Custom fields
+      t.string :role,                               default: nil
       t.string :first_name,                         default: nil
       t.string :last_name,                          default: nil
       t.integer :classrooms_count,                  default: 0

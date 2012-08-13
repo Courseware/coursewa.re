@@ -4,3 +4,7 @@ Fabricator(:user) do
   last_name   Faker::Name.last_name
   password    'secret'
 end
+
+Fabricator(:admin, :from => :user) do
+  role        :admin
+end

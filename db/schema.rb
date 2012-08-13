@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120720161738) do
     t.string   "email",                                          :null => false
     t.string   "crypted_password"
     t.string   "salt"
+    t.string   "role"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "classrooms_count",                :default => 0
