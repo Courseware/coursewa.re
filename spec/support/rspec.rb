@@ -16,5 +16,9 @@ RSpec.configure do |config|
 
   # Add support for named routes
   config.include(Rails.application.routes.url_helpers, :type => :controllers)
+
+  # Basic filter to pick certain specs
+  config.filter_run :focus => true
+  config.run_all_when_everything_filtered = true
 end
 
