@@ -1,7 +1,8 @@
 # Courseware Main Page Controller class
 class HomeController < ApplicationController
 
-  before_filter :require_login, {only: :index}
+  # Disable abilities check
+  skip_authorization_check
 
   # Main page handler
   def index

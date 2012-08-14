@@ -1,6 +1,8 @@
 # Password recovery controller
 class PasswordsController < ApplicationController
 
+  # Do not check for abilities
+  skip_authorization_check
   skip_before_filter :require_login
 
   # Handles password recovery screen

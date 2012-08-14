@@ -1,6 +1,8 @@
 # Courseware Users Controller class
 class UsersController < ApplicationController
 
+  # Do not check for abilities
+  skip_authorization_check
   skip_before_filter :require_login, :only => [:new, :create, :activate]
 
   # Handles user creation screen
