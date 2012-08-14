@@ -52,10 +52,12 @@ describe SessionsController, :type => :request do
 
   it 'should handle logout' do
     user.activate!
-    login_user(user.email, 'secret')
+    login_user_post(user.email, 'secret')
 
+    visit root_url
     page.should_not have_css('#login')
-    visit logout_path
+    visit logout_url
+    visit root_url
     page.should have_css('#login')
   end
 
