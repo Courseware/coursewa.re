@@ -44,7 +44,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
-  gem 'capybara'
+  gem 'capybara', '2.0.0.beta2'
   gem 'email_spec'
   gem 'simplecov', :require => false
 end
