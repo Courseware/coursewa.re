@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'cancan/matchers'
 
 describe User do
 
@@ -7,6 +8,8 @@ describe User do
   it { should validate_presence_of(:email) }
 
   it { should have_one(:plan) }
+  it { should have_many(:memberships).dependent(:destroy) }
+  it { should have_many(:classrooms).through(:memberships) }
 
   describe 'with all attributes' do
     subject{ Fabricate(:user) }
@@ -28,5 +31,38 @@ describe User do
     subject{ Fabricate(:admin) }
 
     its(:role) { should eq(:admin) }
+  end
+
+  describe 'abilities' do
+    describe 'for admin' do
+      subject{ Ability.new( Fabricate(:admin) ) }
+
+      it{ should be_able_to(:create, User) }
+      it{ should be_able_to(:create, Classroom) }
+      it{ should be_able_to(:manage, Fabricate(:classroom)) }
+      it{ should be_able_to(:manage, Fabricate(:user)) }
+    end
+
+    describe 'for visitor' do
+      subject{ Ability.new( User.new ) }
+
+      it{ should be_able_to(:create, User) }
+      it{ should_not be_able_to(:create, Classroom) }
+      it{ should_not be_able_to(:manage, Fabricate(:user)) }
+      it{ should_not be_able_to(:manage, Fabricate(:classroom)) }
+    end
+
+    describe 'for user' do
+      let(:user) { Fabricate(:user) }
+      subject{ Ability.new( user ) }
+
+      it{ should_not be_able_to(:create, User) }
+      it{ should_not be_able_to(:manage, Fabricate(:user)) }
+      it{ should be_able_to(:manage, user) }
+
+      it{ should be_able_to(:create, Classroom) }
+      it{ should_not be_able_to(:manage, Fabricate(:classroom)) }
+      it{ should be_able_to(:manage, Fabricate(:classroom, :owner => user)) }
+    end
   end
 end

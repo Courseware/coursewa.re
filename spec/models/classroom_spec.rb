@@ -8,6 +8,8 @@ describe Classroom do
   it { should validate_presence_of(:description) }
 
   it { should belong_to(:owner) }
+  it { should have_many(:memberships).dependent(:destroy) }
+  it { should have_many(:members).through(:memberships) }
 
   Courseware.config.domain_blacklist.each do |domain|
     it { should_not allow_value(domain).for(:title) }
@@ -21,6 +23,10 @@ describe Classroom do
 
     its(:owner) { should be_a(User) }
     its(:slug) { should match(/^[\w\-0-9]+$/) }
+
+    it 'should have the owner in memberships' do
+      subject.members.should include(subject.owner)
+    end
   end
 
 end

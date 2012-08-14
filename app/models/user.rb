@@ -7,8 +7,11 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
 
   # Relationships
-  has_many :classrooms, :dependent => :destroy
+  has_many :created_classrooms, :dependent => :destroy
   has_one :plan
+
+  has_many :memberships, :dependent => :destroy
+  has_many :classrooms, :through => :memberships
 
   # Validations
   validates_confirmation_of :password
