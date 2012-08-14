@@ -3,27 +3,51 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
-    #
-    # The first argument to `can` is the action you are giving the user permission to do.
-    # If you pass :manage it will apply to every action. Other common actions here are
-    # :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on. If you pass
-    # :all it will apply to every resource. Otherwise pass a Ruby class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    user ||= User.new # guest user (not logged in)
+
+    alias_action :index, :show, :to => :read
+    alias_action :new, :to => :create
+    alias_action :edit, :to => :update
+
+    if user.role == :admin
+      can :manage, :all
+    else
+      # Can be created/activated if only visitor is not registered
+      can [:activate, :create], User, :id => nil
+
+      # Allow nothing if not logged in
+      return if user.id.nil?
+
+      ######################
+
+      # Can read any page if logged in
+      can [:show, :read], :all
+
+      # Can not create nother user
+      cannot :create, User do
+        !user.id.nil?
+      end
+
+      # Can be updated if only visitor owns it
+      can :manage, User, :id => user.id
+
+      # Can manage a classroom if its the owner
+      can :manage, Classroom, :owner_id => user.id
+
+      # Can create a classroom if logged in and plan allows it
+      can :create, Classroom do
+        !user.id.nil? and user.classrooms.count < user.plan.allowed_classrooms
+      end
+
+      # Can access classroom if only a member
+      can :read, Classroom do |classroom|
+        $stdout.puts classroom.members.inspect
+        classroom.members.include?(user)
+      end
+
+      can :read, :all
+
+    end
+
   end
 end
