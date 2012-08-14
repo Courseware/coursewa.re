@@ -15,6 +15,8 @@ describe User do
 
     its(:role) { should be_nil }
     its(:name) { should match(/\w?+ \w?+/) }
+    its(:plan) { should be_a(Plan) }
+    its('plan.slug') { should eq(:free) }
   end
 
   describe 'with no first/last name' do
@@ -22,7 +24,7 @@ describe User do
     its(:name) { should match(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/) }
   end
 
-  describe 'with all attributes' do
+  describe 'with admin role and all attributes' do
     subject{ Fabricate(:admin) }
 
     its(:role) { should eq(:admin) }
