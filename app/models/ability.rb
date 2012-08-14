@@ -13,7 +13,9 @@ class Ability
       can :manage, :all
     else
       # Can be created/activated if only visitor is not registered
-      can [:activate, :create], User, :id => nil
+      can :create, User do
+        user.id.nil?
+      end
 
       # Allow nothing if not logged in
       return if user.id.nil?
@@ -23,13 +25,11 @@ class Ability
       # Can read any page if logged in
       can [:show, :read], :all
 
-      # Can not create nother user
-      cannot :create, User do
-        !user.id.nil?
-      end
-
       # Can be updated if only visitor owns it
       can :manage, User, :id => user.id
+
+      # Can not create nother user
+      cannot :create, User
 
       # Can manage a classroom if its the owner
       can :manage, Classroom, :owner_id => user.id
