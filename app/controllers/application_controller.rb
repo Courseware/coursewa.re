@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
 
     # Not found handler
     def not_found
-      render(:status => 404)
+      redirect_to('/404')
     end
 end
