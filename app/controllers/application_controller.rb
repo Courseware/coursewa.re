@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   # Abilities checking
-  check_authorization
+  load_and_authorize_resource
 
   # Setup locale
   before_filter :set_gettext_locale

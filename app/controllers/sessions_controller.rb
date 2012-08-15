@@ -2,7 +2,8 @@
 class SessionsController < ApplicationController
 
   # Do not check for abilities
-  skip_authorization_check
+  skip_load_and_authorize_resource
+  # Do not ask authentication
   skip_before_filter :require_login, :except => [:destroy]
 
   # New session screen handler

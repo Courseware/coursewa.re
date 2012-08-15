@@ -1,8 +1,8 @@
 # Courseware Main Page Controller class
 class HomeController < ApplicationController
 
-  # Disable abilities check
-  skip_authorization_check
+  # Do not check for abilities
+  skip_load_and_authorize_resource
 
   # Main page handler
   def index
