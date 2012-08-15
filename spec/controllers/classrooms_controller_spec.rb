@@ -7,11 +7,11 @@ describe ClassroomsController do
   describe 'when one exists' do
     render_views
 
-    it 'should be available from subdomain' do
-      @request.host = "#{classroom.slug}.#{@request.host}"
-      get :show
-      response.should be_success
-      response.body.should match(classroom.title)
+    it 'should serve from subdomain' do
+      login_user_post(classroom.owner.email, 'secret')
+      visit root_url(nil, :subdomain => classroom.slug)
+      page.status_code.should eq(200)
+      page.should have_content(classroom.title)
     end
   end
 
