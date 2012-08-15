@@ -1,6 +1,6 @@
 setup:
   commands:
-    - bundle install --without development production
+    - bundle install --without production
     - bundle exec rake db:test:prepare
 test:
   commands:
