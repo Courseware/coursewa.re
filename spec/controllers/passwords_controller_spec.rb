@@ -66,7 +66,7 @@ describe PasswordsController, :type => :request do
   end
 
   it 'should handle password recovery' do
-    token = Faker::HipsterIpsum.word
+    token = Faker::HipsterIpsum.word.to_param
     user.update_attribute :reset_password_token, token
     user.update_attribute :reset_password_token_expires_at, Date.tomorrow
 
@@ -85,7 +85,7 @@ describe PasswordsController, :type => :request do
   end
 
   it 'should handle wrong passwords situation on recovery page' do
-    token = Faker::HipsterIpsum.word
+    token = Faker::HipsterIpsum.word.to_param
     user.update_attribute :reset_password_token, token
     user.update_attribute :reset_password_token_expires_at, Date.tomorrow
 

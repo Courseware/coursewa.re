@@ -3,6 +3,7 @@ class PasswordsController < ApplicationController
 
   # Do not check for abilities
   skip_authorization_check
+  # Do not ask authentication
   skip_before_filter :require_login
 
   # Handles password recovery screen
@@ -27,7 +28,7 @@ class PasswordsController < ApplicationController
   def edit
     @user = User.load_from_reset_password_token(params[:id])
     @token = params[:id]
-    not_authenticated unless @user
+    not_found and return if @user.nil?
   end
 
   # Handles password change
