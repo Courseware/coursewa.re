@@ -1,0 +1,9 @@
+setup:
+  commands:
+    - bundle install --without development production
+    - bundle exec rake db:test:prepare
+test:
+  commands:
+    - bundle exec rake
+deploy:
+  branch: master
