@@ -32,7 +32,7 @@ group :assets do
   gem 'therubyracer'
   gem 'sass-rails'
   gem 'compass-rails'
-  gem 'zurb-foundation', '~> 3.0.1'
+  gem 'zurb-foundation'
 end
 
 group :development, :test do
