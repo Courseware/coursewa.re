@@ -9,8 +9,9 @@
 
 // Colors Settings
 
-// $secondaryColor: #e9e9e9;
+// $mainColor: #2ba6cb;
 $mainColor: #862332;
+// $secondaryColor: #e9e9e9;
 // $alertColor: #c60f13;
 // $successColor: #5da423;
 // $txtColor: #222;
@@ -19,6 +20,17 @@ $mainColor: #862332;
 // $white: #fff;
 // $shinyEdge: rgba(#fff, .5);
 // $darkEdge: rgba(#000, .2);
+
+// Typography Settings
+
+// $headerFontFamily: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$headerFontFamily: 'Tenor Sans', sans-serif;
+// $headerFontWeight: bold;
+// $headerFontColor: #222;
+// $bodyFontFamily: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$bodyFontFamily: 'Tenor Sans', sans-serif;
+// $bodyFontWeight: normal;
+// $bodyFontColor: #222;
 
 // Button Settings
 
@@ -44,5 +56,22 @@ $mainColor: #862332;
 
 // Modular Scale
 // $ratio: $golden;
-// $base-size: 14px 44px;
+// $baseFontSize: 14px;
+// $importantModNum: 44px;
 
+// Tooltip Settings
+// $hasTipBorderBottom: dotted 1px #ccc;
+// $hasTipFontWeight: bold;
+// $hasTipFontColor: #333;
+// $hasTipBorderBottomHover: dotted 1px darken($mainColor, 20%);
+// $hasTipFontColorHover: $mainColor;
+// $tooltipBackgroundColor: #000;
+// $tooltipBackgroundOpacity: 0.85;
+// $tooltipFontSize: 12;
+// $tooltipFontWeight: bold;
+// $tooltipFontColor: #fff;
+// $tapToCloseFontSize: 10;
+// $tapToCloseFontWeight: normal;
+// $tapToCloseFontColor: #888;
+// $tooltipFontSizeScreenSmall: 14;
+// $tooltipBackgroundOpacityScreenSmall: 0.85;

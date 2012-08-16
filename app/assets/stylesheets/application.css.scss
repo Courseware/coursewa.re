@@ -3,24 +3,24 @@
  * Summer 2012
  */
 
+// Load Foundation
+
+
+@import 'compass/css3';
+@import 'modular-scale';
+
+@import 'foundation/functions/all';
+
+@import 'foundation/settings';
 @import 'settings';
 
-// Load Foundation
-@import 'foundation/base';
-@import 'foundation/globals';
-@import 'foundation/typography';
-@import 'foundation/grid';
-@import 'foundation/ui';
-@import 'foundation/buttons';
-@import 'foundation/tabs';
-// @import 'foundation/navbar';
-@import 'foundation/forms';
-// @import 'foundation/orbit';
-// @import 'foundation/reveal';
+@import 'foundation/mixins/all';
 
-
-// Courseware typography
-@import 'typography';
+@import 'foundation/common/base';
+@import 'foundation/components/grid';
+@import 'foundation/components/modules/buttons';
+@import 'foundation/components/modules/tabs';
+@import 'foundation/components/modules/ui';
 
 // Courseware layout
 @import 'layout';

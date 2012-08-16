@@ -9,11 +9,10 @@
     %meta{ :name => 'viewport', :content => 'width=device-width' }
     %meta{ :name => :generator, :content => 'Coursewa.re' }
     /[if lt IE 9]
-      = stylesheet_link_tag 'foundation/ie'
       %script{ :src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js' }
 
-    = stylesheet_link_tag :application
-    = javascript_include_tag :application
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body.off-canvas
