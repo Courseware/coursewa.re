@@ -50,6 +50,7 @@ describe User do
       it{ should_not be_able_to(:create, Classroom) }
       it{ should_not be_able_to(:manage, Fabricate(:user)) }
       it{ should_not be_able_to(:manage, Fabricate(:classroom)) }
+      it{ should_not be_able_to(:dashboard, Fabricate(:classroom)) }
     end
 
     describe 'for user' do
@@ -62,7 +63,9 @@ describe User do
 
       it{ should be_able_to(:create, Classroom) }
       it{ should_not be_able_to(:manage, Fabricate(:classroom)) }
+      it{ should_not be_able_to(:dashboard, Fabricate(:classroom)) }
       it{ should be_able_to(:manage, Fabricate(:classroom, :owner => user)) }
+      it{ should be_able_to(:dashboard, Fabricate(:classroom, :owner => user))}
     end
   end
 end

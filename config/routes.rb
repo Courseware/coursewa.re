@@ -20,6 +20,11 @@ Courseware::Application.routes.draw do
     :only => [:index, :dashboard] ) do
     get :dashboard, :on => :collection
   end
+
+  resources(:classrooms, :path => '/', :constraints => { :subdomain => /.+/ },
+    :only => [:dashboard] ) do
+    # Route groups to own subdomains
+    get :dashboard, :on => :collection, :path => '/'
   end
 
   # Route groups to own subdomains

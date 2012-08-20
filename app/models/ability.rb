@@ -36,7 +36,7 @@ class Ability
       end
 
       # Can access classroom if only a member
-      can :read, Classroom do |classroom|
+      can :dashboard, Classroom do |classroom|
         classroom.members.include?(user)
       end
 

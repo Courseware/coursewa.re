@@ -10,9 +10,10 @@ describe HomeController do
     it 'for dashboard' do
       get('/dashboard').should route_to('home#dashboard')
     end
+
     describe 'on a subdomain' do
       it 'goes to classroom langing page' do
-        get('http://test.coursewa.re').should route_to('classrooms#show')
+        get('http://test.lvh.me').should route_to('classrooms#dashboard')
       end
     end
 
