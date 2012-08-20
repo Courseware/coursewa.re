@@ -37,7 +37,6 @@ class Ability
 
       # Can access classroom if only a member
       can :read, Classroom do |classroom|
-        $stdout.puts classroom.members.inspect
         classroom.members.include?(user)
       end
 
