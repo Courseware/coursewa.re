@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
     # Unauthorized error handler
     def unauthorized
-      redirect_to(root_url, :alert => _('Access to this page is not allowed.'))
+      redirect_to(login_url, :alert => _('Access to this page is restricted.'))
     end
 
     # Not found handler

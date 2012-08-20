@@ -47,7 +47,7 @@ describe SessionsController, :type => :request do
     click_button 'submit_login'
 
     page.status_code.should eq(200)
-    page.should have_css('#notifications .alert-box.notice')
+    current_url.should match(dashboard_home_index_path)
   end
 
   it 'should handle logout' do
