@@ -12,9 +12,8 @@ Courseware::Application.routes.draw do
     :new, :create, :update, :edit
   ]
   resources :users, :only => [:new, :create] do
-    member do
-      get :activate
-    end
+    get :activate, :on => :member
+  end
 
   resources( :home, :path => '/', :constraints => { :subdomain => /^(www)?$/ },
     :only => [:index, :dashboard] ) do
@@ -27,8 +26,6 @@ Courseware::Application.routes.draw do
     get :dashboard, :on => :collection, :path => '/'
   end
 
-  # Route groups to own subdomains
-  match '/' => 'classrooms#show', :constraints => { :subdomain => /.+/ }
   # Route to homepage by default
   root :to => 'home#index'
 end
