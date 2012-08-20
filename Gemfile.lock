@@ -166,6 +166,8 @@ GEM
       slop (~> 3.3.1)
     puma (1.6.1)
       rack (~> 1.2)
+    quiet_assets (1.0.1)
+      railties (~> 3.1)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -305,6 +307,7 @@ DEPENDENCIES
   pry
   public_activity!
   puma
+  quiet_assets
   rails
   railsonfire
   roadie
