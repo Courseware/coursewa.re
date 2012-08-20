@@ -6,6 +6,12 @@ class HomeController < ApplicationController
 
   # Main page handler
   def index
+    redirect_to dashboard_home_index_path if logged_in?
+  end
+
+  # User Dashboard handler
+  def dashboard
+    redirect_to home_index_path unless logged_in?
   end
 
 end
