@@ -1,9 +1,8 @@
 GIT
   remote: git://github.com/pokonski/public_activity.git
-  revision: 8dc62a926e938285417c728f5e342575fc8876e1
-  branch: 0.4.0-wip
+  revision: 911c4190580ebcd63432ee08fac45921a448c0c5
   specs:
-    public_activity (0.4.0)
+    public_activity (0.4.0.rc2)
       actionpack (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
