@@ -1,2 +1,18 @@
-%h1
-  Dashboard
+= title _('Your Dashboard')
+
+.row
+  .seven.columns
+    - @timeline.each do |event|
+      .row
+        .two.columns.avatar
+          = gravatar_image_tag(event.owner.email, :alt => event.owner.name)
+
+        .ten.columns
+          = render_activity(event, :current_user => current_user)
+
+  .four.columns.offset-by-one
+    .row
+      %h5
+        Sidebar
+      %p
+        Something from the sidebar.

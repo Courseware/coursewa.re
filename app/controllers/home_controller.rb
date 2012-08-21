@@ -12,6 +12,7 @@ class HomeController < ApplicationController
   # User Dashboard handler
   def dashboard
     redirect_to home_index_path unless logged_in?
+    @timeline = current_user.activities
   end
 
 end
