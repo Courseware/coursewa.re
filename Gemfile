@@ -10,6 +10,7 @@ gem 'gettext_i18n_rails'
 gem 'roadie'
 gem 'cancan'
 gem 'public_activity', :github => 'pokonski/public_activity', :branch => '0.4.0-wip'
+gem 'gravatar_image_tag'
 gem 'friendly_id'
 # Speedup a bit things
 gem 'multi_json'
