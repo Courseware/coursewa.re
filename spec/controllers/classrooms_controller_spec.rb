@@ -4,14 +4,35 @@ describe ClassroomsController do
 
   let(:classroom) { Fabricate(:classroom) }
 
-  describe 'when one exists' do
-    render_views
+  describe 'GET dashboard' do
+    context 'being not logged in' do
+      it 'should redirect to login' do
+        @request.host = "#{classroom.slug}.lvh.me"
+        get :dashboard
+        response.should redirect_to(login_path)
+      end
 
-    it 'should serve from subdomain' do
-      login_user_post(classroom.owner.email, 'secret')
-      visit root_url(nil, :subdomain => classroom.slug)
-      page.status_code.should eq(200)
-      page.should have_content(classroom.title)
+      it 'should redirect to not found if classroom does not exist' do
+        @request.host = '123.lvh.me'
+        get :dashboard
+        response.should redirect_to(login_path)
+      end
+    end
+
+    context 'being logged in' do
+      it 'should show dashboard' do
+        @controller.send(:auto_login, classroom.owner)
+        @request.host = "#{classroom.slug}.lvh.me"
+        get :dashboard
+        response.should render_template(:dashboard)
+      end
+
+      it 'should redirect to not found if classroom does not exist' do
+        @controller.send(:auto_login, classroom.owner)
+        @request.host = '123.lvh.me'
+        get :dashboard
+        response.should redirect_to('/404')
+      end
     end
   end
 
