@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       flash[:notice] = _(
         'Welcome back %{name}!' % {:name => user.name}
       )
-      redirect_back_or_to(root_path)
+      redirect_back_or_to(dashboard_home_index_path)
     else
       flash.now.alert = _('Email or password was invalid.')
       render :new
