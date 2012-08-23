@@ -35,7 +35,7 @@ class PasswordsController < ApplicationController
   def update
     @token = params[:token]
     @user = User.load_from_reset_password_token(params[:token])
-    not_authenticated unless @user
+    return not_authenticated unless @user
 
     @user.password_confirmation = params[:password_confirmation]
 
@@ -44,7 +44,7 @@ class PasswordsController < ApplicationController
       redirect_to(root_path)
     else
       flash[:alert] = _('Password was not updated. Please try again.')
-      redirect_to(edit_password_path)
+      redirect_to(edit_password_path(@token))
     end
   end
 
