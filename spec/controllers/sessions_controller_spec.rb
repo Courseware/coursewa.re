@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-describe SessionsController, :type => :request do
-  render_views
-
+describe SessionsController do
   let(:user){ Fabricate(:user) }
 
   it 'should handle invalid login' do

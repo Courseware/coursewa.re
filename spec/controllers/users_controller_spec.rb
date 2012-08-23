@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe UsersController, :type => :request do
-  render_views
+describe UsersController do
 
   it 'should handle signups' do
     visit signup_path

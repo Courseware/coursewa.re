@@ -11,7 +11,6 @@ gem 'roadie'
 gem 'cancan'
 gem 'public_activity', :github => 'pokonski/public_activity'
 gem 'gravatar_image_tag'
-
 gem 'friendly_id'
 # Speedup a bit things
 gem 'multi_json'

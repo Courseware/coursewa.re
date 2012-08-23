@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe PasswordsController, :type => :request do
-  render_views
+describe PasswordsController do
 
   let(:user){ Fabricate(:user) }
 
