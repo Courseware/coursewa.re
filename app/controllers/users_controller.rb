@@ -2,12 +2,13 @@
 class UsersController < ApplicationController
 
   # Do not check for abilities
-  skip_load_and_authorize_resource
+  skip_load_and_authorize_resource :except => [:create]
   # Do not ask authentication
-  skip_before_filter :require_login, :only => [:new, :create, :activate]
+  skip_before_filter :require_login
 
   # Handles user creation screen
   def new
+    redirect_to root_path if logged_in?
     @user = User.new
   end
 

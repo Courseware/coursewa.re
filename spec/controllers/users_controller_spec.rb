@@ -3,8 +3,16 @@ require 'spec_helper'
 describe UsersController do
 
   describe 'GET new' do
-    subject{ get :new }
-    it { should render_template(:new) }
+    context 'when user is not logged in' do
+      subject{ get :new }
+      it { should render_template(:new) }
+    end
+
+    context 'when user is logged in' do
+      subject{ get :new }
+      before{ @controller.send(:auto_login, Fabricate(:user)) }
+      it { should redirect_to(root_path) }
+    end
   end
 
   describe 'POST create' do
@@ -18,6 +26,28 @@ describe UsersController do
         response.should render_template(:new)
         ActionMailer::Base.deliveries.count.should eq(emails_count)
         User.count.should eq(users_count)
+      end
+    end
+
+    context 'when user is logged in' do
+      it 'should not create a new user' do
+      @controller.send(:auto_login, Fabricate(:user))
+
+      users_count = User.count
+      emails_count = ActionMailer::Base.deliveries.count
+
+      email = Faker::Internet.email
+      passwd = Faker::Product.letters(8)
+
+      post :create, :user => {
+        :email => email,
+        :password => passwd,
+        :password_confirmation => passwd
+      }
+
+      ActionMailer::Base.deliveries.count.should eq(emails_count)
+      User.count.should eq(users_count)
+      response.should redirect_to(login_path)
       end
     end
 
