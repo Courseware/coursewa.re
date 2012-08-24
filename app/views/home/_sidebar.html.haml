@@ -1,0 +1,9 @@
+.four.columns.offset-by-one
+  .row.classrooms-sidebar
+    %h5
+      = _('Your Classrooms')
+    %hr
+    %ul
+      - current_user.created_classrooms.each do |classroom|
+        %li.sidebar-classroom
+          = link_to(classroom.title, root_url(:subdomain => classroom.slug))

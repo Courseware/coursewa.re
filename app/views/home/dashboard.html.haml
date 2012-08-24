@@ -10,9 +10,4 @@
         .ten.columns
           = render_activity(event, :current_user => current_user)
 
-  .four.columns.offset-by-one
-    .row
-      %h5
-        Sidebar
-      %p
-        Something from the sidebar.
+  = render(:partial => 'sidebar')
