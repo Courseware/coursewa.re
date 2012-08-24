@@ -79,7 +79,7 @@ describe UsersController do
 
       # Ignore any caches
       user.reload.activation_state.should eq('active')
-      user.activities.last.key.should eq('activity.user.create')
+      user.activities.last.key.should eq('user.create')
 
       response.should redirect_to(login_path)
     end

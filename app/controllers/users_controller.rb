@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       flash[:success] = _('Success! Your account was activated.')
       @user.activate!
       # Generate user's first activity
-      @user.activities.create(:key => 'activity.user.create')
+      @user.activities.create(:key => 'user.create')
       redirect_to(login_path)
     else
       not_authenticated
