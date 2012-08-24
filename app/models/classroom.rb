@@ -1,6 +1,7 @@
 # Courseware classroom model
 class Classroom < ActiveRecord::Base
   extend FriendlyId
+  include PublicActivity::Model
 
   attr_accessible :description, :title
 
@@ -19,8 +20,11 @@ class Classroom < ActiveRecord::Base
   # Generate title slug
   friendly_id :title, :use => :slugged
 
+  # Track activities
+  tracked :owner => :owner, :only => [:create]
+
   # Callbacks
-  before_create :add_owner_to_memberships
+  after_create :add_owner_to_memberships
 
   private
     # When creating a new classroom, owner becomes a member too

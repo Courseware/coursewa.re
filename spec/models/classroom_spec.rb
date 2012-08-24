@@ -20,9 +20,11 @@ describe Classroom do
 
     it { should validate_uniqueness_of(:title) }
     it { should respond_to(:slug) }
+    it { should respond_to(:activities) }
 
     its(:owner) { should be_a(User) }
     its(:slug) { should match(/^[\w\-0-9]+$/) }
+    its(:activities){ should_not be_empty }
 
     it 'should have the owner in memberships' do
       subject.members.should include(subject.owner)
@@ -30,3 +32,4 @@ describe Classroom do
   end
 
 end
+

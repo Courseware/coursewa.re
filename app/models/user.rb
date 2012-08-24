@@ -7,7 +7,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
 
   # Relationships
-  has_many :created_classrooms, :dependent => :destroy
+  has_many(
+    :created_classrooms, :dependent => :destroy,
+    :class_name => Classroom, :foreign_key => :owner_id
+  )
   has_one :plan
 
   has_many :memberships, :dependent => :destroy
