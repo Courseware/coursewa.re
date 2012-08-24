@@ -23,7 +23,7 @@
         = render('shared/header')
 
     %section#content{ :role => :main }
-      %div.row
+      %div.row{ :id => "#{controller.action_name}-#{controller.controller_name}"}
         = render('shared/alerts')
         = yield
 
