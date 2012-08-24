@@ -1,1 +1,13 @@
-= title @classroom.title
+= title [@classroom.title, _('Timeline')].join(' ')
+
+.row#activities
+  .seven.columns
+    - @timeline.each do |event|
+      .row
+        .two.columns.avatar
+          = gravatar_image_tag(event.owner.email, :alt => event.owner.name)
+
+        .ten.columns
+          = render_activity(event, :current_user => current_user)
+
+  = render(:partial => 'sidebar')

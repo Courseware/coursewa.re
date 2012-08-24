@@ -5,5 +5,6 @@ class ClassroomsController < ApplicationController
   # Mapped to [Classroom] subdomain
   def dashboard
     @classroom = Classroom.find_by_slug!(request.subdomain)
+    @timeline = @classroom.activities
   end
 end
