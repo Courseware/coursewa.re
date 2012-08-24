@@ -1,0 +1,8 @@
+%p{ :class => activity.key.parameterize }
+  - if activity.owner == p[:current_user]
+    = _('You created %s classroom.' % activity.trackable.title)
+  - else
+    = _('%s created %s classroom.' % [activity.owner.name, activity.trackable.title])
+%span.timestamp
+  = activity.created_at.to_s(:pretty)
+%hr
