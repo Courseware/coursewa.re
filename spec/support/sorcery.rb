@@ -1,6 +1,7 @@
 module Sorcery::TestHelpers::Rails
   # Helper method to login with Capybara
-  def sign_in_with(email, password, subdomain='www')
+  def sign_in_with(email, password='secret', subdomain=nil)
+    # Authenticate with Capybara
     page.driver.post(
       sessions_url(:subdomain => subdomain),
       { :email => email, :password => password }

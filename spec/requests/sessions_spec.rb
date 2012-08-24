@@ -52,7 +52,7 @@ describe 'Sessions' do
 
   it 'should handle logout' do
     user.activate!
-    sign_in_with(user.email, 'secret')
+    sign_in_with(user.email)
 
     visit root_url
     page.should have_css('#dashboard')
