@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   # Helper to generate user's name
   def name
-    return '%s %s' % [first_name, last_name] if first_name and last_name
+    return [first_name, last_name].join(' ') if first_name and last_name
     email
   end
 
