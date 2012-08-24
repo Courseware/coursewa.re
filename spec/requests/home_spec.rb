@@ -12,10 +12,11 @@ describe 'Home' do
 
   context 'when logged in' do
     it 'should show dasboard' do
-      user.activate!
+      visit activate_user_url(user.activation_token)
       sign_in_with(user.email)
       visit root_url
       page.should have_css('#dashboard-home')
+      page.should have_css('.activity-user-create')
     end
   end
 

@@ -1,4 +1,4 @@
-%p
+%p{ :class => activity.key.parameterize }
   - if activity.owner == p[:current_user]
     = _('You started using Courseware.')
   - else
