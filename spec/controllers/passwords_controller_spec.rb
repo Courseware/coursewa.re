@@ -5,8 +5,9 @@ describe PasswordsController do
   let(:user){ Fabricate(:user) }
   let(:create_token){
     token = Faker::HipsterIpsum.word.parameterize
+    ts = Time.now.in_time_zone + 1.day
     user.update_attribute :reset_password_token, token
-    user.update_attribute :reset_password_token_expires_at, Date.tomorrow
+    user.update_attribute :reset_password_token_expires_at, ts
     token
   }
 

@@ -184,7 +184,7 @@ GEM
       activesupport (= 3.2.8)
       bundler (~> 1.0)
       railties (= 3.2.8)
-    railsonfire (0.2.11)
+    railsonfire (0.2.12)
       activesupport (= 3.2.8)
       gems (= 0.7.0)
       git (= 1.2.5)

@@ -20,8 +20,9 @@ describe 'Passwords' do
 
   it 'should handle password update' do
     token = Faker::HipsterIpsum.word.to_param
+    ts = Time.now.in_time_zone + 1.day
     user.update_attribute :reset_password_token, token
-    user.update_attribute :reset_password_token_expires_at, Date.tomorrow
+    user.update_attribute :reset_password_token_expires_at, ts
 
     visit edit_password_path(token)
 
