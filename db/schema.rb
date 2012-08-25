@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20120814161135) do
     t.string   "trackable_type"
     t.integer  "owner_id"
     t.string   "owner_type"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
     t.string   "key"
     t.text     "parameters"
     t.datetime "created_at",     :null => false
