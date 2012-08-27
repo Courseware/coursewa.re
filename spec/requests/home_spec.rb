@@ -19,6 +19,24 @@ describe 'Home' do
       page.should have_css('#activities .user-create')
       page.should have_xpath("//a[@href='#{start_classroom_path}']")
     end
+
+    it 'should be able to create a classroom' do
+      user.activate!
+      sign_in_with(user.email)
+      visit start_classroom_path
+
+      title = Faker::Education.school[0..31]
+      description = Faker::HTMLIpsum.fancy_string
+
+      within('#new_classroom') do
+        fill_in 'classroom_title', :with => title
+        fill_in 'classroom_description', :with => description
+      end
+
+      click_button 'submit_new_classroom'
+
+      page.should have_content(title)
+    end
   end
 
   context 'when classrooms limits reached' do

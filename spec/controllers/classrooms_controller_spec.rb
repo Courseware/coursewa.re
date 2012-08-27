@@ -59,7 +59,7 @@ describe ClassroomsController do
     end
   end
 
-  describe 'GET post' do
+  describe 'POST :create' do
 
     context 'not being logged in' do
       it 'should redirect to login' do
@@ -71,17 +71,27 @@ describe ClassroomsController do
     context 'being logged in' do
       let(:user) { Fabricate(:confirmed_user) }
 
-      it 'should show classroom creation screen' do
+      it 'should show classroom creation screen on empty request' do
         @controller.send(:auto_login, user)
-        pending('WIP')
         post :create
+        response.should redirect_to(start_classroom_path)
+      end
+
+      it 'should create and redirect to the new classroom' do
+        @controller.send(:auto_login, user)
+        title = Faker::Education.school[0..31]
+        post :create, :classroom => {
+          :title => title,
+          :description => Faker::HTMLIpsum.fancy_string
+        }
+        response.should redirect_to(root_url(:subdomain => title.parameterize))
       end
     end
 
     context 'and with plan limits reached' do
       let(:user) { Fabricate(:classroom).owner.reload }
 
-      it 'should redirect to ' do
+      it 'should redirect to login (not authorized)' do
         @controller.send(:auto_login, user)
         post :create, :classroom => {
           :title => Faker::Education.school[0..31],
