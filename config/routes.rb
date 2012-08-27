@@ -8,6 +8,8 @@ Courseware::Application.routes.draw do
   post 'login' => 'sessions#create', :as => 'login_post'
 
   get 'start' => 'classrooms#new', :as => 'start_classroom'
+  post 'start' => 'classrooms#create', :as => 'start_classroom_post'
+
   resources :sessions, :only => [:new, :create, :destroy]
   resources :passwords, :only => [
     :new, :create, :update, :edit
