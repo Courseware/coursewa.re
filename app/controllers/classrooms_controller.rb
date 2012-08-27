@@ -7,4 +7,8 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.find_by_slug!(request.subdomain)
     @timeline = @classroom.activities
   end
+
+  # Classroom creation page
+  def new
+  end
 end

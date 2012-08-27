@@ -7,6 +7,7 @@ Courseware::Application.routes.draw do
   post 'signup' => 'users#create', :as => 'signup_post'
   post 'login' => 'sessions#create', :as => 'login_post'
 
+  get 'start' => 'classrooms#new', :as => 'start_classroom'
   resources :sessions, :only => [:new, :create, :destroy]
   resources :passwords, :only => [
     :new, :create, :update, :edit

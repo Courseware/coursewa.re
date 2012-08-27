@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe ClassroomsController do
 
-  let(:classroom) { Fabricate(:classroom) }
-
   describe 'GET dashboard' do
-    context 'being not logged in' do
+
+    let(:classroom) { Fabricate(:classroom) }
+
+    context 'not being logged in' do
       it 'should redirect to login' do
         @request.host = "#{classroom.slug}.#{@request.host}"
         get :dashboard
@@ -33,6 +34,28 @@ describe ClassroomsController do
         get :dashboard
         response.should redirect_to('/404')
       end
+    end
+  end
+
+  describe 'GET new' do
+
+    let(:user) { Fabricate(:confirmed_user) }
+
+    context 'not being logged in' do
+      it 'should redirect to login' do
+        get :new
+        response.should redirect_to(login_url)
+      end
+    end
+
+    context 'being logged in' do
+      before{ @controller.send(:auto_login, user) }
+
+      it 'should show classroom creation screen' do
+        get :new
+        response.should render_template(:new)
+      end
+
     end
   end
 
