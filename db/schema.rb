@@ -29,10 +29,11 @@ ActiveRecord::Schema.define(:version => 20120814161135) do
   create_table "classrooms", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "slug",        :null => false
+    t.string   "slug",                             :null => false
     t.integer  "owner_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "memberships_count", :default => 0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "classrooms", ["owner_id"], :name => "index_classrooms_on_owner_id"
@@ -83,7 +84,8 @@ ActiveRecord::Schema.define(:version => 20120814161135) do
     t.string   "role"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "classrooms_count",                :default => 0
+    t.integer  "memberships_count",               :default => 0
+    t.integer  "created_classrooms_count",        :default => 0
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_token"

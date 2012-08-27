@@ -6,7 +6,9 @@ class Classroom < ActiveRecord::Base
   attr_accessible :description, :title
 
   # Relationships
-  belongs_to :owner, :counter_cache => true, :class_name => User
+  belongs_to(
+    :owner, :counter_cache => :created_classrooms_count, :class_name => User
+  )
 
   has_many :memberships, :dependent => :destroy
   has_many :members, :through => :memberships, :source => :user

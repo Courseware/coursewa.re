@@ -12,6 +12,9 @@ describe User do
   it { should have_many(:classrooms).through(:memberships) }
   it { should have_many(:created_classrooms).dependent(:destroy) }
 
+  it { should respond_to(:created_classrooms_count) }
+  it { should respond_to(:memberships_count) }
+
   describe 'with all attributes' do
     subject{ Fabricate(:user) }
 

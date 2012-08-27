@@ -21,6 +21,7 @@ describe Classroom do
     it { should validate_uniqueness_of(:title) }
     it { should respond_to(:slug) }
     it { should respond_to(:activities) }
+    it { should respond_to(:memberships_count) }
 
     its(:owner) { should be_a(User) }
     its(:slug) { should match(/^[\w\-0-9]+$/) }
