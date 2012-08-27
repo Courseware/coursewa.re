@@ -9,6 +9,6 @@ Fabricator(:plan) do
   expires_in          { |attrs|
     Courseware.config.plans[ attrs[:plan] || :free ][:expires_in]
   }
-  slug                { |attrs| (attrs[:plan] || :free).to_s }
+  slug                { |attrs| (attrs[:plan] || :free).to_sym }
   user
 end

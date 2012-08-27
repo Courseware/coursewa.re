@@ -8,6 +8,6 @@ class Plan < ActiveRecord::Base
 
   # Validations
   validates_inclusion_of(
-    :slug, :in => Courseware.config.plans.keys.collect(&:to_s)
+    :slug, :in => Courseware.config.plans.keys.collect
   )
 end

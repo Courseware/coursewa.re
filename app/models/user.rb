@@ -41,8 +41,7 @@ class User < ActiveRecord::Base
     # before_create callback to assign the default subscription plan
     def assign_free_plan
       plan = Courseware.config.plans[:free]
-      plan.delete(:cost)
-      self.plan = Plan.create(plan)
+      self.plan = Plan.create(plan.except(:cost))
     end
 
 end
