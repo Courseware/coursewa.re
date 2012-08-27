@@ -10,12 +10,14 @@ class ClassroomsController < ApplicationController
 
   # Classroom creation page
   def new
+    @new_classroom = current_user.created_classrooms.build
   end
 
   # Classroom creation hadler
   def create
-    if cr = current_user.created_classrooms.create(params[:classroom])
-      redirect_to(root_url(:subdomain => cr.slug))
+    classroom = current_user.created_classrooms.build(params[:classroom])
+    if classroom.save
+      redirect_to(root_url(:subdomain => classroom.slug))
     else
       redirect_to(start_classroom_path)
     end
