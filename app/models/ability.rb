@@ -9,9 +9,7 @@ class Ability
       can :manage, :all
     else
       # Can be created/activated if only visitor is not registered
-      can :create, User do
-        user.id.nil?
-      end
+      can :create, User if user.id.nil?
 
       # Allow nothing if not logged in
       return if user.id.nil?
@@ -24,23 +22,21 @@ class Ability
       # Can be updated if only visitor owns it
       can :manage, User, :id => user.id
 
-      # Can not create nother user
+      # Can not create another user
       cannot :create, User
 
       # Can manage a classroom if its the owner
-      can :manage, Classroom, :owner_id => user.id
-
-      # Can create a classroom if logged in and plan allows it
-      can :create, Classroom do
-        !user.id.nil? and user.classrooms.count < user.plan.allowed_classrooms
-      end
+      can [:update, :destroy], Classroom, :owner_id => user.id
 
       # Can access classroom if only a member
       can :dashboard, Classroom do |classroom|
         classroom.members.include?(user)
       end
 
-      can :read, :all
+      # Can not create a classroom if plan limits reached
+      if user.created_classrooms_count < user.plan.allowed_classrooms
+        can :create, Classroom
+      end
 
     end
 

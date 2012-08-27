@@ -38,8 +38,11 @@ describe User do
   end
 
   describe 'abilities' do
+    subject { ability }
+    let(:ability){ Ability.new(user) }
+
     describe 'for admin' do
-      subject{ Ability.new( Fabricate(:admin) ) }
+      let(:user){ Fabricate(:admin) }
 
       it{ should be_able_to(:create, User) }
       it{ should be_able_to(:create, Classroom) }
@@ -48,7 +51,7 @@ describe User do
     end
 
     describe 'for visitor' do
-      subject{ Ability.new( User.new ) }
+      let(:user){ User.new }
 
       it{ should be_able_to(:create, User) }
       it{ should_not be_able_to(:create, Classroom) }
@@ -58,18 +61,24 @@ describe User do
     end
 
     describe 'for user' do
-      let(:user) { Fabricate(:user) }
-      subject{ Ability.new( user ) }
+      let(:user){ Fabricate(:confirmed_user) }
 
       it{ should_not be_able_to(:create, User) }
       it{ should_not be_able_to(:manage, Fabricate(:user)) }
       it{ should be_able_to(:manage, user) }
 
       it{ should be_able_to(:create, Classroom) }
-      it{ should_not be_able_to(:manage, Fabricate(:classroom)) }
+      it{ should_not be_able_to(:update, Fabricate(:classroom)) }
+      it{ should_not be_able_to(:destroy, Fabricate(:classroom)) }
       it{ should_not be_able_to(:dashboard, Fabricate(:classroom)) }
-      it{ should be_able_to(:manage, Fabricate(:classroom, :owner => user)) }
+      it{ should be_able_to(:update, Fabricate(:classroom, :owner => user)) }
+      it{ should be_able_to(:destroy, Fabricate(:classroom, :owner => user)) }
       it{ should be_able_to(:dashboard, Fabricate(:classroom, :owner => user))}
+
+      context 'with plan limits reached' do
+        let(:user){ Fabricate(:classroom).owner.reload }
+        it{ should_not be_able_to(:create, Classroom ) }
+      end
     end
   end
 end
