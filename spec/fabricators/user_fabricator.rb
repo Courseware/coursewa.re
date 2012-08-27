@@ -8,3 +8,7 @@ end
 Fabricator(:admin, :from => :user) do
   role        :admin
 end
+
+Fabricator(:confirmed_user, :from => :user) do
+  after_create { |usr| usr.activate! }
+end
