@@ -8,13 +8,13 @@
       %div.five.columns
         = label_tag(:email, _('Email'), :class => [:right, :inline])
       %div.seven.columns.end
-        = text_field_tag(:email)
+        = text_field_tag(:email, nil, :required => true)
 
     %div.row
       %div.five.columns
         = label_tag(:password, _('Password'), :class => [:right, :inline])
       %div.seven.columns.end
-        = password_field_tag(:password)
+        = password_field_tag(:password, nil, :required => true)
 
     %div.row
       %div.five.columns
