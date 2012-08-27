@@ -13,6 +13,7 @@
 
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
+    = yield(:head_embed) if content_for?(:head_embed)
     = csrf_meta_tags
 
   %body.off-canvas
