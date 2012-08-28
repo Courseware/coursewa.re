@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Plan do
+  let(:plan){ Fabricate(:user).plan }
+
   it { should belong_to(:user) }
 
   Courseware.config.plans.keys do |plan|

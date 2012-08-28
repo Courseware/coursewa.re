@@ -80,10 +80,11 @@ ActiveRecord::Schema.define(:version => 20120828110726) do
     t.integer  "user_id"
     t.integer  "allowed_classrooms"
     t.integer  "allowed_space"
+    t.integer  "used_space",         :default => 0
     t.date     "expires_in"
     t.string   "slug"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   add_index "plans", ["user_id"], :name => "index_plans_on_user_id"

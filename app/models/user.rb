@@ -28,20 +28,15 @@ class User < ActiveRecord::Base
   activist
 
   # Hooks
-  before_create :assign_free_plan
+  before_create do |user|
+      plan = Courseware.config.plans[:free]
+      user.plan = Plan.create(plan.except(:cost))
+  end
 
   # Helper to generate user's name
   def name
     return [first_name, last_name].join(' ') if first_name and last_name
     email
   end
-
-  private
-
-    # before_create callback to assign the default subscription plan
-    def assign_free_plan
-      plan = Courseware.config.plans[:free]
-      self.plan = Plan.create(plan.except(:cost))
-    end
 
 end
