@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   has_many :memberships, :dependent => :destroy
   has_many :classrooms, :through => :memberships
+  has_many :images, :dependent => :destroy
+  has_many :uploads, :dependent => :destroy
 
   # Validations
   validates_confirmation_of :password

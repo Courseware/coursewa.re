@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20120828110726) do
   end
 
   create_table "assets", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "classroom_id"
     t.text     "description"
     t.string   "type"
     t.integer  "assetable_id"
@@ -36,6 +38,11 @@ ActiveRecord::Schema.define(:version => 20120828110726) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
   end
+
+  add_index "assets", ["assetable_id"], :name => "index_assets_on_assetable_id"
+  add_index "assets", ["assetable_type"], :name => "index_assets_on_assetable_type"
+  add_index "assets", ["classroom_id"], :name => "index_assets_on_classroom_id"
+  add_index "assets", ["user_id"], :name => "index_assets_on_user_id"
 
   create_table "classrooms", :force => true do |t|
     t.string   "title"

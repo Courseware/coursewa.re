@@ -10,6 +10,8 @@ describe Classroom do
   it { should belong_to(:owner) }
   it { should have_many(:memberships).dependent(:destroy) }
   it { should have_many(:members).through(:memberships) }
+  it { should have_many(:images).dependent(:destroy) }
+  it { should have_many(:uploads).dependent(:destroy) }
 
   Courseware.config.domain_blacklist.each do |domain|
     it { should_not allow_value(domain).for(:title) }

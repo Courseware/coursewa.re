@@ -11,6 +11,8 @@ describe User do
   it { should have_many(:memberships).dependent(:destroy) }
   it { should have_many(:classrooms).through(:memberships) }
   it { should have_many(:created_classrooms).dependent(:destroy) }
+  it { should have_many(:images).dependent(:destroy) }
+  it { should have_many(:uploads).dependent(:destroy) }
 
   it { should respond_to(:created_classrooms_count) }
   it { should respond_to(:memberships_count) }
