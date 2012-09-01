@@ -1,5 +1,6 @@
 # Image upload, STI from Asset
 class Image < Asset
+  # List of allowed mime-types for image uploads
   ALLOWED_TYPES = %w( image/jpeg image/png image/gif image/pjpeg image/x-png )
 
   # Relationships
