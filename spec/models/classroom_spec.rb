@@ -27,10 +27,32 @@ describe Classroom do
 
     its(:owner) { should be_a(User) }
     its(:slug) { should match(/^[\w\-0-9]+$/) }
-    its(:activities){ should_not be_empty }
+
+    it 'should generate a new activity' do
+      subject.owner.activities.collect(&:key).should(
+        include('classroom.create')
+      )
+    end
 
     it 'should have the owner in memberships' do
       subject.members.should include(subject.owner)
+    end
+  end
+
+  describe 'sanitization' do
+    it 'should not allow html' do
+      bad_input = Faker::HTMLIpsum.body + '
+      <script>alert("PWND")</script>
+      <iframe src="http://pwnr.com/pwnd"></iframe>
+      '
+
+      classroom = Classroom.create(
+        :title => bad_input,
+        :description => bad_input
+      )
+      classroom.title.should_not match(/\<\>/)
+      classroom.description.should_not match(/\<(script|iframe)\>/)
+      classroom.description.should_not match(/\<(h1|li|ol)\>/)
     end
   end
 

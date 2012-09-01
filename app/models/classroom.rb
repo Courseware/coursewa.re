@@ -28,11 +28,15 @@ class Classroom < ActiveRecord::Base
   tracked :owner => :owner, :only => [:create]
 
   # Callbacks
-  after_create :add_owner_to_memberships
+  # Cleanup title and description before saving it
+  before_validation do
+    self.title = Sanitize.clean(self.title)
+    self.description = Sanitize.clean(
+      self.description, Sanitize::Config::RESTRICTED)
+  end
+  # When creating a new classroom, owner becomes a member too
+  after_create do |classroom|
+    classroom.members << classroom.owner
+  end
 
-  private
-    # When creating a new classroom, owner becomes a member too
-    def add_owner_to_memberships
-      self.members << self.owner
-    end
 end
