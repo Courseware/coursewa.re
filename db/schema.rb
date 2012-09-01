@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828110726) do
+ActiveRecord::Schema.define(:version => 20120901132251) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -56,6 +56,23 @@ ActiveRecord::Schema.define(:version => 20120828110726) do
 
   add_index "classrooms", ["owner_id"], :name => "index_classrooms_on_owner_id"
   add_index "classrooms", ["slug"], :name => "index_classrooms_on_slug", :unique => true
+
+  create_table "courses", :force => true do |t|
+    t.string   "slug"
+    t.string   "title"
+    t.text     "content"
+    t.text     "requisite"
+    t.integer  "parent_course_id"
+    t.integer  "user_id"
+    t.integer  "classroom_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "courses", ["classroom_id"], :name => "index_courses_on_classroom_id"
+  add_index "courses", ["parent_course_id"], :name => "index_courses_on_parent_course_id"
+  add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
+  add_index "courses", ["user_id"], :name => "index_courses_on_user_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
