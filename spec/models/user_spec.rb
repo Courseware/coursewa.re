@@ -48,8 +48,14 @@ describe User do
 
       it{ should be_able_to(:create, User) }
       it{ should be_able_to(:create, Classroom) }
+      it{ should be_able_to(:create, Image) }
+      it{ should be_able_to(:create, Upload) }
+      it{ should be_able_to(:create, Course) }
       it{ should be_able_to(:manage, Fabricate(:classroom)) }
       it{ should be_able_to(:manage, Fabricate(:user)) }
+      it{ should be_able_to(:manage, Fabricate(:image)) }
+      it{ should be_able_to(:manage, Fabricate(:upload)) }
+      it{ should be_able_to(:manage, Fabricate(:course)) }
     end
 
     describe 'for visitor' do
@@ -95,5 +101,63 @@ describe User do
         it{ should_not be_able_to(:create, Classroom ) }
       end
     end
+
+    describe 'for classroom owner' do
+      let(:classroom){ Fabricate(:classroom) }
+      let(:user){ classroom.owner.reload }
+
+      context 'courses' do
+        let(:course){
+          Fabricate(:course, :user => user, :classroom => classroom) }
+
+        it{ should be_able_to(:create, Fabricate.build(
+          :course, :user => user, :classroom => classroom))
+        }
+        it{ should be_able_to(:manage, course) }
+      end
+    end
+
+    describe 'for classroom course' do
+      let(:course){ Fabricate(:course) }
+
+      context 'and a visitor' do
+        let(:user){ User.new }
+
+        it{ should_not be_able_to(:create, Fabricate.build(
+          :course, :user => user, :classroom => course.classroom))
+        }
+        it{ should_not be_able_to(:manage, course) }
+        it{ should_not be_able_to(:show, course) }
+        it{ should_not be_able_to(:index, course) }
+      end
+
+      context 'and a member' do
+        let(:user){ Fabricate(:user) }
+        before do
+          classroom = course.classroom
+          classroom.members << user
+          classroom.save
+        end
+
+        it{ should_not be_able_to(:create, Fabricate.build(
+          :course, :user => user, :classroom => course.classroom))
+        }
+        it{ should_not be_able_to(:manage, course) }
+        it{ should be_able_to(:show, course) }
+        it{ should be_able_to(:index, course) }
+      end
+
+      context 'and a non-member' do
+        let(:user){ Fabricate(:user) }
+
+        it{ should_not be_able_to(:create, Fabricate.build(
+          :course, :user => user, :classroom => course.classroom))
+        }
+        it{ should_not be_able_to(:manage, course) }
+        it{ should_not be_able_to(:show, course) }
+        it{ should_not be_able_to(:index, course) }
+      end
+    end
+
   end
 end

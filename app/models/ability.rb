@@ -16,9 +16,6 @@ class Ability
 
       ######################
 
-      # Can read any page if logged in
-      can [:show, :read], :all
-
       # Can be updated if only visitor owns it
       can :manage, User, :id => user.id
 
@@ -33,6 +30,11 @@ class Ability
         classroom.members.include?(user)
       end
 
+      # Can not create a classroom if plan limits reached
+      if user.created_classrooms_count < user.plan.allowed_classrooms
+        can :create, Classroom
+      end
+
       # Can manage assets if user is the owner
       can :manage, Image, :user_id => user.id
       can :manage, Upload, :user_id => user.id
@@ -40,11 +42,19 @@ class Ability
       can :create, Image
       can :create, Upload
 
-      # Can not create a classroom if plan limits reached
-      if user.created_classrooms_count < user.plan.allowed_classrooms
-        can :create, Classroom
+      # Can manage courses if user is the owner
+      can :manage, Course do |course|
+        course.user.equal?(user) and
+          user.created_classrooms.include?(course.classroom)
       end
-
+      # Can create courses if user owns the classroom
+      can :create, Course do |course|
+        course.classroom.owner.equal?(course.user)
+      end
+      # Can access course if user is a member of the classroom
+      can :read, Course do |course|
+        course.classroom.members.include?(user)
+      end
     end
 
   end
