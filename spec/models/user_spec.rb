@@ -56,10 +56,16 @@ describe User do
       let(:user){ User.new }
 
       it{ should be_able_to(:create, User) }
-      it{ should_not be_able_to(:create, Classroom) }
       it{ should_not be_able_to(:manage, Fabricate(:user)) }
+
+      it{ should_not be_able_to(:create, Classroom) }
       it{ should_not be_able_to(:manage, Fabricate(:classroom)) }
       it{ should_not be_able_to(:dashboard, Fabricate(:classroom)) }
+
+      it{ should_not be_able_to(:create, Image) }
+      it{ should_not be_able_to(:create, Upload) }
+      it{ should_not be_able_to(:manage, Fabricate(:image)) }
+      it{ should_not be_able_to(:manage, Fabricate(:upload)) }
     end
 
     describe 'for user' do
@@ -76,6 +82,13 @@ describe User do
       it{ should be_able_to(:update, Fabricate(:classroom, :owner => user)) }
       it{ should be_able_to(:destroy, Fabricate(:classroom, :owner => user)) }
       it{ should be_able_to(:dashboard, Fabricate(:classroom, :owner => user))}
+
+      it{ should be_able_to(:create, Image) }
+      it{ should be_able_to(:create, Upload) }
+      it{ should_not be_able_to(:manage, Fabricate(:image)) }
+      it{ should_not be_able_to(:manage, Fabricate(:upload)) }
+      it{ should be_able_to(:manage, Fabricate(:image, :user => user)) }
+      it{ should be_able_to(:manage, Fabricate(:upload, :user => user)) }
 
       context 'with plan limits reached' do
         let(:user){ Fabricate(:classroom).owner.reload }

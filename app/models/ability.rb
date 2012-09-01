@@ -33,6 +33,13 @@ class Ability
         classroom.members.include?(user)
       end
 
+      # Can manage assets if user is the owner
+      can :manage, Image, :user_id => user.id
+      can :manage, Upload, :user_id => user.id
+      # Can create assets
+      can :create, Image
+      can :create, Upload
+
       # Can not create a classroom if plan limits reached
       if user.created_classrooms_count < user.plan.allowed_classrooms
         can :create, Classroom
