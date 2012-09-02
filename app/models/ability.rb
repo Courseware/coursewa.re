@@ -35,6 +35,22 @@ class Ability
         can :create, Classroom
       end
 
+      # Can create own classroom memberships
+      can :create, Membership do |mem|
+        user.created_classrooms.include?(mem.classroom)
+      end
+      # Can remove own classroom membership
+      can :destroy, Membership do |mem|
+        user.equal?(mem.user) or
+          user.created_classrooms.include?(mem.classroom)
+      end
+
+      # Can remove own classroom collaboration
+      can :destroy, Collaboration do |col|
+        user.equal?(col.user) or
+          user.created_classrooms.include?(col.classroom)
+      end
+
       # Can manage assets if user is the owner
       can :manage, Image, :user_id => user.id
       can :manage, Upload, :user_id => user.id

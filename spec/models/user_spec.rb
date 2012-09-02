@@ -53,6 +53,10 @@ describe User do
       it{ should be_able_to(:create, Image) }
       it{ should be_able_to(:create, Upload) }
       it{ should be_able_to(:create, Lecture) }
+      it{ should be_able_to(:create, Membership) }
+      it{ should be_able_to(:create, Collaboration) }
+      it{ should be_able_to(:manage, Fabricate(:membership)) }
+      it{ should be_able_to(:manage, Fabricate(:collaboration)) }
       it{ should be_able_to(:manage, Fabricate(:classroom)) }
       it{ should be_able_to(:manage, Fabricate(:user)) }
       it{ should be_able_to(:manage, Fabricate(:image)) }
@@ -69,6 +73,11 @@ describe User do
       it{ should_not be_able_to(:create, Classroom) }
       it{ should_not be_able_to(:manage, Fabricate(:classroom)) }
       it{ should_not be_able_to(:dashboard, Fabricate(:classroom)) }
+
+      it{ should_not be_able_to(:create, Membership) }
+      it{ should_not be_able_to(:create, Collaboration) }
+      it{ should_not be_able_to(:destroy, Fabricate(:membership)) }
+      it{ should_not be_able_to(:destroy, Fabricate(:collaboration)) }
 
       it{ should_not be_able_to(:create, Image) }
       it{ should_not be_able_to(:create, Upload) }
@@ -91,6 +100,11 @@ describe User do
       it{ should be_able_to(:destroy, Fabricate(:classroom, :owner => user)) }
       it{ should be_able_to(:dashboard, Fabricate(:classroom, :owner => user))}
 
+      it{ should_not be_able_to(:create, Fabricate.build(:membership)) }
+      it{ should_not be_able_to(:create, Collaboration) }
+      it{ should_not be_able_to(:destroy, Fabricate(:membership)) }
+      it{ should_not be_able_to(:destroy, Fabricate(:collaboration)) }
+
       it{ should be_able_to(:create, Image) }
       it{ should be_able_to(:create, Upload) }
       it{ should_not be_able_to(:manage, Fabricate(:image)) }
@@ -107,6 +121,13 @@ describe User do
     describe 'for classroom owner' do
       let(:classroom){ Fabricate(:classroom) }
       let(:user){ classroom.owner.reload }
+
+      context 'members' do
+        it{ should be_able_to(:create, Fabricate.build(
+          :membership, :classroom => classroom, :user => Fabricate(:user))) }
+        it{ should be_able_to(:destroy, Fabricate(:membership,
+                                                  :classroom => classroom))}
+      end
 
       context 'lectures' do
         let(:lecture){
@@ -147,6 +168,20 @@ describe User do
         it{ should_not be_able_to(:manage, lecture) }
         it{ should be_able_to(:show, lecture) }
         it{ should be_able_to(:index, lecture) }
+      end
+
+      context 'and a collaborator', focus: true do
+        let(:user){ Fabricate(:user) }
+        before do
+          classroom = lecture.classroom
+          classroom.collaborators << user
+          classroom.save
+        end
+
+        it{ should be_able_to(:create, Fabricate.build(
+          :lecture, :user => user, :classroom => lecture.classroom))
+        }
+        it{ should be_able_to(:manage, lecture) }
       end
 
       context 'and a non-member' do
