@@ -116,6 +116,11 @@ describe User do
         let(:user){ Fabricate(:classroom).owner.reload }
         it{ should_not be_able_to(:create, Classroom ) }
       end
+
+      context 'with plan allowing collaborators' do
+        before{ user.plan.increment!(:allowed_collaborators)}
+        it{ should be_able_to(:create, Collaboration) }
+      end
     end
 
     describe 'for classroom owner' do
@@ -126,6 +131,15 @@ describe User do
         it{ should be_able_to(:create, Fabricate.build(
           :membership, :classroom => classroom, :user => Fabricate(:user))) }
         it{ should be_able_to(:destroy, Fabricate(:membership,
+                                                  :classroom => classroom))}
+      end
+
+      context 'collaborators' do
+        before{ user.plan.increment!(:allowed_collaborators)}
+
+        it{ should be_able_to(:create, Fabricate.build(
+          :collaboration, :classroom => classroom, :user => Fabricate(:user))) }
+        it{ should be_able_to(:destroy, Fabricate(:collaboration,
                                                   :classroom => classroom))}
       end
 
@@ -170,7 +184,7 @@ describe User do
         it{ should be_able_to(:index, lecture) }
       end
 
-      context 'and a collaborator', focus: true do
+      context 'and a collaborator' do
         let(:user){ Fabricate(:user) }
         before do
           classroom = lecture.classroom

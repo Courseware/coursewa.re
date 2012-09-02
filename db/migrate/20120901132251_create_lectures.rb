@@ -1,7 +1,7 @@
 class CreateLectures < ActiveRecord::Migration
   def change
     create_table :lectures do |t|
-      t.string :slug
+      t.string :slug, :null => false
       t.string :title
       t.text :content
       t.text :requisite

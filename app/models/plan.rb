@@ -1,7 +1,8 @@
 # Courseware user plan model
 class Plan < ActiveRecord::Base
   attr_accessible(
-    :allowed_classrooms, :allowed_space, :expires_in, :slug, :used_space
+    :allowed_classrooms, :allowed_space, :allowed_collaborators, :expires_in,
+    :slug, :used_space
   )
 
   # Relationships
@@ -17,4 +18,5 @@ class Plan < ActiveRecord::Base
   def left_space
     allowed_space - used_space
   end
+
 end

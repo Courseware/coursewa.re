@@ -45,6 +45,12 @@ class Ability
           user.created_classrooms.include?(mem.classroom)
       end
 
+      # Can not add a classroom collaborator if limit reached
+      if user.collaborations_count < user.plan.allowed_collaborators
+        can :create, Collaboration do |col|
+          user.created_classrooms.include?(col.classroom)
+        end
+      end
       # Can remove own classroom collaboration
       can :destroy, Collaboration do |col|
         user.equal?(col.user) or
@@ -60,8 +66,7 @@ class Ability
 
       # Can manage lectures if user is the owner
       can :manage, Lecture do |lecture|
-        lecture.user.equal?(user) and
-          user.created_classrooms.include?(lecture.classroom)
+        lecture.classroom.collaborators.include?(user)
       end
       # Can create lectures if user owns the classroom
       can :create, Lecture do |lecture|
