@@ -1,12 +1,12 @@
-# [Classroom] course
-class Course < ActiveRecord::Base
+# [Classroom] lecture
+class Lecture < ActiveRecord::Base
   extend FriendlyId
   include PublicActivity::Model
 
   attr_accessible :content, :requisite, :title
 
   # Relationships
-  belongs_to :parent_course, :class_name => Course
+  belongs_to :parent_lecture, :class_name => Lecture
   belongs_to :user
   belongs_to :classroom
 

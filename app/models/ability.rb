@@ -42,18 +42,18 @@ class Ability
       can :create, Image
       can :create, Upload
 
-      # Can manage courses if user is the owner
-      can :manage, Course do |course|
-        course.user.equal?(user) and
-          user.created_classrooms.include?(course.classroom)
+      # Can manage lectures if user is the owner
+      can :manage, Lecture do |lecture|
+        lecture.user.equal?(user) and
+          user.created_classrooms.include?(lecture.classroom)
       end
-      # Can create courses if user owns the classroom
-      can :create, Course do |course|
-        course.classroom.owner.equal?(course.user)
+      # Can create lectures if user owns the classroom
+      can :create, Lecture do |lecture|
+        lecture.classroom.owner.equal?(lecture.user)
       end
-      # Can access course if user is a member of the classroom
-      can :read, Course do |course|
-        course.classroom.members.include?(user)
+      # Can access lecture if user is a member of the classroom
+      can :read, Lecture do |lecture|
+        lecture.classroom.members.include?(user)
       end
     end
 

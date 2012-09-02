@@ -12,8 +12,9 @@ class Classroom < ActiveRecord::Base
 
   has_many :memberships, :dependent => :destroy
   has_many :members, :through => :memberships, :source => :user
-  has_many :images, :dependent => :destroy
-  has_many :uploads, :dependent => :destroy
+  has_many :images
+  has_many :uploads
+  has_many :lectures
 
   # Validations
   validates_presence_of :title, :slug, :description

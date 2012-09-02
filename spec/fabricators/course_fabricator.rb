@@ -1,5 +1,5 @@
-Fabricator(:course) do
-  title         { sequence(:course_title){ Faker::Lorem.sentence } }
+Fabricator(:lecture) do
+  title         { sequence(:lecture_title){ Faker::Lorem.sentence } }
   content       Faker::HTMLIpsum.body
   requisite     Faker::Lorem.paragraph
   user

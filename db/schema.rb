@@ -57,23 +57,6 @@ ActiveRecord::Schema.define(:version => 20120901132251) do
   add_index "classrooms", ["owner_id"], :name => "index_classrooms_on_owner_id"
   add_index "classrooms", ["slug"], :name => "index_classrooms_on_slug", :unique => true
 
-  create_table "courses", :force => true do |t|
-    t.string   "slug"
-    t.string   "title"
-    t.text     "content"
-    t.text     "requisite"
-    t.integer  "parent_course_id"
-    t.integer  "user_id"
-    t.integer  "classroom_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  add_index "courses", ["classroom_id"], :name => "index_courses_on_classroom_id"
-  add_index "courses", ["parent_course_id"], :name => "index_courses_on_parent_course_id"
-  add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
-  add_index "courses", ["user_id"], :name => "index_courses_on_user_id"
-
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
@@ -89,6 +72,23 @@ ActiveRecord::Schema.define(:version => 20120901132251) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "lectures", :force => true do |t|
+    t.string   "slug"
+    t.string   "title"
+    t.text     "content"
+    t.text     "requisite"
+    t.integer  "parent_lecture_id"
+    t.integer  "user_id"
+    t.integer  "classroom_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "lectures", ["classroom_id"], :name => "index_lectures_on_classroom_id"
+  add_index "lectures", ["parent_lecture_id"], :name => "index_lectures_on_parent_lecture_id"
+  add_index "lectures", ["slug"], :name => "index_lectures_on_slug", :unique => true
+  add_index "lectures", ["user_id"], :name => "index_lectures_on_user_id"
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"

@@ -11,8 +11,9 @@ describe User do
   it { should have_many(:memberships).dependent(:destroy) }
   it { should have_many(:classrooms).through(:memberships) }
   it { should have_many(:created_classrooms).dependent(:destroy) }
-  it { should have_many(:images).dependent(:destroy) }
-  it { should have_many(:uploads).dependent(:destroy) }
+  it { should have_many(:images) }
+  it { should have_many(:uploads) }
+  it { should have_many(:lectures) }
 
   it { should respond_to(:created_classrooms_count) }
   it { should respond_to(:memberships_count) }
@@ -50,12 +51,12 @@ describe User do
       it{ should be_able_to(:create, Classroom) }
       it{ should be_able_to(:create, Image) }
       it{ should be_able_to(:create, Upload) }
-      it{ should be_able_to(:create, Course) }
+      it{ should be_able_to(:create, Lecture) }
       it{ should be_able_to(:manage, Fabricate(:classroom)) }
       it{ should be_able_to(:manage, Fabricate(:user)) }
       it{ should be_able_to(:manage, Fabricate(:image)) }
       it{ should be_able_to(:manage, Fabricate(:upload)) }
-      it{ should be_able_to(:manage, Fabricate(:course)) }
+      it{ should be_able_to(:manage, Fabricate(:lecture)) }
     end
 
     describe 'for visitor' do
@@ -106,56 +107,56 @@ describe User do
       let(:classroom){ Fabricate(:classroom) }
       let(:user){ classroom.owner.reload }
 
-      context 'courses' do
-        let(:course){
-          Fabricate(:course, :user => user, :classroom => classroom) }
+      context 'lectures' do
+        let(:lecture){
+          Fabricate(:lecture, :user => user, :classroom => classroom) }
 
         it{ should be_able_to(:create, Fabricate.build(
-          :course, :user => user, :classroom => classroom))
+          :lecture, :user => user, :classroom => classroom))
         }
-        it{ should be_able_to(:manage, course) }
+        it{ should be_able_to(:manage, lecture) }
       end
     end
 
-    describe 'for classroom course' do
-      let(:course){ Fabricate(:course) }
+    describe 'for classroom lecture' do
+      let(:lecture){ Fabricate(:lecture) }
 
       context 'and a visitor' do
         let(:user){ User.new }
 
         it{ should_not be_able_to(:create, Fabricate.build(
-          :course, :user => user, :classroom => course.classroom))
+          :lecture, :user => user, :classroom => lecture.classroom))
         }
-        it{ should_not be_able_to(:manage, course) }
-        it{ should_not be_able_to(:show, course) }
-        it{ should_not be_able_to(:index, course) }
+        it{ should_not be_able_to(:manage, lecture) }
+        it{ should_not be_able_to(:show, lecture) }
+        it{ should_not be_able_to(:index, lecture) }
       end
 
       context 'and a member' do
         let(:user){ Fabricate(:user) }
         before do
-          classroom = course.classroom
+          classroom = lecture.classroom
           classroom.members << user
           classroom.save
         end
 
         it{ should_not be_able_to(:create, Fabricate.build(
-          :course, :user => user, :classroom => course.classroom))
+          :lecture, :user => user, :classroom => lecture.classroom))
         }
-        it{ should_not be_able_to(:manage, course) }
-        it{ should be_able_to(:show, course) }
-        it{ should be_able_to(:index, course) }
+        it{ should_not be_able_to(:manage, lecture) }
+        it{ should be_able_to(:show, lecture) }
+        it{ should be_able_to(:index, lecture) }
       end
 
       context 'and a non-member' do
         let(:user){ Fabricate(:user) }
 
         it{ should_not be_able_to(:create, Fabricate.build(
-          :course, :user => user, :classroom => course.classroom))
+          :lecture, :user => user, :classroom => lecture.classroom))
         }
-        it{ should_not be_able_to(:manage, course) }
-        it{ should_not be_able_to(:show, course) }
-        it{ should_not be_able_to(:index, course) }
+        it{ should_not be_able_to(:manage, lecture) }
+        it{ should_not be_able_to(:show, lecture) }
+        it{ should_not be_able_to(:index, lecture) }
       end
     end
 
