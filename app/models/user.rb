@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_one :plan
 
   has_many :memberships, :dependent => :destroy
+  has_many :collaborations, :dependent => :destroy
   has_many :classrooms, :through => :memberships
   has_many :images
   has_many :uploads

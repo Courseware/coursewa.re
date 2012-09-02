@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :first_name,                         default: nil
       t.string :last_name,                          default: nil
       t.integer :memberships_count,                 default: 0
+      t.integer :collaborations_count,              default: 0
       t.integer :created_classrooms_count,          default: 0
 
       # Remember me support

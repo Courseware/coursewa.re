@@ -12,6 +12,8 @@ class Classroom < ActiveRecord::Base
 
   has_many :memberships, :dependent => :destroy
   has_many :members, :through => :memberships, :source => :user
+  has_many :collaborations, :dependent => :destroy
+  has_many :collaborators, :through => :collaborations, :source => :user
   has_many :images
   has_many :uploads
   has_many :lectures

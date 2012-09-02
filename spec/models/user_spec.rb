@@ -9,6 +9,7 @@ describe User do
 
   it { should have_one(:plan) }
   it { should have_many(:memberships).dependent(:destroy) }
+  it { should have_many(:collaborations).dependent(:destroy) }
   it { should have_many(:classrooms).through(:memberships) }
   it { should have_many(:created_classrooms).dependent(:destroy) }
   it { should have_many(:images) }

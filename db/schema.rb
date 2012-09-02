@@ -44,14 +44,26 @@ ActiveRecord::Schema.define(:version => 20120901132251) do
   add_index "assets", ["classroom_id"], :name => "index_assets_on_classroom_id"
   add_index "assets", ["user_id"], :name => "index_assets_on_user_id"
 
+  create_table "associations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "classroom_id"
+    t.string   "type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "associations", ["classroom_id"], :name => "index_associations_on_classroom_id"
+  add_index "associations", ["user_id"], :name => "index_associations_on_user_id"
+
   create_table "classrooms", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "slug",                             :null => false
+    t.string   "slug",                                :null => false
     t.integer  "owner_id"
-    t.integer  "memberships_count", :default => 0
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.integer  "memberships_count",    :default => 0
+    t.integer  "collaborations_count", :default => 0
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   add_index "classrooms", ["owner_id"], :name => "index_classrooms_on_owner_id"
@@ -74,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20120901132251) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "lectures", :force => true do |t|
-    t.string   "slug"
+    t.string   "slug",              :null => false
     t.string   "title"
     t.text     "content"
     t.text     "requisite"
@@ -90,25 +102,16 @@ ActiveRecord::Schema.define(:version => 20120901132251) do
   add_index "lectures", ["slug"], :name => "index_lectures_on_slug", :unique => true
   add_index "lectures", ["user_id"], :name => "index_lectures_on_user_id"
 
-  create_table "memberships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "classroom_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "memberships", ["classroom_id"], :name => "index_memberships_on_classroom_id"
-  add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
-
   create_table "plans", :force => true do |t|
     t.integer  "user_id"
     t.integer  "allowed_classrooms"
     t.integer  "allowed_space"
-    t.integer  "used_space",         :default => 0
+    t.integer  "used_space",            :default => 0
+    t.integer  "allowed_collaborators"
     t.date     "expires_in"
     t.string   "slug"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   add_index "plans", ["user_id"], :name => "index_plans_on_user_id"
@@ -121,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20120901132251) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "memberships_count",               :default => 0
+    t.integer  "collaborations_count",            :default => 0
     t.integer  "created_classrooms_count",        :default => 0
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
