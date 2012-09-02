@@ -37,24 +37,22 @@ class Ability
 
       # Can create own classroom memberships
       can :create, Membership do |mem|
-        user.created_classrooms.include?(mem.classroom)
+        mem.classroom.owner.equal?(user)
       end
       # Can remove own classroom membership
       can :destroy, Membership do |mem|
-        user.equal?(mem.user) or
-          user.created_classrooms.include?(mem.classroom)
+        mem.user.equal?(user) or mem.classroom.owner.equal?(user)
       end
 
       # Can not add a classroom collaborator if limit reached
       if user.collaborations_count < user.plan.allowed_collaborators
         can :create, Collaboration do |col|
-          user.created_classrooms.include?(col.classroom)
+          col.classroom.owner.equal?(user)
         end
       end
       # Can remove own classroom collaboration
       can :destroy, Collaboration do |col|
-        user.equal?(col.user) or
-          user.created_classrooms.include?(col.classroom)
+        col.user.equal?(user) or col.classroom.owner.equal?(user)
       end
 
       # Can manage assets if user is the owner
@@ -66,11 +64,12 @@ class Ability
 
       # Can manage lectures if user is the owner
       can :manage, Lecture do |lecture|
-        lecture.classroom.collaborators.include?(user)
+        lecture.classroom.collaborators.include?(user) or
+          lecture.classroom.owner.equal?(user)
       end
       # Can create lectures if user owns the classroom
       can :create, Lecture do |lecture|
-        lecture.classroom.owner.equal?(lecture.user)
+        lecture.classroom.owner.equal?(user)
       end
       # Can access lecture if user is a member of the classroom
       can :read, Lecture do |lecture|

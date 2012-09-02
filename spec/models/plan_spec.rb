@@ -12,7 +12,6 @@ describe Plan do
   context 'with all attributes' do
     subject{ plan }
     its(:used_space){ should eq(0) }
-    its(:added_collaborators){ should eq(0) }
 
     context 'when a user uploads a file' do
       it 'should update the used space' do
