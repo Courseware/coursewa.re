@@ -62,18 +62,24 @@ class Ability
       can :create, Image
       can :create, Upload
 
-      # Can manage lectures if user is the owner
+      # Can manage lectures if user is the owner or collaborator
       can :manage, Lecture do |lecture|
         lecture.classroom.collaborators.include?(user) or
           lecture.classroom.owner.equal?(user)
       end
-      # Can create lectures if user owns the classroom
-      can :create, Lecture do |lecture|
-        lecture.classroom.owner.equal?(user)
-      end
       # Can access lecture if user is a member of the classroom
       can :read, Lecture do |lecture|
         lecture.classroom.members.include?(user)
+      end
+
+      # Can manage syllabus if user is the owner or collaborator
+      can :manage, Syllabus do |syl|
+        syl.classroom.collaborators.include?(user) or
+          syl.classroom.owner.equal?(user)
+      end
+      # Can access syllabus if user is a member of the classroom
+      can :read, Syllabus do |syl|
+        syl.classroom.members.include?(user)
       end
     end
 

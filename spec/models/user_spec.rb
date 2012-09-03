@@ -55,6 +55,7 @@ describe User do
       it{ should be_able_to(:create, Lecture) }
       it{ should be_able_to(:create, Membership) }
       it{ should be_able_to(:create, Collaboration) }
+      it{ should be_able_to(:create, Syllabus) }
       it{ should be_able_to(:manage, Fabricate(:membership)) }
       it{ should be_able_to(:manage, Fabricate(:collaboration)) }
       it{ should be_able_to(:manage, Fabricate(:classroom)) }
@@ -62,6 +63,7 @@ describe User do
       it{ should be_able_to(:manage, Fabricate(:image)) }
       it{ should be_able_to(:manage, Fabricate(:upload)) }
       it{ should be_able_to(:manage, Fabricate(:lecture)) }
+      it{ should be_able_to(:manage, Fabricate(:syllabus)) }
     end
 
     describe 'for visitor' do
@@ -144,13 +146,19 @@ describe User do
       end
 
       context 'lectures' do
-        let(:lecture){
-          Fabricate(:lecture, :user => user, :classroom => classroom) }
-
         it{ should be_able_to(:create, Fabricate.build(
           :lecture, :user => user, :classroom => classroom))
         }
-        it{ should be_able_to(:manage, lecture) }
+        it{ should be_able_to(:manage, Fabricate(
+          :lecture, :user => user, :classroom => classroom)) }
+      end
+
+      context 'syllabuses' do
+        it{ should be_able_to(:create, Fabricate.build(
+          :syllabus, :user => user, :classroom => classroom))
+        }
+        it{ should be_able_to(:manage, Fabricate(
+          :syllabus, :user => user, :classroom => classroom)) }
       end
     end
 
@@ -207,6 +215,59 @@ describe User do
         it{ should_not be_able_to(:manage, lecture) }
         it{ should_not be_able_to(:show, lecture) }
         it{ should_not be_able_to(:index, lecture) }
+      end
+    end
+
+    describe 'for classroom syllabus' do
+      let(:syllabus){ Fabricate(:syllabus) }
+
+      context 'and a visitor' do
+        let(:user){ User.new }
+
+        it{ should_not be_able_to(:create, Fabricate.build(
+          :syllabus, :user => user, :classroom => syllabus.classroom))
+        }
+        it{ should_not be_able_to(:manage, syllabus) }
+        it{ should_not be_able_to(:show, syllabus) }
+      end
+
+      context 'and a member' do
+        let(:user){ Fabricate(:user) }
+        before do
+          classroom = syllabus.classroom
+          classroom.members << user
+          classroom.save
+        end
+
+        it{ should_not be_able_to(:create, Fabricate.build(
+          :syllabus, :user => user, :classroom => syllabus.classroom))
+        }
+        it{ should_not be_able_to(:manage, syllabus) }
+        it{ should be_able_to(:show, syllabus) }
+      end
+
+      context 'and a collaborator' do
+        let(:user){ Fabricate(:user) }
+        before do
+          classroom = syllabus.classroom
+          classroom.collaborators << user
+          classroom.save
+        end
+
+        it{ should be_able_to(:create, Fabricate.build(
+          :syllabus, :user => user, :classroom => syllabus.classroom))
+        }
+        it{ should be_able_to(:manage, syllabus) }
+      end
+
+      context 'and a non-member' do
+        let(:user){ Fabricate(:user) }
+
+        it{ should_not be_able_to(:create, Fabricate.build(
+          :syllabus, :user => user, :classroom => syllabus.classroom))
+        }
+        it{ should_not be_able_to(:manage, syllabus) }
+        it{ should_not be_able_to(:show, syllabus) }
       end
     end
 
