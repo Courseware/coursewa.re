@@ -5,7 +5,9 @@ describe User do
 
   it { should validate_presence_of(:password) }
   it { should ensure_length_of(:password).is_at_least(6).is_at_most(32) }
+
   it { should validate_presence_of(:email) }
+  it { should validate_format_of(:email).with('stas+cw@nerd.ro') }
 
   it { should have_one(:plan) }
   it { should have_many(:memberships).dependent(:destroy) }

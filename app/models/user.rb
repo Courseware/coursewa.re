@@ -2,6 +2,8 @@
 class User < ActiveRecord::Base
   include PublicActivity::Model
 
+  EMAIL_FORMAT = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
   authenticates_with_sorcery!
 
   attr_accessible :email, :password, :password_confirmation
@@ -27,6 +29,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_format_of :email, :with => EMAIL_FORMAT, :on => :create
 
   # Enable public activity
   activist
