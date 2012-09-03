@@ -27,6 +27,9 @@ describe Classroom do
     it { should respond_to(:slug) }
     it { should respond_to(:activities) }
     it { should respond_to(:memberships_count) }
+    it { should respond_to(:header_image) }
+    it { should respond_to(:color) }
+    it { should respond_to(:color_scheme) }
 
     its(:owner) { should be_a(User) }
     its(:slug) { should match(/^[\w\-0-9]+$/) }

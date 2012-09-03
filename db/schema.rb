@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20120901132251) do
     t.integer  "owner_id"
     t.integer  "memberships_count",    :default => 0
     t.integer  "collaborations_count", :default => 0
+    t.text     "settings"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
   end

@@ -5,6 +5,9 @@ class Classroom < ActiveRecord::Base
 
   attr_accessible :description, :title
 
+  # Dynamic settings store
+  store :settings, :accessors => [:color_scheme, :header_image, :color]
+
   # Relationships
   belongs_to(
     :owner, :counter_cache => :created_classrooms_count, :class_name => User

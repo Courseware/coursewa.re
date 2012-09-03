@@ -7,6 +7,7 @@ class CreateClassrooms < ActiveRecord::Migration
       t.references  :owner
       t.integer     :memberships_count,     default: 0
       t.integer     :collaborations_count,  default: 0
+      t.text        :settings
 
       t.timestamps
     end
