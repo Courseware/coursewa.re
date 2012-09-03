@@ -23,7 +23,15 @@ describe Syllabus do
 
   describe 'sanitization' do
     it 'should not allow any html' do
-      bad_input = Faker::HTMLIpsum.body + '
+      bad_input = '
+      <h1>Heading</h1>
+      <ol><li>Name</li></ol>
+      <em>Content</em>
+      http://www.youtube.com/watch?v=VID30ID
+      <script>alert("PWND")</script>
+      <iframe src="http://pwnr.com/pwnd"></iframe>
+      '
+      bad_long_input = Faker::HTMLIpsum.body + '
       http://www.youtube.com/watch?v=VID30ID
       <script>alert("PWND")</script>
       <iframe src="http://pwnr.com/pwnd"></iframe>
@@ -31,7 +39,7 @@ describe Syllabus do
 
       syllabus = Syllabus.create(
         :title => bad_input,
-        :content => bad_input,
+        :content => bad_long_input,
         :intro => bad_input
       )
       syllabus.title.should_not match(/\<\>/)

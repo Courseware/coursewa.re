@@ -29,14 +29,21 @@ describe Lecture do
 
   describe 'sanitization' do
     it 'should not allow html' do
-      bad_input = Faker::HTMLIpsum.body + '
+      bad_input = '
+      <h1>Heading</h1>
+      <ol><li>Name</li></ol>
+      <em>Content</em>
+      <script>alert("PWND")</script>
+      <iframe src="http://pwnr.com/pwnd"></iframe>
+      '
+      bad_long_input = Faker::HTMLIpsum.body + '
       <script>alert("PWND")</script>
       <iframe src="http://pwnr.com/pwnd"></iframe>
       '
 
       lecture = Lecture.create(
         :title => bad_input,
-        :content => bad_input,
+        :content => bad_long_input,
         :requisite => bad_input
       )
       lecture.title.should_not match(/\<\>/)
