@@ -55,5 +55,5 @@ group :development, :test do
   gem 'capybara', '2.0.0.beta2'
   gem 'email_spec'
   gem 'simplecov', :require => false
-  gem 'railsonfire', :require => false
+  gem 'tddium', :require => false
 end

@@ -18,3 +18,4 @@ pickle-email-*.html
 .yardoc
 *.*~
 locale/*/LC_MESSAGES/*
+.tddium*
