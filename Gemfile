@@ -1,9 +1,9 @@
-source 'https://rubygems.org'
+source :rubygems
+ruby '1.9.3'
 
 gem 'rails'
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'puma'
 gem 'sorcery'
 gem 'delayed_job_active_record'
 gem 'gettext_i18n_rails'
@@ -14,12 +14,14 @@ gem 'gravatar_image_tag'
 gem 'friendly_id'
 gem 'paperclip'
 gem 'sanitize'
+
 # Speedup a bit things
 gem 'multi_json'
 gem 'oj'
 
 group :production do
   gem 'pg'
+  gem 'puma'
 end
 
 group :development do
