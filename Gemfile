@@ -45,6 +45,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'guard-spork'
   gem 'guard-rspec'
+  gem 'rb-inotify'
   gem 'rspec-rails'
   gem 'letter_opener'
   gem 'shoulda-matchers'
