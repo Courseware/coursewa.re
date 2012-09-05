@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/brynary/rack-bug.git
+  revision: 1e6d33664fb21a5f08836e5d8a9d7bfcc47c8d81
+  branch: rails3
+  specs:
+    rack-bug (0.3.0)
+      rack (>= 1.0)
+
+GIT
   remote: git://github.com/pokonski/public_activity.git
   revision: 911c4190580ebcd63432ee08fac45921a448c0c5
   specs:
@@ -302,6 +310,7 @@ DEPENDENCIES
   public_activity!
   puma
   quiet_assets
+  rack-bug!
   rails
   rb-inotify
   roadie
