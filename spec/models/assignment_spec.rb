@@ -10,6 +10,7 @@ describe Assignment do
   it { should belong_to(:lecture) }
   it { should have_many(:images) }
   it { should have_many(:uploads) }
+  it { should have_many(:responses).dependent(:destroy) }
 
   describe 'with all attributes' do
     subject{ Fabricate(:assignment) }

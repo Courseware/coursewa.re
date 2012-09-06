@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :uploads
   has_many :lectures
   has_many :assignments
+  has_many :responses
 
   # Validations
   validates_confirmation_of :password
