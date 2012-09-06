@@ -27,7 +27,8 @@ class Ability
 
       # Can access classroom if only a member
       can :dashboard, Classroom do |classroom|
-        classroom.members.include?(user)
+        classroom.members.include?(user) or
+          classroom.collaborators.include?(user)
       end
 
       # Can not create a classroom if plan limits reached
@@ -90,6 +91,22 @@ class Ability
       # Can access assignment if user is a member of the classroom
       can :read, Assignment do |assignment|
         assignment.classroom.members.include?(user)
+      end
+
+      # Can manage response if user is the owner or collaborator
+      can :destroy, Response do |resp|
+        resp.classroom.collaborators.include?(user) or
+          resp.classroom.owner.equal?(user)
+      end
+      # Can create response if user is a classroom member
+      can :create, Response do |resp|
+        resp.classroom.members.include?(user)
+      end
+      # Can access response if user is a member of the classroom
+      can :read, Response do |resp|
+        resp.classroom.collaborators.include?(user) or
+          resp.classroom.owner.equal?(user) or
+          resp.user.equal?(user)
       end
     end
 
