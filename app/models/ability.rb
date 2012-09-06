@@ -81,6 +81,16 @@ class Ability
       can :read, Syllabus do |syl|
         syl.classroom.members.include?(user)
       end
+
+      # Can manage assignment if user is the owner or collaborator
+      can :manage, Assignment do |assignment|
+        assignment.classroom.collaborators.include?(user) or
+          assignment.classroom.owner.equal?(user)
+      end
+      # Can access assignment if user is a member of the classroom
+      can :read, Assignment do |assignment|
+        assignment.classroom.members.include?(user)
+      end
     end
 
   end

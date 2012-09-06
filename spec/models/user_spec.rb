@@ -17,6 +17,7 @@ describe User do
   it { should have_many(:images) }
   it { should have_many(:uploads) }
   it { should have_many(:lectures) }
+  it { should have_many(:assignments) }
 
   it { should respond_to(:created_classrooms_count) }
   it { should respond_to(:memberships_count) }
@@ -58,6 +59,7 @@ describe User do
       it{ should be_able_to(:create, Membership) }
       it{ should be_able_to(:create, Collaboration) }
       it{ should be_able_to(:create, Syllabus) }
+      it{ should be_able_to(:create, Assignment) }
       it{ should be_able_to(:manage, Fabricate(:membership)) }
       it{ should be_able_to(:manage, Fabricate(:collaboration)) }
       it{ should be_able_to(:manage, Fabricate(:classroom)) }
@@ -66,6 +68,7 @@ describe User do
       it{ should be_able_to(:manage, Fabricate(:upload)) }
       it{ should be_able_to(:manage, Fabricate(:lecture)) }
       it{ should be_able_to(:manage, Fabricate(:syllabus)) }
+      it{ should be_able_to(:manage, Fabricate(:assignment)) }
     end
 
     describe 'for visitor' do
@@ -161,6 +164,14 @@ describe User do
         }
         it{ should be_able_to(:manage, Fabricate(
           :syllabus, :user => user, :classroom => classroom)) }
+      end
+
+      context 'assignments' do
+        it{ should be_able_to(:create, Fabricate.build(
+          :assignment, :user => user, :classroom => classroom))
+        }
+        it{ should be_able_to(:manage, Fabricate(
+          :assignment, :user => user, :classroom => classroom)) }
       end
     end
 
@@ -270,6 +281,59 @@ describe User do
         }
         it{ should_not be_able_to(:manage, syllabus) }
         it{ should_not be_able_to(:show, syllabus) }
+      end
+    end
+
+    describe 'for classroom assignment' do
+      let(:assignment){ Fabricate(:assignment) }
+
+      context 'and a visitor' do
+        let(:user){ User.new }
+
+        it{ should_not be_able_to(:create, Fabricate.build(
+          :assignment, :user => user, :classroom => assignment.classroom))
+        }
+        it{ should_not be_able_to(:manage, assignment) }
+        it{ should_not be_able_to(:show, assignment) }
+      end
+
+      context 'and a member' do
+        let(:user){ Fabricate(:user) }
+        before do
+          classroom = assignment.classroom
+          classroom.members << user
+          classroom.save
+        end
+
+        it{ should_not be_able_to(:create, Fabricate.build(
+          :assignment, :user => user, :classroom => assignment.classroom))
+        }
+        it{ should_not be_able_to(:manage, assignment) }
+        it{ should be_able_to(:show, assignment) }
+      end
+
+      context 'and a collaborator' do
+        let(:user){ Fabricate(:user) }
+        before do
+          classroom = assignment.classroom
+          classroom.collaborators << user
+          classroom.save
+        end
+
+        it{ should be_able_to(:create, Fabricate.build(
+          :assignment, :user => user, :classroom => assignment.classroom))
+        }
+        it{ should be_able_to(:manage, assignment) }
+      end
+
+      context 'and a non-member' do
+        let(:user){ Fabricate(:user) }
+
+        it{ should_not be_able_to(:create, Fabricate.build(
+          :assignment, :user => user, :classroom => assignment.classroom))
+        }
+        it{ should_not be_able_to(:manage, assignment) }
+        it{ should_not be_able_to(:show, assignment) }
       end
     end
 
