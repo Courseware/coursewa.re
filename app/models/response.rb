@@ -1,3 +1,4 @@
+# Courseware [Classroom] response
 class Response < ActiveRecord::Base
   include PublicActivity::Model
 

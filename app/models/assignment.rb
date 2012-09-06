@@ -1,3 +1,4 @@
+# Courseware [Classroom] assignment
 class Assignment < ActiveRecord::Base
   extend FriendlyId
   include PublicActivity::Model
