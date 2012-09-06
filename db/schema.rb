@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903113606) do
+ActiveRecord::Schema.define(:version => 20120906125822) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -43,6 +43,23 @@ ActiveRecord::Schema.define(:version => 20120903113606) do
   add_index "assets", ["assetable_type"], :name => "index_assets_on_assetable_type"
   add_index "assets", ["classroom_id"], :name => "index_assets_on_classroom_id"
   add_index "assets", ["user_id"], :name => "index_assets_on_user_id"
+
+  create_table "assignments", :force => true do |t|
+    t.string   "title"
+    t.string   "slug",         :null => false
+    t.text     "content"
+    t.text     "quiz"
+    t.integer  "lecture_id"
+    t.integer  "user_id"
+    t.integer  "classroom_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "assignments", ["classroom_id"], :name => "index_assignments_on_classroom_id"
+  add_index "assignments", ["lecture_id"], :name => "index_assignments_on_lecture_id"
+  add_index "assignments", ["slug"], :name => "index_assignments_on_slug", :unique => true
+  add_index "assignments", ["user_id"], :name => "index_assignments_on_user_id"
 
   create_table "associations", :force => true do |t|
     t.integer  "user_id"
