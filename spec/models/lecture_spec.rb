@@ -9,6 +9,8 @@ describe Lecture do
   it { should belong_to(:user) }
   it { should belong_to(:classroom) }
   it { should belong_to(:parent_lecture) }
+  it { should have_many(:images) }
+  it { should have_many(:uploads) }
 
   describe 'with all attributes' do
     subject{ Fabricate(:lecture) }

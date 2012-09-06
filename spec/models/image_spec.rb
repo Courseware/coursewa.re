@@ -9,7 +9,7 @@ describe Image do
               .allowing(Image::ALLOWED_TYPES)
               .rejecting('text/plain')
   }
-  it { should belong_to(:user)}
-  it { should belong_to(:classroom)}
+  it { should belong_to(:user) }
+  it { should belong_to(:classroom) }
   it { should belong_to(:assetable)}
 end

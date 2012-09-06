@@ -3,6 +3,8 @@ class Asset < ActiveRecord::Base
   attr_accessible :attachment_file_name, :attachment_file_size, :description
 
   # Relationships
+  belongs_to :user
+  belongs_to :classroom
   belongs_to :assetable, :polymorphic => true
   delegate :url, :to => :attachment
 
