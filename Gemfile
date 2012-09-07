@@ -29,6 +29,7 @@ group :development do
   gem 'pry'
   gem 'quiet_assets'
   gem 'rack-bug', :github => 'brynary/rack-bug', :branch => 'rails3'
+  gem 'rails-erd'
   gem 'yard', :require => false
   gem 'gettext', :require => false
   gem 'ruby_parser', :require => false

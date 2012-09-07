@@ -19,3 +19,4 @@ pickle-email-*.html
 *.*~
 locale/*/LC_MESSAGES/*
 .tddium*
+ERD.pdf
