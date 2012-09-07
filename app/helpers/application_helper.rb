@@ -9,7 +9,7 @@ module ApplicationHelper
 
   # Helper to set embeds in HEAD
   #
-  # @param [String] content, embeds content
+  # @param [String] content
   def head_embed(content)
     content_for :head_embed, content if content
   end
