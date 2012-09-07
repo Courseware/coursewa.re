@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120906150302) do
+ActiveRecord::Schema.define(:version => 20120907132001) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -102,6 +102,23 @@ ActiveRecord::Schema.define(:version => 20120906150302) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "grades", :force => true do |t|
+    t.string   "form",          :default => "number"
+    t.integer  "mark"
+    t.text     "comment"
+    t.integer  "receiver_id"
+    t.integer  "assignment_id"
+    t.integer  "user_id"
+    t.integer  "classroom_id"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
+  add_index "grades", ["classroom_id"], :name => "index_grades_on_classroom_id"
+  add_index "grades", ["receiver_id"], :name => "index_grades_on_receiver_id"
+  add_index "grades", ["user_id"], :name => "index_grades_on_user_id"
 
   create_table "lectures", :force => true do |t|
     t.string   "slug",              :null => false

@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
   has_many :lectures
   has_many :assignments
   has_many :responses
+  has_many :grades
+  has_many(
+    :received_grades, :dependent => :destroy,
+    :foreign_key => :receiver_id, :class_name => Grade
+  )
 
   # Validations
   validates_confirmation_of :password
