@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :uploads
   has_many :lectures
   has_many :assignments
-  has_many :responses
+  has_many :responses, :dependent => :destroy
   has_many :grades
   has_many(
     :received_grades, :dependent => :destroy,

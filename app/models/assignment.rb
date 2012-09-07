@@ -18,6 +18,7 @@ class Assignment < ActiveRecord::Base
   has_many :images, :as => :assetable, :class_name => Image
   has_many :uploads, :as => :assetable, :class_name => Image
   has_many :responses, :dependent => :destroy
+  has_many :grades, :dependent => :destroy
 
   # Validations
   validates_presence_of :title, :slug, :content

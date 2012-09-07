@@ -11,6 +11,7 @@ describe Assignment do
   it { should have_many(:images) }
   it { should have_many(:uploads) }
   it { should have_many(:responses).dependent(:destroy) }
+  it { should have_many(:grades).dependent(:destroy) }
 
   describe 'with all attributes' do
     subject{ Fabricate(:assignment) }

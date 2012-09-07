@@ -18,7 +18,9 @@ describe User do
   it { should have_many(:uploads) }
   it { should have_many(:lectures) }
   it { should have_many(:assignments) }
-  it { should have_many(:responses) }
+  it { should have_many(:responses).dependent(:destroy) }
+  it { should have_many(:grades) }
+  it { should have_many(:received_grades).dependent(:destroy) }
 
   it { should respond_to(:created_classrooms_count) }
   it { should respond_to(:memberships_count) }
