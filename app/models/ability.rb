@@ -16,7 +16,7 @@ class Ability
       ######################
 
       %w(user classroom membership collaboration assets syllabus lecture
-        assignment response).each do |component|
+        assignment response grade).each do |component|
         self.send("#{component}_abilities")
       end
     end
@@ -150,6 +150,14 @@ class Ability
       resp.classroom.collaborators.include?(@user) or
         resp.classroom.owner.equal?(@user) or
         resp.user.equal?(@user)
+    end
+  end
+
+  # [Classroom] [Assignment] grades
+  def grade_abilities
+    can :manage, Grade do |grade|
+      grade.classroom.collaborators.include?(@user) or
+        grade.classroom.owner.equal?(@user)
     end
   end
 end
