@@ -46,4 +46,24 @@ describe 'Users' do
     User.count.should eq(users_count)
   end
 
+  it 'should handle profile updates' do
+    user = Fabricate(:confirmed_user)
+    sign_in_with(user.email)
+
+    visit me_users_url
+
+    within('.edit_user') do
+      fill_in 'user[first_name]', :with => 'Stas'
+      fill_in 'user[last_name]', :with => 'Suscov'
+    end
+
+    click_button 'submit_profile'
+
+    page.should have_css('#notifications .alert-box')
+
+    user.reload
+    user.first_name.should eq('Stas')
+    user.last_name.should eq('Suscov')
+  end
+
 end

@@ -1,0 +1,22 @@
+= title _('Your Profile')
+
+%div.six.columns.centered
+
+  = form_for @user do |f|
+
+    %div.row
+      %div.form-field{:class => @user.errors.messages[:first_name] ? :error : nil}
+        %div.five.columns
+          = f.label(:first_name, _('First Name'), :class => [:right, :inline])
+        %div.seven.columns.end
+          = f.text_field(:first_name)
+
+    %div.row
+      %div.form-field{:class => @user.errors.messages[:last_name] ? :error : nil}
+        %div.five.columns
+          = f.label(:first_name, _('Last Name'), :class => [:right, :inline])
+        %div.seven.columns.end
+          = f.text_field(:last_name)
+
+    .actions.right
+      = f.submit(_('Update'), :class => [:button, :small, :radius], :id => :submit_profile)

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # Do not check for abilities
   skip_load_and_authorize_resource :except => [:create]
   # Do not ask authentication
-  skip_before_filter :require_login
+  skip_before_filter :require_login, :except => [:me, :update]
 
   # Handles user creation screen
   def new
@@ -25,7 +25,6 @@ class UsersController < ApplicationController
       )
       render :new
     end
-
   end
 
   # Handles user activation
@@ -39,6 +38,21 @@ class UsersController < ApplicationController
     else
       not_authenticated
     end
+  end
+
+  # Handles user changes
+  def update
+    @user = current_user
+
+    @user.update_attribute(:first_name, params[:user][:first_name])
+    @user.update_attribute(:last_name, params[:user][:last_name])
+    flash[:success] = _('Profile updated.')
+    redirect_to(me_users_path)
+  end
+
+  # User profile control panel
+  def me
+    @user = current_user
   end
 
 end

@@ -19,5 +19,17 @@ describe UsersController do
       )
     end
 
+    it 'for personal profile page' do
+      get('/users/me').should route_to(
+        'users#me'
+      )
+    end
+
+    it 'for personal profile page updates' do
+      put('/users/1').should route_to(
+        'users#update', :id => '1'
+      )
+    end
+
   end
 end

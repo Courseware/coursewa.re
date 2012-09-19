@@ -85,6 +85,31 @@ describe UsersController do
     end
   end
 
+  describe 'GET me' do
+    let(:user){ Fabricate(:confirmed_user) }
+    before{ @controller.send(:auto_login, user) }
+
+    it 'should handle user profile changes' do
+      get :me
+      response.should render_template(:me)
+    end
+  end
+
+  describe 'PUT update' do
+    let(:user){ Fabricate(:confirmed_user) }
+    before{ @controller.send(:auto_login, user) }
+
+    it 'should handle user profile changes submission' do
+      put :update, :id => user.id, :user => {
+        :first_name => 'Stas', :last_name => 'Suscov'}
+
+      user.reload
+      user.first_name.should eq('Stas')
+      user.last_name.should eq('Suscov')
+      response.should redirect_to(me_users_path)
+    end
+  end
+
   it 'should handle invalid user activation' do
     get :activate, :id => Faker::HipsterIpsum.word
 

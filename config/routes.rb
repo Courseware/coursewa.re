@@ -14,8 +14,9 @@ Courseware::Application.routes.draw do
   resources :passwords, :only => [
     :new, :create, :update, :edit
   ]
-  resources :users, :only => [:new, :create] do
+  resources :users, :only => [:new, :create, :update] do
     get :activate, :on => :member
+    get :me, :on => :collection
   end
 
   resources( :home, :path => '/', :constraints => { :subdomain => /^(www)?$/ },
