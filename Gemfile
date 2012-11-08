@@ -22,6 +22,7 @@ gem 'oj'
 group :production do
   gem 'pg'
   gem 'puma'
+  gem 'aws-sdk'
 end
 
 group :development do

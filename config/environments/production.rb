@@ -69,4 +69,7 @@ Courseware::Application.configure do
 
   # Setup default url for helping roadie gem
   config.action_mailer.default_url_options = {:host => 'coursewa.re'}
+
+  # Use Amazon AWS for delivery
+  config.action_mailer.delivery_method = :amazon_ses
 end
