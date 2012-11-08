@@ -1,6 +1,6 @@
 Fabricator(:grade) do
   form        :number
-  mark        rand(1..10)
+  mark        { rand(1..10) }
   comment     Faker::HTMLIpsum.body
   user
   classroom   { |attr| Fabricate(:classroom, :owner => attr[:user]) }
