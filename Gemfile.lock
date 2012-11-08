@@ -41,8 +41,6 @@ GEM
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
     cancan (1.6.8)
-    cane (2.4.0)
-      parallel
     capybara (2.0.0.beta2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -157,7 +155,6 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.4.0)
       mime-types
-    parallel (0.5.19)
     pg (0.14.1)
     polyglot (0.3.3)
     pry (0.9.10)
@@ -297,7 +294,6 @@ PLATFORMS
 
 DEPENDENCIES
   cancan
-  cane
   capybara (= 2.0.0.beta2)
   compass-rails
   database_cleaner
