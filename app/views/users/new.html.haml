@@ -9,20 +9,20 @@
         %div.five.columns
           = f.label(:email, _('Email'), :class => [:right, :inline])
         %div.seven.columns.end
-          = f.text_field(:email)
+          = f.text_field(:email, :type => :email, :required => true)
 
     %div.row
       %div.form-field{:class => @user.errors.messages[:password] ? :error : nil}
         %div.five.columns
           = f.label(:password, _('Password'), :class => [:right, :inline])
         %div.seven.columns.end
-          = f.password_field(:password)
+          = f.password_field(:password, :required => true, :min => 6)
 
     %div.row
       %div.five.columns
         = f.label(:password_confirmation, _('Password confirmation'), :class => [:right, :inline])
       %div.seven.columns.end
-        = f.password_field(:password_confirmation)
+        = f.password_field(:password_confirmation, :required => true, :min => 6)
 
     .actions.right
       = f.submit(_('Sign me up!'), :class => [:button, :small, :radius], :id => :submit_signup)

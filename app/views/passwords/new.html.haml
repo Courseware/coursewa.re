@@ -8,7 +8,7 @@
       %div.five.columns
         = label_tag(:email, _('Your account email'), :class => [:right, :inline])
       %div.seven.columns.end
-        = text_field_tag(:email, nil, :required => true)
+        = text_field_tag(:email, nil, :type => :email, :required => true)
 
     .actions.right
       = link_to(_('Nevermind, found it...'), login_path, :class => [:button, :small, :radius, :secondary])
