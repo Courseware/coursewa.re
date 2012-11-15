@@ -100,7 +100,7 @@ class Ability
     # Can manage syllabus if user is the owner or collaborator
     can :manage, Syllabus do |syl|
       syl.classroom.collaborators.include?(@user) or
-        syl.classroom.owner.equal?(@user)
+        syl.classroom.owner.eql?(@user)
     end
     # Can access syllabus if user is a member of the classroom
     can :read, Syllabus do |syl|
