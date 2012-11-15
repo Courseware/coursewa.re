@@ -22,7 +22,7 @@ describe SessionsController do
     context 'with active account' do
       before(:each){ user.activate! }
       subject{ post :create, :email => user.email, :password => 'secret' }
-      it{ should redirect_to(dashboard_home_index_path) }
+      it{ should redirect_to(home_index_path) }
     end
 
   end
