@@ -26,8 +26,9 @@ Courseware::Application.routes.draw do
 
   resources(:classrooms, :path => '/', :constraints => { :subdomain => /.+/ },
     :only => [:dashboard] ) do
-    # Route groups to own subdomains
-    get :dashboard, :on => :collection, :path => '/'
+    collection do
+      get :dashboard, :path => '/'
+    end
   end
 
   # Route to homepage by default
