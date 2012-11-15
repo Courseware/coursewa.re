@@ -20,6 +20,7 @@ class Classroom < ActiveRecord::Base
   has_many :images
   has_many :uploads
   has_many :lectures
+  has_one :syllabus
 
   # Validations
   validates_presence_of :title, :slug, :description
