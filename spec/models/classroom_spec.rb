@@ -15,7 +15,7 @@ describe Classroom do
   it { should have_many(:images) }
   it { should have_many(:uploads) }
   it { should have_many(:lectures) }
-  it { should has_one(:syllabus) }
+  it { should have_one(:syllabus) }
 
   Courseware.config.domain_blacklist.each do |domain|
     it { should_not allow_value(domain).for(:title) }
