@@ -26,6 +26,7 @@
       imageUpload: '#TODO',
       fileUpload: '#TODO',
       autosave: '#TODO',
+      wym: true,
       interval: 20
     });
   });
