@@ -28,6 +28,7 @@ Courseware::Application.routes.draw do
     :only => [:dashboard] ) do
     collection do
       get :dashboard, :path => '/'
+      resource(:syllabus, :only => [:show, :edit, :update, :create])
     end
   end
 

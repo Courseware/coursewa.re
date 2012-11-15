@@ -1,0 +1,16 @@
+= title _('Classroom Syllabus')
+
+.row#syllabus
+  .seven.columns
+    - if @syllabus
+      %h1
+        = @syllabus.title
+      %hr
+      %small
+        = @syllabus.intro
+      %hr
+        = @syllabus.content.html_safe
+    - else
+      = link_to(_('Update Classroom Syllabus'), edit_syllabus_path)
+
+  = render(:partial => 'sidebar')
