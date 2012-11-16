@@ -11,6 +11,6 @@
       %hr
         = @syllabus.content.html_safe
     - else
-      = link_to(_('Update Classroom Syllabus'), edit_syllabus_path)
+      = link_to(_('Update Classroom Syllabus'), edit_syllabus_path, :class => 'syllabus-create')
 
   = render(:partial => 'sidebar')
