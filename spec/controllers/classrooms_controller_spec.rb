@@ -13,7 +13,7 @@ describe ClassroomsController do
         response.should redirect_to(login_path)
       end
 
-      it 'should redirect to not found if classroom does not exist' do
+      it 'should redirect to login if classroom does not exist' do
         @request.host = "wrong.#{@request.host}"
         get :dashboard
         response.should redirect_to(login_path)
