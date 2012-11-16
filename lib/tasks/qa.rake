@@ -1,8 +1,9 @@
+desc 'Run cane to check quality metrics'
 begin
   require 'cane/rake_task'
-  desc 'Run cane to check quality metrics'
   Cane::RakeTask.new(:quality)
 rescue LoadError
+  task :quality
   puts 'Cane is not installed, :quality task unavailable'
 end
 
