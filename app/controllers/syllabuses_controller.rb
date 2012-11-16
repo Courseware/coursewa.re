@@ -17,11 +17,11 @@ class SyllabusesController < ApplicationController
 
   # Creates syllabus handler
   def create
-    @syllabus = @classroom.build_syllabus(params[:syllabus])
+    @syllabus ||= @classroom.build_syllabus(params[:syllabus])
 
     authorize!(params[:action], @syllabus)
 
-    if @syllabus.save
+    if @syllabus.new_record? and @syllabus.save
       flash[:success] = _('Classroom syllabus updated.')
     else
       flash[:alert] = _('There was an error, please try again.')
@@ -32,7 +32,7 @@ class SyllabusesController < ApplicationController
 
   # Updates syllabus handler
   def update
-    if @syllabus.update_attributes(params[:syllabus])
+    if !@syllabus.nil? and @syllabus.update_attributes(params[:syllabus])
       flash[:success] = _('Classroom syllabus updated.')
     else
       flash[:alert] = _('There was an error, please try again.')
