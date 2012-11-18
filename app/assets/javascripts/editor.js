@@ -23,11 +23,15 @@
      * Assets-aware wysiwyg support
      */
     $('.wysiwyg-full').redactor({
-      imageUpload: '#TODO',
-      fileUpload: '#TODO',
-      autosave: '#TODO',
-      wym: true,
-      interval: 20
+      imageUpload: '/images',
+      imageGetJson: '/images',
+      fileUpload: '/uploads',
+      uploadFields: {
+        authenticity_token: $('meta[name="csrf-token"]').attr('content'),
+        assetable_type: $('.assetable_type').val(),
+        assetable_id: $('.assetable_id').val()
+      },
+      wym: true
     });
   });
 }(jQuery))

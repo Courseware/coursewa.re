@@ -1,5 +1,4 @@
 Courseware::Application.routes.draw do
-
   get 'signup' => 'users#new', :as => 'signup'
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
@@ -29,6 +28,8 @@ Courseware::Application.routes.draw do
     collection do
       get :dashboard, :path => '/'
       resource(:syllabus, :only => [:show, :edit, :update, :create])
+      resources(:images, :only => [:index, :create, :destroy])
+      resources(:uploads, :only => [:index, :create, :destroy])
     end
   end
 
