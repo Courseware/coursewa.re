@@ -116,6 +116,7 @@ describe SyllabusesController do
         title = Faker::Lorem.sentence
         syllabus = Fabricate(
           :syllabus, :classroom => classroom, :user => classroom.owner)
+        syllabus_count = Syllabus.count
 
         post :create, :syllabus => {
           :title => Faker::Lorem.sentence,
@@ -123,6 +124,7 @@ describe SyllabusesController do
           :intro => Faker::Lorem.paragraph
         }
 
+        syllabus_count.should eq(Syllabus.count)
         classroom.syllabus.title.should eql(syllabus.title)
         response.should render_template(:show)
       end
