@@ -19,7 +19,7 @@ class SyllabusesController < ApplicationController
   def create
     @syllabus ||= @classroom.build_syllabus(params[:syllabus])
 
-    authorize!(params[:action], @syllabus)
+    authorize!(params[:action].to_sym, @syllabus)
 
     if @syllabus.new_record? and @syllabus.save
       flash[:success] = _('Classroom syllabus updated.')
