@@ -1,6 +1,6 @@
 # Asset/Upload STI model
 class Asset < ActiveRecord::Base
-  attr_accessible :attachment_file_name, :attachment_file_size, :description
+  attr_accessible :description
 
   # Relationships
   belongs_to :user
@@ -9,8 +9,9 @@ class Asset < ActiveRecord::Base
   delegate :url, :to => :attachment
 
   # Validations
-  validates_attachment_size :attachment, :less_than => Proc.new{
-    |img| img.user.plan.left_space
+  validates_attachment_presence :attachment
+  validates_attachment_size :attachment, :less_than => Proc.new{ |file|
+    file.user.plan.left_space
   }
 
   # Callbacks
