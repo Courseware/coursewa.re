@@ -4,17 +4,18 @@
 
 .row#syllabus
   .seven.columns
+
     = form_for(@syllabus, :url => syllabus_path) do |f|
       %p
-        = f.label :title, _('Syllabus Title')
+        = f.label :title, _('Title')
         = f.text_field :title, :required => true
 
       %p
-        = f.label :intro, _('Syllabus Short Description')
-        = f.text_area :intro, :class => 'wysiwyg-minimal', :required => true
+        = f.label :intro, _('Short Description')
+        = f.text_area :intro, :class => 'small', :required => true, :rows => nil
 
       %p
-        = f.label :intro, _('Syllabus Complete Description')
+        = f.label :intro, _('Complete Description')
         = f.text_area :content, :class => 'wysiwyg-full', :required => true
 
       %p

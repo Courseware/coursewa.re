@@ -8,14 +8,15 @@ class ImagesController < ApplicationController
 
   # Images list handler (JSON)
   def index
+
     respond_to do |format|
       # format.html
       format.json {
-        render :json => @classroom.images.collect { |a| {
-          :folder => a.assetable.title,
-          :image => a.url(:large),
-          :thumb => a.url(:small),
-          :title => a.description
+        render :json => @classroom.images.collect { |img| {
+          :folder => img.assetable.title,
+          :image => img.url(:large),
+          :thumb => img.url(:small),
+          :title => img.description
         } }
       }
     end
@@ -37,8 +38,7 @@ class ImagesController < ApplicationController
 
     if img.save
       render :text => {
-        :filelink => img.url(:large), :filename => img.description
-      }.to_json
+        :filelink => img.url(:large), :filename => img.description }.to_json
     else
       render(:status => :bad_request, :json => {
         :error => _('Upload failed. Please save the page first and try again.')
