@@ -23,6 +23,8 @@
      * Assets-aware wysiwyg support
      */
     $('.wysiwyg-full').redactor({
+      fixed: true,
+      wym: true,
       imageUpload: '/images',
       imageGetJson: '/images',
       imageUploadErrorCallback: function( o, json ) { alert( json.error ); },
@@ -32,8 +34,7 @@
         authenticity_token: $('meta[name="csrf-token"]').attr('content'),
         assetable_type: $('.assetable_type').val(),
         assetable_id: $('.assetable_id').val()
-      },
-      wym: true
+      }
     });
   });
 }(jQuery))
