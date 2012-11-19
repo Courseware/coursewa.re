@@ -8,4 +8,8 @@ describe Upload do
   it { should belong_to(:user)}
   it { should belong_to(:classroom)}
   it { should belong_to(:assetable)}
+
+  it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:classroom) }
+  it { should validate_presence_of(:assetable) }
 end

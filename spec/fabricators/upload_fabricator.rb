@@ -5,4 +5,6 @@ Fabricator(:upload) do
   attachment    { fixture_file_upload('spec/fixtures/test.txt', 'text/plain') }
   user
   classroom
+  assetable     { |attr| Fabricate(
+    :syllabus, :user => attr[:user], :classroom => attr[:classroom] ) }
 end

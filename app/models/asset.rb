@@ -9,6 +9,7 @@ class Asset < ActiveRecord::Base
   delegate :url, :to => :attachment
 
   # Validations
+  validates_presence_of :user, :classroom, :assetable
   validates_attachment_presence :attachment
   validates_attachment_size :attachment, :less_than => Proc.new{ |file|
     file.user.plan.left_space
