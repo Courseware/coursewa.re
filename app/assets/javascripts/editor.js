@@ -25,7 +25,9 @@
     $('.wysiwyg-full').redactor({
       imageUpload: '/images',
       imageGetJson: '/images',
+      imageUploadErrorCallback: function( o, json ) { alert( json.error ); },
       fileUpload: '/uploads',
+      fileUploadErrorCallback: function( o, json ) { alert( json.error ); },
       uploadFields: {
         authenticity_token: $('meta[name="csrf-token"]').attr('content'),
         assetable_type: $('.assetable_type').val(),

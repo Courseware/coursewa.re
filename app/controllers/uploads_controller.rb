@@ -25,7 +25,9 @@ class UploadsController < ApplicationController
         :filelink => upload.url, :filename => upload.description
       }.to_json
     else
-      render :nothing => true
+      render(:status => :bad_request, :json => {
+        :error => _('Upload failed. Please save the page first and try again.')
+      } )
     end
   end
 
