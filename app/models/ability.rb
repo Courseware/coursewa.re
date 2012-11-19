@@ -87,12 +87,22 @@ class Ability
 
   # [Classroom] [Asset] relevant abilities, aka [Upload] and [Image]
   def assets_abilities
-    # Can manage assets if user is the owner
-    can :manage, Image, :user_id => @user.id
-    can :manage, Upload, :user_id => @user.id
-    # Can create assets
-    can :create, Image
-    can :create, Upload
+    # Can manage assets if user is the owner or collaborator
+    can :index, Asset do |asset|
+      asset.classroom.collaborators.include?(@user) or
+        asset.classroom.owner.eql?(@user)
+    end
+    # Can create assets if in the same classroom
+    can :create, Asset do |asset|
+      asset.classroom.collaborators.include?(@user) or
+        asset.classroom.members.include?(@user)
+    end
+    # Can destroy asset if user owns it or can manage classroom
+    can :destroy, Asset do |asset|
+      asset.classroom.collaborators.include?(@user) or
+        asset.classroom.owner.eql?(@user) or
+        asset.user.eql?(@user)
+    end
   end
 
   # [Classroom] [Syllabus] relevant abilities
