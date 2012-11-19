@@ -26,13 +26,6 @@ describe User do
       it{ should_not be_able_to(:destroy, Fabricate(:membership)) }
       it{ should_not be_able_to(:destroy, Fabricate(:collaboration)) }
 
-      it{ should be_able_to(:create, Image) }
-      it{ should be_able_to(:create, Upload) }
-      it{ should_not be_able_to(:manage, Fabricate(:image)) }
-      it{ should_not be_able_to(:manage, Fabricate(:upload)) }
-      it{ should be_able_to(:manage, Fabricate(:image, :user => user)) }
-      it{ should be_able_to(:manage, Fabricate(:upload, :user => user)) }
-
       context 'with plan limits reached' do
         let(:user){ Fabricate(:classroom).owner.reload }
         it{ should_not be_able_to(:create, Classroom ) }
