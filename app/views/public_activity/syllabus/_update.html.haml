@@ -1,0 +1,8 @@
+%p{ :class => activity.key.parameterize }
+  - if activity.owner == p[:current_user]
+    = _('You updated the syllabus.')
+  - else
+    = _('%s updated the syllabus.' % activity.owner.name)
+%span.timestamp
+  = activity.created_at.to_s(:pretty)
+%hr
