@@ -63,5 +63,15 @@ describe Classroom do
     end
   end
 
+  describe '#all_activities' do
+    it 'should query all available activities' do
+      classroom = Fabricate(:classroom)
+      classroom.all_activity.count.should eq(1)
+
+      Fabricate(:syllabus, :classroom => classroom)
+      classroom.all_activities.count.should eq(2)
+    end
+  end
+
 end
 

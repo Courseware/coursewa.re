@@ -46,4 +46,14 @@ class Classroom < ActiveRecord::Base
     classroom.members << classroom.owner
   end
 
+  # Get all classroom activities
+  def all_activities
+    t = PublicActivity::Activity.arel_table
+    PublicActivity::Activity.where(
+      t[:trackable_id].eq(id).and(t[:trackable_type].eq(Classroom.to_s)).or(
+        t[:recipient_id].eq(id).and(t[:recipient_type].eq(Classroom.to_s))
+      )
+    ).reverse_order
+  end
+
 end
