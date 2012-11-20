@@ -34,6 +34,9 @@ class SyllabusesController < ApplicationController
   # Updates syllabus handler
   def update
     if !@syllabus.nil? and @syllabus.update_attributes(params[:syllabus])
+      # Change last user who edited syllabus to current user
+      @syllabus.update_attribute(:user, current_user)
+
       flash[:success] = _('Classroom syllabus updated.')
     else
       flash[:alert] = _('There was an error, please try again.')
