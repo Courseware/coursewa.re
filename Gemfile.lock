@@ -6,6 +6,19 @@ GIT
     rack-bug (0.3.0)
       rack (>= 1.0)
 
+GIT
+  remote: git@github.com:stas/coursewareable.git
+  revision: d3e7e6f8b0b3d3c86bd5b929203e6c617f9b9d39
+  specs:
+    coursewareable (0.0.1)
+      cancan
+      friendly_id
+      paperclip
+      public_activity
+      rails
+      sanitize
+      sorcery
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -300,15 +313,14 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
-  cancan
   capybara (= 2.0.0.beta2)
   compass-rails
+  coursewareable!
   database_cleaner
   delayed_job_active_record
   email_spec
   fabrication
   ffaker
-  friendly_id
   gettext
   gettext_i18n_rails
   gravatar_image_tag
@@ -319,10 +331,8 @@ DEPENDENCIES
   letter_opener
   multi_json
   oj
-  paperclip
   pg
   pry
-  public_activity
   puma
   quiet_assets
   rack-bug!
@@ -332,11 +342,9 @@ DEPENDENCIES
   roadie
   rspec-rails
   ruby_parser
-  sanitize
   sass-rails
   shoulda-matchers
   simplecov
-  sorcery
   sqlite3
   tddium
   therubyracer

@@ -4,16 +4,13 @@ ruby '1.9.3'
 gem 'rails'
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'sorcery'
 gem 'delayed_job_active_record'
 gem 'gettext_i18n_rails'
 gem 'roadie'
-gem 'cancan'
-gem 'public_activity'
 gem 'gravatar_image_tag'
-gem 'friendly_id'
-gem 'paperclip'
-gem 'sanitize'
+
+# Load the Coursewareable engine
+gem 'coursewareable', :git => 'git@github.com:stas/coursewareable.git'
 
 # Speedup a bit things
 gem 'multi_json'
