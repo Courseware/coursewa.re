@@ -1,4 +1,4 @@
-Courseware::Application.routes.draw do
+Coursewareable::Engine.routes.draw do
   get 'signup' => 'users#new', :as => 'signup'
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
@@ -32,6 +32,13 @@ Courseware::Application.routes.draw do
       resources(:uploads, :only => [:index, :create, :destroy])
     end
   end
+
+  # Route to homepage by default
+  root :to => 'home#index'
+end
+
+Courseware::Application.routes.draw do
+  mount Coursewareable::Engine => '/'
 
   # Route to homepage by default
   root :to => 'home#index'
