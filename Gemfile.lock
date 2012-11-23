@@ -317,6 +317,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
+  cancan
   capybara
   compass-rails
   coursewareable!

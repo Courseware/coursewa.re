@@ -4,6 +4,7 @@ ruby '1.9.3'
 gem 'rails'
 # Load the Coursewareable engine
 gem 'coursewareable', :git => 'git@github.com:stas/coursewareable.git'
+gem 'cancan'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
