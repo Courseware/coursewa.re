@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe SyllabusesController do
+describe Coursewareable::SyllabusesController do
 
-  let(:classroom) { Fabricate(:classroom) }
+  let(:classroom) { Fabricate('coursewareable/classroom') }
 
   describe 'GET show' do
 
     context 'not being logged in' do
       it 'should redirect to login' do
         @request.host = "#{classroom.slug}.#{@request.host}"
-        get :show
+        get :show, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
 
       it 'should redirect to login if classroom does not exist' do
         @request.host = "wrong.#{@request.host}"
-        get :show
+        get :show, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
     end
@@ -24,14 +24,14 @@ describe SyllabusesController do
       it 'should render the template' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
-        get :show
+        get :show, :use_route => :coursewareable
         response.should render_template(:show)
       end
 
       it 'should redirect to not found if classroom does not exist' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "missing.#{@request.host}"
-        get :show
+        get :show, :use_route => :coursewareable
         response.should redirect_to('/404')
       end
     end
@@ -43,13 +43,13 @@ describe SyllabusesController do
     context 'not being logged in' do
       it 'should redirect to login' do
         @request.host = "#{classroom.slug}.#{@request.host}"
-        get :edit
+        get :edit, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
 
       it 'should redirect to login if classroom does not exist' do
         @request.host = "wrong.#{@request.host}"
-        get :edit
+        get :edit, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
     end
@@ -58,14 +58,14 @@ describe SyllabusesController do
       it 'should render the template' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
-        get :edit
+        get :edit, :use_route => :coursewareable
         response.should render_template(:edit)
       end
 
       it 'should redirect to not found if classroom does not exist' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "missing.#{@request.host}"
-        get :edit
+        get :edit, :use_route => :coursewareable
         response.should redirect_to('/404')
       end
     end
@@ -77,13 +77,13 @@ describe SyllabusesController do
     context 'not being logged in' do
       it 'should redirect to login' do
         @request.host = "#{classroom.slug}.#{@request.host}"
-        post :create
+        post :create, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
 
       it 'should redirect to login if classroom does not exist' do
         @request.host = "wrong.#{@request.host}"
-        post :create
+        post :create, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
     end
@@ -92,7 +92,7 @@ describe SyllabusesController do
       it 'should show the syllabus' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
-        post :create
+        post :create, :use_route => :coursewareable
         response.should render_template(:show)
       end
 
@@ -100,7 +100,7 @@ describe SyllabusesController do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
 
-        post :create, :syllabus => {
+        post :create, :use_route => :coursewareable, :syllabus => {
           :title => Faker::Lorem.sentence,
           :content => Faker::HTMLIpsum.body,
           :intro => Faker::Lorem.paragraph
@@ -114,17 +114,17 @@ describe SyllabusesController do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
         title = Faker::Lorem.sentence
-        syllabus = Fabricate(
-          :syllabus, :classroom => classroom, :user => classroom.owner)
-        syllabus_count = Syllabus.count
+        syllabus = Fabricate('coursewareable/syllabus',
+          :classroom => classroom, :user => classroom.owner)
+        syllabus_count = Coursewareable::Syllabus.count
 
-        post :create, :syllabus => {
+        post :create, :use_route => :coursewareable, :syllabus => {
           :title => Faker::Lorem.sentence,
           :content => Faker::HTMLIpsum.body,
           :intro => Faker::Lorem.paragraph
         }
 
-        syllabus_count.should eq(Syllabus.count)
+        syllabus_count.should eq(Coursewareable::Syllabus.count)
         classroom.syllabus.title.should eql(syllabus.title)
         response.should render_template(:show)
       end
@@ -132,7 +132,7 @@ describe SyllabusesController do
       it 'should redirect to not found if classroom does not exist' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "missing.#{@request.host}"
-        post :create
+        post :create, :use_route => :coursewareable
         response.should redirect_to('/404')
       end
     end
@@ -144,13 +144,13 @@ describe SyllabusesController do
     context 'not being logged in' do
       it 'should redirect to login' do
         @request.host = "#{classroom.slug}.#{@request.host}"
-        put :update
+        put :update, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
 
       it 'should redirect to login if classroom does not exist' do
         @request.host = "wrong.#{@request.host}"
-        put :update
+        put :update, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
     end
@@ -159,7 +159,7 @@ describe SyllabusesController do
       it 'should show the syllabus' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
-        put :update
+        put :update, :use_route => :coursewareable
         response.should render_template(:show)
       end
 
@@ -167,10 +167,11 @@ describe SyllabusesController do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
         title = Faker::Lorem.sentence
-        syllabus = Fabricate(
-          :syllabus, :classroom => classroom, :user => classroom.owner)
+        syllabus = Fabricate('coursewareable/syllabus',
+          :classroom => classroom, :user => classroom.owner)
 
-        put :update, :syllabus => { :title => title }
+        put :update, :use_route => :coursewareable, :syllabus => {
+          :title => title }
 
         classroom.syllabus.title.should eql(title)
         response.should render_template(:show)
@@ -181,7 +182,7 @@ describe SyllabusesController do
         @request.host = "#{classroom.slug}.#{@request.host}"
         title = Faker::Lorem.sentence
 
-        put :update, :syllabus => { :title => title }
+        put :update, :use_route => :coursewareable, :syllabus => { :title => title }
 
         classroom.syllabus.should be_nil
         response.should render_template(:show)
@@ -190,7 +191,7 @@ describe SyllabusesController do
       it 'should redirect to not found if classroom does not exist' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "missing.#{@request.host}"
-        put :update
+        put :update, :use_route => :coursewareable
         response.should redirect_to('/404')
       end
     end

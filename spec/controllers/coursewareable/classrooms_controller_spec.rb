@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe ClassroomsController do
+describe Coursewareable::ClassroomsController do
 
   describe 'GET dashboard' do
 
-    let(:classroom) { Fabricate(:classroom) }
+    let(:classroom) { Fabricate('coursewareable/classroom') }
 
     context 'not being logged in' do
       it 'should redirect to login' do
         @request.host = "#{classroom.slug}.#{@request.host}"
-        get :dashboard
+        get :dashboard, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
 
       it 'should redirect to login if classroom does not exist' do
         @request.host = "wrong.#{@request.host}"
-        get :dashboard
+        get :dashboard, :use_route => :coursewareable
         response.should redirect_to(login_path)
       end
     end
@@ -24,14 +24,14 @@ describe ClassroomsController do
       it 'should show dashboard' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
-        get :dashboard
+        get :dashboard, :use_route => :coursewareable
         response.should render_template(:dashboard)
       end
 
       it 'should redirect to not found if classroom does not exist' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "missing.#{@request.host}"
-        get :dashboard
+        get :dashboard, :use_route => :coursewareable
         response.should redirect_to('/404')
       end
     end
@@ -43,8 +43,8 @@ describe ClassroomsController do
 
     context 'not being logged in' do
       it 'should redirect to login' do
-        get :new
-        response.should redirect_to(login_url)
+        get :new, :use_route => :coursewareable
+        response.should redirect_to(login_path)
       end
     end
 
@@ -52,7 +52,7 @@ describe ClassroomsController do
       before{ @controller.send(:auto_login, user) }
 
       it 'should show classroom creation screen' do
-        get :new
+        get :new, :use_route => :coursewareable
         response.should render_template(:new)
       end
 
@@ -63,8 +63,8 @@ describe ClassroomsController do
 
     context 'not being logged in' do
       it 'should redirect to login' do
-        post :create
-        response.should redirect_to(login_url)
+        post :create, :use_route => :coursewareable
+        response.should redirect_to(login_path)
       end
     end
 
@@ -73,27 +73,28 @@ describe ClassroomsController do
 
       it 'should show classroom creation screen on empty request' do
         @controller.send(:auto_login, user)
-        post :create
+        post :create, :use_route => :coursewareable
         response.should redirect_to(start_classroom_path)
       end
 
       it 'should create and redirect to the new classroom' do
         @controller.send(:auto_login, user)
         title = Faker::Education.school[0..31]
-        post :create, :classroom => {
+        post :create, :use_route => :coursewareable, :classroom => {
           :title => title,
           :description => Faker::HTMLIpsum.fancy_string
         }
-        response.should redirect_to(root_url(:subdomain => title.parameterize))
+        response.should redirect_to(
+          root_url(:subdomain => title.parameterize, :host => 'test.host'))
       end
     end
 
     context 'and with plan limits reached' do
-      let(:user) { Fabricate(:classroom).owner.reload }
+      let(:user) { Fabricate('coursewareable/classroom').owner.reload }
 
       it 'should redirect to login (not authorized)' do
         @controller.send(:auto_login, user)
-        post :create, :classroom => {
+        post :create, :use_route => :coursewareable, :classroom => {
           :title => Faker::Education.school[0..31],
           :description => Faker::HTMLIpsum.fancy_string
         }
