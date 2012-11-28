@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@github.com:stas/coursewareable.git
-  revision: e8de7773d593c1fb4b379cd55781889bee1fdf85
+  revision: 8f594621f784c53c3cf70992deb73fe94f549e8f
   specs:
     coursewareable (0.0.1)
       cancan
@@ -271,7 +271,7 @@ GEM
       oauth (~> 0.4.4)
       oauth2 (~> 0.6.0)
     spork (0.9.2)
-    sprockets (2.2.1)
+    sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
