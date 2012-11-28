@@ -3,6 +3,7 @@ module Coursewareable
   class UsersController < ApplicationController
 
     # Do not check for abilities
+    load_and_authorize_resource :class => Coursewareable::User
     skip_load_and_authorize_resource :except => [:create]
     # Do not ask authentication
     skip_before_filter :require_login, :except => [:me, :update]
@@ -10,12 +11,12 @@ module Coursewareable
     # Handles user creation screen
     def new
       redirect_to root_path if logged_in?
-      @user = User.new
+      @user = Coursewareable::User.new
     end
 
     # Handles user creation
     def create
-      @user = User.new(params[:user])
+      @user = Coursewareable::User.new(params[:user])
 
       if @user.save
         flash[:success] = _('Please check your email to finish registration.')
@@ -30,7 +31,7 @@ module Coursewareable
 
     # Handles user activation
     def activate
-      if (@user = User.load_from_activation_token(params[:id]))
+      if (@user = Coursewareable::User.load_from_activation_token(params[:id]))
         flash[:success] = _('Success! Your account was activated.')
         @user.activate!
         # Generate user's first activity

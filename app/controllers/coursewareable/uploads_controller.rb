@@ -3,6 +3,7 @@ module Coursewareable
   class UploadsController < ApplicationController
 
     # Abilities checking for our nested resource
+    load_and_authorize_resource :class => Coursewareable::Upload
     skip_authorize_resource :only => :create
 
     before_filter :load_classroom
@@ -34,7 +35,7 @@ module Coursewareable
 
     # Handles deletion
     def destroy
-      upload = Upload.find(params[:id])
+      upload = Coursewareable::Upload.find(params[:id])
 
       if upload and upload.destroy
         flash[:success] = _('File was deleted.')
@@ -47,7 +48,7 @@ module Coursewareable
 
     # Loads current classroom
     def load_classroom
-      @classroom = Classroom.find_by_slug!(request.subdomain)
+      @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
     end
   end
 end

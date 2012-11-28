@@ -3,6 +3,7 @@ module Coursewareable
   class SyllabusesController < ApplicationController
 
     # Abilities checking for our nested resource
+    load_and_authorize_resource :class => Coursewareable::Syllabus
     skip_authorize_resource :only => :create
 
     before_filter :load_classroom_syllabus
@@ -50,7 +51,7 @@ module Coursewareable
 
     # Loads current classroom and its syllabus
     def load_classroom_syllabus
-      @classroom = Classroom.find_by_slug!(request.subdomain)
+      @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
       @syllabus = @classroom.syllabus
     end
 

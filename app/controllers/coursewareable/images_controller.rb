@@ -3,6 +3,7 @@ module Coursewareable
   class ImagesController < ApplicationController
 
     # Abilities checking for our nested resource
+    load_and_authorize_resource :class => Coursewareable::Image
     skip_authorize_resource :only => :create
 
     before_filter :load_classroom
@@ -49,7 +50,7 @@ module Coursewareable
 
     # Handles deletion
     def destroy
-      img = Image.find(params[:id])
+      img = Coursewareable::Image.find(params[:id])
 
       if img and img.destroy
         flash[:success] = _('Image was deleted.')
@@ -62,7 +63,7 @@ module Coursewareable
 
     # Loads current classroom
     def load_classroom
-      @classroom = Classroom.find_by_slug!(request.subdomain)
+      @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
     end
   end
 end

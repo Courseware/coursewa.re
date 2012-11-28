@@ -2,8 +2,9 @@ module Coursewareable
   # Courseware Main Page Controller class
   class HomeController < ApplicationController
 
-    # Do not check for abilities
-    skip_load_and_authorize_resource
+    # Do not check for abilities, but load the class properly
+    load_and_authorize_resource :class => Coursewareable::Classroom
+    skip_authorize_resource
 
     # Main page handler
     def index
