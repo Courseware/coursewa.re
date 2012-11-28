@@ -19,7 +19,7 @@ describe 'Users' do
 
     page.should have_css('#notifications .alert-box')
 
-    user = User.find_by_email(email)
+    user = Coursewareable::User.find_by_email(email)
     user.should_not be_nil
     user.activation_state.should eq('pending')
     ActionMailer::Base.deliveries.count.should be > emails_count
@@ -28,7 +28,7 @@ describe 'Users' do
   it 'should handle invalid signups' do
     visit signup_path
 
-    users_count = User.count
+    users_count = Coursewareable::User.count
     emails_count = ActionMailer::Base.deliveries.count
 
     within('#new_user') do
@@ -43,7 +43,7 @@ describe 'Users' do
     page.should have_css('#new_user .error.form-field')
 
     ActionMailer::Base.deliveries.count.should eq(emails_count)
-    User.count.should eq(users_count)
+    Coursewareable::User.count.should eq(users_count)
   end
 
   it 'should handle profile updates' do

@@ -9,7 +9,7 @@ describe 'Home' do
   end
 
   context 'when logged in' do
-    let(:user){ Fabricate(:user) }
+    let(:user){ Fabricate('coursewareable/user') }
 
     it 'should show dasboard' do
       visit activate_user_url(user.activation_token)
@@ -40,7 +40,7 @@ describe 'Home' do
   end
 
   context 'when classrooms limits reached' do
-    let(:user){ Fabricate(:classroom).owner.reload }
+    let(:user){ Fabricate('coursewareable/classroom').owner.reload }
 
     it 'should not show classrooms creation link' do
       sign_in_with(user.email)

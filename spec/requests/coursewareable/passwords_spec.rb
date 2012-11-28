@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Passwords' do
 
-  let(:user){ Fabricate(:user) }
+  let(:user){ Fabricate('coursewareable/user') }
 
   it 'should handle password recovery' do
     visit new_password_path

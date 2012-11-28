@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Syllabuses' do
-  let(:classroom) { Fabricate(:classroom) }
+  let(:classroom) { Fabricate('coursewareable/classroom') }
 
   it 'it should redirect if not logged in' do
     visit syllabus_url(:subdomain => classroom.slug)
@@ -24,8 +24,8 @@ describe 'Syllabuses' do
     sign_in_with(classroom.owner.email)
     visit edit_syllabus_url(:subdomain => classroom.slug)
 
-    syllabus = Fabricate.build(
-      :syllabus, :classroom => classroom, :user => classroom.owner)
+    syllabus = Fabricate.build('coursewareable/syllabus',
+      :classroom => classroom, :user => classroom.owner)
 
     page.fill_in('syllabus_title', :with => syllabus.title)
     page.fill_in('syllabus_intro', :with => syllabus.intro)
@@ -38,8 +38,8 @@ describe 'Syllabuses' do
 
   describe 'when syllabus exists' do
     before {
-      @syllabus = Fabricate(
-        :syllabus, :user => classroom.owner, :classroom => classroom)
+      @syllabus = Fabricate('coursewareable/syllabus',
+        :user => classroom.owner, :classroom => classroom)
     }
 
     it 'it should show syllabus if logged in' do
@@ -67,8 +67,8 @@ describe 'Syllabuses' do
       sign_in_with(classroom.owner.email)
       visit edit_syllabus_url(:subdomain => classroom.slug)
 
-      syllabus = Fabricate.build(
-        :syllabus, :classroom => classroom, :user => classroom.owner)
+      syllabus = Fabricate.build('coursewareable/syllabus',
+        :classroom => classroom, :user => classroom.owner)
 
       page.fill_in('syllabus_title', :with => syllabus.title)
       page.fill_in('syllabus_intro', :with => syllabus.intro)

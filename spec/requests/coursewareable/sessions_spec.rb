@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Sessions' do
 
-  let(:user){ Fabricate(:user) }
+  let(:user){ Fabricate('coursewareable/user') }
 
   it 'should handle invalid login' do
     visit login_path

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Classrooms' do
-  let(:classroom) { Fabricate(:classroom) }
+  let(:classroom) { Fabricate('coursewareable/classroom') }
 
   it 'it should redirect if not logged in' do
     visit dashboard_classrooms_url(:subdomain => classroom.slug)
