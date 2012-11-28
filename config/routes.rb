@@ -38,8 +38,8 @@ Coursewareable::Engine.routes.draw do
 end
 
 Courseware::Application.routes.draw do
-  mount Coursewareable::Engine => '/'
+  # Route overwrites come below:
 
-  # Route to homepage by default
-  root :to => 'home#index'
+  # Mount the Coursewareable Engine
+  mount Coursewareable::Engine => '/'
 end
