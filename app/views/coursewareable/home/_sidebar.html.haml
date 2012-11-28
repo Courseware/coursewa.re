@@ -2,7 +2,7 @@
   .row.classrooms-sidebar
     %h5
       = _('Your Classrooms')
-      - if can? :create, Classroom
+      - if can? :create, Coursewareable::Classroom
         = link_to('Start a Classroom', start_classroom_path, :class => 'tiny radius button')
     %hr
     %ul
