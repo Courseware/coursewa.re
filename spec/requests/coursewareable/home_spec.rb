@@ -16,7 +16,7 @@ describe 'Home' do
       sign_in_with(user.email)
       visit root_url
       page.should have_css('#dashboard-home')
-      page.should have_css('#activities .user-create')
+      page.should have_css('#activities .coursewareable_user-create')
       page.should have_xpath("//a[@href='#{start_classroom_path}']")
     end
 

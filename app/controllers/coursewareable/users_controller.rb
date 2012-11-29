@@ -35,7 +35,8 @@ module Coursewareable
         flash[:success] = _('Success! Your account was activated.')
         @user.activate!
         # Generate user's first activity
-        @user.activities.create(:key => 'user.create')
+        activity_key = Coursewareable::User.name.parameterize('_')
+        @user.activities.create(:key => "#{activity_key}.create")
         redirect_to(login_path)
       else
         not_authenticated

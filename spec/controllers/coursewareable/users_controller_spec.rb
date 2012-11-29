@@ -79,7 +79,7 @@ describe Coursewareable::UsersController do
 
       # Ignore any caches
       user.reload.activation_state.should eq('active')
-      user.activities.last.key.should eq('user.create')
+      user.activities.last.key.should eq('coursewareable_user.create')
 
       response.should redirect_to(login_path)
     end
