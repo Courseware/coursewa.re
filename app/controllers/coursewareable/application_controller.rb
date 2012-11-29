@@ -12,12 +12,15 @@ module Coursewareable
 
     # Sorcery method overwritten to customize error message
     def not_authenticated
-      redirect_to(login_url, :alert => _('Please authenticate first.'))
+      args = {:subdomain => request.subdomain} unless request.subdomain.blank?
+      redirect_to(login_url(args), :alert => _('Please authenticate first.'))
     end
 
     # Unauthorized error handler
     def unauthorized
-      redirect_to(login_url, :alert => _('Access to this page is restricted.'))
+      args = {:subdomain => request.subdomain} unless request.subdomain.blank?
+      redirect_to(
+        login_url(args), :alert => _('Access to this page is restricted.') )
     end
 
     # Not found handler
