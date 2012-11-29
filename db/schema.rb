@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120907132001) do
+ActiveRecord::Schema.define(:version => 20121123005538) do
 
-  create_table "activities", :force => true do |t|
+  create_table "coursewareable_activities", :force => true do |t|
     t.integer  "trackable_id"
     t.string   "trackable_type"
     t.integer  "owner_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",     :null => false
   end
 
-  create_table "assets", :force => true do |t|
+  create_table "coursewareable_assets", :force => true do |t|
     t.integer  "user_id"
     t.integer  "classroom_id"
     t.text     "description"
@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "attachment_updated_at"
   end
 
-  add_index "assets", ["assetable_id"], :name => "index_assets_on_assetable_id"
-  add_index "assets", ["assetable_type"], :name => "index_assets_on_assetable_type"
-  add_index "assets", ["classroom_id"], :name => "index_assets_on_classroom_id"
-  add_index "assets", ["user_id"], :name => "index_assets_on_user_id"
+  add_index "coursewareable_assets", ["assetable_id"], :name => "index_coursewareable_assets_on_assetable_id"
+  add_index "coursewareable_assets", ["assetable_type"], :name => "index_coursewareable_assets_on_assetable_type"
+  add_index "coursewareable_assets", ["classroom_id"], :name => "index_coursewareable_assets_on_classroom_id"
+  add_index "coursewareable_assets", ["user_id"], :name => "index_coursewareable_assets_on_user_id"
 
-  create_table "assignments", :force => true do |t|
+  create_table "coursewareable_assignments", :force => true do |t|
     t.string   "slug",         :null => false
     t.string   "title"
     t.text     "content"
@@ -56,12 +56,12 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "assignments", ["classroom_id"], :name => "index_assignments_on_classroom_id"
-  add_index "assignments", ["lecture_id"], :name => "index_assignments_on_lecture_id"
-  add_index "assignments", ["slug"], :name => "index_assignments_on_slug", :unique => true
-  add_index "assignments", ["user_id"], :name => "index_assignments_on_user_id"
+  add_index "coursewareable_assignments", ["classroom_id"], :name => "index_coursewareable_assignments_on_classroom_id"
+  add_index "coursewareable_assignments", ["lecture_id"], :name => "index_coursewareable_assignments_on_lecture_id"
+  add_index "coursewareable_assignments", ["slug"], :name => "index_coursewareable_assignments_on_slug", :unique => true
+  add_index "coursewareable_assignments", ["user_id"], :name => "index_coursewareable_assignments_on_user_id"
 
-  create_table "associations", :force => true do |t|
+  create_table "coursewareable_associations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "classroom_id"
     t.string   "type"
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "associations", ["classroom_id"], :name => "index_associations_on_classroom_id"
-  add_index "associations", ["user_id"], :name => "index_associations_on_user_id"
+  add_index "coursewareable_associations", ["classroom_id"], :name => "index_coursewareable_associations_on_classroom_id"
+  add_index "coursewareable_associations", ["user_id"], :name => "index_coursewareable_associations_on_user_id"
 
-  create_table "classrooms", :force => true do |t|
+  create_table "coursewareable_classrooms", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "slug",                                :null => false
@@ -84,26 +84,10 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",                          :null => false
   end
 
-  add_index "classrooms", ["owner_id"], :name => "index_classrooms_on_owner_id"
-  add_index "classrooms", ["slug"], :name => "index_classrooms_on_slug", :unique => true
+  add_index "coursewareable_classrooms", ["owner_id"], :name => "index_coursewareable_classrooms_on_owner_id"
+  add_index "coursewareable_classrooms", ["slug"], :name => "index_coursewareable_classrooms_on_slug", :unique => true
 
-  create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
-
-  create_table "grades", :force => true do |t|
+  create_table "coursewareable_grades", :force => true do |t|
     t.string   "form",          :default => "number"
     t.integer  "mark"
     t.text     "comment"
@@ -115,12 +99,12 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",                          :null => false
   end
 
-  add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
-  add_index "grades", ["classroom_id"], :name => "index_grades_on_classroom_id"
-  add_index "grades", ["receiver_id"], :name => "index_grades_on_receiver_id"
-  add_index "grades", ["user_id"], :name => "index_grades_on_user_id"
+  add_index "coursewareable_grades", ["assignment_id"], :name => "index_coursewareable_grades_on_assignment_id"
+  add_index "coursewareable_grades", ["classroom_id"], :name => "index_coursewareable_grades_on_classroom_id"
+  add_index "coursewareable_grades", ["receiver_id"], :name => "index_coursewareable_grades_on_receiver_id"
+  add_index "coursewareable_grades", ["user_id"], :name => "index_coursewareable_grades_on_user_id"
 
-  create_table "lectures", :force => true do |t|
+  create_table "coursewareable_lectures", :force => true do |t|
     t.string   "slug",              :null => false
     t.string   "title"
     t.text     "content"
@@ -132,12 +116,12 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",        :null => false
   end
 
-  add_index "lectures", ["classroom_id"], :name => "index_lectures_on_classroom_id"
-  add_index "lectures", ["parent_lecture_id"], :name => "index_lectures_on_parent_lecture_id"
-  add_index "lectures", ["slug"], :name => "index_lectures_on_slug", :unique => true
-  add_index "lectures", ["user_id"], :name => "index_lectures_on_user_id"
+  add_index "coursewareable_lectures", ["classroom_id"], :name => "index_coursewareable_lectures_on_classroom_id"
+  add_index "coursewareable_lectures", ["parent_lecture_id"], :name => "index_coursewareable_lectures_on_parent_lecture_id"
+  add_index "coursewareable_lectures", ["slug"], :name => "index_coursewareable_lectures_on_slug", :unique => true
+  add_index "coursewareable_lectures", ["user_id"], :name => "index_coursewareable_lectures_on_user_id"
 
-  create_table "plans", :force => true do |t|
+  create_table "coursewareable_plans", :force => true do |t|
     t.integer  "user_id"
     t.integer  "allowed_classrooms"
     t.integer  "allowed_space"
@@ -149,9 +133,9 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",                           :null => false
   end
 
-  add_index "plans", ["user_id"], :name => "index_plans_on_user_id"
+  add_index "coursewareable_plans", ["user_id"], :name => "index_coursewareable_plans_on_user_id"
 
-  create_table "responses", :force => true do |t|
+  create_table "coursewareable_responses", :force => true do |t|
     t.text     "content"
     t.text     "quiz"
     t.integer  "assignment_id"
@@ -161,11 +145,11 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "responses", ["assignment_id"], :name => "index_responses_on_assignment_id"
-  add_index "responses", ["classroom_id"], :name => "index_responses_on_classroom_id"
-  add_index "responses", ["user_id"], :name => "index_responses_on_user_id"
+  add_index "coursewareable_responses", ["assignment_id"], :name => "index_coursewareable_responses_on_assignment_id"
+  add_index "coursewareable_responses", ["classroom_id"], :name => "index_coursewareable_responses_on_classroom_id"
+  add_index "coursewareable_responses", ["user_id"], :name => "index_coursewareable_responses_on_user_id"
 
-  create_table "syllabuses", :force => true do |t|
+  create_table "coursewareable_syllabuses", :force => true do |t|
     t.string   "title"
     t.text     "content"
     t.text     "intro"
@@ -175,10 +159,10 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "syllabuses", ["classroom_id"], :name => "index_syllabuses_on_classroom_id"
-  add_index "syllabuses", ["user_id"], :name => "index_syllabuses_on_user_id"
+  add_index "coursewareable_syllabuses", ["classroom_id"], :name => "index_coursewareable_syllabuses_on_classroom_id"
+  add_index "coursewareable_syllabuses", ["user_id"], :name => "index_coursewareable_syllabuses_on_user_id"
 
-  create_table "users", :force => true do |t|
+  create_table "coursewareable_users", :force => true do |t|
     t.string   "email",                                          :null => false
     t.string   "crypted_password"
     t.string   "salt"
@@ -206,10 +190,26 @@ ActiveRecord::Schema.define(:version => 20120907132001) do
     t.datetime "updated_at",                                     :null => false
   end
 
-  add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
-  add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
-  add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
+  add_index "coursewareable_users", ["activation_token"], :name => "index_coursewareable_users_on_activation_token"
+  add_index "coursewareable_users", ["email"], :name => "index_coursewareable_users_on_email"
+  add_index "coursewareable_users", ["last_logout_at", "last_activity_at"], :name => "index_coursewareable_users_on_logout_at_and_activity_at"
+  add_index "coursewareable_users", ["remember_me_token"], :name => "index_coursewareable_users_on_remember_me_token"
+  add_index "coursewareable_users", ["reset_password_token"], :name => "index_coursewareable_users_on_reset_password_token"
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
 end

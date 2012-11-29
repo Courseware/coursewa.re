@@ -2,18 +2,15 @@ source :rubygems
 ruby '1.9.3'
 
 gem 'rails'
+# Load the Coursewareable engine
+gem 'coursewareable', :git => 'https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git'
+gem 'cancan'
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'sorcery'
 gem 'delayed_job_active_record'
 gem 'gettext_i18n_rails'
 gem 'roadie'
-gem 'cancan'
-gem 'public_activity'
 gem 'gravatar_image_tag'
-gem 'friendly_id'
-gem 'paperclip'
-gem 'sanitize'
 
 # Speedup a bit things
 gem 'multi_json'
@@ -30,7 +27,8 @@ group :development do
   gem 'pry'
   gem 'quiet_assets'
   gem 'rack-bug', :github => 'brynary/rack-bug', :branch => 'rails3'
-  gem 'rails-erd'
+  gem 'letter_opener'
+  gem 'rails-erd', :require => false
   gem 'yard', :require => false
   gem 'gettext', :require => false
   gem 'ruby_parser', :require => false
@@ -52,10 +50,9 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rb-inotify'
   gem 'rspec-rails'
-  gem 'letter_opener'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
-  gem 'capybara', '2.0.0.beta2'
+  gem 'capybara'
   gem 'email_spec'
   gem 'simplecov', :require => false
   gem 'tddium', :require => false
