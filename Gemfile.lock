@@ -7,7 +7,7 @@ GIT
       rack (>= 1.0)
 
 GIT
-  remote: git@github.com:stas/coursewareable.git
+  remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
   revision: 5e3a018eec22841fae6f96bb506a343820595aa1
   specs:
     coursewareable (0.0.1)

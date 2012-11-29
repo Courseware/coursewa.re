@@ -3,7 +3,7 @@ ruby '1.9.3'
 
 gem 'rails'
 # Load the Coursewareable engine
-gem 'coursewareable', :git => 'git@github.com:stas/coursewareable.git'
+gem 'coursewareable', :git => 'https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git'
 gem 'cancan'
 gem 'haml-rails'
 gem 'jquery-rails'
