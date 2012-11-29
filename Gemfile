@@ -27,7 +27,8 @@ group :development do
   gem 'pry'
   gem 'quiet_assets'
   gem 'rack-bug', :github => 'brynary/rack-bug', :branch => 'rails3'
-  gem 'rails-erd'
+  gem 'letter_opener'
+  gem 'rails-erd', :require => false
   gem 'yard', :require => false
   gem 'gettext', :require => false
   gem 'ruby_parser', :require => false
@@ -49,7 +50,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rb-inotify'
   gem 'rspec-rails'
-  gem 'letter_opener'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'capybara'
