@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe UserMailer do
-  let(:user) { Fabricate(:user) }
+  let(:user) { Fabricate('coursewareable/user') }
 
   describe 'activation_needed_email' do
     let(:mail) { UserMailer.activation_needed_email(user) }

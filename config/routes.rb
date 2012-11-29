@@ -1,4 +1,4 @@
-Courseware::Application.routes.draw do
+Coursewareable::Engine.routes.draw do
   get 'signup' => 'users#new', :as => 'signup'
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
@@ -35,4 +35,11 @@ Courseware::Application.routes.draw do
 
   # Route to homepage by default
   root :to => 'home#index'
+end
+
+Courseware::Application.routes.draw do
+  # Route overwrites come below:
+
+  # Mount the Coursewareable Engine
+  mount Coursewareable::Engine => '/'
 end
