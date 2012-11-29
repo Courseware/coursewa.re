@@ -13,7 +13,7 @@ describe 'Classrooms' do
     visit dashboard_classrooms_url(:subdomain => classroom.slug)
     page.should have_content(classroom.title)
     page.should have_css('#dashboard-classrooms')
-    page.should have_css('#activities .classroom-create')
+    page.should_not have_css('#activities .classroom-create')
   end
 
 end

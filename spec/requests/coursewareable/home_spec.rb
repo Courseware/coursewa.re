@@ -23,7 +23,8 @@ describe 'Home' do
     it 'should be able to create a classroom' do
       user.activate!
       sign_in_with(user.email)
-      visit start_classroom_path
+
+      visit start_classroom_url
 
       title = Faker::Education.school[0..31]
       description = Faker::HTMLIpsum.fancy_string

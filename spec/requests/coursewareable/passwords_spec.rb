@@ -5,7 +5,7 @@ describe 'Passwords' do
   let(:user){ Fabricate('coursewareable/user') }
 
   it 'should handle password recovery' do
-    visit new_password_path
+    visit new_password_url
 
     email_count = ActionMailer::Base.deliveries.count
 
@@ -24,7 +24,7 @@ describe 'Passwords' do
     user.update_attribute :reset_password_token, token
     user.update_attribute :reset_password_token_expires_at, ts
 
-    visit edit_password_path(token)
+    visit edit_password_url(token)
 
     within('#password_update') do
       fill_in 'password', :with => 'secret'
