@@ -56,7 +56,7 @@ module Coursewareable
         flash[:success] = _('Image was deleted.')
       end
 
-      redirect_to :index
+      redirect_to :images
     end
 
     protected
