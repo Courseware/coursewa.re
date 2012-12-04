@@ -22,11 +22,31 @@ describe Coursewareable::ImagesController do
     end
 
     context 'being logged in' do
-      it 'should respond with a json' do
+      context 'with some images' do
+
+        before do
+          @image = Fabricate('coursewareable/image',
+            :classroom => classroom, :user => classroom.owner)
+        end
+
+        it 'should respond with a json' do
+          @controller.send(:auto_login, classroom.owner)
+          @request.host = "#{classroom.slug}.#{@request.host}"
+          get :index, :use_route => :coursewareable, :format => :json
+          json = JSON.parse(response.body)
+
+          json.size.should eq(1)
+          json[0]['image'].should eq(@image.url(:large))
+        end
+      end
+
+      it 'should respond with an empty json' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
-        get :index, :use_route => :coursewareable
-        response.body.strip.should be_empty
+        get :index, :use_route => :coursewareable, :format => :json
+        json = JSON.parse(response.body)
+
+        json.size.should eq(0)
       end
 
       it 'should redirect to not found if classroom does not exist' do
