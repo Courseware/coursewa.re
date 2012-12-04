@@ -41,7 +41,7 @@ module Coursewareable
         flash[:success] = _('File was deleted.')
       end
 
-      redirect_to :index
+      redirect_to :uploads
     end
 
     protected
