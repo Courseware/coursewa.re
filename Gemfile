@@ -26,7 +26,7 @@ group :development do
   gem 'sqlite3'
   gem 'pry'
   gem 'quiet_assets'
-  gem 'rack-bug', :github => 'brynary/rack-bug', :branch => 'rails3'
+  # gem 'rack-bug', :github => 'brynary/rack-bug', :branch => 'rails3'
   gem 'letter_opener'
   gem 'rails-erd', :require => false
   gem 'yard', :require => false
