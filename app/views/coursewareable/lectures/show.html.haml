@@ -1,0 +1,16 @@
+= title _(@lecture.title)
+
+.row#lecture
+  .seven.columns
+    %h1
+      = @lecture.title
+    %hr
+    %small
+      = @lecture.requisite
+    %hr
+      = @lecture.content.html_safe
+
+    %small
+      = link_to(_('Update'), edit_lecture_path(@lecture))
+
+  = render(:partial => 'sidebar')
