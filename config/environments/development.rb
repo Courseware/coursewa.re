@@ -41,5 +41,5 @@ Courseware::Application.configure do
   config.action_mailer.default_url_options = {:host => 'lvh.me', :port => 3000}
 
   # Enable rack-bug
-  config.middleware.use 'Rack::Bug'
+  # config.middleware.use 'Rack::Bug'
 end
