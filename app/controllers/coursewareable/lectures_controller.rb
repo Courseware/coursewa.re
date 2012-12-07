@@ -12,12 +12,18 @@ module Coursewareable
     def new
       @lecture = @classroom.lectures.build(params[:lecture])
       @lecture.user = current_user
+      @lectures = @classroom.lectures.collect { |l|
+        [l.title, l.id] unless l.id == @lecture.id
+      }.compact
 
       authorize!(:create, @lecture)
     end
 
     # Editing screen
     def edit
+      @lectures = @classroom.lectures.collect { |l|
+        [l.title, l.id] unless l.id == @lecture.id
+      }.compact
     end
 
     # Lecture screen

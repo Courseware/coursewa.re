@@ -11,6 +11,10 @@
         = f.text_field :title, :required => true
 
       %p
+        = f.label :parent_lecture_id, _('Parent lecture')
+        = f.select :parent_lecture_id, @lectures, { :include_blank => _('No parent lecture') }
+
+      %p
         = f.label :requisite, _('Requisites')
         = f.text_area :requisite, :class => 'wysiwyg-minimal', :required => true
 
