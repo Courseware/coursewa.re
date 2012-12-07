@@ -43,7 +43,7 @@ module Coursewareable
         flash[:alert] = _('There was an error, please try again.')
       end
 
-      redirect_to edit_lecture_path(@lecture)
+      redirect_to edit_lecture_url(@lecture)
     end
 
     # Handles lecture update
@@ -57,7 +57,7 @@ module Coursewareable
         flash[:alert] = _('There was an error, please try again.')
       end
 
-      redirect_to edit_lecture_path(@lecture)
+      redirect_to edit_lecture_url(@lecture)
     end
 
     # Handles lecture deletion
