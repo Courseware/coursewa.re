@@ -11,11 +11,11 @@
       %hr
         = @syllabus.content.html_safe
 
-      - unless @lectures.empty?
+      - if @lectures and !@lectures.empty?
         -# TODO: organize this as a tree by parent lecture
 
         %h3 Course structure
-        %ul
+        %ul#lectures-tree
           - @lectures.each do |lecture|
             %li
               = link_to(lecture.title, lecture_path(lecture))
