@@ -36,7 +36,7 @@ end
 
 group :assets do
   gem 'uglifier'
-  gem 'therubyracer'
+  gem 'therubyracer', '0.10.2'
   gem 'sass-rails'
   gem 'compass-rails'
   gem 'zurb-foundation'
