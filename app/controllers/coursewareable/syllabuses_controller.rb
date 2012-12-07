@@ -10,6 +10,7 @@ module Coursewareable
 
     # Syllabus page handler
     def show
+      @lectures = @classroom.lectures
     end
 
     # Edit page handler
