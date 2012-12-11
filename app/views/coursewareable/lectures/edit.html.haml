@@ -25,7 +25,7 @@
       %p
         = hidden_field_tag :assetable_type, @lecture.class, :class => 'assetable_type'
         = hidden_field_tag :assetable_id, @lecture.id, :class => 'assetable_id'
-        = f.submit _('Update'), :id => 'submit_syllabus', :class => 'button radius secondary'
+        = f.submit _('Update'), :id => 'submit_lecture', :class => 'button radius secondary'
         = link_to _('Cancel'), syllabus_path, :class => 'pull right'
 
   = render(:partial => 'sidebar')

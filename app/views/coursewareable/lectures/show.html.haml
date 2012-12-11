@@ -11,6 +11,6 @@
       = @lecture.content.html_safe
 
     %small
-      = link_to(_('Update'), edit_lecture_path(@lecture))
+      = link_to(_('Update'), edit_lecture_path(@lecture), :class => 'lecture-update')
 
   = render(:partial => 'sidebar')

@@ -134,7 +134,8 @@ describe Coursewareable::LecturesController do
         }
 
         classroom.lectures.should_not be_empty
-        response.should redirect_to(edit_lecture_url(classroom.lectures.first))
+        response.should redirect_to(edit_lecture_url(
+          classroom.lectures.first, :subdomain => classroom.slug))
       end
 
       it 'should redirect to not found if classroom does not exist' do
@@ -175,7 +176,8 @@ describe Coursewareable::LecturesController do
           :lecture => { :title => title }
 
         lecture.reload.title.should eql(title)
-        response.should redirect_to(edit_lecture_url(lecture))
+        response.should redirect_to(edit_lecture_url(
+          lecture, :subdomain => classroom.slug))
       end
 
       it 'should redirect to not found if classroom does not exist' do
