@@ -48,7 +48,7 @@ module Coursewareable
 
     # Handles lecture update
     def update
-      @lecture = Coursewareable::Lecture.find(params[:id])
+      @lecture = @classroom.lectures.find(params[:id])
       @lecture.update_attributes(params[:lecture])
 
       if @lecture.save
@@ -62,7 +62,7 @@ module Coursewareable
 
     # Handles lecture deletion
     def destroy
-      lecture = Coursewareable::Lecture.find(params[:id])
+      lecture = @classroom.lectures.find(params[:id])
 
       if lecture and lecture.destroy
         flash[:success] = _('Lecture removed.')
