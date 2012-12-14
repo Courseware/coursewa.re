@@ -30,8 +30,9 @@ Coursewareable::Engine.routes.draw do
       resource(:syllabus, :only => [:show, :edit, :update, :create])
       resources(:images, :only => [:index, :create, :destroy])
       resources(:uploads, :only => [:index, :create, :destroy])
-      resources(:lectures)
-      resources(:assignments)
+      resources(:lectures) do
+        resources(:assignments)
+      end
     end
   end
 
