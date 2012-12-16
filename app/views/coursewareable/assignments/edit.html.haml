@@ -1,0 +1,32 @@
+= title _('Editing assignment')
+= head_embed javascript_include_tag('edit_assignment')
+= head_embed javascript_include_tag('editor')
+= head_embed stylesheet_link_tag('editor')
+
+.row#assignment
+  .seven.columns
+
+    = form_for(@assignment, :url => lecture_assignment_path(@lecture, @assignment)) do |f|
+      %p
+        = f.label :title, _('Title')
+        = f.text_field :title, :required => true
+
+      %p
+        = f.label :content, _('Content')
+        = f.text_area :content, :class => 'wysiwyg-full', :required => true
+
+      %p
+        = check_box_tag :has_quiz, nil, (@assignment.quiz.empty? ? '' : :checked)
+        = label_tag :has_quiz, _('This is a quiz')
+
+      %div.hide.quiz-builder{'data-quiz' => :auto, 'data-from-store' => :true}
+        = f.hidden_field :quiz, :class => 'quiz-store'
+        = render(:partial => 'quiz_builder_template')
+
+      %p
+        = hidden_field_tag :assetable_type, @assignment.class, :class => 'assetable_type'
+        = hidden_field_tag :assetable_id, @assignment.id, :class => 'assetable_id'
+        = f.submit _('Update'), :id => 'submit_assignment', :class => 'button radius secondary'
+        = link_to _('Cancel'), lecture_assignment_path(@lecture, @assignment), :class => 'pull right'
+
+  = render(:partial => 'sidebar')

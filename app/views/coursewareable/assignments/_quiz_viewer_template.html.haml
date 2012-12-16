@@ -1,0 +1,32 @@
+%hr
+  .quiz-text.template.question.row{:style => "display: none"}
+    .twelve.columns.question-content
+      %textarea.input{:disabled => true} Question
+      .row.option
+        .eleven.offset-by-one.columns.option-content
+          %textarea{:disabled => true} Answer
+    %hr
+  .quiz-radios.template.question.row{:style => "display: none"}
+    .twelve.columns.question-content
+      %textarea.input{:disabled => true} Question
+      .row.option
+        .one.columns.option-validation
+          %input{:name => "unique", :type => "radio", :disabled => true}
+        .nine.columns.option-content
+          %textarea{:disabled => true} Answer
+    .row
+      .nine.columns
+        %a.hide.add{:href => "#"} Add a new option
+    %hr
+  .quiz-checkboxes.template.question.row{:style => "display: none"}
+    .twelve.columns.question-content
+      %textarea.input{:disabled => true} Question
+      .row.option
+        .one.columns.option-validation
+          %input{:type => "checkbox", :disabled => true}
+        .nine.columns.option-content
+          %textarea{:disabled => true} Answer
+    .row
+      .nine.columns
+        %a.hide.add{:href => "#"} Add a new option
+    %hr
