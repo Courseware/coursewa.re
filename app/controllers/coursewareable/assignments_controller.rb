@@ -11,6 +11,7 @@ module Coursewareable
     # Handles creation screen
     def new
       @assignment = @lecture.assignments.build(params[:assignment])
+      @assignment.classroom = @classroom
       @assignment.user = current_user
 
       authorize!(:create, @assignment)
@@ -18,10 +19,17 @@ module Coursewareable
 
     # Handles creation
     def create
-      @assignment = @lecture.assignments.build(params[:assignment])
+      @assignment = @lecture.assignments.build(
+        params[:assignment].except(:has_quiz))
+
+      @assignment.classroom = @classroom
       @assignment.user = current_user
 
       authorize!(:create, @assignment)
+
+      unless params[:has_quiz]
+        @assignment.quiz = nil
+      end
 
       if @assignment.save
         flash[:success] = _('Assignment was created.')
@@ -43,7 +51,7 @@ module Coursewareable
     # Handles update
     def update
       @assignment = @lecture.assignments.find(params[:id])
-      @assignments.update_attributes(params[:assignment])
+      @assignment.update_attributes(params[:assignment])
 
       if @assignment.save
         flash[:success] = _('Assignment was updated.')
@@ -70,7 +78,7 @@ module Coursewareable
     # Loads current classroom and lecture
     def load_classroom_lecture
       @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
-      @lecture = @Classroom.lectures.find_by_slug(params[:lecture_id])
+      @lecture = @classroom.lectures.find_by_slug(params[:lecture_id])
     end
   end
 end
