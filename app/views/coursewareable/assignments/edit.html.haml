@@ -16,7 +16,7 @@
         = f.text_area :content, :class => 'wysiwyg-full', :required => true
 
       %p
-        = check_box_tag :has_quiz, nil, (@assignment.quiz.empty? ? '' : :checked)
+        = check_box_tag :has_quiz, nil, (@assignment.quiz.blank? ? false : true)
         = label_tag :has_quiz, _('This is a quiz')
 
       %div.hide.quiz-builder{'data-quiz' => :auto, 'data-from-store' => :true}
