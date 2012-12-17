@@ -1,8 +1,9 @@
 %p{ :class => activity.key.parameterize }
+  - syllabus_link = link_to(activity.trackable.title, syllabus_path)
   - if activity.owner == p[:current_user]
-    = _('You created %s syllabus.' % activity.trackable.title)
+    = _('You updated %s syllabus.' % syllabus_link)
   - else
-    = _('%s created %s syllabus.' % [activity.owner.name, activity.trackable.title])
+    = _('%s updated %s syllabus.' % [activity.owner.name, syllabus_link])
 %span.timestamp
   = activity.created_at.to_s(:pretty)
 %hr
