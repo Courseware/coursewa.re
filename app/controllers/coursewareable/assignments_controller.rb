@@ -33,7 +33,8 @@ module Coursewareable
 
       if @assignment.save
         flash[:success] = _('Assignment was created.')
-        redirect_to edit_lecture_assignment_url(@lecture, @assignment)
+        redirect_to edit_lecture_assignment_url(
+          @lecture, @assignment, :subdomain => @classroom.slug)
       else
         flash[:alert] = _('There was an error, please try again.')
         render :new
@@ -53,13 +54,18 @@ module Coursewareable
       @assignment = @lecture.assignments.find(params[:id])
       @assignment.update_attributes(params[:assignment])
 
+      unless params[:has_quiz]
+        @assignment.quiz = nil
+      end
+
       if @assignment.save
         flash[:success] = _('Assignment was updated.')
       else
         flash[:alert] = _('There was an error, please try again.')
       end
 
-      redirect_to edit_lecture_assignment_url(@lecture, @assignment)
+      redirect_to edit_lecture_assignment_url(
+        @lecture, @assignment, :subdomain => @classroom.slug)
     end
 
     # Handles removal
@@ -70,7 +76,7 @@ module Coursewareable
         flash[:success] = _('Lecture removed.')
       end
 
-      redirect_to lecture_url(@lecture)
+      redirect_to lecture_path(@lecture)
     end
 
     protected
