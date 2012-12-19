@@ -16,7 +16,18 @@ describe Coursewareable::ClassroomsController do
     end
 
     it 'for dashboard screen' do
-      get('http://test.lvh.me/').should route_to('coursewareable/classrooms#dashboard')
+      get('http://test.lvh.me/').should route_to(
+        'coursewareable/classrooms#dashboard')
+    end
+
+    it 'for edit screen' do
+      get('http://test.lvh.me/edit').should route_to(
+        'coursewareable/classrooms#edit')
+    end
+
+    it 'for update' do
+      put('http://test.lvh.me/').should route_to(
+        'coursewareable/classrooms#update')
     end
 
   end
