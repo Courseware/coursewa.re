@@ -18,13 +18,13 @@ Coursewareable::Engine.routes.draw do
     get :me, :on => :collection
   end
 
-  resources( :home, :path => '/', :constraints => { :subdomain => /^(www)?$/ },
+  resources(:home, :path => '/', :constraints => { :subdomain => /^(www)?$/ },
     :only => [:index, :dashboard] ) do
     get :dashboard, :on => :collection
   end
 
-  resources(:classrooms, :path => '/', :constraints => { :subdomain => /.+/ },
     :only => [:dashboard] ) do
+  resource(:classroom, :path => '/', :constraints => { :subdomain => /.+/ },
     collection do
       get :dashboard, :path => '/'
       resource(:syllabus, :only => [:show, :edit, :update, :create])
