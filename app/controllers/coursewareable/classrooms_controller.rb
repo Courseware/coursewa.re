@@ -16,6 +16,26 @@ module Coursewareable
       @new_classroom = current_user.created_classrooms.build
     end
 
+    # Customization page
+    def edit
+      @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
+    end
+
+    # Handles submitted changes
+    def update
+      classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
+      classroom.update_attributes(params[:classroom])
+
+      if classroom.save
+        flash[:success] = _('Classroom updated')
+      else
+        flash[:alert] = _('Classroom was not updated. Please try again.')
+      end
+
+      # TODO: Fix redirect flashes
+      redirect_to edit_classroom_url(:subdomain => classroom.slug)
+    end
+
     # Classroom creation hadler
     def create
       classroom = current_user.created_classrooms.build(params[:classroom])

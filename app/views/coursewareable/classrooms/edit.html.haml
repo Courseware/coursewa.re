@@ -1,0 +1,17 @@
+= title _('Edit %s' % @classroom.title)
+= head_embed javascript_include_tag('editor')
+= head_embed stylesheet_link_tag('editor')
+
+.row
+  .eight.columns.centered
+    = form_for(@classroom, :url => classroom_path) do |f|
+      %p
+        = f.label :title, _('Classroom Title')
+        = f.text_field :title, :required => true
+
+      %p
+        = f.label :description, _('Classroom Description')
+        = f.text_area :description, :class => 'wysiwyg-minimal', :required => true
+
+      %p
+        = f.submit _('Update'), :id => 'edit_classroom', :class => 'button radius secondary'

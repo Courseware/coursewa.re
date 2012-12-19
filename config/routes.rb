@@ -23,8 +23,8 @@ Coursewareable::Engine.routes.draw do
     get :dashboard, :on => :collection
   end
 
-    :only => [:dashboard] ) do
   resource(:classroom, :path => '/', :constraints => { :subdomain => /.+/ },
+    :only => [:edit, :update] ) do
     collection do
       get :dashboard, :path => '/'
       resource(:syllabus, :only => [:show, :edit, :update, :create])
