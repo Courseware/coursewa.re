@@ -4,7 +4,7 @@ module Coursewareable
     # Abilities checking
     load_and_authorize_resource :class => Coursewareable::Classroom
 
-    before_filter :load_classroom
+    before_filter :load_classroom, :only => [:dashboard, :edit, :update]
 
     # Classroom dashboard
     # Mapped to [Classroom] subdomain
