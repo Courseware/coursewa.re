@@ -32,6 +32,7 @@ group :development do
   gem 'yard', :require => false
   gem 'gettext', :require => false
   gem 'ruby_parser', :require => false
+  gem 'cane'
 end
 
 group :assets do
