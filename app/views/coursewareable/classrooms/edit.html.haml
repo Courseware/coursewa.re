@@ -2,6 +2,9 @@
 = head_embed javascript_include_tag('editor')
 = head_embed stylesheet_link_tag('editor')
 
+= head_embed javascript_include_tag('edit_classroom')
+= head_embed stylesheet_link_tag('autocomplete')
+
 .row
   .eight.columns.centered
     = form_for(@classroom, :url => classroom_path) do |f|
@@ -12,6 +15,53 @@
       %p
         = f.label :description, _('Classroom Description')
         = f.text_area :description, :class => 'wysiwyg-minimal', :required => true
+
+      %dl.tabs
+        %dd.active
+          %a{:href => "#members"}
+            = _('Members')
+        %dd
+          %a{:href => "#collaborators"}
+            = _('Collaborators')
+      %ul.tabs-content
+        %li#membersTab.active
+          %p
+            = _('Add a new member to this classroom')
+          = text_field_tag nil, nil, :class => 'autocomplete_users'
+          = hidden_field_tag :members, nil, :class => 'autocomplete_input'
+
+          %h5
+            = _('Existing members')
+
+          %ul#collaborators-list
+            - @classroom.members.each do |mem|
+              %li
+                %div.avatar
+                  = gravatar_image_tag(mem.email, :alt => mem.name)
+                %p
+                  = mem.name
+                  = link_to(_('Remove'), '#') unless mem.id == current_user.id
+
+        %li#collaboratorsTab
+          %p
+            = _('Add a new collaborator to this classroom')
+          = text_field_tag nil, nil, :class => 'autocomplete_users'
+          = hidden_field_tag :collaborators, nil, :class => 'autocomplete_input'
+          %h5
+            = _('Existing collaborators')
+
+          - if @classroom.collaborators.empty?
+            %p
+              = _('No collaborators were added.')
+          - else
+            %ul#collaborators-list
+              - @classroom.collaborators.each do |colab|
+                %li
+                  %div.avatar
+                    = gravatar_image_tag(colab.email, :alt => colab.name)
+                  %p
+                    = colab.name
+                    = link_to(_('Remove'), '#')
 
       %p
         = f.submit _('Update'), :id => 'edit_classroom', :class => 'button radius secondary'
