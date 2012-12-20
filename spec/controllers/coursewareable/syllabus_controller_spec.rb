@@ -182,7 +182,8 @@ describe Coursewareable::SyllabusesController do
         @request.host = "#{classroom.slug}.#{@request.host}"
         title = Faker::Lorem.sentence
 
-        put :update, :use_route => :coursewareable, :syllabus => { :title => title }
+        put(:update, :use_route => :coursewareable,
+          :syllabus => { :title => title })
 
         classroom.syllabus.should be_nil
         response.should render_template(:show)

@@ -43,7 +43,7 @@ module Coursewareable
           :filelink => img.url(:large), :filename => img.description }.to_json
       else
         render(:status => :bad_request, :json => {
-          :error => _('Upload failed. Please save the page first and try again.')
+          :error => _('Upload failed. Please save the page first and try again')
         } )
       end
     end

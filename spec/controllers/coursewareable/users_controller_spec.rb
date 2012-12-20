@@ -75,7 +75,8 @@ describe Coursewareable::UsersController do
       user = Fabricate('coursewareable/user')
       user.activation_state.should eq('pending')
 
-      get :activate, :use_route => :coursewareable, :id => user.activation_token
+      get(:activate, :use_route => :coursewareable,
+        :id => user.activation_token)
 
       # Ignore any caches
       user.reload.activation_state.should eq('active')
@@ -111,7 +112,8 @@ describe Coursewareable::UsersController do
   end
 
   it 'should handle invalid user activation' do
-    get :activate, :use_route => :coursewareable, :id => Faker::HipsterIpsum.word
+    get(:activate, :use_route => :coursewareable,
+      :id => Faker::HipsterIpsum.word)
 
     response.should redirect_to(login_path)
   end

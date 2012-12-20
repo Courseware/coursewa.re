@@ -17,7 +17,8 @@ describe Coursewareable::HomeController do
 
     describe 'on a subdomain' do
       it 'goes to classroom langing page' do
-        get('http://test.lvh.me').should route_to('coursewareable/classrooms#dashboard')
+        get('http://test.lvh.me').should route_to(
+          'coursewareable/classrooms#dashboard')
       end
     end
   end

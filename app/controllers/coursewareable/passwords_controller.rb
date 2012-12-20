@@ -35,7 +35,8 @@ module Coursewareable
     # Handles password change
     def update
       @token = params[:token]
-      @user = Coursewareable::User.load_from_reset_password_token(params[:token])
+      @user = Coursewareable::User.load_from_reset_password_token(
+        params[:token])
       return not_authenticated unless @user
 
       @user.password_confirmation = params[:password_confirmation]

@@ -4,10 +4,11 @@ module Coursewareable
     # Abilities checking
     load_and_authorize_resource :class => Coursewareable::Classroom
 
+    before_filter :load_classroom
+
     # Classroom dashboard
     # Mapped to [Classroom] subdomain
     def dashboard
-      @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
       @timeline = @classroom.all_activities
     end
 
@@ -18,7 +19,6 @@ module Coursewareable
 
     # Customization page
     def edit
-      @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
       respond_to do |format|
         format.html
         format.json {
@@ -50,31 +50,20 @@ module Coursewareable
 
     # Handles submitted changes
     def update
-      classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
-      classroom.update_attributes(params[:classroom])
+      @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
+      @classroom.update_attributes(params[:classroom])
 
-      if(new_members = params[:members].to_s.split(',').uniq.compact and
-        not new_members.empty?)
-        new_members.each do |mem_id|
-          classroom.member_ids += [mem_id.to_i]
-        end
+      new_members = params[:members].to_s.split(',').uniq.compact
+      unless new_members.empty?
+        @classroom.member_ids += new_members.map(&:to_i)
       end
 
-      if(new_collabs = params[:collaborators].to_s.split(',').uniq.compact and
-        not new_collabs.empty?)
-        new_collabs.each do |collab_id|
-          classroom.collaborator_ids += [collab_id.to_i]
-        end
+      new_collabs = params[:collaborators].to_s.split(',').uniq.compact
+      unless new_collabs.empty?
+        @classroom.collaborator_ids += new_collabs.map(&:to_i)
       end
 
-      if classroom.save
-        flash[:success] = _('Classroom updated')
-      else
-        flash[:alert] = _('Classroom was not updated. Please try again.')
-      end
-
-      # TODO: Fix redirect flashes
-      redirect_to edit_classroom_url(:subdomain => classroom.slug)
+      redirect_to edit_classroom_url(:subdomain => @classroom.slug)
     end
 
     # Classroom creation hadler
@@ -86,5 +75,13 @@ module Coursewareable
         redirect_to(start_classroom_path)
       end
     end
+
+    protected
+
+    # Loads current classroom
+    def load_classroom
+      @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
+    end
+
   end
 end

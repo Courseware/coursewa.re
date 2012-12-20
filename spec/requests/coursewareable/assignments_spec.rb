@@ -38,7 +38,8 @@ describe 'Assignments' do
 
       it 'should show lecture if logged in' do
         sign_in_with(classroom.owner.email)
-        visit lecture_assignment_url(lecture, assignment, :subdomain => classroom.slug)
+        visit lecture_assignment_url(
+          lecture, assignment, :subdomain => classroom.slug)
 
         page.should have_content(assignment.title)
         page.source.should match(assignment.content)

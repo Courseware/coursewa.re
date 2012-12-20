@@ -1,3 +1,4 @@
+# The [Coursewareable] namespace
 module Coursewareable
   # Courseware application controller
   class ApplicationController < ::ApplicationController
