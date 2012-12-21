@@ -6,7 +6,7 @@
 
     = @assignment.content.html_safe
 
-    - if !can?(:manage, @assignment) and !@assignment.quiz.empty?
+    - if can?(:manage, @assignment) and !@assignment.quiz.empty?
       %div.quiz-viewer{'data-quiz' => :auto, 'data-from-store' => :true}
         = hidden_field_tag :quiz, @assignment.quiz.to_json, :class => 'quiz-store'
         = render(:partial => 'quiz_viewer_template')
