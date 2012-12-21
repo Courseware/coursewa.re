@@ -33,6 +33,7 @@ group :development do
   gem 'gettext', :require => false
   gem 'ruby_parser', :require => false
   gem 'cane'
+  gem 'seedbank'
 end
 
 group :assets do
