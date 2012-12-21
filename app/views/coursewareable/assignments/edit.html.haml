@@ -20,7 +20,7 @@
         = label_tag :has_quiz, _('This is a quiz')
 
       %div.hide.quiz-builder{'data-quiz' => :auto, 'data-from-store' => :true}
-        = f.hidden_field :quiz, :class => 'quiz-store'
+        = f.hidden_field :quiz, :value => @assignment.quiz.to_json, :class => 'quiz-store'
         = render(:partial => 'quiz_builder_template')
 
       %p

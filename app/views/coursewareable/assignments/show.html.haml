@@ -8,7 +8,7 @@
 
     - if !can?(:manage, @assignment) and !@assignment.quiz.empty?
       %div.quiz-viewer{'data-quiz' => :auto, 'data-from-store' => :true}
-        = hidden_field_tag :quiz, @assignment.quiz, :class => 'quiz-store'
+        = hidden_field_tag :quiz, @assignment.quiz.to_json, :class => 'quiz-store'
         = render(:partial => 'quiz_viewer_template')
     - else
       -# TODO: Add response link
