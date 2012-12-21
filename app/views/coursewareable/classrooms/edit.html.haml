@@ -5,6 +5,8 @@
 = head_embed javascript_include_tag('edit_classroom')
 = head_embed stylesheet_link_tag('autocomplete')
 
+= head_embed javascript_include_tag('jquery_ujs')
+
 .row
   .eight.columns.centered
     = form_for(@classroom, :url => classroom_path) do |f|
@@ -34,13 +36,13 @@
             = _('Existing members')
 
           %ul#collaborators-list
-            - @classroom.members.each do |mem|
+            - @classroom.memberships.each do |mem|
               %li
                 %div.avatar
-                  = gravatar_image_tag(mem.email, :alt => mem.name)
+                  = gravatar_image_tag(mem.user.email, :alt => mem.user.name)
                 %p
-                  = mem.name
-                  = link_to(_('Remove'), '#') unless mem.id == current_user.id
+                  = mem.user.name
+                  = link_to(_('Remove'), membership_path(mem), :method => :delete) unless mem.user.id == current_user.id
 
         %li#collaboratorsTab
           %p
@@ -55,13 +57,13 @@
               = _('No collaborators were added.')
           - else
             %ul#collaborators-list
-              - @classroom.collaborators.each do |colab|
+              - @classroom.collaborations.each do |colab|
                 %li
                   %div.avatar
-                    = gravatar_image_tag(colab.email, :alt => colab.name)
+                    = gravatar_image_tag(colab.user.email, :alt => colab.user.name)
                   %p
-                    = colab.name
-                    = link_to(_('Remove'), '#')
+                    = colab.user.name
+                    = link_to(_('Remove'), collaboration_path(colab), :method => :delete)
 
       %p
         = f.submit _('Update'), :id => 'edit_classroom', :class => 'button radius secondary'
