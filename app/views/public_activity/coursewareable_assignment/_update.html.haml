@@ -1,5 +1,5 @@
 %p{ :class => activity.key.parameterize }
-  - lecture_link = link_to(activity.trackable.lecture.title, lecture_path(activity.trackable.lecture))
+  - lecture_link = link_to(activity.trackable.lecture.title, lecture_url(activity.trackable.lecture, :subdomain => activity.trackable.lecture.classroom.slug))
   - if activity.owner == p[:current_user]
     = _('You updated %s lecture assignment <em>%s</em>.' % [lecture_link, activity.trackable.title] )
   - else
