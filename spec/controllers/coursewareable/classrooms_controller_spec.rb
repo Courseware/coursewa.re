@@ -161,6 +161,40 @@ describe Coursewareable::ClassroomsController do
           :subdomain => classroom.slug))
       end
 
+      context 'and adding a member' do
+        let!(:new_member) { Fabricate(:confirmed_user) }
+
+        it 'adds it to memberships' do
+          @request.host = "#{classroom.slug}.#{@request.host}"
+
+          classroom.members.should_not include(new_member)
+
+          put(
+            :update, :members => new_member.id.to_s,
+            :use_route => :coursewareable
+          )
+
+          classroom.members.reload.should include(new_member)
+        end
+      end
+
+      context 'and adding a collaborator' do
+        let!(:new_collab) { Fabricate(:confirmed_user) }
+
+        it 'adds it to collaborations' do
+          @request.host = "#{classroom.slug}.#{@request.host}"
+
+          classroom.collaborators.should_not include(new_collab)
+
+          put(
+            :update, :collaborators => new_collab.id.to_s,
+            :use_route => :coursewareable
+          )
+
+          classroom.collaborators.reload.should include(new_collab)
+        end
+      end
+
     end
   end
 

@@ -35,14 +35,14 @@
           %h5
             = _('Existing members')
 
-          %ul#collaborators-list
+          %ul#members-list
             - @classroom.memberships.each do |mem|
               %li
                 %div.avatar
                   = gravatar_image_tag(mem.user.email, :alt => mem.user.name)
                 %p
                   = mem.user.name
-                  = link_to(_('Remove'), membership_path(mem), :method => :delete) unless mem.user.id == current_user.id
+                  = link_to(_('Remove'), membership_path(mem), :method => :delete, :id => "remove-membership-#{mem.id}") unless mem.user.id == current_user.id
 
         %li#collaboratorsTab
           %p
@@ -63,7 +63,7 @@
                     = gravatar_image_tag(colab.user.email, :alt => colab.user.name)
                   %p
                     = colab.user.name
-                    = link_to(_('Remove'), collaboration_path(colab), :method => :delete)
+                    = link_to(_('Remove'), collaboration_path(colab), :method => :delete, :id => "remove-collaboration-#{colab.id}")
 
       %p
         = f.submit _('Update'), :id => 'edit_classroom', :class => 'button radius secondary'
