@@ -44,11 +44,42 @@ describe Coursewareable::UploadsController do
         json['filename'].should eq(classroom.uploads.first.description)
       end
 
+      it 'returns an error if assetable object is missing' do
+        @controller.send(:auto_login, classroom.owner)
+        @request.host = "#{classroom.slug}.#{@request.host}"
+
+        post :create, { :use_route => :coursewareable,
+          :file => fixture_file_upload('/test.txt', 'text/plain'),
+        }
+        json = JSON.parse(response.body)
+
+        json['error'].should_not be_empty
+      end
+
       it 'should redirect to not found if classroom does not exist' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "missing.#{@request.host}"
         post :create, :use_route => :coursewareable
         response.should redirect_to('/404')
+      end
+
+      context 'uploading user has reached his allowed uploads limits' do
+        before { classroom.owner.plan.update_attribute(:allowed_space, 0) }
+
+        it 'returns an error if assetable object is missing' do
+          @controller.send(:auto_login, classroom.owner)
+          @request.host = "#{classroom.slug}.#{@request.host}"
+
+          post :create, { :use_route => :coursewareable,
+            :file => fixture_file_upload('/test.txt', 'text/plain'),
+            :assetable_type => syllabus.class.name,
+            :assetable_id => syllabus.id
+          }
+          json = JSON.parse(response.body)
+          json = JSON.parse(response.body)
+
+          json['error'].should_not be_empty
+        end
       end
     end
 

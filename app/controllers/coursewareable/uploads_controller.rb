@@ -27,9 +27,12 @@ module Coursewareable
           :filelink => upload.url, :filename => upload.description
         }.to_json
       else
-        render(:status => :bad_request, :json => {
-          :error => _('Upload failed. Please save the page first and try again')
-        } )
+        error = _('Upload failed. Try saving the page first and try again.')
+        if(upload.attachment_file_size > current_user.plan.left_space)
+          error = _('File storage limits reached. Please upgrade your plan.')
+        end
+
+        render(:status => :bad_request, :json => { :error => error } )
       end
     end
 
