@@ -82,7 +82,7 @@ describe Coursewareable::ImagesController do
           :user => classroom.owner, :classroom => classroom)
       }
 
-      it 'should create the image' do
+      it 'creates the image' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "#{classroom.slug}.#{@request.host}"
 
@@ -97,11 +97,42 @@ describe Coursewareable::ImagesController do
         json['filename'].should eq(classroom.images.first.description)
       end
 
+      it 'returns an error if assetable object is missing' do
+        @controller.send(:auto_login, classroom.owner)
+        @request.host = "#{classroom.slug}.#{@request.host}"
+
+        post :create, { :use_route => :coursewareable,
+          :file => fixture_file_upload('/test.png', 'image/png'),
+        }
+        json = JSON.parse(response.body)
+
+        json['error'].should_not be_empty
+      end
+
       it 'should redirect to not found if classroom does not exist' do
         @controller.send(:auto_login, classroom.owner)
         @request.host = "missing.#{@request.host}"
         post :create, :use_route => :coursewareable
         response.should redirect_to('/404')
+      end
+
+      context 'uploading user has reached his allowed uploads limits' do
+        before { classroom.owner.plan.update_attribute(:allowed_space, 0) }
+
+        it 'returns an error if assetable object is missing' do
+          @controller.send(:auto_login, classroom.owner)
+          @request.host = "#{classroom.slug}.#{@request.host}"
+
+          post :create, { :use_route => :coursewareable,
+            :file => fixture_file_upload('/test.png', 'image/png'),
+            :assetable_type => syllabus.class.name,
+            :assetable_id => syllabus.id
+          }
+          json = JSON.parse(response.body)
+          json = JSON.parse(response.body)
+
+          json['error'].should_not be_empty
+        end
       end
     end
 
