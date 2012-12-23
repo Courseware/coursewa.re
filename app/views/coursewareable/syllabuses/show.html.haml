@@ -11,16 +11,16 @@
       %hr
         = @syllabus.content.html_safe
 
-      - if @lectures and !@lectures.empty?
-        -# TODO: organize this as a tree by parent lecture
-
-        %h3 Course structure
-        %ul#lectures-tree
-          - @lectures.each do |lecture|
-            %li
-              = link_to(lecture.title, lecture_path(lecture))
-
     - else
       = link_to(_('Update Classroom Syllabus'), edit_syllabus_path, :class => 'syllabus-create')
+
+    - if @lectures and !@lectures.empty?
+      -# TODO: organize this as a tree by parent lecture
+
+      %h3 Course structure
+      %ul#lectures-tree
+        - @lectures.each do |lecture|
+          %li
+            = link_to(lecture.title, lecture_path(lecture))
 
   = render(:partial => 'sidebar')
