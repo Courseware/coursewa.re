@@ -55,7 +55,7 @@ module Coursewareable
     # Loads current classroom and assignment
     def load_classroom_assignment
       @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
-      @assignment = @classroom.assignments.find_by_slug(params[:assignment_id])
+      @assignment = @classroom.assignments.find_by_slug!(params[:assignment_id])
     end
   end
 end
