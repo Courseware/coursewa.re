@@ -10,7 +10,7 @@ module Coursewareable
 
     # Handles creation screen
     def new
-      @assignment = @lecture.assignments.build(params[:assignment])
+      @assignment = @lecture.assignments.build
       @assignment.classroom = @classroom
       @assignment.user = current_user
 
@@ -73,7 +73,7 @@ module Coursewareable
       assignment = @lecture.assignments.find(params[:id])
 
       if assignment.destroy
-        flash[:success] = _('Lecture removed.')
+        flash[:success] = _('Assignment removed.')
       end
 
       redirect_to lecture_path(@lecture)

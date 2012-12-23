@@ -11,9 +11,7 @@
         = hidden_field_tag :quiz, @assignment.quiz.to_json, :class => 'quiz-store'
         = render(:partial => 'quiz_viewer_template')
     - else
-      -# TODO: Add response link
-      = link_to(_('Leave a response'), '#', :class => 'button radius assignment-add-response')
-      -# = link_to(_('Leave a response'), edit_lecture_assignment_path(@lecture, @assignment), :class => 'assignment-update')
+      = link_to(_('Leave a response'), new_lecture_assignment_response_path(@lecture, @assignment), :class => 'button radius assignment-add-response')
 
     %p
       %small
