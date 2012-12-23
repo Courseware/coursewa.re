@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::SessionsController, :focus => true do
+describe Coursewareable::SessionsController do
   describe 'GET new' do
     before{ get(:new, :use_route => :coursewareable) }
     it { should render_template :new }
