@@ -1,0 +1,25 @@
+= title _('Respond to: %s' % @assignment.title)
+= head_embed javascript_include_tag('editor')
+= head_embed stylesheet_link_tag('editor')
+
+.row#response
+  .seven.columns
+
+    = form_for(@response, :url => lecture_assignment_responses_path) do |f|
+
+      %p
+        = f.label :content, _('Your response content')
+        = f.text_area :content, :class => 'wysiwyg-full', :required => true
+
+      - unless @assignment.quiz.blank?
+        %p
+          = _('Please answer the quiz below')
+        -# TODO: write a helper to generate the relevant form
+
+      %p
+        = hidden_field_tag :assetable_type, @response.class, :class => 'assetable_type'
+        = hidden_field_tag :assetable_id, @response.id, :class => 'assetable_id'
+        = f.submit _('Create'), :id => 'submit_response', :class => 'button radius secondary'
+        = link_to _('Cancel'), lecture_assignment_path(@assignment.lecture, @assignment), :class => 'pull right'
+
+  = render(:partial => 'sidebar')

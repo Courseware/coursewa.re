@@ -1,0 +1,13 @@
+= title _('Your response to: %s' % @assignment.title)
+= head_embed javascript_include_tag('jquery_ujs')
+
+.row#response
+  .seven.columns
+
+    = @response.content.html_safe
+
+    - if can?(:destroy, @response)
+      %p
+        = link_to(_('Delete'), lecture_assignment_response_path, :method => :delete, :class => 'button radius small response-delete')
+
+  = render(:partial => 'sidebar')

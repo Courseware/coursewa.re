@@ -10,10 +10,29 @@ module Coursewareable
 
     # Creation screen
     def new
+      @response = @assignment.responses.build
+      @response.classroom = @classroom
+      @response.user = current_user
+
+      authorize!(:create, @response)
     end
 
     # Handles response creation
     def create
+      @response = @assignment.responses.build(params[:response])
+      @response.classroom = @classroom
+      @response.user = current_user
+
+      authorize!(:create, @response)
+
+      if @response.save
+        flash[:success] = _('Your response was added.')
+        redirect_to lecture_assignment_response_path(
+          params[:lecture_id], @assignment, @response)
+      else
+        flash[:alert] = _('There was an error, please try again.')
+        render :new
+      end
     end
 
     # Handles response screen
@@ -22,11 +41,18 @@ module Coursewareable
 
     # Handles deletion
     def destroy
+      resp = @assignment.responses.find(params[:id])
+
+      if resp.destroy
+        flash[:success] = _('Response removed.')
+      end
+
+      redirect_to lecture_assignment_path(params[:lecture_id], @assignment)
     end
 
     protected
 
-    # Loads current classroom and lecture
+    # Loads current classroom and assignment
     def load_classroom_assignment
       @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
       @assignment = @classroom.assignments.find_by_slug(params[:assignment_id])
