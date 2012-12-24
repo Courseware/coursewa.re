@@ -72,7 +72,8 @@ describe Coursewareable::UsersController do
     subject { user }
 
     its(:activation_state) { should eq('active') }
-    its('activities.last.key') { should eq('coursewareable_user.create') }
+    its('activities_as_owner.last.key') {
+      should eq('coursewareable_user.create') }
     it { should redirect_to(login_path) }
   end
 

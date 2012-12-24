@@ -36,7 +36,7 @@ module Coursewareable
         @user.activate!
         # Generate user's first activity
         activity_key = Coursewareable::User.name.parameterize('_')
-        @user.activities.create(:key => "#{activity_key}.create")
+        @user.activities_as_owner.create(:key => "#{activity_key}.create")
         redirect_to(login_path)
       else
         not_authenticated

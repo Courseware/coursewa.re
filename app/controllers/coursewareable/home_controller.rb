@@ -14,7 +14,7 @@ module Coursewareable
     # User Dashboard handler
     def dashboard
       redirect_to home_index_path unless logged_in?
-      @timeline = current_user.activities.reverse
+      @timeline = current_user.activities_as_owner.reverse
     end
 
   end
