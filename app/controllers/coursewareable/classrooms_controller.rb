@@ -3,22 +3,26 @@ module Coursewareable
   class ClassroomsController < ApplicationController
     # Abilities checking
     load_and_authorize_resource :class => Coursewareable::Classroom
+    skip_authorize_resource
 
     before_filter :load_classroom, :only => [:dashboard, :edit, :update]
 
     # Classroom dashboard
     # Mapped to [Classroom] subdomain
     def dashboard
+      authorize!(:dashboard, @classroom)
       @timeline = @classroom.all_activities
     end
 
     # Classroom creation page
     def new
       @new_classroom = current_user.created_classrooms.build
+      authorize!(:create, @new_classroom)
     end
 
     # Customization page
     def edit
+      authorize!(:update, @classroom)
       respond_to do |format|
         format.html
         format.json {
@@ -50,7 +54,7 @@ module Coursewareable
 
     # Handles submitted changes
     def update
-      @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
+      authorize!(:update, @classroom)
       @classroom.update_attributes(params[:classroom])
 
       new_members = params[:members].to_s.split(',').uniq.compact
@@ -69,6 +73,8 @@ module Coursewareable
     # Classroom creation hadler
     def create
       classroom = current_user.created_classrooms.build(params[:classroom])
+      authorize!(:create, classroom)
+
       if classroom.save
         redirect_to(root_url(:subdomain => classroom.slug))
       else
