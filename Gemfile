@@ -11,6 +11,7 @@ gem 'delayed_job_active_record'
 gem 'gettext_i18n_rails'
 gem 'roadie'
 gem 'gravatar_image_tag'
+gem 'public_activity', :github => 'stas/public_activity'
 
 # Speedup a bit things
 gem 'multi_json'
