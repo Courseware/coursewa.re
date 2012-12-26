@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::SessionsController, :focus => true do
+describe Coursewareable::SessionsController do
   let(:user) { Fabricate(:confirmed_user) }
 
   describe 'GET new' do
