@@ -6,6 +6,8 @@ module Coursewareable
     skip_load_and_authorize_resource
     # Do not ask authentication
     skip_before_filter :require_login, :except => [:destroy]
+    # Redirect if logged in
+    before_filter :redirect_if_loggedin, :except => [:destroy]
 
     # New session screen handler
     def new

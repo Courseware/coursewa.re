@@ -6,6 +6,8 @@ module Coursewareable
     skip_load_and_authorize_resource
     # Do not ask authentication
     skip_before_filter :require_login
+    # Redirect if authenticated
+    before_filter :redirect_if_loggedin
 
     # Handles password recovery screen
     def new

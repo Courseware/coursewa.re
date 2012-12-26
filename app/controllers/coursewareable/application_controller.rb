@@ -28,5 +28,12 @@ module Coursewareable
     def not_found
       redirect_to('/404')
     end
+
+    # Redirect if authenticated
+    def redirect_if_loggedin
+      if logged_in?
+        redirect_to(me_users_url, :alert => _('You logged in once already.'))
+      end
+    end
   end
 end
