@@ -2,7 +2,7 @@
 
 .row#syllabus
   .seven.columns
-    - if @syllabus
+    - unless @syllabus.new_record?
       %h1
         = @syllabus.title
       %hr
@@ -14,7 +14,7 @@
     - else
       = link_to(_('Update Classroom Syllabus'), edit_syllabus_path, :class => 'syllabus-create')
 
-    - if @lectures and !@lectures.empty?
+    - unless @lectures.blank?
       -# TODO: organize this as a tree by parent lecture
 
       %h3 Course structure

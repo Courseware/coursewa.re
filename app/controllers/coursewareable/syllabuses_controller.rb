@@ -21,7 +21,7 @@ module Coursewareable
 
     # Creates syllabus handler
     def create
-      @syllabus ||= @classroom.build_syllabus(params[:syllabus])
+      @syllabus.attributes = params[:syllabus]
       @syllabus.user = current_user
 
       authorize!(:create, @syllabus)
