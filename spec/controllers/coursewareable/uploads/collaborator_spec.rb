@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::UploadsController, :focus => true do
+describe Coursewareable::UploadsController do
   include ActionDispatch::TestProcess
 
   let(:classroom) { Fabricate('coursewareable/classroom') }
