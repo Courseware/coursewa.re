@@ -4,17 +4,19 @@ module Coursewareable
 
     # Abilities checking for our nested resource
     load_and_authorize_resource :class => Coursewareable::Image
-    skip_authorize_resource :only => :create
+    skip_authorize_resource :only => [:create, :index]
 
     before_filter :load_classroom
 
     # Images list handler (JSON)
     def index
+      # Handle authorization based on a pre-built object
+      authorize!(:index, @classroom.images.build)
 
       respond_to do |format|
         # format.html
         format.json {
-          render :json => @classroom.images.collect { |img| {
+          render :json => @classroom.images.except(:last).collect { |img| {
             :folder => img.assetable.title,
             :image => img.url(:large),
             :thumb => img.url(:small),
