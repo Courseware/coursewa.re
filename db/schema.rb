@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20121123005538) do
     t.integer  "assignment_id"
     t.integer  "user_id"
     t.integer  "classroom_id"
+    t.integer  "response_id"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
   end
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20121123005538) do
   add_index "coursewareable_grades", ["assignment_id"], :name => "index_coursewareable_grades_on_assignment_id"
   add_index "coursewareable_grades", ["classroom_id"], :name => "index_coursewareable_grades_on_classroom_id"
   add_index "coursewareable_grades", ["receiver_id"], :name => "index_coursewareable_grades_on_receiver_id"
+  add_index "coursewareable_grades", ["response_id"], :name => "index_coursewareable_grades_on_response_id"
   add_index "coursewareable_grades", ["user_id"], :name => "index_coursewareable_grades_on_user_id"
 
   create_table "coursewareable_lectures", :force => true do |t|

@@ -9,6 +9,7 @@ class CreateCoursewareableGrades < ActiveRecord::Migration
       t.references :assignment
       t.references :user
       t.references :classroom
+      t.references :response
 
       t.timestamps
     end
@@ -16,5 +17,6 @@ class CreateCoursewareableGrades < ActiveRecord::Migration
     add_index :coursewareable_grades, :assignment_id
     add_index :coursewareable_grades, :user_id
     add_index :coursewareable_grades, :classroom_id
+    add_index :coursewareable_grades, :response_id
   end
 end
