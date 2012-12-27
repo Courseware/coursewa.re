@@ -4,18 +4,19 @@ module Coursewareable
 
     # Abilities checking for our nested resource
     load_and_authorize_resource :class => Coursewareable::Syllabus
-    skip_authorize_resource :only => :create
+    skip_authorize_resource
 
     before_filter :load_classroom_syllabus
 
     # Syllabus page handler
     def show
+      authorize!(:read, @syllabus)
       @lectures = @classroom.lectures
     end
 
     # Edit page handler
     def edit
-      @syllabus ||= @classroom.build_syllabus
+      authorize!(:edit, @syllabus)
     end
 
     # Creates syllabus handler
@@ -23,7 +24,7 @@ module Coursewareable
       @syllabus ||= @classroom.build_syllabus(params[:syllabus])
       @syllabus.user = current_user
 
-      authorize!(params[:action].to_sym, @syllabus)
+      authorize!(:create, @syllabus)
 
       if @syllabus.new_record? and @syllabus.save
         flash[:success] = _('Classroom syllabus updated.')
@@ -36,7 +37,9 @@ module Coursewareable
 
     # Updates syllabus handler
     def update
-      if !@syllabus.nil? and @syllabus.update_attributes(params[:syllabus])
+      authorize!(:update, @syllabus)
+
+      if @syllabus.update_attributes(params[:syllabus])
         # Change last user who edited syllabus to current user
         @syllabus.update_attribute(:user, current_user)
 
@@ -53,7 +56,7 @@ module Coursewareable
     # Loads current classroom and its syllabus
     def load_classroom_syllabus
       @classroom = Coursewareable::Classroom.find_by_slug!(request.subdomain)
-      @syllabus = @classroom.syllabus
+      @syllabus = @classroom.syllabus || @classroom.build_syllabus
     end
 
   end
