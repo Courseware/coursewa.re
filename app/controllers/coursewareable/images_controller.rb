@@ -38,7 +38,7 @@ module Coursewareable
         img.user = current_user
       end
 
-      authorize!(params[:action].to_sym, img)
+      authorize!(:create, img)
 
       if img.save
         render :text => {
