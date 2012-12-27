@@ -6,6 +6,8 @@ describe Coursewareable::UploadsController do
   let(:classroom) { Fabricate('coursewareable/classroom') }
 
   describe 'POST create' do
+    let(:syllabus) { Fabricate('coursewareable/syllabus',
+                       :user => classroom.owner, :classroom => classroom) }
     before do
       @request.host = "#{classroom.slug}.#{@request.host}"
       post(:create, { :use_route => :coursewareable,
