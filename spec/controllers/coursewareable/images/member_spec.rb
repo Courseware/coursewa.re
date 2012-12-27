@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::ImagesController, :focus => true do
+describe Coursewareable::ImagesController do
   include ActionDispatch::TestProcess
 
   let(:classroom) { Fabricate('coursewareable/classroom') }
