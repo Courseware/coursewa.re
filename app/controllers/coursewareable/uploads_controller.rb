@@ -20,7 +20,7 @@ module Coursewareable
         upload.user = current_user
       end
 
-      authorize!(params[:action].to_sym, upload)
+      authorize!(:create, upload)
 
       if upload.save
         render :text => {
@@ -44,7 +44,7 @@ module Coursewareable
         flash[:success] = _('File was deleted.')
       end
 
-      redirect_to :uploads
+      redirect_to dashboard_classroom_path
     end
 
     protected
