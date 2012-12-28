@@ -73,17 +73,33 @@ describe Coursewareable::ClassroomsController do
 
   describe 'PUT update' do
     let(:attrs) { Fabricate.build('coursewareable/classroom') }
+    let(:members) { '' }
+    let(:collabs) { '' }
 
     before do
       @controller.send(:auto_login, collaborator)
       @request.host = "#{classroom.slug}.#{@request.host}"
       put(:update, :use_route => :coursewareable, :classroom => {
         :title => attrs.title, :description => attrs.description
-      })
+      }, :members => members, :collaborators => collabs)
     end
 
-    context 'being logged in as collaborator' do
+    context 'being logged in as owner' do
+      before { classroom.reload }
+
       it { should redirect_to(login_path) }
+
+      context 'adds a new member' do
+        let(:members) { Fabricate(:confirmed_user).id }
+
+        it { classroom.member_ids.should_not include(members) }
+      end
+
+      context 'adds a new collaborator' do
+        let(:collabs) { Fabricate(:confirmed_user).id }
+
+        it { classroom.collaborator_ids.should_not include(collabs) }
+      end
     end
   end
 
