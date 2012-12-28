@@ -27,6 +27,7 @@ Coursewareable::Engine.routes.draw do
     :only => [:edit, :update] ) do
     collection do
       get :dashboard, :path => '/'
+      get 'suggest_user' => 'users#suggest', :defaults => { :format => :json }
       resources(:memberships, :only => [:destroy])
       resources(:collaborations, :only => [:destroy])
       resource(:syllabus, :only => [:show, :edit, :update, :create])

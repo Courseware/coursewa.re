@@ -7,7 +7,7 @@
 ( function( $, w ) {
   $( w.document ).ready( function() {
     $( '.autocomplete_users' ).autocomplete({
-      serviceUrl: '',
+      serviceUrl: '/suggest_user',
       delimiter: /(,|;)\s*/,
       minChars: 3,
       width: '100%',

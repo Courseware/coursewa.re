@@ -23,33 +23,6 @@ module Coursewareable
     # Customization page
     def edit
       authorize!(:update, @classroom)
-      respond_to do |format|
-        format.html
-        format.json {
-          result = {
-            :query => params[:query],
-            :suggestions => []
-          }
-
-          if params[:query].blank? or params[:query].to_s.size < 3
-            render :json => result
-          else
-            suggestions = Coursewareable::User.search_by_name_and_email(
-              params[:query], 'first_name, last_name, id, email', 5)
-
-            suggestions.each do |user|
-              result[:suggestions].push({
-                :value => user.name,
-                :user_id => user.id,
-                :pic => GravatarImageTag::gravatar_url(user.email, :size => 30)
-              }) unless user.id == current_user.id
-            end
-
-            render :json => result
-          end
-
-        } if params[:suggest_users]
-      end
     end
 
     # Handles submitted changes

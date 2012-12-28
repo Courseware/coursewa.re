@@ -30,5 +30,10 @@ describe Coursewareable::ClassroomsController do
         'coursewareable/classrooms#update')
     end
 
+    it 'for users suggestion' do
+      get('http://test.lvh.me/suggest_user').should route_to(
+        'coursewareable/users#suggest', :format => :json)
+    end
+
   end
 end
