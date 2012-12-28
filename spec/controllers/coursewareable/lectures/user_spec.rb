@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::LecturesController, :focus => true do
+describe Coursewareable::LecturesController do
 
   let(:classroom) { Fabricate('coursewareable/classroom') }
   let(:user) { Fabricate(:confirmed_user) }
