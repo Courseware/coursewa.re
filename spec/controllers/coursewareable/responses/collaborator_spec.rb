@@ -17,7 +17,8 @@ describe Coursewareable::ResponsesController do
         @request.host = "#{assignment_two.classroom.slug}.#{@request.host}"
         @controller.send(:auto_login, collaborator)
         get(:new, :lecture_id => assignment_two.lecture.slug,
-            :assignment_id => assignment_two.slug, :use_route => :coursewareable)
+            :assignment_id => assignment_two.slug,
+            :use_route => :coursewareable)
       end
 
       it { should redirect_to(login_path) }
@@ -33,7 +34,8 @@ describe Coursewareable::ResponsesController do
       context 'where classroom, lecture and assignment exists' do
         before do
           get(:new, :lecture_id => lecture.slug,
-              :assignment_id => assignment.slug, :use_route => :coursewareable)
+              :assignment_id => assignment.slug,
+              :use_route => :coursewareable)
         end
 
         it { should redirect_to(login_path) }
@@ -49,7 +51,8 @@ describe Coursewareable::ResponsesController do
         @request.host = "#{assignment_two.classroom.slug}.#{@request.host}"
         @controller.send(:auto_login, collaborator)
         post(:create, :lecture_id => assignment_two.lecture.slug,
-            :assignment_id => assignment_two.slug, :use_route => :coursewareable)
+            :assignment_id => assignment_two.slug,
+            :use_route => :coursewareable)
       end
 
       it { should redirect_to(login_path) }
@@ -65,7 +68,8 @@ describe Coursewareable::ResponsesController do
       context 'where classroom, lecture and assignment exists' do
         before do
           post(:create, :lecture_id => lecture.slug,
-              :assignment_id => assignment.slug, :use_route => :coursewareable)
+              :assignment_id => assignment.slug,
+              :use_route => :coursewareable)
         end
 
         it { should redirect_to(login_path) }

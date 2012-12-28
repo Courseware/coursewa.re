@@ -33,9 +33,8 @@ describe Coursewareable::PasswordsController do
 
     subject { @last_email }
 
-    it do
-      should(have_body_text(edit_password_path(user.reload.reset_password_token)))
-    end
+    it { should(have_body_text(edit_password_path(
+      user.reload.reset_password_token))) }
   end
 
   describe 'GET edit' do
