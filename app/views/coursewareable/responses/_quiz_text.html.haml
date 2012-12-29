@@ -4,6 +4,7 @@
       = question['content']
 
     .row.option
+      - option_name = "response[quiz][%d][value]" % [question_id]
       .twelve.columns.option-content
-        %textarea{:placeholder => _('Your answer')}
+        %textarea{:placeholder => _('Your answer'), :name => option_name}
   %hr

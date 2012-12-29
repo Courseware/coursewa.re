@@ -5,13 +5,14 @@
 
     - question['options'].each_with_index do |answer, index|
       .row.option
-        - option_id = ("%s-%s-%d" % [question['content'], answer['content'], index]).parameterize('-')
+        - option_id = "quiz-%d-%d" % [question_id, index]
+        - option_name = "response[quiz][%d][value]" % [question_id]
         .one.columns.option-validation
           %p
-            %input{:name => "unique", :type => "radio", :id => "#{option_id}-#{index}" }
+            %input{:name => "unique", :type => "radio", :id => option_id, :name => option_name}
         .eleven.columns.option-content
           %p
-            %label{:for => "#{option_id}-#{index}"}
+            %label{:for => option_id}
               = answer['content']
 
   %hr

@@ -6,9 +6,10 @@
     - question['options'].each_with_index do |answer, index|
       .row.option
         - option_id = ("%s-%s-%d" % [question['content'], answer['content'], index]).parameterize('-')
+        - option_name = "response[quiz][%d][%d][value]" % [question_id, index]
         .one.columns.option-validation
           %p
-            %input{:name => "unique", :type => "checkbox", :id => option_id }
+            %input{:name => "unique", :type => "checkbox", :id => option_id, :name => option_name}
         .eleven.columns.option-content
           %p
             %label{:for => option_id}
