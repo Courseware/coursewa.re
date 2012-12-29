@@ -1,0 +1,9 @@
+.quiz-text.template.question.row
+  .twelve.columns.question-content
+    %h3
+      = question['content']
+
+    .row.option
+      .twelve.columns.option-content
+        %textarea{:placeholder => _('Your answer')}
+  %hr

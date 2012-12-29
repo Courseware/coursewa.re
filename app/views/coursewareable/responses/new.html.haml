@@ -6,15 +6,17 @@
   .seven.columns
 
     = form_for(@response, :url => lecture_assignment_responses_path) do |f|
-
       %p
-        = f.label :content, _('Your response content')
+        %h3
+          = _('Your response')
         = f.text_area :content, :class => 'wysiwyg-full', :required => true
 
       - unless @assignment.quiz.blank?
         %p
           = _('Please answer the quiz below')
-        -# TODO: write a helper to generate the relevant form
+
+        - @assignment.quiz.each do |question|
+          = render(:partial => "quiz_#{question['type']}", :locals => {:question => question})
 
       %p
         = hidden_field_tag :assetable_type, @response.class, :class => 'assetable_type'

@@ -1,5 +1,4 @@
 = title _(@assignment.title)
-= head_embed javascript_include_tag('./lib/jquery.quizbuilder')
 
 .row#assignment
   .seven.columns
@@ -7,14 +6,17 @@
     = @assignment.content.html_safe
 
     - if can?(:manage, @assignment) and !@assignment.quiz.blank?
-      %div.quiz-viewer{'data-quiz' => :auto, 'data-from-store' => :true}
-        = hidden_field_tag :quiz, @assignment.quiz.to_json, :class => 'quiz-store'
-        = render(:partial => 'quiz_viewer_template')
-    - else
-      = link_to(_('Leave a response'), new_lecture_assignment_response_path(@lecture, @assignment), :class => 'button radius assignment-add-response')
+      %div.quiz-viewer
+        %hr
+        - @assignment.quiz.each do |question|
+          = render(:partial => "quiz_#{question['type']}", :locals => {:question => question})
 
-    %p
-      %small
-        = link_to(_('Update'), edit_lecture_assignment_path(@lecture, @assignment), :class => 'assignment-update')
+    - if can?(:manage, @assignment)
+      %p
+        = link_to(_('Update'), edit_lecture_assignment_path(@lecture, @assignment), :class => 'assignment-update button small radius')
+    - else
+      %p
+        = link_to(_('Leave a response'), new_lecture_assignment_response_path(@lecture, @assignment), :class => 'button radius assignment-add-response')
+
 
   = render(:partial => 'sidebar')

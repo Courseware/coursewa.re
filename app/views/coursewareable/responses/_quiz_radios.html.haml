@@ -1,0 +1,18 @@
+.quiz-radios.template.question.row
+  .twelve.columns.question-content
+    %h3
+      = question['content']
+
+    - question['options'].each_with_index do |answer, index|
+      .row.option
+        - option_id = ("%s-%s-%d" % [question['content'], answer['content'], index]).parameterize('-')
+        .one.columns.option-validation
+          %p
+            %input{:name => "unique", :type => "radio", :id => "#{option_id}-#{index}" }
+        .eleven.columns.option-content
+          %p
+            %label{:for => "#{option_id}-#{index}"}
+              = answer['content']
+
+  %hr
+

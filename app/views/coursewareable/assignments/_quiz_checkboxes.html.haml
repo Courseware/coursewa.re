@@ -1,0 +1,14 @@
+.quiz-checkboxes.template.question.row
+  .twelve.columns.question-content
+    %textarea.input{:disabled => true}
+      = question['content']
+
+    - question['options'].each_with_index do |answer, index|
+      .row.option
+        .one.columns.option-validation
+          %input{:name => "unique", :type => "checkbox", :disabled => true, :checked => answer['valid']}
+        .eleven.columns.option-content
+          %textarea{:disabled => true}
+            = answer['content']
+
+  %hr
