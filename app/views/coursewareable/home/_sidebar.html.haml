@@ -6,6 +6,7 @@
         = link_to('Start a Classroom', start_classroom_path, :class => 'tiny radius button')
     %hr
     %ul
-      - current_user.created_classrooms.each do |classroom|
-        %li.sidebar-classroom
+      - current_user.classrooms.each do |classroom|
+        - classroom_klass = current_user.created_classrooms.include?(classroom) ? 'created' : 'member'
+        %li{:class => classroom_klass}
           = link_to(classroom.title, root_url(:subdomain => classroom.slug))
