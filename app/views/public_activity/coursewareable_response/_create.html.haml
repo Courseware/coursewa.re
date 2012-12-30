@@ -1,0 +1,9 @@
+%p{ :class => activity.key.parameterize }
+  - response_link = link_to(_('response'), lecture_assignment_response_url(activity.trackable.assignment.lecture, activity.trackable.assignment, activity.trackable, :subdomain => activity.trackable.classroom.slug))
+  - if activity.owner == p[:current_user]
+    = _('You created %s for assignment <em>%s</em>' % [response_link, activity.trackable.assignment.title] )
+  - else
+    = _('%s created a response for assignment <em>%s</em>' % [activity.owner.name, activity.trackable.assignment.title])
+%span.timestamp
+  = activity.created_at.to_s(:pretty)
+%hr
