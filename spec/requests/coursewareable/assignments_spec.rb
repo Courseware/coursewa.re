@@ -47,14 +47,14 @@ describe 'Assignments' do
           lecture, assignment, :subdomain => classroom.slug)
       end
 
-      it 'shows lecture if logged in' do
+      it 'shows assignment if logged in' do
         page.should have_content(assignment.title)
         page.source.should match(assignment.content)
         page.should have_css('#assignment')
         page.should have_css('#assignment-update')
       end
 
-      it 'updates lecture' do
+      it 'updates assignment' do
         click_on('assignment-update')
         assignment_params = Fabricate.build('coursewareable/assignment')
 
@@ -64,6 +64,28 @@ describe 'Assignments' do
 
         page.source.should match(assignment_params.title)
         page.should have_css('#notifications .success')
+      end
+
+      context 'assignment has a quiz' do
+        let(:quiz) { Fabricate.build(:assignment_with_quiz).quiz }
+        before(:all) { assignment.update_attribute(:quiz, quiz) }
+
+        it do
+          page.should have_css('#assignment .quiz-text', :count => 1)
+          page.should have_css('#assignment .quiz-radios', :count => 1)
+          page.should have_css('#assignment .quiz-checkboxes', :count => 1)
+
+          page.should have_css( '.quiz-text textarea[disabled]', 1)
+
+          page.should have_css(
+            '.quiz-checkboxes input[type="checkbox"][checked][disabled]', 2)
+          page.should have_css(
+            '.quiz-checkboxes input[type="checkbox"][disabled]', 3)
+
+          page.should have_css(
+            '.quiz-radios input[type="radio"][checked][disabled]', 1)
+          page.should have_css('.quiz-radios input[type="radio"][disabled]', 3)
+        end
       end
 
     end
