@@ -66,13 +66,15 @@ describe Coursewareable::ResponsesController do
 
       context 'where classroom, lecture and assignment exists' do
         let(:resp) { assignment.responses.reload.first }
+        let(:quiz) { Fabricate.build(:assignment_with_quiz).quiz }
+        let(:answers) { Faker::Lorem.word }
 
         before do
           post(:create, :lecture_id => lecture.slug,
               :assignment_id => assignment.slug,
               :use_route => :coursewareable,
               :response => { :content => Faker::HTMLIpsum.body,
-                             :answers => Faker::Lorem.word } )
+                             :answers => answers} )
         end
 
         it do
@@ -80,6 +82,26 @@ describe Coursewareable::ResponsesController do
           should redirect_to(
             lecture_assignment_response_path(:lecture_id => lecture.slug,
               :assignment_id => assignment.slug, :id => resp.id) )
+        end
+
+        context 'when assignment has a quiz' do
+          let(:answers) do
+            {'0' => {'options' => {
+              '0' => {'answer' => quiz[0][:options][0][:content] } } } }
+          end
+          before(:all) do
+            assignment.update_attribute(:quiz, quiz)
+          end
+
+        it do
+          resp.answers.should_not be_nil
+          resp.stats.should eq({:all => 4, :wrong => 3})
+          resp.coverage.should eq(25.0)
+          should redirect_to(
+            lecture_assignment_response_path(:lecture_id => lecture.slug,
+              :assignment_id => assignment.slug, :id => resp.id) )
+        end
+
         end
       end
     end
