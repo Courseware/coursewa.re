@@ -1,6 +1,6 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: d7cdb4e65c88cf7401605bf4c0ff0271cf42410f
+  revision: ca3caa853490ebb45716bb7d13f0efbfe14ca121
   specs:
     coursewareable (0.0.1)
       cancan
@@ -143,7 +143,7 @@ GEM
     libwebsocket (0.1.7.1)
       addressable
       websocket
-    listen (0.6.0)
+    listen (0.7.0)
     locale (2.0.8)
     lumberjack (1.0.2)
     mail (2.4.4)
@@ -155,7 +155,7 @@ GEM
     mime-types (1.19)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
-    modular-scale (1.0.2)
+    modular-scale (1.0.3)
       compass (>= 0.11.5)
       sassy-math (>= 1.2)
     multi_json (1.5.0)

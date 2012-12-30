@@ -6,7 +6,7 @@
     - question['options'].each_with_index do |answer, index|
       .row.option
         - option_id = "quiz-%d-%d" % [question_id, index]
-        - option_name = "response[quiz][%d][value]" % [question_id]
+        - option_name = "response[quiz][%d][%d][answer]" % [question_id, index]
         .one.columns.option-validation
           %p
             %input{:name => "unique", :type => "radio", :id => option_id, :name => option_name}
