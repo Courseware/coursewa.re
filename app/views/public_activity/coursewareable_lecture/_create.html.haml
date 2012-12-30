@@ -1,9 +1,9 @@
 %p{ :class => activity.key.parameterize }
   - lecture_link = link_to(activity.trackable.title, lecture_url(activity.trackable, :subdomain => activity.trackable.classroom.slug))
   - if activity.owner == p[:current_user]
-    = _('You added %s lecture.' % lecture_link )
+    = _('You added %s lecture' % lecture_link )
   - else
-    = _('%s added %s lecture.' % [activity.owner.name, lecture_link])
+    = _('%s added %s lecture' % [activity.owner.name, lecture_link])
 %span.timestamp
   = activity.created_at.to_s(:pretty)
 %hr
