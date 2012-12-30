@@ -23,7 +23,7 @@ module Coursewareable
       @response.classroom = @classroom
       @response.user = current_user
 
-      @resource.answers = nil if @assignment.quiz.blank?
+      @response.answers = nil if @assignment.quiz.blank?
 
       authorize!(:create, @response)
 

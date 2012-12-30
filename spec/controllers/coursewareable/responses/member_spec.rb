@@ -71,12 +71,16 @@ describe Coursewareable::ResponsesController do
           post(:create, :lecture_id => lecture.slug,
               :assignment_id => assignment.slug,
               :use_route => :coursewareable,
-              :response => { :content => Faker::HTMLIpsum.body } )
+              :response => { :content => Faker::HTMLIpsum.body,
+                             :answers => Faker::Lorem.word } )
         end
 
-        it { should redirect_to(
+        it do
+          resp.answers.should be_nil
+          should redirect_to(
             lecture_assignment_response_path(:lecture_id => lecture.slug,
-              :assignment_id => assignment.slug, :id => resp.id) ) }
+              :assignment_id => assignment.slug, :id => resp.id) )
+        end
       end
     end
   end
