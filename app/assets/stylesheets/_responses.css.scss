@@ -1,0 +1,11 @@
+#response {
+  .option {
+    &.wrong {
+      background-color: rgba($alertColor, 0.2);
+    }
+
+    &.correct {
+      background-color: rgba($successColor, 0.2);
+    }
+  }
+}
