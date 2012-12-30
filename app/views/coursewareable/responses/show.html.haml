@@ -12,6 +12,6 @@
 
     - if can?(:destroy, @response)
       %p
-        = link_to(_('Delete'), lecture_assignment_response_path, :method => :delete, :class => 'button radius small response-delete')
+        = link_to(_('Delete'), lecture_assignment_response_path, :method => :delete, :class => 'button radius small', :id =>'response-delete')
 
   = render(:partial => 'sidebar_show')
