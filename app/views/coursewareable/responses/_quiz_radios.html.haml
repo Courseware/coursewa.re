@@ -6,10 +6,10 @@
     - question['options'].each_with_index do |answer, index|
       - option_klass = (answer['wrong'] and show_results) ? 'wrong' : nil
       - option_klass = (!answer['wrong'] and answer['valid'] and show_results) ? 'correct' : option_klass;
+      - option_id = "rd-%d-%d" % [question_id, index]
+      - option_name = "response[answers][%d][options][answer]" % [question_id, index]
+      - option_value = ((answer['wrong'] or answer['valid']) and show_results) ? true : false
       .row.option{:class => option_klass}
-        - option_id = "quiz-%d-%d" % [question_id, index]
-        - option_name = "response[answers][%d][options][answer]" % [question_id, index]
-        - option_value = ((answer['wrong'] or answer['valid']) and show_results) ? true : false
         .one.columns.option-validation
           %p
             %input{:name => "unique", :type => "radio", :id => option_id, :name => option_name, :value => index, :checked => option_value, :disabled => show_results}
