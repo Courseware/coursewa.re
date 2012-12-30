@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::ResponsesController, :focus => true do
+describe Coursewareable::ResponsesController do
 
   let(:assignment) { Fabricate('coursewareable/assignment') }
   let(:classroom) { assignment.classroom }

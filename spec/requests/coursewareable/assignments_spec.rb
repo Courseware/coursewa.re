@@ -5,26 +5,32 @@ describe 'Assignments' do
   let(:classroom) { lecture.classroom }
 
   context 'when logged in' do
-    it 'should not show assignments if none was added' do
+    let(:url_to_visit) { lecture_url(lecture, :subdomain => classroom.slug) }
+
+    before do
       sign_in_with(classroom.owner.email)
-      visit lecture_url(lecture, :subdomain => classroom.slug)
+      visit url_to_visit
+    end
+
+    it 'should not show assignments if none was added' do
       page.should_not have_css('#assignments')
     end
 
-    it 'should create assignment' do
-      sign_in_with(classroom.owner.email)
-      visit new_lecture_assignment_url(lecture, :subdomain => classroom.slug)
+    context 'on new assignment page' do
+      let(:url_to_visit) do
+        new_lecture_assignment_url(lecture, :subdomain => classroom.slug)
+      end
+      let(:assignment) { Fabricate.build('coursewareable/assignment') }
 
-      assignment = Fabricate.build('coursewareable/assignment',
-        :lecture => lecture, :classroom => classroom, :user => classroom.owner)
+      it 'should create assignment' do
+        page.fill_in('assignment_title', :with => assignment.title)
+        page.fill_in('assignment_content', :with => assignment.content)
+        page.click_on('submit_assignment')
 
-      page.fill_in('assignment_title', :with => assignment.title)
-      page.fill_in('assignment_content', :with => assignment.content)
-      page.click_on('submit_assignment')
-
-      page.source.should match(assignment.title)
-      page.should have_css('#notifications .success')
-      page.should have_css('#assignment_title')
+        page.source.should match(assignment.title)
+        page.should have_css('#notifications .success')
+        page.should have_css('#assignment_title')
+      end
     end
   end
 
@@ -35,26 +41,22 @@ describe 'Assignments' do
     }
 
     context 'and logged in' do
-
-      it 'should show lecture if logged in' do
+      before do
         sign_in_with(classroom.owner.email)
         visit lecture_assignment_url(
           lecture, assignment, :subdomain => classroom.slug)
+      end
 
+      it 'shows lecture if logged in' do
         page.should have_content(assignment.title)
         page.source.should match(assignment.content)
         page.should have_css('#assignment')
-        page.should have_css('#assignment .assignment-update')
+        page.should have_css('#assignment-update')
       end
 
-      it 'should update lecture' do
-        sign_in_with(classroom.owner.email)
-        visit edit_lecture_assignment_url(
-          lecture, assignment, :subdomain => classroom.slug)
-
-        assignment_params = Fabricate.build('coursewareable/assignment',
-          :classroom => classroom, :user => classroom.owner,
-          :lecture => lecture)
+      it 'updates lecture' do
+        click_on('assignment-update')
+        assignment_params = Fabricate.build('coursewareable/assignment')
 
         page.fill_in('assignment_title', :with => assignment_params.title)
         page.fill_in('assignment_content', :with => assignment_params.content)

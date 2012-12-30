@@ -13,10 +13,10 @@
 
     - if can?(:manage, @assignment)
       %p
-        = link_to(_('Update'), edit_lecture_assignment_path(@lecture, @assignment), :class => 'assignment-update button small radius')
+        = link_to(_('Update'), edit_lecture_assignment_path(@lecture, @assignment), :class => 'button small radius', :id => 'assignment-update')
     - else
       %p
-        = link_to(_('Leave a response'), new_lecture_assignment_response_path(@lecture, @assignment), :class => 'button radius assignment-add-response')
+        = link_to(_('Leave a response'), new_lecture_assignment_response_path(@lecture, @assignment), :class => 'button radius', :id => 'assignment-add-response')
 
 
   = render(:partial => 'sidebar')
