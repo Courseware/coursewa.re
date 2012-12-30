@@ -1,15 +1,18 @@
-.quiz-checkboxes.template.question.row
+.quiz-checkboxes.question.row
   .twelve.columns.question-content
     %h3
       = question['content']
 
     - question['options'].each_with_index do |answer, index|
-      .row.option
+      - option_klass = (answer['wrong'] and show_results) ? 'wrong' : nil
+      - option_klass = (!answer['wrong'] and answer['valid'] and show_results) ? 'correct' : option_klass;
+      .row.option{:class => option_klass}
         - option_id = ("%s-%s-%d" % [question['content'], answer['content'], index]).parameterize('-')
-        - option_name = "response[quiz][%d][%d][answer]" % [question_id, index]
+        - option_name = "response[answers][%d][options][%d][answer]" % [question_id, index]
+        - option_value = ((answer['wrong'] or answer['valid']) and show_results) ? true : false
         .one.columns.option-validation
           %p
-            %input{:name => "unique", :type => "checkbox", :id => option_id, :name => option_name}
+            %input{:name => "unique", :type => "checkbox", :id => option_id, :name => option_name, :checked => option_value, :disabled => show_results}
         .eleven.columns.option-content
           %p
             %label{:for => option_id}

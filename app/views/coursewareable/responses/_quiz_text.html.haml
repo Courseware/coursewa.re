@@ -1,10 +1,16 @@
-.quiz-text.template.question.row
+.quiz-text.question.row
   .twelve.columns.question-content
     %h3
       = question['content']
 
-    .row.option
-      - option_name = "response[quiz][%d][0][answer]" % [question_id]
+    - answer = question['options'].first
+    - option_klass = (answer['wrong'] and show_results) ? 'wrong' : nil
+    - option_klass = (!answer['wrong'] and answer['valid'] and show_results) ? 'correct' : option_klass;
+    .row.option{:class => option_klass}
+      - option_name = "response[answers][%d][options][0][answer]" % [question_id]
       .twelve.columns.option-content
-        %textarea{:placeholder => _('Your answer'), :name => option_name}
+        - option_value = show_results ? answer['content'] : nil
+        %textarea{:placeholder => _('Your answer'), :name => option_name, :disabled => show_results}
+          = option_value
+
   %hr

@@ -16,7 +16,7 @@
           = _('Please answer the quiz below')
 
         - @assignment.quiz.each_with_index do |question, question_id|
-          = render(:partial => "quiz_#{question['type']}", :locals => {:question => question, :question_id => question_id})
+          = render(:partial => "quiz_#{question['type']}", :locals => {:question => question, :question_id => question_id, :show_results => false})
 
       %p
         = hidden_field_tag :assetable_type, @response.class, :class => 'assetable_type'

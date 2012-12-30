@@ -6,6 +6,10 @@
 
     = @response.content.html_safe
 
+    - unless @response.answers.blank?
+      - @response.answers.each_with_index do |question, question_id|
+        = render(:partial => "quiz_#{question['type']}", :locals => {:question => question, :question_id => question_id, :show_results => true})
+
     - if can?(:destroy, @response)
       %p
         = link_to(_('Delete'), lecture_assignment_response_path, :method => :delete, :class => 'button radius small response-delete')
