@@ -2,8 +2,6 @@
  * Coursewa.re v0.1
  */
 
-// =require ./_webfont
-
 // =require jquery
 // require jquery_ujs
 
