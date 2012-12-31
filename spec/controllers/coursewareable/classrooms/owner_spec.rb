@@ -89,7 +89,7 @@ describe Coursewareable::ClassroomsController do
       end
 
       context 'with a custom slug' do
-        before(:all) { attrs.slug = Faker::Lorem.sentence }
+        before(:all) { attrs.slug = Faker::Lorem.sentence[0..31] }
 
         it do
           classroom.reload.slug.should eq(attrs.slug.parameterize)
