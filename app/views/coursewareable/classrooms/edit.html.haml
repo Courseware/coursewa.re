@@ -14,6 +14,13 @@
         = f.label :title, _('Classroom Title')
         = f.text_field :title, :required => true
 
+      .row.collapse
+        = f.label :slug, _('Classroom sub-domain')
+        .eight.columns
+          = f.text_field :slug, :placeholder => _('Leave empty to be generated, minimum length 4, maximum 32.')
+        .four.columns
+          %span.postfix .coursewa.re
+
       %p
         = f.label :description, _('Classroom Description')
         = f.text_area :description, :class => 'wysiwyg-minimal', :required => true
@@ -35,7 +42,7 @@
           %h5
             = _('Existing members')
 
-          %ul#members-list
+          %ul#members-list.inline-list
             - @classroom.memberships.each do |mem|
               %li
                 %div.avatar
@@ -56,7 +63,7 @@
             %p
               = _('No collaborators were added.')
           - else
-            %ul#collaborators-list
+            %ul#collaborators-list.inline-list
               - @classroom.collaborations.each do |colab|
                 %li
                   %div.avatar

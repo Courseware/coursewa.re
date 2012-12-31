@@ -40,7 +40,7 @@ module Coursewareable
         @classroom.collaborator_ids += new_collabs.map(&:to_i)
       end
 
-      redirect_to edit_classroom_url(:subdomain => @classroom.slug)
+      redirect_to edit_classroom_url(:subdomain => @classroom.reload.slug)
     end
 
     # Classroom creation hadler
