@@ -77,8 +77,8 @@ describe Coursewareable::ClassroomsController do
       @controller.send(:auto_login, classroom.owner)
       @request.host = "#{classroom.slug}.#{@request.host}"
       put(:update, :use_route => :coursewareable, :classroom => {
-        :title => attrs.title, :description => attrs.description
-      }, :members => members, :collaborators => collabs)
+        :title => attrs.title, :description => attrs.description,
+        :slug => attrs.slug }, :members => members, :collaborators => collabs)
     end
 
     context 'being logged in as owner' do
@@ -86,6 +86,15 @@ describe Coursewareable::ClassroomsController do
       it do
         should redirect_to(edit_classroom_url(:subdomain => classroom.slug))
         classroom.title.should eq(attrs.title)
+      end
+
+      context 'with a custom slug' do
+        before(:all) { attrs.slug = Faker::Lorem.sentence }
+
+        it do
+          classroom.reload.slug.should eq(attrs.slug.parameterize)
+          should redirect_to(edit_classroom_url(:subdomain => classroom.slug))
+        end
       end
 
       context 'adds a new member' do
