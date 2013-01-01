@@ -1,0 +1,34 @@
+= title _('Add a new grade')
+= head_embed javascript_include_tag('grades')
+= head_embed stylesheet_link_tag('autocomplete')
+
+.row#lecture
+  .seven.columns
+
+    = form_for(@grade, :url => lecture_assignment_grades_path) do |f|
+      .row
+        .two.columns
+          %p
+            = f.label :mark, _('Grade')
+            = f.text_field :mark, :required => true
+
+        .three.columns
+          %p
+            = f.label :form, _('Format')
+            = f.select :form, Coursewareable::Grade::ALLOWED_FORMS.map(&:capitalize), :required => true
+
+        .seven.columns
+          %p
+            = f.label :receiver, _('Graded user')
+            = text_field_tag nil, nil, :class => 'autocomplete_users'
+            = f.hidden_field :receiver, :class => 'autocomplete_input'
+
+      %p
+        = f.label :comment, _('Leave a comment')
+        = f.text_area :comment
+
+      %p
+        = f.submit _('Create'), :id => 'submit_grade', :class => 'button radius secondary'
+        = link_to _('Cancel'), lecture_assignment_grades_path, :class => 'pull right'
+
+  = render(:partial => 'sidebar')
