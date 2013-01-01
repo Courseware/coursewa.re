@@ -1,5 +1,5 @@
 /**
- * Auto-completion related javascript
+ * Screen editing related javascript
  */
 
 // =require ./lib/jquery.autocomplete.js
@@ -12,8 +12,7 @@
       minChars: 3,
       width: '100%',
       params: {
-        format: 'json',
-        suggest_users: true
+        format: 'json'
       },
       onSelect: function( data ) {
         var $el = $( this );
