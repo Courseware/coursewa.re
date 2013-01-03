@@ -2,3 +2,5 @@
   .row.classrooms-sidebar
     %h5
       = _('Gradebook Sidebar')
+    %p
+      = link_to(_('New grade'), new_lecture_assignment_grade_path(@assignment.lecture, @assignment), :class => 'button small radius secondary')

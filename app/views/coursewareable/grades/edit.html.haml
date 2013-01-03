@@ -2,7 +2,8 @@
 
 .row#lecture
   .seven.columns
-    = form_for(@grade, :url => lecture_assignment_grades_path) do |f|
+
+    = form_for(@grade, :url => lecture_assignment_grade_path) do |f|
       .row
         .two.columns
           %p
@@ -14,17 +15,18 @@
             = f.label :form, _('Format')
             = f.select :form, @forms, :required => true
 
-        .seven.columns
-          %p
-            = f.label :receiver_id, _('Graded user')
-            = f.select :receiver_id, @members
+        .six.offset-by-one.columns
+          %p.avatar
+            = f.label :receiver, _('Graded user')
+            = gravatar_image_tag(@grade.receiver.email, :alt => @grade.receiver.name, :gravatar => { :size => 20 })
+            = @grade.receiver.name
 
       %p
         = f.label :comment, _('Leave a comment')
         = f.text_area :comment
 
       %p
-        = f.submit _('Create'), :id => 'submit_grade', :class => 'button radius secondary'
+        = f.submit _('Save'), :id => 'update_grade', :class => 'button radius secondary'
         = link_to _('Cancel'), lecture_assignment_grades_path, :class => 'pull right'
 
   = render(:partial => 'sidebar')

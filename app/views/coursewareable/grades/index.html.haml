@@ -1,0 +1,22 @@
+= title _('Grades for %s') % @assignment.title
+
+.row#grades
+  .seven.columns
+    - if @grades.empty?
+      %p
+        = _('Sorry no grades exist. Try adding one.')
+    - else
+      %ul.inline-list
+        - @grades.each do |grade|
+          %li{:id => "grade-#{grade.id}"}
+            .panel.radius
+              %p
+                %span.label.secondary
+                  = grade.mark
+              %p.avatar
+                = gravatar_image_tag(grade.receiver.email, :alt => grade.receiver.name, :gravatar => { :size => 20 })
+                = grade.receiver.name
+              %p
+                = link_to(_('Update'), edit_lecture_assignment_grade_path(@assignment.lecture, @assignment, grade), :class => 'small radius button')
+
+  = render(:partial => 'sidebar')
