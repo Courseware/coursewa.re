@@ -1,50 +1,57 @@
 body {
-  background: lighten($black, 34%);
+  background: $bw_10;
+  * {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .wrap {
+    background: $white;
+    min-height: 400px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 }
 
 header {
-  #topbar {
-    background: $mainColor;
-    color: $white;
-
-    ul.items > li {
-      list-style: none;
-      line-height: 2.8;
-    }
-
-    .branding h1 {
-      line-height: 0.6;
-      font-size: 25px;
-      a {
-        color: $white;
-      }
-    }
-
-    .button {
-      background: $mainColor;
+  nav {
+    height: 60px;
+    padding: 10px;
+    background: image-url('top-bg.png');
+    .dropdown {
+      padding-top: 10px !important;
+      height: 35px;
     }
   }
 
-  #header {
-    background: url('/assets/graphy.png') 45px 20px;
+  .menu-icon div {
+    font-size: 16px;
+    color: $white;
+  }
 
-    h1 {
-      color: $mainColor;
+  #heading {
+    height: 120px;
+    background: image-url('head-bg.jpg');
+    padding-top: 60px;
+    h2 {
+      font-size: 30px;
+      background: rgba($black, 0.5);
+      width: 960px;
+      height: 60px;
+      overflow: hidden;
+      margin-top: 0;
+      padding: 15px;
+      margin: 0 auto 0;
     }
   }
 }
 
 #content {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background: $white;
-  border-top: 1px solid $mainColor;
-  min-height: 400px;
-
   #notifications {
     .alert-box {
+      font-weight: normal;
       font-size: 12px;
-      text-align: center;
+      padding: 5px;
     }
     .close {
       padding: 6px;
@@ -53,10 +60,14 @@ header {
 }
 
 footer {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: $secondaryColor;
-  #copyright p {
-    font-size: 90%;
+  min-height: 100px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  p {
+    font-size: 12px;
+    margin-bottom: 10px;
+    & a {
+      font-size: 12px;
+    }
   }
 }

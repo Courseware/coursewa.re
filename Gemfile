@@ -43,6 +43,7 @@ group :assets do
   gem 'sass-rails'
   gem 'compass-rails'
   gem 'zurb-foundation'
+  gem 'foundation-icons-sass-rails'
   gem 'turbo-sprockets-rails3'
 end
 

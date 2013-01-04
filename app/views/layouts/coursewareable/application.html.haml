@@ -5,7 +5,7 @@
       = content_for?(:title) ? yield(:title) : 'Welcome'
       &bull; Coursewa.re
 
-    %link{:href => "/favicon.png", :rel => "icon", :type => "image/png"}
+    = favicon_link_tag('/favicon.png', :type => 'image/png')
 
     %meta{ :charset => 'utf-8' }
     %meta{ 'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1' }
@@ -20,19 +20,32 @@
     = yield(:head_embed) if content_for?(:head_embed)
     = csrf_meta_tags
 
-  %body.off-canvas
-    %header
-      %div#topbar
+  %body
+    %header{:role => :banner}
+      %nav{:role => :navigation}
         = render('shared/topbar')
-      %div#header
-        = render('shared/header')
+      #heading
+        %h2
+          = yield(:title)
 
-    %section#content{ :role => :main }
-      %div.row{ :id => "#{controller.action_name}-#{controller.controller_name}"}
-        = render('shared/alerts')
-        = yield
+    .wrap
+      %section#content{:role => :main}
+        %div.row{ :id => "#{controller.action_name}-#{controller.controller_name}"}
+          = render('shared/alerts')
+          = yield
 
-    %footer
+    %footer{:role => :contentinfo}
       %div.row
-        %div#copyright.right
-          %p ~2012 &copy; Coursewa.re
+        .six.columns
+          %p
+            Please let us know
+            = link_to(_('what you think.'), '#')
+          %p
+            = link_to(_('The Team'), '#')
+            &bull;
+            = link_to(_('About'), '#')
+            &bull;
+            = link_to(_('Contact'), '#')
+
+        .six.columns.align-right
+          %p 2012&ndash;2013 &copy; The Courseware Project

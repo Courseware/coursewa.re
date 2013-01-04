@@ -2,6 +2,6 @@
   %div.six.columns.end.centered
     - flash.each do |name, msg|
       - if msg.is_a?(String)
-        %div{ :class => "alert-box #{name}" }
+        %div.align-center{ :class => "alert-box #{name}" }
           = msg
           %a.close{ :href => '#' } &times;

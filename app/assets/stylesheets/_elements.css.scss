@@ -1,3 +1,26 @@
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.naked {
+  background: none;
+  border: none;
+  @include box-shadow(none);
+  &:hover {
+    background: none;
+    border: none;
+    @include box-shadow(none);
+  }
+}
+
 .avatar img {
   @include border-radius(30px);
 }
