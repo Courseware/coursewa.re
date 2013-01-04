@@ -3,7 +3,7 @@
     %h5
       = _('Your Classrooms')
       - if can? :create, current_user.created_classrooms.build
-        = link_to('Start a Classroom', start_classroom_path, :class => 'tiny radius button')
+        = link_to('Start a Classroom', start_classroom_path, :class => 'tiny button primary')
     %hr
     %ul
       - current_user.classrooms.each do |classroom|

@@ -11,5 +11,5 @@
         = text_field_tag(:email, nil, :type => :email, :required => true)
 
     .actions.right
-      = link_to(_('Nevermind, found it...'), login_path, :class => [:button, :small, :radius, :secondary])
-      = submit_tag(_('Recover'), :class => [:button, :small, :radius], :id => :submit_recover)
+      = link_to(_('Nevermind, found it...'), login_path, :class => 'button')
+      = submit_tag(_('Recover'), :class => 'button primary', :id => :submit_recover)

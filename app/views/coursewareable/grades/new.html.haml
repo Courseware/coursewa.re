@@ -24,7 +24,7 @@
         = f.text_area :comment
 
       %p
-        = f.submit _('Create'), :id => 'submit_grade', :class => 'button radius secondary'
+        = f.submit _('Create'), :id => 'submit_grade', :class => 'button primary'
         = link_to _('Cancel'), lecture_assignment_grades_path, :class => 'pull right'
 
   = render(:partial => 'sidebar')
