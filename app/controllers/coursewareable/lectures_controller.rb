@@ -21,6 +21,7 @@ module Coursewareable
 
     # Editing screen
     def edit
+      @lecture = @classroom.lectures.find(params[:id])
       @lectures = @classroom.lectures.collect { |l|
         [l.title, l.id] unless l.id == @lecture.id
       }.compact
@@ -28,6 +29,7 @@ module Coursewareable
 
     # Lecture screen
     def show
+      @lecture = @classroom.lectures.find(params[:id])
     end
 
     # Handles lecture creation

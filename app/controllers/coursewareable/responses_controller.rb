@@ -39,6 +39,7 @@ module Coursewareable
 
     # Handles response screen
     def show
+      @assignment.responses.find(params[:id])
     end
 
     # Handles deletion

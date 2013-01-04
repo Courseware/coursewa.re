@@ -43,10 +43,12 @@ module Coursewareable
 
     # Handles assignment screen
     def show
+      @assignment = @lecture.assignments.find(params[:id])
     end
 
     # Handles editing screen
     def edit
+      @assignment = @lecture.assignments.find(params[:id])
     end
 
     # Handles update
