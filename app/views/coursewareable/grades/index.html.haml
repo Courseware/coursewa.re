@@ -17,6 +17,6 @@
                 = gravatar_image_tag(grade.receiver.email, :alt => grade.receiver.name, :gravatar => { :size => 20 })
                 = grade.receiver.name
               %p
-                = link_to(_('Update'), edit_lecture_assignment_grade_path(@assignment.lecture, @assignment, grade), :class => 'small radius button')
+                = link_to(_('Update'), edit_lecture_assignment_grade_path(@assignment.lecture, @assignment, grade), :class => 'small radius button', :id => "update_grade-#{grade.id}")
 
   = render(:partial => 'sidebar')
