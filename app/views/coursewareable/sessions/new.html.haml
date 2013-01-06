@@ -1,26 +1,35 @@
-= title _('Log in')
+= title _('Hello and welcome')
 
-%div.six.columns.centered
+.seven.columns.centered
 
   = form_tag login_post_path, :id => :login do
 
-    %div.row
-      %div.five.columns
+    .row
+      .three.columns
         = label_tag(:email, _('Email'), :class => [:right, :inline])
-      %div.seven.columns.end
+      .seven.columns.end
         = text_field_tag(:email, nil, :type => :email, :required => true)
 
-    %div.row
-      %div.five.columns
+    .row
+      .three.columns
         = label_tag(:password, _('Password'), :class => [:right, :inline])
-      %div.seven.columns.end
+      .seven.columns.end
         = password_field_tag(:password, nil, :required => true)
 
-    %div.row
-      %div.five.columns
-        = label_tag(:remember_me, _('Remember me'), :class => [:right, :inline])
-      %div.seven.columns
-        = check_box_tag(:remember_me)
+    .row
+      .seven.offset-by-three.columns.end
+        = check_box_tag(:remember_me, nil, false, :class => :left)
+        = label_tag(:remember_me, _('Remember me on this computer'))
 
-    .actions.right
-      = submit_tag(_('Sign in'), :class => 'button primary', :id => :submit_login)
+    .actions
+      .row
+        .seven.offset-by-three.columns.end
+          %hr
+          .row
+            .four.columns
+              = submit_tag(_('Login'), :class => 'button primary', :id => :submit_login)
+            .seven.offset-by-one.columns
+              .align-to-button.align-right
+                = link_to(_('Lost password?'), new_password_path)
+          %hr
+          = link_to(_('You might want to create a new user...'), signup_path)
