@@ -1,15 +1,22 @@
-= title _('Account recovery')
+= title _('Lets try to recover your account password')
 
-%div.six.columns.centered
+.seven.columns.centered
 
   = form_tag passwords_path, :id => :recover do
 
-    %div.row
-      %div.five.columns
-        = label_tag(:email, _('Your account email'), :class => [:right, :inline])
-      %div.seven.columns.end
+    .row
+      .three.columns
+        = label_tag(:email, _('Send info to'), :class => [:right, :inline])
+      .seven.columns.end
         = text_field_tag(:email, nil, :type => :email, :required => true)
 
-    .actions.right
-      = link_to(_('Nevermind, found it...'), login_path, :class => 'button')
-      = submit_tag(_('Recover'), :class => 'button primary', :id => :submit_recover)
+    .actions
+      .row
+        .seven.offset-by-three.columns.end
+          %hr
+          .row
+            .four.columns
+              = submit_tag(_('Recover'), :class => 'button primary', :id => :submit_recover)
+            .seven.offset-by-one.columns
+              .align-to-button.align-right
+                = link_to(_('Nevermind, found it...'), login_path)
