@@ -1,28 +1,36 @@
-= title _('Sign up')
+= title _('You are a moment away from being able to login')
 
-%div.six.columns.centered
+.seven.columns.centered
 
   = form_for @user, :url => signup_post_path do |f|
 
-    %div.row
-      %div.form-field{:class => @user.errors.messages[:email] ? :error : nil}
-        %div.five.columns
+    .row
+      .form-field{:class => @user.errors.messages[:email] ? :error : nil}
+        .three.columns
           = f.label(:email, _('Email'), :class => [:right, :inline])
-        %div.seven.columns.end
+        .seven.columns.end
           = f.text_field(:email, :type => :email, :required => true)
 
-    %div.row
-      %div.form-field{:class => @user.errors.messages[:password] ? :error : nil}
-        %div.five.columns
+    .row
+      .form-field{:class => @user.errors.messages[:password] ? :error : nil}
+        .three.columns
           = f.label(:password, _('Password'), :class => [:right, :inline])
-        %div.seven.columns.end
+        .seven.columns.end
           = f.password_field(:password, :required => true, :min => 6)
 
-    %div.row
-      %div.five.columns
-        = f.label(:password_confirmation, _('Password confirmation'), :class => [:right, :inline])
-      %div.seven.columns.end
+    .row
+      .three.columns
+        = f.label(:password_confirmation, _('Confirm'), :class => [:right, :inline])
+      .seven.columns.end
         = f.password_field(:password_confirmation, :required => true, :min => 6)
 
-    .actions.right
-      = f.submit(_('Sign me up!'), :class => 'button primary', :id => :submit_signup)
+    .actions
+      .row
+        .seven.offset-by-three.columns.end
+          %hr
+          .row
+            .four.columns
+              = f.submit(_('Sign me up!'), :class => 'button primary', :id => :submit_signup)
+            .seven.offset-by-one.columns
+              .align-to-button.align-right
+                = link_to(_('I just need to login...'), login_path)
