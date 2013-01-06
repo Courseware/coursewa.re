@@ -10,6 +10,11 @@
   text-align: left;
 }
 
+.button {
+  text-transform: uppercase;
+  border: 1px solid $btnBorderColor;
+}
+
 .naked {
   background: none;
   border: none;
@@ -24,3 +29,12 @@
 .avatar img {
   @include border-radius(30px);
 }
+
+.actions hr {
+  margin: 10px 0 10px;
+}
+
+.align-to-button {
+  margin-top: 8px;
+}
+
