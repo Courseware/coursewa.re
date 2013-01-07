@@ -1,0 +1,16 @@
+%h3
+  = _('Welcome to Courseware,')
+
+%p
+  = _('you have successfully signed up.')
+
+%p
+  != _('To login to the site, just follow this link: <a href="%{url}">%{url}</a>') % {:url => @url}
+
+%br/
+%p
+  %small
+    != _('This email was sent to <code>%{email}</code> email owner!') % {:email => @user.email}
+  %br/
+  %small
+    = _('If you think this is an error, please ignore this message.')

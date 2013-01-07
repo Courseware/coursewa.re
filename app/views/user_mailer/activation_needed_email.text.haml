@@ -1,8 +1,10 @@
-= _('Welcome to Courseware, %{name}') % {:name => @user.name}
-================================================
+= _('Welcome to Courseware,')
+===============================================================================
 
-= _('You have successfully signed up, your name is: %{name}') % {:name => @user.name}
-
+= _('you have successfully signed up.')
 = _('To login to the site, just follow this link: %{url}') % {:url => @url}
 
 = _('Thanks for teaching with Coursewa.re')
+
+= _('This email was sent to %{email} email owner!') % {:email => @user.email}
+= _('If you think this is an error, please ignore this message.')

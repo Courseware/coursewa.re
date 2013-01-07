@@ -1,0 +1,96 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "width=device-width", :name => "viewport"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+
+  <link rel="stylesheet" type="text/css" href="/assets/email.css" />
+  <link rel="stylesheet" type="text/css" href="/assets/email.css" data-immutable="true" />
+
+  %body{:bgcolor => "#FFFFFF"}
+    / HEADER
+    %table.head-wrap{:bgcolor => "#999999"}
+      %tr
+        %td
+        %td.header.container
+          .content
+            %table
+              %tr
+                %td
+                  = image_tag('courseware.png', :alt => 'The Courseware Project')
+                %td{:align => "right"}
+                  %h6.collapse The Courseware Project
+        %td
+    / /HEADER
+    / BODY
+    %table.body-wrap
+      %tr
+        %td
+        %td.container{:bgcolor => "#FFFFFF"}
+          .content
+            %table
+              %tr
+                %td
+                  = yield
+                  %p.thanks
+                    %em
+                      = _('Thank you for teaching with Coursewa.re')
+                  -# %p.callout
+                    -# Highlight
+                    %a{:href => "#"} Click it! »
+                  / /Callout Panel
+                  / social & contact
+                  %table.social{:width => "100%"}
+                    %tr
+                      %td
+                        / column 1
+                        %table.column{:align => "left"}
+                          %tr
+                            %td
+                              %h5
+                                = _('Find us on:')
+                              %p
+                                %a.soc-btn.fb{:href => "#"} Facebook
+                                %a.soc-btn.tw{:href => "http://tiwtter.com/coursewa_re"} Twitter
+                                %a.soc-btn.gp{:href => "#"} Google+
+                        / /column 1
+                        / column 2
+                        %table.column{:align => "left"}
+                          %tr
+                            %td
+                              %h5
+                                = _('Contact:')
+                              %p
+                                23rd Emil Isac
+                                %br/
+                                Cluj-Napoca, Cluj, Transilvania, 400023 Romania
+                                %br/
+                                +4-0741-336-015
+                                %br/
+                                %a{:href => "emailto:hello@coursewa.re"} hello@coursewa.re
+                        / /column 2
+                        %span.clear
+                  / /social & contact
+          / /content
+        %td
+    / /BODY
+    / FOOTER
+    %table.footer-wrap
+      %tr
+        %td
+        %td.container
+          / content
+          .content
+            %table
+              %tr
+                %td{:align => "center"}
+                  -# %p
+                  -#   %a{:href => "#"} Terms
+                  -#   |
+                  -#   %a{:href => "#"} Privacy
+                  -#   |
+                  -#   %a{:href => "#"}
+                  -#     %unsubscribe Unsubscribe
+          / /content
+        %td
+    / /FOOTER

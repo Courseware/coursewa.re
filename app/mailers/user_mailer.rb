@@ -1,6 +1,7 @@
 # User emails handler class
 class UserMailer < ActionMailer::Base
   default from: Courseware.config.default_email_address
+  layout 'email'
 
   # Sends an activation email to the user
   #
@@ -8,7 +9,7 @@ class UserMailer < ActionMailer::Base
   def activation_needed_email(user)
     @user = user
     @url = coursewareable.activate_user_url(@user.activation_token)
-    mail(:to => user.email, :subject => _('Welcome to Courseware'))
+    mail(:to => @user.email, :subject => _('Welcome to Courseware'))
   end
 
   # Sends an activation confirmation email to the user
