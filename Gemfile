@@ -12,6 +12,7 @@ gem 'gettext_i18n_rails'
 gem 'roadie'
 gem 'gravatar_image_tag'
 gem 'public_activity'
+gem 'bugsnag'
 
 # Speedup a bit things
 gem 'multi_json'
