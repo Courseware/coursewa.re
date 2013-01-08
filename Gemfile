@@ -13,6 +13,7 @@ gem 'roadie'
 gem 'gravatar_image_tag'
 gem 'public_activity'
 gem 'bugsnag'
+gem 'high_voltage'
 
 # Speedup a bit things
 gem 'multi_json'
