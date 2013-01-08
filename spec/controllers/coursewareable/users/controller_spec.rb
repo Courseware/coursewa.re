@@ -35,7 +35,7 @@ describe Coursewareable::UsersController do
     it 'creates the user' do
       Coursewareable::User.count.should eq(@old_users_count + 1)
       ActionMailer::Base.deliveries.count.should eq(@old_emails_count + 1)
-      should redirect_to(root_path)
+      should redirect_to(login_path)
     end
 
     context 'missing required params' do

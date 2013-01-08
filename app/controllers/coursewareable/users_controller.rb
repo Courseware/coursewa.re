@@ -20,7 +20,7 @@ module Coursewareable
 
       if @user.save
         flash[:success] = _('Please check your email to finish registration.')
-        redirect_to(root_url)
+        redirect_to(login_path)
       else
         flash.now[:alert] = _(
           'We encountered errors. Please correct the highlighted fields.'

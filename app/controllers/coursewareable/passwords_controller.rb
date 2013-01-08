@@ -20,7 +20,7 @@ module Coursewareable
       if @user
         @user.deliver_reset_password_instructions!
         flash[:secondary] = _('Please check your email for instructions.')
-        redirect_to(root_path)
+        redirect_to(login_path)
       else
         flash[:alert] = _('We could not find any accounts with this email.')
         redirect_to(new_password_path)
@@ -45,7 +45,7 @@ module Coursewareable
 
       if @user.change_password!(params[:password])
         flash[:success] = _('Password successfully updated.')
-        redirect_to(root_path)
+        redirect_to(login_path)
       else
         flash[:alert] = _('Password was not updated. Please try again.')
         redirect_to(edit_password_path(@token))

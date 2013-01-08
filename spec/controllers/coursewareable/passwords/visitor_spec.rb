@@ -70,7 +70,7 @@ describe Coursewareable::PasswordsController do
     it 'updates password' do
       user.reload.reset_password_token.should be_nil
       user.crypted_password.should_not eq(@old_pass)
-      response.should redirect_to(root_path)
+      response.should redirect_to(login_path)
     end
 
     context 'with valid token and different passwords' do
