@@ -18,7 +18,8 @@ Coursewareable::Engine.routes.draw do
     get :me, :on => :collection
   end
 
-  resources(:home, :path => '/', :only => [:index] ) do
+  resources(:home, :path => '/', :constraints => { :subdomain => '' },
+            :only => [:index, :dashboard] ) do
     get :dashboard, :on => :collection
   end
 

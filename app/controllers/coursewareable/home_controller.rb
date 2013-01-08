@@ -11,7 +11,7 @@ module Coursewareable
     # Main page handler
     def index
       redirect_to(dashboard_home_index_path) and return if logged_in?
-      render(:layout => 'static')
+      render(:layout => 'application')
     end
 
     # User Dashboard handler
