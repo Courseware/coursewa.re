@@ -1,0 +1,62 @@
+#container {
+
+  .submission {
+    height: 80px;
+    background: $secondaryColor;
+    color: $white;
+    padding: 20px 0;
+
+    p {
+      font-size: 18px;
+      line-height: 20px;
+      margin-bottom: 0;
+    }
+
+    input[type="email"] {
+      font-size: 18px;
+      height: 36px;
+    }
+
+    h3 { color: $white; }
+  }
+
+  .tabs-wrap {
+    height: 80px;
+    padding: 20px 0;
+    background: $bw_10;
+
+    h3 {
+      color: $secondaryColor;
+      font-size: 30px;
+    }
+  }
+
+  .features {
+    padding-top: 20px;
+    background: $bw_9d5;
+
+    p {
+      color: $bw_6;
+      font-size: 13px;
+    }
+
+    h4 {
+      color: $bw_2;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .checked, .unchecked {
+      text-align: center;
+      color: $secondaryColor;
+      font-size: 30px;
+      line-height: 65px;
+      margin-left: 35px;
+    }
+
+    .unchecked {
+      color: $white;
+    }
+  }
+
+}

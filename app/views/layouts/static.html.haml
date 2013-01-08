@@ -1,0 +1,69 @@
+!!!
+%html.no-js{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width", :name => "viewport"}/
+    %meta{ :name => :generator, :content => 'Coursewa.re' }
+
+    /[if lt IE 9]
+      %script{ :src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js' }
+
+    %title
+      = content_for?(:title) ? yield(:title) : 'Welcome'
+      &bull; The Courseware Project
+
+    = favicon_link_tag('/favicon.png', :type => 'image/png')
+    = stylesheet_link_tag 'static'
+    = javascript_include_tag 'static'
+    = csrf_meta_tags
+
+  %body.static
+    %header{:role => :banner}
+      .row
+        .eleven.offset-by-one.columns
+          %h3 The platform that helps people build social learning environments.
+
+    #container
+
+      = yield
+
+    %footer
+      .row
+        .eleven.offset-by-one.columns
+          %h4 The Team
+
+      .row
+        .one.columns
+          %a.avatar{:href => "https://twitter.com/DavidStroe"}
+            %img.avatar{:alt => "David Stroe", :src => "http://0.gravatar.com/avatar/c3e9fc1776d86c50eb25a5a8b6a81d29?s=50"}/
+
+        .three.columns
+          %p
+            David is responsible for colors, textures and other visuals.
+
+        .one.columns
+          %a.avatar{:href => "https://twitter.com/suscov"}
+            %img.avatar{:alt => "Stas Sușcov", :src => "http://gravatar.com/avatar/39639fde05c65fae440b775989e55006?s=50"}/
+
+        .three.columns
+          %p
+            Stas is responsible for the code and operations.
+
+        .four.columns.align-right
+          %p
+            With
+            %i.general.foundicon-heart.heart
+            from Transilvania
+
+          %p 2012&ndash;2013 &copy; The Courseware Project
+
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28875212-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();

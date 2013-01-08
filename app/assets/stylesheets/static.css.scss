@@ -1,0 +1,31 @@
+/**
+ * Coursewa.re
+ * Summer 2012, 2013
+ */
+
+// Load Foundation
+
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700&subset=latin,latin-ext");
+@import 'foundation-icons';
+
+@import 'compass/css3';
+@import 'modular-scale';
+
+@import 'foundation/functions/all';
+
+@import 'foundation/settings';
+@import 'settings';
+
+@import 'foundation/mixins/all';
+
+@import 'foundation/common/base';
+@import 'foundation/components/grid';
+@import 'foundation/components/modules/buttons';
+@import 'foundation/components/modules/tabs';
+@import 'foundation/components/modules/ui';
+
+@import 'elements';
+
+// Load components
+@import 'static/layout';
+@import 'static/home';
