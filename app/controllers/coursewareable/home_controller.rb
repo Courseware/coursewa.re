@@ -10,8 +10,11 @@ module Coursewareable
 
     # Main page handler
     def index
-      redirect_to(dashboard_home_index_path) and return if logged_in?
-      render(:layout => 'application')
+      if logged_in?
+        redirect_to(dashboard_home_index_path)
+      else
+        render(:layout => 'application')
+      end
     end
 
     # User Dashboard handler

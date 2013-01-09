@@ -20,7 +20,7 @@ module Coursewareable
         flash[:notice] = _(
           'Welcome back %{name}!' % {:name => user.name}
         )
-        redirect_back_or_to(home_index_path)
+        redirect_back_or_to(home_index_url)
       else
         flash.now.alert = _('Email or password was invalid.')
         render :new

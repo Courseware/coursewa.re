@@ -52,5 +52,7 @@ Courseware::Application.routes.draw do
 
   # Mount the Coursewareable Engine
   mount Coursewareable::Engine => '/'
-  match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
+  constraints :subdomain => '' do
+    match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
+  end
 end
