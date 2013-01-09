@@ -55,7 +55,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'rb-inotify'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.12.0'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'capybara'

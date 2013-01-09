@@ -1,13 +1,12 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: 3a2a2946460176eca9ffdc65f05d82ab616389bb
+  revision: 11ed5f07c8b6b7f795148c470223e800154b78b9
   specs:
     coursewareable (0.0.1)
       cancan
       friendly_id
       paperclip
       public_activity
-      rails
       sanitize
       sorcery
 
@@ -241,8 +240,8 @@ GEM
     rspec-core (2.12.2)
     rspec-expectations (2.12.1)
       diff-lcs (~> 1.1.3)
-    rspec-mocks (2.12.1)
-    rspec-rails (2.12.1)
+    rspec-mocks (2.12.0)
+    rspec-rails (2.12.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -359,7 +358,7 @@ DEPENDENCIES
   rails-erd
   rb-inotify
   roadie
-  rspec-rails
+  rspec-rails (= 2.12.0)
   ruby_parser
   sass-rails
   seedbank
