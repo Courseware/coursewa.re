@@ -1,18 +1,19 @@
 .row
   .six.columns
-    %a{:href => root_path}
+    %a{:href => root_url(:subdomain => false)}
       = image_tag('courseware.png', :alt => 'The Courseware Project')
   .six.columns.align-right
-    .small.button.dropdown.naked
-      %a{:href => '#', :class => 'menu-icon'}
-        .social.foundicon-torso
-      %span
-      %ul
-        - if logged_in?
-          %li
-            = link_to _('Profile'), me_users_path
-        - else
-          %li
-            = link_to _('Sign up'), signup_path
-          %li
-            = link_to _('Forgot password'), new_password_path
+    - if logged_in?
+      .small.button.dropdown.naked
+        %a{:href => '#', :class => 'menu-icon'}
+          .social.foundicon-torso
+        %span
+        %ul
+          - if logged_in?
+            %li
+              = link_to _('Profile'), me_users_path
+          - else
+            %li
+              = link_to _('Sign up'), signup_path
+            %li
+              = link_to _('Forgot password'), new_password_path
