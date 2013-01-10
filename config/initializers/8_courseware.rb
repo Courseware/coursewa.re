@@ -7,6 +7,7 @@ module Courseware
 end
 
 Courseware.config = Coursewareable.config = OpenStruct.new(
+  :registration_code => 'Courseware v0.1',
   :domain_name => 'coursewa.re',
   :default_email_address => 'no-reply@coursewa.re',
   :domain_blacklist => %w(blog api support help mail ftp dashboard),

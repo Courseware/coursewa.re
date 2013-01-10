@@ -24,6 +24,12 @@
       .seven.columns.end
         = f.password_field(:password_confirmation, :required => true, :min => 6)
 
+    .row
+      .three.columns
+        = label_tag(:registration_code, _('Secret Code'), :class => [:right, :inline])
+      .seven.columns.end
+        = text_field_tag(:registration_code, params[:registration_code], :required => true, :min => 6)
+
     .actions
       .row
         .seven.offset-by-three.columns.end

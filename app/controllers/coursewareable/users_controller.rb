@@ -7,6 +7,8 @@ module Coursewareable
     skip_load_and_authorize_resource :except => [:create, :suggest]
     # Do not ask authentication
     skip_before_filter :require_login, :except => [:me, :update, :suggest]
+    # Check for registration code before creating the user
+    before_filter :check_registration_code, :only => [:create]
 
     # Handles user creation screen
     def new
@@ -78,6 +80,23 @@ module Coursewareable
       end
 
       render :json => result
+    end
+
+    private
+
+    # Allow only requests containing valid registration code
+    def check_registration_code
+      code = params[:registration_code]
+      if code.blank?
+        flash[:alert] = _('Registration code is missing.')
+        redirect_to(signup_path) and return
+      end
+
+      pass = BCrypt::Password.new(code) rescue nil
+      unless pass == Courseware.config.registration_code
+        flash[:alert] = _('Registration code is wrong.')
+        redirect_to(signup_path) and return
+      end
     end
 
   end

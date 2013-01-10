@@ -21,6 +21,7 @@ describe Coursewareable::UsersController do
 
   describe 'POST create' do
     let(:user_attr) { Fabricate.build(:confirmed_user) }
+    let(:pass) { BCrypt::Password.create(Courseware.config.registration_code) }
 
     before(:each) do
       @old_emails_count = ActionMailer::Base.deliveries.count
@@ -29,13 +30,25 @@ describe Coursewareable::UsersController do
       post(:create, :use_route => :coursewareable, :user => {
         :email => user_attr.email, :password => user_attr.password,
         :password_confirmation => user_attr.password
-      })
+      }, :registration_code => pass)
+    end
+
+    shared_examples 'creates no new users' do
+      it { Coursewareable::User.count.should eq(@old_users_count) }
+      it { ActionMailer::Base.deliveries.count.should eq(@old_emails_count) }
     end
 
     it 'creates the user' do
       Coursewareable::User.count.should eq(@old_users_count + 1)
       ActionMailer::Base.deliveries.count.should eq(@old_emails_count + 1)
       should redirect_to(login_path)
+    end
+
+    context 'missing registration code' do
+      let(:pass) { Courseware.config.registration_code + 'WRONG' }
+
+      it { should redirect_to(signup_path) }
+      include_examples 'creates no new users'
     end
 
     context 'missing required params' do
@@ -45,8 +58,7 @@ describe Coursewareable::UsersController do
       end
 
       it { should render_template(:new) }
-      it { ActionMailer::Base.deliveries.count.should eq(@old_emails_count) }
-      it { Coursewareable::User.count.should eq(@old_users_count) }
+      include_examples 'creates no new users'
     end
 
     context 'when logged in' do
