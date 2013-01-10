@@ -24,12 +24,14 @@
     .actions
       .row
         .seven.offset-by-three.columns.end
-          %hr
           .row
             .four.columns
               = submit_tag(_('Login'), :class => 'button primary', :id => :submit_login)
             .seven.offset-by-one.columns
               .align-to-button.align-right
                 = link_to(_('Lost password?'), new_password_path)
-          %hr
-          = link_to(_('You might want to create a new user...'), signup_path)
+      .row
+        .seven.offset-by-three.columns.end
+          .row
+            .twelve.columns
+              = link_to(_('You might want to create a new user...'), signup_path)

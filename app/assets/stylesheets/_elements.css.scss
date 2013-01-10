@@ -30,8 +30,28 @@
   @include border-radius(30px);
 }
 
-.actions hr {
-  margin: 10px 0 10px;
+.actions .columns.end {
+  border-top: 1px solid $bw_9;
+}
+
+.actions .row .columns .row .columns {
+  margin-top: 13px;
+}
+
+.actions .row .columns {
+  margin-top: 10px;
+
+  .row .columns {
+    margin-top: 5px;
+  }
+}
+
+.actions .row:first-child .columns {
+  margin-top: 0;
+
+  .row .columns {
+    margin-top: 13px;
+  }
 }
 
 .align-to-button {
