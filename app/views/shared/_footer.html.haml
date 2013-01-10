@@ -1,0 +1,29 @@
+%footer{:role => :contentinfo}
+  %div.row
+    .six.columns
+      %p
+        = _('Please let us know')
+        = link_to(_('what you think.'), '/feedback')
+      %p
+        = link_to(_('The Team'), '/team')
+        &bull;
+        = link_to(_('About'), '/about')
+        &bull;
+        = link_to(_('Contact'), '/contact')
+
+    .six.columns.align-right
+      %p
+        != _('With %s from Transilvania') % '<i class="general foundicon-heart heart"></i>'
+
+      %p 2012&ndash;2013 &copy; The Courseware Project
+
+:javascript
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28875212-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+   })();
