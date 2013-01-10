@@ -23,8 +23,7 @@
     environment.
   %p
     At this point we are in a private beta program. Please
-    %a{:href => '/contact'}
-      get in touch with us
+    = link_to('get in touch with us', contact_home_url(:subdomain => false))
     if you want to be part of it.
 
 .four.offset-by-one.columns.sidebar
