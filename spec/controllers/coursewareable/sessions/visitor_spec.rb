@@ -29,7 +29,7 @@ describe Coursewareable::SessionsController do
     context 'with activated account' do
       before(:all) { user.activate! }
 
-      it { should redirect_to(home_index_path) }
+      it { should redirect_to(root_path) }
     end
 
   end

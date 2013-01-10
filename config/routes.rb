@@ -18,9 +18,11 @@ Coursewareable::Engine.routes.draw do
     get :me, :on => :collection
   end
 
-  resources(:home, :path => '/', :constraints => { :subdomain => '' },
-            :only => [:index, :dashboard] ) do
-    get :dashboard, :on => :collection
+  resource(:home, :path => '/', :constraints => { :subdomain => false },
+           :only => [:index] ) do
+    get :dashboard
+    get :about
+    get :contact
   end
 
   resource(:classroom, :path => '/', :constraints => { :subdomain => /.+/ },
@@ -44,7 +46,7 @@ Coursewareable::Engine.routes.draw do
   end
 
   # Route to homepage by default
-  root :to => 'home#index'
+  root :to => 'homes#index'
 end
 
 Courseware::Application.routes.draw do
@@ -52,7 +54,4 @@ Courseware::Application.routes.draw do
 
   # Mount the Coursewareable Engine
   mount Coursewareable::Engine => '/'
-  constraints :subdomain => '' do
-    match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
-  end
 end

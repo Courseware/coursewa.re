@@ -16,7 +16,7 @@ describe 'Home' do
       visit activate_user_url(user.activation_token)
       sign_in_with(user.email)
       visit root_url
-      page.should have_css('#dashboard-home')
+      page.should have_css('#dashboard-homes')
       page.should have_css('#activities .coursewareable_user-create')
       page.should have_xpath("//a[@href='#{start_classroom_path}']")
     end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::HomeController do
+describe Coursewareable::HomesController do
 
   before do
     @routes = Coursewareable::Engine.routes
@@ -8,11 +8,19 @@ describe Coursewareable::HomeController do
 
   describe 'routing' do
     it 'for landing page' do
-      get('/').should route_to('coursewareable/home#index')
+      get('/').should route_to('coursewareable/homes#index')
     end
 
     it 'for dashboard' do
-      get('/dashboard').should route_to('coursewareable/home#dashboard')
+      get('/dashboard').should route_to('coursewareable/homes#dashboard')
+    end
+
+    it 'for about page' do
+      get('/about').should route_to('coursewareable/homes#about')
+    end
+
+    it 'for contact page' do
+      get('/contact').should route_to('coursewareable/homes#contact')
     end
 
     describe 'on a subdomain' do

@@ -2,14 +2,9 @@
   %div.row
     .six.columns
       %p
-        = _('Please let us know')
-        = link_to(_('what you think.'), '/feedback')
-      %p
-        = link_to(_('The Team'), '/team')
+        = link_to(_('About this project and the team'), about_home_url(:subdomain => false) )
         &bull;
-        = link_to(_('About'), '/about')
-        &bull;
-        = link_to(_('Contact'), '/contact')
+        = link_to(_('Please let us know what you think'), contact_home_url(:subdomain => false))
 
     .six.columns.align-right
       %p
