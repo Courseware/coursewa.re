@@ -13,7 +13,7 @@ module Coursewareable
       if logged_in?
         redirect_to(dashboard_home_index_path)
       else
-        render(:layout => 'application')
+        render(:layout => 'landing')
       end
     end
 
