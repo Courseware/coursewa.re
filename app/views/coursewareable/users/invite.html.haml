@@ -1,0 +1,22 @@
+= title _('Invite a friend')
+
+.seven.columns
+
+  = form_tag send_invitation_users_path, :id => 'new_invitation' do
+
+    .row
+      .three.columns
+        = label_tag(:email, _('Email to invite'), :class => [:right, :inline])
+      .nine.columns.end
+        = text_field_tag(:email, nil, :required => true)
+
+    .row
+      .three.columns
+        = label_tag(:message, _('Your message'), :class => [:right, :inline])
+      .nine.columns.end
+        - msg = _("Hey,\nI found this web-based learning too, and thought you might want to try it out.\n\nThanks.")
+        = text_area_tag(:message, msg, :rows => 7, :required => true)
+
+    .actions.right
+      = submit_tag(_('Send'), :class => 'button small primary', :id => :submit_invitation)
+

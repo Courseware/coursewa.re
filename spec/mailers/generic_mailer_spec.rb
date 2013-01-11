@@ -26,4 +26,14 @@ describe GenericMailer do
     its('body.encoded') { should match(params[:remote_ip]) }
   end
 
+  describe '#invitation_email' do
+    let(:user) { Fabricate(:confirmed_user) }
+    subject { GenericMailer.invitation_email(user, params) }
+
+    its(:subject) { should match(user.name) }
+    its(:from) { should eq([Courseware.config.default_email_address]) }
+    its(:to) { should eq([params[:email]]) }
+    its('body.encoded') { should match(params[:message]) }
+  end
+
 end

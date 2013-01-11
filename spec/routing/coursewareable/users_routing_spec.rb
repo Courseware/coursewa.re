@@ -27,6 +27,15 @@ describe Coursewareable::UsersController do
       get('/users/me').should route_to('coursewareable/users#me')
     end
 
+    it 'for invitation page' do
+      get('/users/invite').should route_to('coursewareable/users#invite')
+    end
+
+    it 'for processing invitation' do
+      post('/users/send_invitation').should route_to(
+        'coursewareable/users#send_invitation')
+    end
+
     it 'for personal profile page updates' do
       put('/users/1').should route_to('coursewareable/users#update', :id => '1')
     end

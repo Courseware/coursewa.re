@@ -162,4 +162,52 @@ describe Coursewareable::UsersController do
 
     end
   end
+
+  describe 'GET invite' do
+    before{ get(:invite, :use_route => :coursewareable) }
+
+    context 'not logged in' do
+      it { should redirect_to(login_path) }
+    end
+
+    context 'when logged in' do
+      before(:all) do
+        setup_controller_request_and_response
+        @controller.send(:auto_login, Fabricate('coursewareable/user'))
+      end
+
+      it { should render_template(:invite) }
+    end
+  end
+
+  describe 'POST send_invitation' do
+    let(:user_attr) { Fabricate.build(:confirmed_user) }
+    let(:email) { Faker::Internet.email }
+
+    before(:each) do
+      @old_emails_count = ActionMailer::Base.deliveries.count
+      post(:send_invitation, :use_route => :coursewareable, :email => email,
+          :message => Faker::Lorem.paragraph)
+    end
+
+    context 'when not logged in' do
+      it { should redirect_to(login_path) }
+      it { ActionMailer::Base.deliveries.count.should eq(@old_emails_count) }
+    end
+
+    context 'when logged in' do
+      before(:all) do
+        setup_controller_request_and_response
+        @controller.send(:auto_login, Fabricate('coursewareable/user'))
+      end
+
+      it { should redirect_to(invite_users_path) }
+      it { ActionMailer::Base.deliveries.count.should eq(@old_emails_count + 1)}
+
+      context 'when email is blank' do
+        let(:email) { '' }
+        it { ActionMailer::Base.deliveries.count.should eq(@old_emails_count) }
+      end
+    end
+  end
 end

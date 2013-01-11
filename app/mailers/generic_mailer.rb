@@ -24,4 +24,14 @@ class GenericMailer < ActionMailer::Base
       Courseware.config.domain_name, params[:name]
     ])
   end
+
+  # Sends an email containing an invitation
+  #
+  # @param [User] user, who sends the invitation
+  # @param [Hash] params, with email details
+  def invitation_email(user, params)
+    @params = params
+    subject = _('%s invites you to try Courseware') % [user.name]
+    mail(:to => params[:email], :subject => subject)
+  end
 end

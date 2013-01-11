@@ -6,7 +6,7 @@ module Coursewareable
     load_and_authorize_resource :class => Coursewareable::User
     skip_load_and_authorize_resource :except => [:create, :suggest]
     # Do not ask authentication
-    skip_before_filter :require_login, :except => [:me, :update, :suggest]
+    skip_before_filter :require_login, :only => [:new, :activate, :create]
     # Check for registration code before creating the user
     before_filter :check_registration_code, :only => [:create]
 
@@ -58,6 +58,26 @@ module Coursewareable
     # User profile control panel
     def me
       @user = current_user
+    end
+
+    # User invitation screen
+    def invite
+    end
+
+    # Handles invitations form
+    def send_invitation
+      if params[:email].blank? or params[:message].blank?
+        flash[:alert] = _('Please fill in all the fields')
+        redirect_to(invite_users_path) and return
+      end
+
+      code = BCrypt::Password.create(Courseware.config.registration_code)
+      params[:registration_link] = signup_url(
+        :subdomain => false, :registration_code => code)
+      ::GenericMailer.delay.invitation_email(current_user, params)
+
+      flash[:success] = _('Invitation sent')
+      redirect_to(invite_users_path)
     end
 
     # Handles users suggestion by a name or email

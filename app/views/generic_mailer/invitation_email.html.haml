@@ -1,0 +1,18 @@
+- txt = @params[:message].split("\n")
+- msg = @params[:message].gsub(txt[0], '')
+%h3
+  = txt[0]
+
+%p
+  != msg.gsub("\n", '<br/>')
+
+%p
+  != _('To register, follow this link: <a href="%{url}">%{url}</a>') % {:url => @params[:registration_link]}
+
+%br/
+%p
+  %small
+    != _('This email was sent to <code>%{email}</code> email owner!') % {:email => @params[:email]}
+  %br/
+  %small
+    = _('If you think this is an error, please ignore this message.')

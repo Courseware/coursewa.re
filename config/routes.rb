@@ -15,7 +15,11 @@ Coursewareable::Engine.routes.draw do
   ]
   resources :users, :only => [:new, :create, :update] do
     get :activate, :on => :member
-    get :me, :on => :collection
+    collection do
+      get :me
+      get :invite
+      post :send_invitation
+    end
   end
 
   resource(:home, :path => '/', :constraints => { :subdomain => false },

@@ -70,4 +70,22 @@ describe 'Users' do
     user.last_name.should eq('Suscov')
   end
 
+  it 'handles invitations' do
+    user = Fabricate(:confirmed_user)
+    sign_in_with(user.email)
+
+    emails_count = ActionMailer::Base.deliveries.count
+    visit invite_users_url
+
+    within('#new_invitation') do
+      fill_in 'email', :with => Faker::Internet.email
+      fill_in 'message', :with => Faker::Lorem.paragraph
+    end
+
+    click_button 'submit_invitation'
+
+    page.should have_css('#notifications .alert-box.success')
+    ActionMailer::Base.deliveries.count.should eq(emails_count + 1)
+  end
+
 end
