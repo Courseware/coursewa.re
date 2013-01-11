@@ -1,3 +1,4 @@
+# Handles generic emails
 class GenericMailer < ActionMailer::Base
   default from: Courseware.config.default_email_address
   layout 'email'

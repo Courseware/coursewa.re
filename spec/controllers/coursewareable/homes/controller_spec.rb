@@ -42,4 +42,25 @@ describe Coursewareable::HomesController do
     it { should render_template(:contact) }
   end
 
+  describe 'POST feedback' do
+    let(:params) { {:use_route => :coursewareable} }
+    before do
+      post(:feedback, params)
+    end
+
+    it { should redirect_to(contact_home_path) }
+
+    context 'with valid params' do
+      let(:params) do
+        {:use_route => :coursewareable, :name => Faker::Name.name,
+        :email => Faker::Internet.email, :message => Faker::Lorem.paragraphs,
+        :val1 => 1, :val2 => 2, :sum => 3}
+      end
+
+      it { redirect_to(contact_home_path) }
+      it {
+        ActionMailer::Base.deliveries.last.subject.should match(params[:name])}
+    end
+  end
+
 end
