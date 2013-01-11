@@ -23,6 +23,7 @@ Coursewareable::Engine.routes.draw do
     get :dashboard
     get :about
     get :contact
+    post :feedback
   end
 
   resource(:classroom, :path => '/', :constraints => { :subdomain => /.+/ },
