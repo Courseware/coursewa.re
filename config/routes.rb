@@ -1,3 +1,5 @@
+load Rails.root.join('lib', 'subdomains.rb')
+
 Coursewareable::Engine.routes.draw do
   get 'signup' => 'users#new', :as => 'signup'
   get 'login' => 'sessions#new', :as => 'login'
@@ -22,29 +24,31 @@ Coursewareable::Engine.routes.draw do
     end
   end
 
-  resource(:home, :path => '/', :constraints => { :subdomain => false },
-           :only => [:index] ) do
-    get :dashboard
-    get :about
-    get :contact
-    post :feedback
+  constraints(Subdomains::Allowed) do
+    resource(:home, :path => '/', :only => [:index] ) do
+      get :dashboard
+      get :about
+      get :contact
+      post :feedback
+    end
   end
 
-  resource(:classroom, :path => '/', :constraints => { :subdomain => /.+/ },
-    :only => [:edit, :update] ) do
-    collection do
-      get :dashboard, :path => '/'
-      get 'suggest_user' => 'users#suggest', :defaults => { :format => :json }
-      resources(:memberships, :only => [:destroy])
-      resources(:collaborations, :only => [:destroy])
-      resource(:syllabus, :only => [:show, :edit, :update, :create])
-      resources(:images, :only => [:index, :create, :destroy])
-      resources(:uploads, :only => [:index, :create, :destroy])
-      resources(:lectures, :except => [:index]) do
-        resources(:assignments, :except => [:index]) do
-          resources(:grades, :only => [
-            :index, :new, :create, :destroy, :edit, :update])
-          resources(:responses, :only => [:new, :create, :destroy, :show])
+  constraints(Subdomains::Forbidden) do
+    resource(:classroom, :path => '/', :only => [:edit, :update] ) do
+      collection do
+        get :dashboard, :path => '/'
+        get 'suggest_user' => 'users#suggest', :defaults => {:format => :json}
+        resources(:memberships, :only => [:destroy])
+        resources(:collaborations, :only => [:destroy])
+        resource(:syllabus, :only => [:show, :edit, :update, :create])
+        resources(:images, :only => [:index, :create, :destroy])
+        resources(:uploads, :only => [:index, :create, :destroy])
+        resources(:lectures, :except => [:index]) do
+          resources(:assignments, :except => [:index]) do
+            resources(:grades, :only => [
+              :index, :new, :create, :destroy, :edit, :update])
+            resources(:responses, :only => [:new, :create, :destroy, :show])
+          end
         end
       end
     end
