@@ -73,4 +73,16 @@ Courseware::Application.configure do
 
   # Use Amazon AWS for delivery
   config.action_mailer.delivery_method = :amazon_ses
+
+  # Use Amazon S3 settings for Paperclip uploads
+  aws_config = YAML.load_file(Rails.root.join('config', 'aws.yml'))
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_protocol => 'https',
+    :s3_credentials => {
+      :bucket => 'coursewa-re',
+      :access_key_id => aws_config['production']['access_key_id'],
+      :secret_access_key => aws_config['production']['secret_access_key']
+    }
+  }
 end
