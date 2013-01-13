@@ -13,6 +13,7 @@ gem 'roadie'
 gem 'gravatar_image_tag'
 gem 'public_activity'
 gem 'bugsnag'
+gem 'daemons'
 
 # Speedup a bit things
 gem 'multi_json'
@@ -36,6 +37,7 @@ group :development do
   gem 'ruby_parser', :require => false
   gem 'cane'
   gem 'seedbank'
+  gem 'mina', :require => false
 end
 
 group :assets do
