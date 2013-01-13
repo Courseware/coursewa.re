@@ -14,7 +14,7 @@
       .three.columns
         = label_tag(:message, _('Your message'), :class => [:right, :inline])
       .nine.columns.end
-        - msg = _("Hey,\nI found this web-based learning too, and thought you might want to try it out.\n\nThanks.")
+        - msg = _("Hey,\nI found this web-based learning tool, and thought you might want to try it out.\n\nThanks.")
         = text_area_tag(:message, msg, :rows => 7, :required => true)
 
     .actions.right
