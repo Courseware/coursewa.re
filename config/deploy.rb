@@ -16,7 +16,7 @@ set :port, '8000'
 set :user, 'courseware'
 set :domain, 'coursewa.re'
 set :deploy_to, "/home/#{user}/#{codename}"
-set :repository, 'git@github.com/stas/coursewa.re'
+set :repository, 'git@github.com:stas/coursewa.re.git'
 set :branch, 'master'
 
 set :pid_file, "#{deploy_to}/shared/tmp/pids/#{rails_env}.pid"
