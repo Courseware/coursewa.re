@@ -32,7 +32,7 @@ module Coursewareable
     # Redirect if authenticated
     def redirect_if_loggedin
       if logged_in?
-        redirect_to(me_users_url, :alert => _('You logged in once already.'))
+        redirect_to(root_path, :alert => _('You logged in once already.'))
       end
     end
   end

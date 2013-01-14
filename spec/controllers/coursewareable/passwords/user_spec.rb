@@ -17,7 +17,7 @@ describe Coursewareable::PasswordsController do
       get(:new, :use_route => :coursewareable)
     end
 
-    it{ should redirect_to(me_users_url) }
+    it{ should redirect_to(root_path) }
   end
 
   describe 'POST create' do
@@ -30,10 +30,10 @@ describe Coursewareable::PasswordsController do
     context 'with a wrong email' do
       let(:user) { Fabricate.build('coursewareable/user') }
 
-      it { should redirect_to(me_users_url) }
+      it { should redirect_to(root_path) }
     end
 
-    it { should redirect_to(me_users_url) }
+    it { should redirect_to(root_path) }
     it { @emails_count.should eq(ActionMailer::Base.deliveries.count) }
   end
 
@@ -43,12 +43,12 @@ describe Coursewareable::PasswordsController do
       get(:edit, :use_route => :coursewareable, :id => create_token)
     end
 
-    it { should redirect_to(me_users_url) }
+    it { should redirect_to(root_path) }
 
     context 'with invalid token' do
       let(:create_token) { 'wrong' }
 
-      it { should redirect_to(me_users_url) }
+      it { should redirect_to(root_path) }
     end
   end
 
@@ -68,19 +68,19 @@ describe Coursewareable::PasswordsController do
     context 'with invalid token' do
       let(:create_token) { 'wrong' }
 
-      it { should redirect_to(me_users_url) }
+      it { should redirect_to(root_path) }
     end
 
     it 'does not update password' do
       user.reload.reset_password_token.should_not be_nil
       user.crypted_password.should eq(@old_pass)
-      response.should redirect_to(me_users_url)
+      response.should redirect_to(root_path)
     end
 
     context 'with valid token and different passwords' do
       let(:password_confirmation) { 'wrong_' + password }
 
-      it { should redirect_to(me_users_url) }
+      it { should redirect_to(root_path) }
     end
   end
 

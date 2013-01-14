@@ -9,7 +9,7 @@ describe Coursewareable::SessionsController do
       get(:new, :use_route => :coursewareable)
     end
 
-    it{ should redirect_to(me_users_url) }
+    it{ should redirect_to(root_path) }
   end
 
   describe 'POST create' do
@@ -19,7 +19,7 @@ describe Coursewareable::SessionsController do
            :password => 'secret')
     end
 
-    it{ should redirect_to(me_users_url) }
+    it{ should redirect_to(root_path) }
   end
 
 end
