@@ -13,13 +13,13 @@
       .three.columns
         = label_tag(:name, _('Name'), :class => [:right, :inline])
       .nine.columns.end
-        = text_field_tag(:name, nil, :required => true)
+        = text_field_tag(:name, logged_in? ? current_user.name : nil, :required => true)
 
     .row
       .three.columns
         = label_tag(:email, _('Email'), :class => [:right, :inline])
       .nine.columns.end
-        = text_field_tag(:email, nil, :type => :email, :required => true)
+        = text_field_tag(:email, logged_in? ? current_user.email : nil, :type => :email, :required => true)
 
     .row
       .three.columns
