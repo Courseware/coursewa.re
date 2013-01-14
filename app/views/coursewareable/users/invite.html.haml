@@ -17,6 +17,9 @@
         - msg = _("Hey,\nI found this web-based learning tool, and thought you might want to try it out.\n\nThanks.")
         = text_area_tag(:message, msg, :rows => 7, :required => true)
 
-    .actions.right
-      = submit_tag(_('Send'), :class => 'button small primary', :id => :submit_invitation)
-
+    .actions
+      .row
+        .nine.offset-by-three.columns.end
+          .row
+            .four.columns
+              = submit_tag(_('Send'), :class => 'button primary', :id => :submit_invitation)
