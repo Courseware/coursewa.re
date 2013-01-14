@@ -5,15 +5,15 @@
   .six.columns.align-right
     - if logged_in?
       .small.button.dropdown.naked
-        %a{:href => '#', :class => 'menu-icon'}
-          .social.foundicon-torso
+        %a{:href => '#'}
+          .avatar
+            = gravatar_image_tag(current_user.email, :alt => current_user.name, :gravatar => {:size => 32})
         %span
         %ul
           - if logged_in?
             %li
-              = link_to _('Profile'), me_users_path
-          - else
+              = link_to _('Dashboard'), dashboard_home_url(:subdomain => false)
             %li
-              = link_to _('Sign up'), signup_path
+              = link_to _('Profile'), me_users_url(:subdomain => false)
             %li
-              = link_to _('Forgot password'), new_password_path
+              = link_to _('Logout'), logout_url(:subdomain => false)

@@ -33,12 +33,11 @@ header {
     .dropdown {
       padding-top: 10px !important;
       height: 35px;
-    }
-  }
 
-  .menu-icon div {
-    font-size: 16px;
-    color: $white;
+      .avatar {
+        margin-top: -5px;
+      }
+    }
   }
 
   #heading {
