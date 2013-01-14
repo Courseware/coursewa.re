@@ -1,22 +1,26 @@
 = title _('Your Profile')
 
-%div.six.columns.centered
+.seven.columns
 
   = form_for @user do |f|
 
-    %div.row
-      %div.form-field{:class => @user.errors.messages[:first_name] ? :error : nil}
-        %div.five.columns
+    .row
+      .form-field{:class => @user.errors.messages[:first_name] ? :error : nil}
+        .three.columns
           = f.label(:first_name, _('First Name'), :class => [:right, :inline])
-        %div.seven.columns.end
+        .nine.columns.end
           = f.text_field(:first_name)
 
-    %div.row
-      %div.form-field{:class => @user.errors.messages[:last_name] ? :error : nil}
-        %div.five.columns
+    .row
+      .form-field{:class => @user.errors.messages[:last_name] ? :error : nil}
+        .three.columns
           = f.label(:first_name, _('Last Name'), :class => [:right, :inline])
-        %div.seven.columns.end
+        .nine.columns.end
           = f.text_field(:last_name)
 
-    .actions.right
-      = f.submit(_('Update'), :class => 'button small primary', :id => :submit_profile)
+    .actions
+      .row
+        .nine.offset-by-three.columns.end
+          .row
+            .four.columns
+              = f.submit(_('Update'), :class => 'button primary', :id => :submit_profile)
