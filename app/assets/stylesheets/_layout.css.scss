@@ -59,6 +59,58 @@ header {
 }
 
 #content {
+  h1, h2, h3, h4, h5, h6 {
+    color: $bodyFontColor;
+    margin: 30px 0 10px;
+  }
+
+  h1 {
+    line-height: 50px;
+  }
+
+  h2 {
+    line-height: 40px;
+  }
+
+  h3 {
+    line-height: 30px;
+  }
+
+  h4 {
+    line-height: 25px;
+  }
+
+  h5 {
+    line-height: 20px;
+  }
+
+  h6 {
+    line-height: 15px;
+  }
+
+  ul, ol {
+    list-style: none inside;
+    margin-bottom: 10px;
+    margin-left: 10px;
+
+    li {
+      &:before {
+        content: "\2013 \00a0";
+      }
+    }
+  }
+
+  blockquote {
+    margin: 0 0 10px;
+    padding: 10px 0 5px 18px;
+    border-left: 2px solid $bw_7;
+    font-style: italic;
+
+    & p {
+      color: $bodyFontColor;
+    }
+  }
+
   #notifications {
     .alert-box {
       font-weight: normal;

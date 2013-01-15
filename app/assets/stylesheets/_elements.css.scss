@@ -68,41 +68,6 @@
   overflow: hidden;
 }
 
-#content {
-  h1, h2, h3, h4, h5, h6 {
-    color: $bodyFontColor;
-  }
-
-  h3 {
-    line-height: 30px;
-    margin: 30px 0 10px;
-  }
-  // TODO: Adapt line-height for every heading
-
-  ul, ol {
-    list-style: none inside;
-    margin-bottom: 10px;
-    margin-left: 10px;
-
-    li {
-      &:before {
-        content: "\2013 \00a0";
-      }
-    }
-  }
-
-  blockquote {
-    margin: 0 0 10px;
-    padding: 10px 0 5px 18px;
-    border-left: 2px solid $bw_7;
-    font-style: italic;
-
-    & p {
-      color: $bodyFontColor;
-    }
-  }
-}
-
 .smaller {
   font-size: 12px;
 }
@@ -114,30 +79,4 @@ hr {
 dl dd {
   margin-bottom: 5px;
   font-size: 12px;
-}
-
-#activities {
-  .timestamp {
-    font-size: 10px;
-    color: $bw_7;
-  }
-
-  .columns.author.avatar {
-    margin-right: -7%;
-  }
-
-  .columns.activity hr {
-    margin-right: -7%;
-  }
-}
-
-#syllabus {
-  h3:first-child {
-    margin: 0 0 10px;
-  }
-
-  .panel {
-    padding: 10px;
-  }
-
 }
