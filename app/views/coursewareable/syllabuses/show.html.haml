@@ -3,13 +3,14 @@
 .row#syllabus
   .seven.columns
     - unless @syllabus.new_record?
-      %h1
+      %h3
         = @syllabus.title
-      %hr
-      %small
-        = @syllabus.intro
-      %hr
-        = @syllabus.content.html_safe
+
+      .panel
+        %p
+          = @syllabus.intro
+
+      = @syllabus.content.html_safe
 
     - else
       = link_to(_('Update Classroom Syllabus'), edit_syllabus_path, :class => 'syllabus-create')
