@@ -8,13 +8,13 @@
       .three.columns
         = f.label :title, _('Name it'), :class => [:right, :inline]
       .nine.columns.end
-        = f.text_field :title, :arequired => true
+        = f.text_field :title, :required => true
 
     .row
       .three.columns
         = f.label :description, _('Short description'), :class => [:right, :inline]
       .nine.columns.end
-        = f.text_area :description, :rows => 3, :arequired => true
+        = f.text_area :description, :rows => 3, :required => true
 
     .actions
       .row
