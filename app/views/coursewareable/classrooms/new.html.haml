@@ -1,6 +1,6 @@
 = title _('Start a new classroom')
 
-.row#classroom
+#classroom
   .eight.columns
 
     = form_for(@new_classroom, :url => start_classroom_path) do |f|
@@ -8,13 +8,13 @@
       .row
         .three.columns
           = f.label :title, _('Name it'), :class => [:right, :inline]
-        .nine.columns.end
+        .eight.columns.end
           = f.text_field :title, :required => true
 
       .row
         .three.columns
           = f.label :description, _('Short description'), :class => [:right, :inline]
-        .nine.columns.end
+        .eight.columns.end
           = f.text_area :description, :rows => 3, :required => true
 
       .actions
