@@ -25,6 +25,7 @@
     $('.wysiwyg-full').redactor({
       fixed: true,
       wym: true,
+      convertDivs: false,
       imageUpload: '/images',
       imageGetJson: '/images',
       imageUploadErrorCallback: function( o, json ) { alert( json.error ); },
