@@ -51,6 +51,7 @@ module Coursewareable
       if classroom.save
         redirect_to(root_url(:subdomain => classroom.slug))
       else
+        flash[:alert] = _('Please fill in all the fields.')
         redirect_to(start_classroom_path)
       end
     end
