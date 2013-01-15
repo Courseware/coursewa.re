@@ -7,6 +7,7 @@ body {
 
   p {
     font-size: 14px;
+    margin-bottom: 10px;
   }
 
   a {
@@ -68,6 +69,13 @@ header {
       padding: 6px;
     }
   }
+
+  .sidebar {
+    margin-left: 10px;
+    h5 {
+      margin-bottom: 0;
+    }
+  }
 }
 
 footer {
@@ -76,7 +84,6 @@ footer {
   padding-bottom: 15px;
   p {
     font-size: 12px;
-    margin-bottom: 10px;
     & a {
       font-size: 12px;
     }

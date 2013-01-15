@@ -1,13 +1,13 @@
 = title _('Your Dashboard')
 
 .row#activities
-  .seven.columns
+  .eight.columns
     - @timeline.each do |event|
       .row
-        .two.columns.avatar
+        .two.columns.author.avatar
           = gravatar_image_tag(event.owner.email, :alt => event.owner.name)
 
-        .ten.columns
+        .ten.columns.end.activity
           = render_activity(event, :current_user => current_user)
 
   = render(:partial => 'sidebar')

@@ -42,7 +42,7 @@
   margin-top: 10px;
 
   .row .columns {
-    margin-top: 5px;
+    margin-top: 10px;
   }
 }
 
@@ -71,5 +71,33 @@
 #content {
   h1, h2, h3, h4, h5, h6 {
     color: $bodyFontColor;
+  }
+}
+
+.smaller {
+  font-size: 12px;
+}
+
+hr {
+  margin: 5px 0 15px;
+}
+
+dl dd {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+#activities {
+  .timestamp {
+    font-size: 10px;
+    color: $bw_7;
+  }
+
+  .columns.author.avatar {
+    margin-right: -7%;
+  }
+
+  .columns.activity hr {
+    margin-right: -7%;
   }
 }

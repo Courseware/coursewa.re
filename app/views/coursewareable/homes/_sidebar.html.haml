@@ -1,15 +1,18 @@
-.four.columns.offset-by-one
-  .row.classrooms-sidebar
+.four.columns
+  .row.sidebar
     %h5
       = _('Your Classrooms')
-      - if can? :create, current_user.created_classrooms.build
-        = link_to('Start a Classroom', start_classroom_path, :class => 'tiny button primary')
     %hr
-    %ul
+    %dl
       - current_user.classrooms.each do |classroom|
         - classroom_klass = current_user.created_classrooms.include?(classroom) ? 'created' : 'member'
-        %li{:class => classroom_klass}
+        %dt{:class => classroom_klass}
           = link_to(classroom.title, root_url(:subdomain => classroom.slug))
+        %dd
+          Todo
+
+    - if can? :create, current_user.created_classrooms.build
+      = link_to('Start a Classroom', start_classroom_path, :class => 'button primary')
 
     %pre
       TODO:
