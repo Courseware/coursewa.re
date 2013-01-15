@@ -10,3 +10,10 @@
         - classroom_klass = current_user.created_classrooms.include?(classroom) ? 'created' : 'member'
         %li{:class => classroom_klass}
           = link_to(classroom.title, root_url(:subdomain => classroom.slug))
+
+    %pre
+      TODO:
+      Available classrooms
+      (mark which one user created,
+      which is he a collaborator,
+      which he is just a member)
