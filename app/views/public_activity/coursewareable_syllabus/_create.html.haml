@@ -1,9 +1,9 @@
+%span.timestamp
+  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
   - syllabus_link = link_to(_('the syllabus'), syllabus_url(:subdomain => activity.trackable.classroom.slug))
   - if activity.owner == p[:current_user]
     = _('You updated %s.' % syllabus_link)
   - else
     = _('%s updated %s.' % [activity.owner.name, syllabus_link])
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %hr

@@ -1,10 +1,9 @@
+%span.timestamp
+  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
   - if activity.owner == p[:current_user]
     - grades_link = link_to(_('graded %s'), lecture_assignment_grades_url(activity.trackable.assignment.lecture, activity.trackable.assignment, :subdomain => activity.trackable.classroom.slug)) % activity.trackable.receiver.name
     = _('You %s on assignment <em>%s</em>' % [grades_link, activity.trackable.assignment.title] )
   - else
     = _('%s graded %s on assignment <em>%s</em>' % [activity.owner.name, activity.trackable.receiver.name, activity.trackable.assignment.title])
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %hr
-
