@@ -92,19 +92,14 @@ header {
     line-height: 15px;
   }
 
-  ul, ol {
-    list-style: none inside;
-    margin-bottom: 10px;
-    margin-left: 10px;
+  .formatted {
+    ul, ol {
+      list-style: none inside;
+      margin-bottom: 10px;
+      margin-left: 10px;
 
-    li:before {
-      content: "\2013 \00a0";
-    }
-
-    // Keep this for the sake of redactor.js
-    &.redactor_toolbar {
       li:before {
-        content: none;
+        content: "\2013 \00a0";
       }
     }
   }

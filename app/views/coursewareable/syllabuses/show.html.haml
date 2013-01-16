@@ -1,7 +1,7 @@
 = title _('Classroom Syllabus')
 
 #syllabus
-  .eight.columns
+  .eight.columns.formatted
     - unless @syllabus.new_record?
       %h3
         = @syllabus.title
