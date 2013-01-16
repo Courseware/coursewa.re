@@ -103,4 +103,22 @@ describe Coursewareable::ClassroomsController do
     end
   end
 
+  describe 'POST announce' do
+    let(:attrs) { Fabricate.build('coursewareable/classroom') }
+
+    before do
+      @controller.send(:auto_login, collaborator)
+      @request.host = "#{classroom.slug}.#{@request.host}"
+      post(:announce, :use_route => :coursewareable,
+           :announcement => attrs.description)
+    end
+
+    context 'being logged in as collaborator' do
+      it { should redirect_to(dashboard_classroom_path) }
+      it { classroom.all_activities.first.key.should eq('announcement.create')}
+      it { classroom.all_activities.first.parameters[:content].should(
+        eq(attrs.description)) }
+    end
+  end
+
 end

@@ -85,4 +85,19 @@ describe Coursewareable::ClassroomsController do
     end
   end
 
+  describe 'POST announce' do
+    let(:attrs) { Fabricate.build('coursewareable/classroom') }
+
+    before do
+      @controller.send(:auto_login, user)
+      @request.host = "#{classroom.slug}.#{@request.host}"
+      post(:announce, :use_route => :coursewareable,
+           :announcement => attrs.description)
+    end
+
+    context 'being logged in as user' do
+      it { should redirect_to(login_path) }
+    end
+  end
+
 end

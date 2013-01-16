@@ -5,7 +5,7 @@ module Coursewareable
     load_and_authorize_resource :class => Coursewareable::Classroom
     skip_authorize_resource
 
-    before_filter :load_classroom, :only => [:dashboard, :edit, :update]
+    before_filter :load_classroom, :except => [:new, :create]
 
     # Classroom dashboard
     # Mapped to [Classroom] subdomain
@@ -54,6 +54,18 @@ module Coursewareable
         flash[:alert] = _('Please fill in all the fields.')
         redirect_to(start_classroom_path)
       end
+    end
+
+    def announce
+      authorize!(:contribute, @classroom)
+
+      activity_key = 'announcement.create'
+      current_user.activities_as_owner.create(
+        :key => activity_key, :recipient => @classroom, :parameters => {
+          :content => Sanitize.clean(params[:announcement])
+        })
+      flash[:success] = _('Announcement was posted')
+      redirect_to(dashboard_classroom_path)
     end
 
     protected

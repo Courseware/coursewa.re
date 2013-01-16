@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::ClassroomsController do
+describe Coursewareable::ClassroomsController, :focus => true do
 
   before do
     @routes = Coursewareable::Engine.routes
@@ -33,6 +33,11 @@ describe Coursewareable::ClassroomsController do
     it 'for users suggestion' do
       get('http://test.lvh.me/suggest_user').should route_to(
         'coursewareable/users#suggest', :format => :json)
+    end
+
+    it 'for announcements' do
+      post('http://test.lvh.me/announce').should route_to(
+        'coursewareable/classrooms#announce')
     end
 
   end
