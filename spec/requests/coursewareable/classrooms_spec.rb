@@ -24,6 +24,22 @@ describe 'Classrooms' do
     page.should_not have_css('#collaborators-list')
   end
 
+  it 'can post announcements if logged in' do
+    sign_in_with(classroom.owner.email)
+    visit dashboard_classroom_url(:subdomain => classroom.slug)
+
+    ann_txt = Faker::Lorem.paragraph
+    within('#announce') do
+      fill_in 'announcement', :with => ann_txt
+      check 'email_all'
+    end
+
+    click_button 'submit_announcement'
+    page.should have_css('#notifications .alert-box.success')
+    page.should have_css('#activities .announcement-create')
+    page.should have_content(ann_txt)
+  end
+
   context 'with some members' do
     let(:new_member) { Fabricate(:confirmed_user) }
     before { classroom.members << new_member }

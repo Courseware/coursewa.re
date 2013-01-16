@@ -3,7 +3,7 @@
 #activities
   .eight.columns
 
-    .announcement
+    - if can?(:contribute, @classroom)
       = form_tag(announce_classroom_path, :id => :announce) do
         = text_area_tag(:announcement, nil, :required => true, :placeholder => _('Post an announcement for this classroom...'))
         .row
@@ -11,7 +11,7 @@
             = submit_tag(_('Publish'), :class => 'button small primary', :id => :submit_announcement)
           .eight.columns
             = check_box_tag(:email_all, nil, false, :class => 'right')
-            = label_tag(:email_all, _('Email everyone this announcement to everyone'), :class => 'smaller right')
+            = label_tag(:email_all, _('Email this announcement to everyone'), :class => 'smaller right')
 
     - @timeline.each do |event|
       .row
