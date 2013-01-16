@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::ClassroomsController, :focus => true do
+describe Coursewareable::ClassroomsController do
 
   before do
     @routes = Coursewareable::Engine.routes
