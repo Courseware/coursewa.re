@@ -115,7 +115,7 @@ header {
     border-left: 2px solid $bw_7;
     font-style: italic;
 
-    & p {
+    &, & p {
       color: $bodyFontColor;
     }
   }
