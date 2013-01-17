@@ -10,67 +10,88 @@
 #classroom
   .eight.columns
     = form_for(@classroom, :url => classroom_path) do |f|
-      %p
-        = f.label :title, _('Classroom Title')
-        = f.text_field :title, :required => true
-
-      .row.collapse
-        = f.label :slug, _('Classroom sub-domain')
-        .eight.columns
-          = f.text_field :slug, :placeholder => _('Leave empty to be generated, minimum length 4, maximum 32.')
+      .row
         .four.columns
-          %span.postfix .coursewa.re
+          = f.label :title, _('Classroom Title'), :class => 'right inline'
+        .eight.columns
+          = f.text_field :title, :required => true
 
-      %p
-        = f.label :description, _('Classroom Description')
-        = f.text_area :description, :class => 'wysiwyg-minimal', :required => true
+      .row
+        .four.columns
+          = f.label :slug, _('Classroom sub-domain'), :class => 'right inline'
+        .eight.columns
+          .row.collapse
+            .eight.columns
+              = f.text_field :slug, :placeholder => _('Leave empty to be generated, minimum length 4, maximum 32.')
+            .four.columns
+              %span.postfix .coursewa.re
 
-      %dl.tabs
-        %dd.active
-          %a{:href => "#members"}
-            = _('Members')
-        %dd
-          %a{:href => "#collaborators"}
-            = _('Collaborators')
-      %ul.tabs-content
-        %li#membersTab.active
-          %p
-            = _('Add a new member to this classroom')
-          = text_field_tag nil, nil, :class => 'autocomplete_users'
-          = hidden_field_tag :members, nil, :class => 'autocomplete_input'
+      .row
+        .four.columns
+          = f.label :description, _('Classroom Description'), :class => 'right inline'
+        .eight.columns
+          = f.text_area :description, :class => 'wysiwyg-minimal', :required => true
 
-          %h5
-            = _('Existing members')
+      %br
+      .row
+        .four.columns
+          = label_tag nil, _('Members and collaborators'), :class => 'inline right'
+        .eight.columns
+          %dl.tabs
+            %dd.active
+              %a{:href => "#members"}
+                = _('Members')
+            %dd
+              %a{:href => "#collaborators"}
+                = _('Collaborators')
+          %ul.tabs-content
+            %li#membersTab.active
+              %p
+                = _('Add a new member to this classroom')
+              = text_field_tag nil, nil, :class => 'autocomplete_users'
+              = hidden_field_tag :members, nil, :class => 'autocomplete_input'
 
-          %ul#members-list.inline-list
-            - @classroom.memberships.each do |mem|
-              %li
-                %div.avatar
-                  = gravatar_image_tag(mem.user.email, :alt => mem.user.name)
+              %h5
+                = _('Existing members')
+              %hr
+
+              %ul#members-list.inline-list
+                - @classroom.memberships.each do |mem|
+                  %li
+                    .avatar.left
+                      = gravatar_image_tag(mem.user.email, :alt => mem.user.name, :gravatar => {:size => 30})
+                    %p
+                      = mem.user.name
+                      %br
+                      - if mem.user.id == current_user.id
+                        %span.smaller
+                          = _('You own this classroom.')
+                      - else
+                        = link_to(_('Remove'), membership_path(mem), :method => :delete, :id => "remove-membership-#{mem.id}", :class => 'smaller')
+
+            %li#collaboratorsTab
+              %p
+                = _('Add a new collaborator to this classroom')
+              = text_field_tag nil, nil, :class => 'autocomplete_users'
+              = hidden_field_tag :collaborators, nil, :class => 'autocomplete_input'
+              %h5
+                = _('Existing collaborators')
+              %hr
+
+              - if @classroom.collaborators.empty?
                 %p
-                  = mem.user.name
-                  = link_to(_('Remove'), membership_path(mem), :method => :delete, :id => "remove-membership-#{mem.id}") unless mem.user.id == current_user.id
+                  = _('No collaborators were added.')
+              - else
+                %ul#collaborators-list.inline-list
+                  - @classroom.collaborations.each do |colab|
+                    %li
+                      .avatar.left
+                        = gravatar_image_tag(colab.user.email, :alt => colab.user.name, :gravatar => {:size => 30})
+                      %p
+                        = colab.user.name
+                        %br
+                        = link_to(_('Remove'), collaboration_path(colab), :method => :delete, :id => "remove-collaboration-#{colab.id}", :class => 'smaller')
 
-        %li#collaboratorsTab
-          %p
-            = _('Add a new collaborator to this classroom')
-          = text_field_tag nil, nil, :class => 'autocomplete_users'
-          = hidden_field_tag :collaborators, nil, :class => 'autocomplete_input'
-          %h5
-            = _('Existing collaborators')
-
-          - if @classroom.collaborators.empty?
-            %p
-              = _('No collaborators were added.')
-          - else
-            %ul#collaborators-list.inline-list
-              - @classroom.collaborations.each do |colab|
-                %li
-                  %div.avatar
-                    = gravatar_image_tag(colab.user.email, :alt => colab.user.name)
-                  %p
-                    = colab.user.name
-                    = link_to(_('Remove'), collaboration_path(colab), :method => :delete, :id => "remove-collaboration-#{colab.id}")
-
-      %p
-        = f.submit _('Update'), :id => 'edit_classroom', :class => 'button primary'
+      .row
+        .eight.offset-by-four.columns
+          = f.submit _('Update'), :id => 'edit_classroom', :class => 'button primary'

@@ -54,6 +54,10 @@ body {
     padding-top: 40px;
     padding-bottom: 40px;
   }
+
+  .tabs .active {
+    border-top: 3px solid $secondaryColor;
+  }
 }
 
 header {
