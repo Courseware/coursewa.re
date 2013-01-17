@@ -31,7 +31,6 @@ describe 'Classrooms' do
     ann_txt = Faker::Lorem.paragraph
     within('#announce') do
       fill_in 'announcement', :with => ann_txt
-      check 'email_all'
     end
 
     click_button 'submit_announcement'
