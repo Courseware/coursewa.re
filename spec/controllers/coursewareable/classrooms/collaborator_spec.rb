@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Coursewareable::ClassroomsController do
+  include ActionDispatch::TestProcess
 
   let(:classroom) { Fabricate('coursewareable/classroom') }
   let(:collaboration) {
@@ -80,14 +81,23 @@ describe Coursewareable::ClassroomsController do
       @controller.send(:auto_login, collaborator)
       @request.host = "#{classroom.slug}.#{@request.host}"
       put(:update, :use_route => :coursewareable, :classroom => {
-        :title => attrs.title, :description => attrs.description
+        :title => attrs.title, :description => attrs.description,
+        :slug => attrs.slug, :header_image => attrs.header_image
       }, :members => members, :collaborators => collabs)
     end
 
-    context 'being logged in as owner' do
+    context 'being logged in as collaborator' do
       before { classroom.reload }
 
       it { should redirect_to(login_path) }
+
+      context 'with a valid new header image' do
+        before(:all) do
+          attrs.header_image = fixture_file_upload('/test.png', 'image/png')
+        end
+
+        it { classroom.reload.header_image.should be_nil }
+      end
 
       context 'adds a new member' do
         let(:members) { Fabricate(:confirmed_user).id }

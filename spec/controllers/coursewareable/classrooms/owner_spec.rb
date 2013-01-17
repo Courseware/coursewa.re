@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Coursewareable::ClassroomsController do
+  include ActionDispatch::TestProcess
 
   let(:classroom) { Fabricate('coursewareable/classroom') }
 
@@ -78,7 +79,8 @@ describe Coursewareable::ClassroomsController do
       @request.host = "#{classroom.slug}.#{@request.host}"
       put(:update, :use_route => :coursewareable, :classroom => {
         :title => attrs.title, :description => attrs.description,
-        :slug => attrs.slug }, :members => members, :collaborators => collabs)
+        :slug => attrs.slug, :header_image => attrs.header_image
+      }, :members => members, :collaborators => collabs)
     end
 
     context 'being logged in as owner' do
@@ -93,6 +95,31 @@ describe Coursewareable::ClassroomsController do
 
         it do
           classroom.reload.slug.should eq(attrs.slug.parameterize)
+          should redirect_to(edit_classroom_url(:subdomain => classroom.slug))
+        end
+      end
+
+      context 'with an invalid new header image' do
+        before(:all) do
+          attrs.header_image = fixture_file_upload('/test.png', 'image/png')
+        end
+
+        it do
+          classroom.reload.header_image.should be_nil
+          should redirect_to(edit_classroom_url(:subdomain => classroom.slug))
+        end
+      end
+
+      context 'with a valid new header image' do
+        before(:all) do
+          # Stub original config to fit the fixture width/height
+          Courseware.config.should_receive(:header_image_size).and_return(
+            { :width => 400, :height => 479 })
+          attrs.header_image = fixture_file_upload('/test.png', 'image/png')
+        end
+
+        it do
+          classroom.reload.header_image.should eq(classroom.images.last.id)
           should redirect_to(edit_classroom_url(:subdomain => classroom.slug))
         end
       end
