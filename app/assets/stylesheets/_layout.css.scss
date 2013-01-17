@@ -24,6 +24,12 @@ body {
     margin-bottom: 20px;
   }
 
+  input[type="file"] {
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
   .postfix, .prefix {
     line-height: 20px;
     background-color: $bw_10;
