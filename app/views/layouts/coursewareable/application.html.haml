@@ -20,6 +20,10 @@
     = yield(:head_embed) if content_for?(:head_embed)
     = csrf_meta_tags
 
+    - if !@classroom.nil? and !@classroom.header_image.blank?
+      :css
+        header #heading{ background: url("#{@classroom.images.find(@classroom.header_image).attachment.url}") no-repeat top center; }
+
   %body
     %header{:role => :banner}
       %nav{:role => :navigation}

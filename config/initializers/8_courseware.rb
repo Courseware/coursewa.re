@@ -12,6 +12,7 @@ Courseware.config = Coursewareable.config = OpenStruct.new(
   :default_email_address => 'no-reply@coursewa.re',
   :domain_blacklist =>
     %w(blog api support help mail ftp dashboard www expecting),
+  :header_image_size => {:width => 1400, :height => 260},
   :plans => {
     :free => {
       :slug => :free,

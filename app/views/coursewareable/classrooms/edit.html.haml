@@ -11,32 +11,42 @@
   .eight.columns
     = form_for(@classroom, :url => classroom_path) do |f|
       .row
-        .four.columns
-          = f.label :title, _('Classroom Title'), :class => 'right inline'
-        .eight.columns
+        .two.columns
+          = f.label :title, _('Title'), :class => 'right inline'
+        .ten.columns
           = f.text_field :title, :required => true
 
       .row
-        .four.columns
-          = f.label :slug, _('Classroom sub-domain'), :class => 'right inline'
-        .eight.columns
+        .two.columns
+          = f.label :slug, _('Sub-domain'), :class => 'right inline'
+        .ten.columns
           .row.collapse
             .eight.columns
               = f.text_field :slug, :placeholder => _('Leave empty to be generated, minimum length 4, maximum 32.')
             .four.columns
-              %span.postfix .coursewa.re
+              %span.postfix
+                = ".#{Courseware.config.domain_name}"
 
       .row
-        .four.columns
-          = f.label :description, _('Classroom Description'), :class => 'right inline'
-        .eight.columns
+        .two.columns
+          = f.label :description, _('Description'), :class => 'right inline'
+        .ten.columns
           = f.text_area :description, :class => 'wysiwyg-minimal', :required => true
+
+      .row
+        .two.columns
+          = f.label :header_image, _('New header'), :class => 'right inline'
+        .five.columns
+          = f.file_field :header_image
+        .five.columns
+          %em.smaller
+            = _('A minimum width of %{width}px with a height of %{height}px is required.') % Courseware.config.header_image_size
 
       %br
       .row
-        .four.columns
-          = label_tag nil, _('Members and collaborators'), :class => 'inline right'
-        .eight.columns
+        .two.columns
+          = label_tag nil, _('Users'), :class => 'inline right'
+        .ten.columns
           %dl.tabs
             %dd.active
               %a{:href => "#members"}
@@ -93,5 +103,5 @@
                         = link_to(_('Remove'), collaboration_path(colab), :method => :delete, :id => "remove-collaboration-#{colab.id}", :class => 'smaller')
 
       .row
-        .eight.offset-by-four.columns
+        .ten.offset-by-two.columns
           = f.submit _('Update'), :id => 'edit_classroom', :class => 'button primary'
