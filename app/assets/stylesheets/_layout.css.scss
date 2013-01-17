@@ -30,13 +30,33 @@ header {
   nav {
     height: 60px;
     padding: 10px;
-    background: image-url('top-bg.png');
+    background: $navBackgroundColor image-url('top-bg.png');
     .dropdown {
       padding-top: 10px !important;
-      height: 35px;
+      height: 42px;
+      text-transform: capitalize;
+
+      > ul {
+        background: $navBackgroundColor !important;
+        margin-top: 9px !important;
+        border: none !important;
+        left: -15px !important;
+      }
+
+      li {
+        a {
+          color: $white !important;
+        }
+        a:hover {
+          text-decoration: none;
+          color: $white;
+          background-color: $mainColor;
+        }
+      }
 
       .avatar {
         margin-top: -5px;
+        margin-right: 5px;
       }
     }
   }
