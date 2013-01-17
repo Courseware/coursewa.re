@@ -36,7 +36,7 @@ $black: #000;
 $white: #fff;
 // $shinyEdge: rgba(#fff, .5);
 // $darkEdge: rgba(#000, .2);
-$inputBorder: $bw_7;
+$inputBorder: $bw_9;
 $navBackgroundColor: #362f2d;
 
 // Typography Settings
@@ -68,7 +68,7 @@ $btnBorderColor: #736357;
 // $inputFontSize: 14px;
 // $inputBgColor: #fff;
 // $inputFocusBgColor: darken(#fff, 2%);
-// $inputBorderColor: darken(#fff, 20%);
+$inputBorderColor: $inputBorder;
 // $inputFocusBorderColor: darken(#fff, 30%);
 // $inputBorderStyle: solid;
 // $inputBorderWidth: 1px;

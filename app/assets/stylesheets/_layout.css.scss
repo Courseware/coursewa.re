@@ -18,6 +18,36 @@ body {
     }
   }
 
+  input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], .prefix, .postfix {
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .postfix, .prefix {
+    line-height: 20px;
+    background-color: $bw_10;
+    border: 1px solid $inputBorderColor;
+  }
+
+  select {
+    height: 40px;
+    background-color: $white;
+    border: 1px solid $inputBorderColor;
+    padding: 5px;
+    color: $bodyFontColor;
+    font-family: $bodyFontFamily;
+    font-size: $baseFontSize;
+  }
+
+  label {
+    line-height: 40px;
+
+    &.inline {
+      line-height: 40px;
+    }
+  }
+
   .wrap {
     background: $white;
     min-height: 400px;
