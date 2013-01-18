@@ -57,7 +57,11 @@
           %ul.tabs-content
             %li#membersTab.active
               %p
-                = _('Add a new member to this classroom')
+                = _('Members act as students in your classroom.')
+                = _('They respond to assessments and can receive grades.')
+              %p
+                = _('Add a new member by typing their email address.')
+
               = text_field_tag nil, nil, :class => 'autocomplete_users'
               = hidden_field_tag :members, nil, :class => 'autocomplete_input'
 
@@ -81,7 +85,11 @@
 
             %li#collaboratorsTab
               %p
-                = _('Add a new collaborator to this classroom')
+                = _('Collaborators act as teachers in your classroom.')
+                = _('They can build and edit content pages just as you.')
+              %p
+                = _('Add a new collaborator by typing their email address.')
+
               = text_field_tag nil, nil, :class => 'autocomplete_users'
               = hidden_field_tag :collaborators, nil, :class => 'autocomplete_input'
               %h5
