@@ -1,0 +1,4 @@
+%option{:value => lecture.id}
+  = indent + lecture.title
+  - unless lecture.child_lectures.empty?
+    = list_lecture_options(lecture.child_lectures, listed_ids, indent += "– ")

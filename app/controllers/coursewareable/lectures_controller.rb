@@ -10,11 +10,9 @@ module Coursewareable
 
     # Creation screen
     def new
+      @lectures = @classroom.lectures.compact
       @lecture = @classroom.lectures.build(params[:lecture])
       @lecture.user = current_user
-      @lectures = @classroom.lectures.collect { |l|
-        [l.title, l.id] unless l.id == @lecture.id
-      }.compact
 
       authorize!(:create, @lecture)
     end
@@ -22,9 +20,7 @@ module Coursewareable
     # Editing screen
     def edit
       @lecture = @classroom.lectures.find(params[:id])
-      @lectures = @classroom.lectures.collect { |l|
-        [l.title, l.id] unless l.id == @lecture.id
-      }.compact
+      @lectures = @classroom.lectures
     end
 
     # Lecture screen
