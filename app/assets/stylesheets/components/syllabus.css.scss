@@ -1,10 +1,16 @@
 #syllabus {
-  h3:first-child {
-    margin: 0 0 10px;
-  }
-
   .panel {
     padding: 10px;
+  }
+
+  #lectures-tree {
+    li * ul {
+      margin-bottom: 0;
+    }
+
+    li * li {
+      line-height: 24px;
+    }
   }
 
 }

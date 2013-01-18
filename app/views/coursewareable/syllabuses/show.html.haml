@@ -16,12 +16,11 @@
       = link_to(_('Update Classroom Syllabus'), edit_syllabus_path, :class => 'syllabus-create')
 
     - unless @lectures.blank?
-      -# TODO: organize this as a tree by parent lecture
 
       %h3 Course structure
-      %ul#lectures-tree
-        - @lectures.each do |lecture|
-          %li
-            = link_to(lecture.title, lecture_path(lecture))
+
+      %ul#lectures-tree.hierarchical-list
+        = list_lectures_tree(@lectures)
+
 
   = render(:partial => 'sidebar')

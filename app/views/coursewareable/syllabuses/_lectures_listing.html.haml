@@ -1,0 +1,5 @@
+%li
+  = link_to(lecture.title, lecture_path(lecture))
+  - unless lecture.child_lectures.empty?
+    %ul
+      = list_lectures_tree(lecture.child_lectures, listed_ids)
