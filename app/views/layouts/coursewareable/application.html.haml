@@ -22,13 +22,14 @@
 
     - if !@classroom.nil? and !@classroom.header_image.blank?
       :css
-        header #heading{ background: url("#{@classroom.images.find(@classroom.header_image).attachment.url}") no-repeat top center; }
+        #heading .custom{ background: url("#{@classroom.images.find(@classroom.header_image).attachment.url}") top center no-repeat !important; }
 
-  %body
+  %body{:class => (!@classroom.nil? ? 'customized' : '')}
     %header{:role => :banner}
       %nav{:role => :navigation}
         = render('shared/topbar')
       #heading
+        .custom
         %h2
           = yield(:title)
 

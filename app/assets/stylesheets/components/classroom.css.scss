@@ -1,3 +1,18 @@
+body.customized {
+  header {
+    #heading {
+      background: $navBackgroundColor image-url('bg-texture.png') top repeat-x;
+      padding-top: 0;
+      height: 180px;
+
+      .custom {
+        height: 180px;
+        margin-bottom: -60px;
+      }
+    }
+  }
+}
+
 #members-list, #collaborators-list {
   li {
     width: 43%;
