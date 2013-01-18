@@ -42,7 +42,7 @@ end
 
 group :assets do
   gem 'uglifier'
-  gem 'therubyracer', '0.10.2'
+  gem 'therubyracer'
   gem 'sass-rails'
   gem 'compass-rails'
   gem 'zurb-foundation'
@@ -53,7 +53,6 @@ end
 group :development, :test do
   gem 'ffaker'
   gem 'fabrication'
-  gem 'guard-spork'
   gem 'guard-rspec'
   gem 'rb-inotify'
   gem 'rspec-rails', '2.12.0'
