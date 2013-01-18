@@ -12,14 +12,14 @@
 
     .row
       .three.columns
-        = label_tag(:password, _('Password'), :class => [:right, :inline])
+        = label_tag(:password, _('Password'), :class => 'right inline marginless-bottom')
       .seven.columns.end
-        = password_field_tag(:password, nil, :required => true)
+        = password_field_tag(:password, nil, :required => true, :class => 'marginless-bottom')
 
     .row
       .seven.offset-by-three.columns.end
-        = check_box_tag(:remember_me, nil, false, :class => :left)
-        = label_tag(:remember_me, _('Remember me on this computer'), :class => :smaller)
+        = check_box_tag(:remember_me, nil, false, :class => 'left marginless-top')
+        = label_tag(:remember_me, _('Remember me on this computer'), :class => 'smaller')
 
     .actions
       .row

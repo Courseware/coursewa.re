@@ -24,10 +24,14 @@ body {
     margin-bottom: 20px;
   }
 
-  input[type="file"] {
+  input[type="file"], {
     height: 40px;
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+
+  input[type="checkbox"] {
+    height: 40px;
   }
 
   .postfix, .prefix {
@@ -71,6 +75,7 @@ header {
     height: 60px;
     padding: 10px;
     background: $navBackgroundColor image-url('top-bg.png');
+
     .dropdown {
       padding-top: 10px !important;
       height: 42px;
