@@ -39,7 +39,6 @@ body .redactor_box_fullscreen {
 	outline: none;
 	border: none;
 	width: 100%;
-	white-space: normal;
 }
 
 .redactor_editor,
@@ -83,7 +82,7 @@ body .redactor_box_fullscreen {
 	position: relative;
 	outline: none;
 	box-shadow: none !important;
-	padding: 8px !important;
+	padding: 15px !important;
 	margin: 0 !important;
 	background: none;
 	background: #fff !important;
