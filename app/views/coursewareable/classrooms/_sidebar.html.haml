@@ -1,7 +1,5 @@
 .four.columns
   .row.sidebar
-    - if can?(:update, @classroom)
-      = link_to(_('Customize'), edit_classroom_path, :class => 'right')
     %h5
       = _('Your Classroom')
     %hr
