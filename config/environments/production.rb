@@ -49,8 +49,8 @@ Courseware::Application.configure do
   # Precompile additional assets (application.js, application.css,
   # and all non-JS/CSS are already added)
   config.assets.precompile += %w(editor.js editor.css lib/redactor.js
-    lib/redactor.css static.css static.js email.css autocomplete.css
-    edit_assignment.js edit_classroom.js grades.js jquery_ujs.js)
+    lib/redactor.css static.css static.js email.css
+    edit_assignment.js grades.js jquery_ujs.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

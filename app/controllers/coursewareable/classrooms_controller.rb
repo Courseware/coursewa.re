@@ -32,15 +32,12 @@ module Coursewareable
       @classroom.update_attributes(
         params[:classroom].except(:color_scheme, :header_image, :color))
 
-      new_members = params[:members].to_s.split(',').uniq.compact
-      unless new_members.empty?
-        @classroom.member_ids += new_members.map(&:to_i)
-      end
+      new_member = Coursewareable::User.find_by_email(params[:member_email])
+      @classroom.member_ids += [new_member.id] unless new_member.nil?
 
-      new_collabs = params[:collaborators].to_s.split(',').uniq.compact
-      unless new_collabs.empty?
-        @classroom.collaborator_ids += new_collabs.map(&:to_i)
-      end
+      new_collab = Coursewareable::User.find_by_email(
+        params[:collaborator_email])
+      @classroom.collaborator_ids += [new_collab.id] unless new_collab.nil?
 
       redirect_to edit_classroom_url(:subdomain => @classroom.reload.slug)
     end

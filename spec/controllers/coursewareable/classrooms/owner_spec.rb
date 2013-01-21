@@ -71,8 +71,8 @@ describe Coursewareable::ClassroomsController do
 
   describe 'PUT update' do
     let(:attrs) { Fabricate.build('coursewareable/classroom') }
-    let(:members) { '' }
-    let(:collabs) { '' }
+    let(:member) { '' }
+    let(:collab) { '' }
 
     before do
       @controller.send(:auto_login, classroom.owner)
@@ -80,7 +80,7 @@ describe Coursewareable::ClassroomsController do
       put(:update, :use_route => :coursewareable, :classroom => {
         :title => attrs.title, :description => attrs.description,
         :slug => attrs.slug, :header_image => attrs.header_image
-      }, :members => members, :collaborators => collabs)
+      }, :member_email => member, :collaborator_email => collab)
     end
 
     context 'being logged in as owner' do
@@ -125,15 +125,15 @@ describe Coursewareable::ClassroomsController do
       end
 
       context 'adds a new member' do
-        let(:members) { Fabricate(:confirmed_user).id }
+        let(:member) { Fabricate(:confirmed_user).email }
 
-        it { classroom.member_ids.should include(members) }
+        it { classroom.members.map(&:email).should include(member) }
       end
 
       context 'adds a new collaborator' do
-        let(:collabs) { Fabricate(:confirmed_user).id }
+        let(:collab) { Fabricate(:confirmed_user).email }
 
-        it { classroom.collaborator_ids.should include(collabs) }
+        it { classroom.collaborators.map(&:email).should include(collab) }
       end
     end
   end

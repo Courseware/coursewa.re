@@ -80,28 +80,6 @@ module Coursewareable
       redirect_to(invite_users_path)
     end
 
-    # Handles users suggestion by a name or email
-    def suggest
-      result = { :query => params[:query], :suggestions => [] }
-
-      if params[:query].blank? or params[:query].to_s.size < 3
-        render :json => result and return
-      end
-
-      suggestions = Coursewareable::User.search_by_name_and_email(
-        params[:query], 'first_name, last_name, id, email', 5)
-
-      suggestions.each do |user|
-        result[:suggestions].push({
-          :value => user.name,
-          :user_id => user.id,
-          :pic => GravatarImageTag::gravatar_url(user.email, :size => 30)
-        }) unless user.equal?(current_user)
-      end
-
-      render :json => result
-    end
-
     private
 
     # Allow only requests containing valid registration code

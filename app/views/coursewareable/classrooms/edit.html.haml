@@ -2,9 +2,6 @@
 = head_embed javascript_include_tag('editor')
 = head_embed stylesheet_link_tag('editor')
 
-= head_embed javascript_include_tag('edit_classroom')
-= head_embed stylesheet_link_tag('autocomplete')
-
 = head_embed javascript_include_tag('jquery_ujs')
 
 #classroom
@@ -61,8 +58,7 @@
               %p
                 = _('Add a new member by typing their email address.')
 
-              = text_field_tag nil, nil, :class => 'autocomplete_users'
-              = hidden_field_tag :members, nil, :class => 'autocomplete_input'
+              = email_field_tag :member_email, nil
 
               %h5
                 = _('Existing members')
@@ -89,8 +85,8 @@
               %p
                 = _('Add a new collaborator by typing their email address.')
 
-              = text_field_tag nil, nil, :class => 'autocomplete_users'
-              = hidden_field_tag :collaborators, nil, :class => 'autocomplete_input'
+              = text_field_tag :collaborator_email, nil
+
               %h5
                 = _('Existing collaborators')
               %hr
@@ -106,6 +102,7 @@
                         = gravatar_image_tag(colab.user.email, :alt => colab.user.name, :gravatar => {:size => 30})
                       %p
                         = colab.user.name
+
                         %br
                         = link_to(_('Remove'), collaboration_path(colab), :method => :delete, :id => "remove-collaboration-#{colab.id}", :class => 'smaller')
 

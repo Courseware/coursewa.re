@@ -101,68 +101,6 @@ describe Coursewareable::UsersController do
     it { should render_template(:me) }
   end
 
-  describe 'GET suggest' do
-    let(:query) { Faker::HipsterIpsum.word }
-
-    before(:each) do
-      get(:suggest, :use_route => :coursewareable, :query => query)
-    end
-
-    context 'not logged in' do
-      it { should redirect_to(login_path) }
-    end
-
-    shared_examples 'validates empty suggestion json' do
-      it { subject['query'].should eq(query) }
-      it { subject['suggestions'].should be_empty }
-    end
-
-    context 'when logged in' do
-      before(:all) do
-        setup_controller_request_and_response
-        @controller.send(:auto_login, Fabricate(:confirmed_user))
-      end
-
-      shared_examples 'validates suggestion json' do
-        it do
-          subject['query'].should eq(query)
-          subject['suggestions'].size.should eq(1)
-          subject['suggestions'].first['value'].should eq(user.name)
-          subject['suggestions'].first['user_id'].should eq(user.id)
-          subject['suggestions'].first['pic'].should eq(
-            GravatarImageTag::gravatar_url(user.email, :size => 30))
-        end
-      end
-
-      subject { JSON.parse(response.body) }
-
-      include_examples 'validates empty suggestion json'
-
-      context 'a user to be suggested exists' do
-        let(:user) { Fabricate(:confirmed_user) }
-
-        context 'and query is too short' do
-          let(:query) { user.name[0..1] }
-
-          include_examples 'validates empty suggestion json'
-        end
-
-        context 'and query is a relevant name' do
-          let(:query) { user.name[0..3] }
-
-          include_examples 'validates suggestion json'
-        end
-
-        context 'and query is a relevant email' do
-          let(:query) { user.email }
-
-          include_examples 'validates suggestion json'
-        end
-      end
-
-    end
-  end
-
   describe 'GET invite' do
     before{ get(:invite, :use_route => :coursewareable) }
 
