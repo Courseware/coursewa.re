@@ -20,7 +20,7 @@ module Coursewareable
     #
     # @return [String], generated style tag with CSS
     def header_image
-      return if @classroom.nil?
+      return if @classroom.nil? or @classroom.new_record?
 
       image = @classroom.images.find_by_id(@classroom.header_image)
       return if image.nil?
@@ -34,7 +34,7 @@ module Coursewareable
     #
     # @return [String], generated style tag with CSS
     def default_header_image
-      return if @classroom.nil?
+      return if @classroom.nil? or @classroom.new_record?
 
       image_id = @classroom.id % 10
 

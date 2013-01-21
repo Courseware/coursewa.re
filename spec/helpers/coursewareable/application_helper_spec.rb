@@ -57,7 +57,7 @@ describe Coursewareable::ApplicationHelper do
   end
 
   describe '#default_header_image' do
-    let(:classroom) { Fabricate.build('coursewareable/classroom') }
+    let(:classroom) { Fabricate('coursewareable/classroom') }
 
     subject { helper.default_header_image }
 
