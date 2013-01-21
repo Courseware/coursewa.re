@@ -33,11 +33,11 @@ module Coursewareable
         params[:classroom].except(:color_scheme, :header_image, :color))
 
       new_member = Coursewareable::User.find_by_email(params[:member_email])
-      @classroom.member_ids += [new_member.id] unless new_member.nil?
+      @classroom.members.push(new_member) unless new_member.nil?
 
       new_collab = Coursewareable::User.find_by_email(
         params[:collaborator_email])
-      @classroom.collaborator_ids += [new_collab.id] unless new_collab.nil?
+      @classroom.collaborators.push(new_collab) unless new_collab.nil?
 
       redirect_to edit_classroom_url(:subdomain => @classroom.reload.slug)
     end
