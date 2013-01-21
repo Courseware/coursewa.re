@@ -33,6 +33,10 @@
         %h2
           = yield(:title)
 
+    - unless @classroom.nil?
+      %nav#classroom-menu
+        = render('shared/classroom_menu')
+
     .wrap
       %section#content{:role => :main}
         %div.row{ :id => "#{controller.action_name}-#{controller.controller_name}"}

@@ -1,0 +1,11 @@
+.row
+  .twelve.columns
+    %ul
+      %li{:class => (current_page?(dashboard_classroom_path) ? 'current' : '')}
+        = link_to(_('Timeline'), dashboard_classroom_path)
+      %li{:class => (current_page?(syllabus_path) ? 'current' : '')}
+        = link_to(_('Syllabus'), syllabus_path)
+
+      - if can?(:update, @classroom)
+        %li.right{:class => (current_page?(edit_classroom_path) ? 'current' : '')}
+          = link_to(_('Customize'), edit_classroom_path)

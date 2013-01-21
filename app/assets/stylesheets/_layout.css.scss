@@ -123,6 +123,41 @@ header {
   }
 }
 
+nav#classroom-menu {
+  height: 60px;
+
+  ul {
+    list-style: none;
+    margin-top: 20px;
+    li {
+      display: inline;
+      padding-right: 20px;
+
+      a {
+        font-size: 16px;
+        text-decoration: none;
+        padding: 10px 0;
+        color: $bodyFontColor;
+
+        &:hover {
+          color: $bw_1;
+        }
+      }
+
+      &:last-child {
+        padding-right: 0;
+        a {
+          color: $bw_7;
+
+          &:hover {
+            color: $bodyFontColor;
+          }
+        }
+      }
+    }
+  }
+}
+
 #content {
   h1, h2, h3, h4, h5, h6 {
     color: $bodyFontColor;
