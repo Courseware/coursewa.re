@@ -16,7 +16,8 @@ describe Coursewareable::ClassroomsController do
     end
 
     it 'for staff screen' do
-      get('/staff').should route_to('coursewareable/classrooms#staff')
+      get('http://test.lvh.me/staff').should route_to(
+        'coursewareable/classrooms#staff')
     end
 
     it 'for dashboard screen' do
