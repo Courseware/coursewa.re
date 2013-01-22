@@ -13,6 +13,47 @@ body.customized {
   }
 }
 
+nav#classroom-menu {
+  height: 50px;
+  overflow: hidden;
+
+  ul {
+    list-style: none;
+
+    li {
+      display: block;
+      float: left;
+      padding-right: 20px;
+      padding-left: 20px;
+
+      a {
+        font-size: 16px;
+        text-decoration: none;
+        color: $bodyFontColor;
+        line-height: 47px;
+
+        &:hover {
+          color: $bw_1;
+        }
+      }
+
+      &.current {
+        border-bottom: 3px solid $secondaryColor;
+      }
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:first-child.current {
+        padding-left: 20px;
+        margin-left: -20px;
+      }
+    }
+  }
+}
+
+
 #members-list, #collaborators-list {
   li {
     width: 43%;
