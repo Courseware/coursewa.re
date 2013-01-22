@@ -16,11 +16,10 @@ module Coursewareable
     # New session handler
     def create
       user = login(params[:email], params[:password], params[:remember_me])
+      subdomain = request.subdomain unless request.subdomain.blank? || false
       if user
-        flash[:notice] = _(
-          'Welcome back %{name}!' % {:name => user.name}
-        )
-        redirect_back_or_to(root_url)
+        flash[:notice] = _('Welcome back %{name}!' % {:name => user.name})
+        redirect_back_or_to(root_url(:subdomain => subdomain))
       else
         flash.now.alert = _('Email or password was invalid.')
         render :new
@@ -30,7 +29,8 @@ module Coursewareable
     # Destroys session, aka logout
     def destroy
       logout
-      redirect_to root_url, :notice => _('Logged out!')
+      subdomain = request.subdomain unless request.subdomain.blank? || false
+      redirect_to root_url(:subdomain => subdomain), :notice => _('Logged out!')
     end
   end
 end
