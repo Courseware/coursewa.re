@@ -55,7 +55,7 @@ module Coursewareable
 
     # Handles deletion
     def destroy
-      img = Coursewareable::Image.find(params[:id])
+      img = @classroom.images.find(params[:id])
 
       if img and img.destroy
         flash[:success] = _('Image was deleted.')

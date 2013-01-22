@@ -38,7 +38,7 @@ module Coursewareable
 
     # Handles deletion
     def destroy
-      upload = Coursewareable::Upload.find(params[:id])
+      upload = @classroom.uploads.find(params[:id])
 
       if upload and upload.destroy
         flash[:success] = _('File was deleted.')
