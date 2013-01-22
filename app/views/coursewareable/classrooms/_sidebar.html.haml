@@ -10,7 +10,7 @@
 
     - responses_count = current_user.responses.where(:classroom_id => @classroom.id).count
     - assignments_count = @classroom.assignments.count
-    - coverage = ((responses_count * 100) / assignments_count)
+    - coverage = ((responses_count * 100) / assignments_count) if assignments_count > 0
 
     %ul
       %li
@@ -30,7 +30,7 @@
       %hr
 
       .nice.success.progress
-        %span.meter{:style => "width: #{coverage}%"}
+        %span.meter{:style => "width: #{coverage.to_i}%"}
 
       %p.smaller.align-center
         = _('%d responses out of %d assignments') % [responses_count, assignments_count ]
