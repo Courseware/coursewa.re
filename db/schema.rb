@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123005538) do
+ActiveRecord::Schema.define(:version => 20130122120036) do
 
   create_table "coursewareable_activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(:version => 20121123005538) do
     t.string   "unlock_token"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.text     "description"
   end
 
   add_index "coursewareable_users", ["activation_token"], :name => "index_coursewareable_users_on_activation_token"
