@@ -1,0 +1,38 @@
+= title  _('%s images and uploads') % @classroom.title
+
+= head_embed javascript_include_tag('jquery_ujs')
+
+#files
+  .eight.columns
+    - if can?(:contribute, @classroom)
+      - assets = @classroom.assets.reverse
+    - else
+      - assets = @classroom.assets.where(:user_id => current_user.id).reverse
+
+    - assets.each do |file|
+      %h6
+        = file.description
+      %hr
+      .row.hide-overflow
+        .eight.columns
+          %p
+            - user_name = (current_user.id == file.user.id) ? _('you') : file.user.name
+            - if file.type.match(/image/i)
+              = _('Image was uploaded by %s on %s') % [user_name, file.attachment_updated_at.to_s(:pretty)]
+            - else
+              = _('File uploaded by %s on %s') % [user_name, file.attachment_updated_at.to_s(:pretty)]
+            %p.smaller
+              - unless file.assetable_type.match(/classroom/i)
+                = link_to(_('Go to related page'), polymorphic_url(file.assetable))
+                &bull;
+              = link_to(_('Download this file'), file.attachment.url)
+              &bull;
+              = link_to(_('Remove this file'), file_path(file), :method => :delete, :id => "remove-file-#{file.id}")
+
+        .four.columns.icon-background
+          - if file.type.match(/image/i)
+            = image_tag(file.attachment.url(:small))
+          - else
+            %i.general.foundicon-paper-clip
+
+  = render(:partial => 'sidebar')

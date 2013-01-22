@@ -1,0 +1,32 @@
+.four.columns
+  .row.sidebar
+
+    %h5
+      - if cannot?(:contribute, @classroom)
+        = _('Your uploaded files')
+      - else
+        = _('Classroom files')
+    %hr
+
+    %p
+      - if cannot?(:contribute, @classroom)
+        = _('These are your uploaded files.')
+      - else
+        = _('These are all the uploaded files by classroom members, collaborators or you.')
+    %p
+      = _('Keep in mind that deleted files are not recoverable!')
+    %p
+      = _('If a file is linked to a related page, make sure you update the page to avoid any broken links.')
+
+    - if can?(:contribute, @classroom)
+      %h5
+        = _('Stats')
+      %hr
+      - plan = current_user.plan
+      - consumed_space = (plan.used_space * 100) / plan.allowed_space
+      .nice.success.progress
+        %span.meter{:style => "width: #{consumed_space}%"}
+
+      %p.smaller.align-center
+        = _('%s of used space out of %s available') % [number_to_human_size(plan.used_space, :locale => :en), number_to_human_size(plan.allowed_space, :locale => :en) ]
+
