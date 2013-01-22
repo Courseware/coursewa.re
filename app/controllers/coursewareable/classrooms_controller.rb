@@ -94,7 +94,7 @@ module Coursewareable
 
       himg = @classroom.images.build
       himg.attachment = params[:classroom][:header_image]
-      himg.description = _('Header image, %s') % DateTime.new.to_s(:pretty)
+      himg.description = _('New header image')
       himg.assetable = @classroom
       himg.user = current_user
 
