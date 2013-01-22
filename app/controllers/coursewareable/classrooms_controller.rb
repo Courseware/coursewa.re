@@ -42,7 +42,7 @@ module Coursewareable
       redirect_to edit_classroom_url(:subdomain => @classroom.reload.slug)
     end
 
-    # Classroom creation hadler
+    # Handles classroom creation
     def create
       classroom = current_user.created_classrooms.build(params[:classroom])
       authorize!(:create, classroom)
@@ -55,6 +55,7 @@ module Coursewareable
       end
     end
 
+    # Handles announcement creation
     def announce
       authorize!(:contribute, @classroom)
 
