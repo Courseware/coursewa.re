@@ -1,17 +1,36 @@
 .four.columns
   .row.sidebar
+
     - if can?(:update, @classroom)
       = link_to(_('Customize'), edit_classroom_path, :class => 'right')
 
     %h5
-      = _('Your Classroom')
+      = _('About this classroom')
     %hr
 
-    %pre
-      TODO:
-      How many lectures
-      How many assignments
-      How many responses
-      How many members/collaborators
-      How many grades
-      How many uploads / space available
+    - responses_count = current_user.responses.where(:classroom_id => @classroom.id).count
+    - assignments_count = @classroom.assignments.count
+    - coverage = ((responses_count * 100) / assignments_count)
+
+    %ul
+      %li
+        = _('%d members') % @classroom.memberships_count
+      %li
+        = _('%d lectures') % @classroom.lectures.count
+      %li
+        = _('%d assignments') % assignments_count
+      %li
+        = _('%d responses') % responses_count
+      %li
+        = _('%d grades') % @classroom.grades.count
+
+    - unless can?(:update, @classroom) and assignments_count > 0
+      %h5
+        = _('Your progress')
+      %hr
+
+      .nice.success.progress
+        %span.meter{:style => "width: #{coverage}%"}
+
+      %p.smaller.align-center
+        = _('%d responses out of %d assignments') % [responses_count, assignments_count ]
