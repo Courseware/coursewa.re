@@ -1,0 +1,42 @@
+= title  _('Who is managing this classroom')
+
+#classroom-staff
+  .eight.columns
+
+    %h4
+      = _('Initiator')
+    %hr
+
+    .row
+      .two.columns.author.avatar.align-right
+        = gravatar_image_tag(@classroom.owner.email, :alt => @classroom.owner.name, :gravatar => {:size => 50})
+      .ten.columns
+        %h5
+          = @classroom.owner.name
+        %p.smaller
+          = _('Started the classroom on %s') % @classroom.created_at.to_s(:pretty)
+        - unless @classroom.owner.description.blank?
+          %p
+            = @classroom.owner.description.html_safe
+
+    - if @classroom.collaborations_count > 0
+      %h4
+        = _('Collaborators')
+      %hr
+
+      - @classroom.collaborations.each do |collab|
+        .row
+          .two.columns.author.avatar.align-right
+            = gravatar_image_tag(collab.user.email, :alt => collab.user.name, :gravatar => {:size => 50})
+          .ten.columns
+            %h5
+              = collab.user.name
+            %p.smaller
+              = _('Since %s') % collab.created_at.to_s(:pretty)
+            - unless collab.user.description.blank?
+              %p
+                = collab.user.description.html_safe
+
+            %hr
+
+  = render(:partial => 'sidebar')

@@ -68,6 +68,11 @@ module Coursewareable
       redirect_to(dashboard_classroom_path)
     end
 
+    # Handles staff page
+    def staff
+      authorize!(:dashboard, @classroom)
+    end
+
     protected
 
     # Loads current classroom
