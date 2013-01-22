@@ -16,6 +16,13 @@ describe 'Classrooms' do
     page.should_not have_css('#activities .classroom-create')
   end
 
+  it 'shows staff page if logged in' do
+    sign_in_with(classroom.owner.email)
+    visit staff_classroom_url(:subdomain => classroom.slug)
+    page.should have_content(classroom.owner.name)
+    page.should have_css('#classroom-staff')
+  end
+
   it 'shows the edit screen if logged in' do
     sign_in_with(classroom.owner.email)
     visit edit_classroom_url(:subdomain => classroom.slug)

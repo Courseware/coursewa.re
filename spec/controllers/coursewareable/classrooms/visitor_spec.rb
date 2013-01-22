@@ -26,6 +26,17 @@ describe Coursewareable::ClassroomsController do
     end
   end
 
+  describe 'GET staff' do
+    before do
+      @request.host = "#{classroom.slug}.#{@request.host}"
+      get(:staff, :use_route => :coursewareable)
+    end
+
+    context 'not being logged in' do
+      it { should redirect_to(login_path) }
+    end
+  end
+
   describe 'POST :create' do
     before do
       @request.host = "#{classroom.slug}.#{@request.host}"

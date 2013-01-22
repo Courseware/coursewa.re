@@ -15,6 +15,10 @@ describe Coursewareable::ClassroomsController do
       post('/start').should route_to('coursewareable/classrooms#create')
     end
 
+    it 'for staff screen' do
+      get('/staff').should route_to('coursewareable/classrooms#staff')
+    end
+
     it 'for dashboard screen' do
       get('http://test.lvh.me/').should route_to(
         'coursewareable/classrooms#dashboard')
@@ -28,11 +32,6 @@ describe Coursewareable::ClassroomsController do
     it 'for update' do
       put('http://test.lvh.me/').should route_to(
         'coursewareable/classrooms#update')
-    end
-
-    it 'for users suggestion' do
-      get('http://test.lvh.me/suggest_user').should route_to(
-        'coursewareable/users#suggest', :format => :json)
     end
 
     it 'for announcements' do

@@ -34,6 +34,18 @@ describe Coursewareable::ClassroomsController do
     end
   end
 
+  describe 'GET staff' do
+    before do
+      @controller.send(:auto_login, user)
+      @request.host = "#{classroom.slug}.#{@request.host}"
+      get(:staff, :use_route => :coursewareable)
+    end
+
+    context 'being logged in as user' do
+      it { should redirect_to(login_path) }
+    end
+  end
+
   describe 'POST :create' do
     let(:attrs) { Fabricate.build('coursewareable/classroom') }
 
