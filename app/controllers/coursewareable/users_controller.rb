@@ -51,6 +51,7 @@ module Coursewareable
 
       @user.update_attribute(:first_name, params[:user][:first_name])
       @user.update_attribute(:last_name, params[:user][:last_name])
+      @user.update_attribute(:description, params[:user][:description])
       flash[:success] = _('Profile updated.')
       redirect_to(me_users_path)
     end
