@@ -24,7 +24,7 @@
       %li
         = _('%d grades') % @classroom.grades.count
 
-    - unless can?(:update, @classroom) and assignments_count > 0
+    - if cannot?(:contribute, @classroom) and assignments_count > 0
       %h5
         = _('Your progress')
       %hr
