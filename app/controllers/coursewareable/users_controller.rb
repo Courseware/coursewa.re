@@ -65,6 +65,10 @@ module Coursewareable
     def invite
     end
 
+    # User account page
+    def my_account
+    end
+
     # Handles invitations form
     def send_invitation
       if params[:email].blank? or params[:message].blank?

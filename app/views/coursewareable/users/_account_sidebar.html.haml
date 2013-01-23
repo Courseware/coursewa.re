@@ -1,0 +1,45 @@
+- user_plan = current_user.plan
+- plan = Courseware.config.plans[user_plan.slug.to_sym]
+
+.four.columns
+  .row.sidebar
+
+    %h5
+      = _('Stats')
+    %hr
+
+    %p
+      = _('These are your current subscription plan details.')
+
+    .classroom-stats
+      - classrooms_pct = (current_user.created_classrooms_count * 100) / user_plan.allowed_classrooms
+      .nice.progress.secondary
+        %span.meter{:style => "width: #{classrooms_pct}%"}
+      %p.smaller.align-center
+        = _('You created %d classrooms of %d available.') % [current_user.created_classrooms_count, user_plan.allowed_classrooms]
+
+    - if user_plan.allowed_collaborators > 0
+      .collaboration-stats
+        - collaborations_count = current_user.created_classrooms.map(&:collaborations_count).reduce(:+)
+        - collaborations_pct = (collaborations_count * 100) / user_plan.allowed_collaborators
+        .nice.secondary.progress
+          %span.meter{:style => "width: #{collaborations_pct}%"}
+        %p.smaller.align-center
+          = _('You are using %d collaborators of %d available.') % [collaborations_count, user_plan.allowed_collaborators]
+
+    .storage-stats
+      - consumed_space = (user_plan.used_space * 100) / user_plan.allowed_space
+      .nice.progress.secondary
+        %span.meter{:style => "width: #{consumed_space}%"}
+      %p.smaller.align-center
+        = _('%s of used space out of %s available') % [number_to_human_size(user_plan.used_space, :locale => :en), number_to_human_size(user_plan.allowed_space, :locale => :en) ]
+
+
+    %h5
+      = _('Subscription plan and billing')
+    %hr
+
+    %p
+      = _('Unfortunately you can not opt for another plan at this moment.')
+    %p
+      = _('We will announce this feature in nearest future including an option to fill in the billing details.')

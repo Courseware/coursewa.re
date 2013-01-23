@@ -16,6 +16,7 @@ Coursewareable::Engine.routes.draw do
     get :activate, :on => :member
     collection do
       get :me
+      get :my_account
       get :invite
       post :send_invitation
     end

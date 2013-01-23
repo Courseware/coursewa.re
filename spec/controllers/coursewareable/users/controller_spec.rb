@@ -101,6 +101,17 @@ describe Coursewareable::UsersController do
     it { should render_template(:me) }
   end
 
+  describe 'GET my_account' do
+    let(:user){ Fabricate(:confirmed_user) }
+
+    before do
+      @controller.send(:auto_login, user)
+      get(:my_account, :use_route => :coursewareable)
+    end
+
+    it { should render_template(:my_account) }
+  end
+
   describe 'GET invite' do
     before{ get(:invite, :use_route => :coursewareable) }
 

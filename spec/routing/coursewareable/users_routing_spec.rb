@@ -27,6 +27,10 @@ describe Coursewareable::UsersController do
       get('/users/me').should route_to('coursewareable/users#me')
     end
 
+    it 'for account page' do
+      get('/users/my_account').should route_to('coursewareable/users#my_account')
+    end
+
     it 'for invitation page' do
       get('/users/invite').should route_to('coursewareable/users#invite')
     end
