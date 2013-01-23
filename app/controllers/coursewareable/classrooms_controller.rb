@@ -12,7 +12,9 @@ module Coursewareable
     # Mapped to [Classroom] subdomain
     def dashboard
       authorize!(:dashboard, @classroom)
-      @timeline = @classroom.all_activities
+      timeline = @classroom.all_activities
+      @timeline = Kaminari.paginate_array(timeline).page(params[:page])
+      render(:partial => 'timeline') if request.xhr?
     end
 
     # Classroom creation page
