@@ -17,7 +17,8 @@
 
     - unless @lectures.blank?
 
-      %h3 Course structure
+      %h3
+        = _('Course structure')
 
       %ul#lectures-tree.hierarchical-list
         = list_lectures_tree(@lectures)

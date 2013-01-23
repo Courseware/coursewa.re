@@ -1,17 +1,13 @@
 .four.columns
   .row.sidebar
     %h5
-      = _('Syllabus Sidebar')
-
+      = _('Classroom syllabus')
     %hr
 
-    %pre
-      TODO:
-      Who created it
-      When created
-      How many lectures
-      How many assignments
-      How many responses
-      How many members/collaborators
-      How many grades
-      How many uploads / space available
+    %p.smaller
+      = _('Last time updated by %s on %s') % [@syllabus.user.name, @syllabus.updated_at.to_s(:pretty)]
+
+    %p
+      = _('There are %d lectures with a total of %d assignments.') % [@lectures.count, @classroom.assignments.count]
+    %p
+      = link_to(_('Jump to course structure'), '#lectures-tree')
