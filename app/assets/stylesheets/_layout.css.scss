@@ -211,6 +211,15 @@ header {
       }
     }
   }
+
+  .paginator {
+    li {
+      a, a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
 }
 
 footer {
