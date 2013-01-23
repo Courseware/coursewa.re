@@ -6,20 +6,25 @@
 -#    remote:        data-remote
 -#    paginator:     the paginator that renders the pagination tags inside
 = paginator.render do
-  %hr
-  .row
+  - unless defined?(run_as_xhr)
+    %hr
+  .row#pagination-container
     .twelve.columns.pagination-centered
       %nav.paginator
         %ul.pagination
-          -# = first_page_tag unless current_page.first?
-          %li.arrow
-            = prev_page_tag unless current_page.first?
-          - each_page do |page|
-            %li
-              - if page.left_outer? || page.right_outer? || page.inside_window?
-                = page_tag page
-              - elsif !page.was_truncated?
-                = gap_tag
-          %li.arrow
-            = next_page_tag unless current_page.last?
-          -# = last_page_tag unless current_page.last?
+          - if defined?(run_as_xhr)
+            %li.more
+              = next_page_tag unless current_page.last?
+          - else
+            -# = first_page_tag unless current_page.first?
+            %li.arrow
+              = prev_page_tag unless current_page.first?
+            - each_page do |page|
+              %li
+                - if page.left_outer? || page.right_outer? || page.inside_window?
+                  = page_tag page
+                - elsif !page.was_truncated?
+                  = gap_tag
+            %li.arrow
+              = next_page_tag unless current_page.last?
+            -# = last_page_tag unless current_page.last?

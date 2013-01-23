@@ -6,4 +6,5 @@
 -#    per_page:      number of items to fetch per page
 -#    remote:        data-remote
 %span.next
-  = link_to_unless current_page.last?, raw(_('Next')), url, :rel => 'next', :remote => remote
+  - label = defined?(next_title) ? next_title : _('Next')
+  = link_to_unless current_page.last?, raw(label), url, :rel => 'next', :remote => remote, :class => 'run-as-xhr', 'data-parent-container-id' => 'pagination-container'
