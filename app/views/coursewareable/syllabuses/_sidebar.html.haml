@@ -4,7 +4,7 @@
       = _('Classroom syllabus')
     %hr
 
-    - unless @classroom.new_record?
+    - unless @syllabus.new_record?
       %p.smaller
         = _('Last time updated by %s on %s') % [@syllabus.user.name, @syllabus.updated_at.to_s(:pretty)]
 
