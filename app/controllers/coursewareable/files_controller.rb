@@ -13,10 +13,12 @@ module Coursewareable
       authorize!(:dashboard, @classroom)
 
       if can?(:contribute, @classroom)
-        @assets = @classroom.assets.reverse
+        assets = @classroom.assets.reverse
       else
-        @assets = @classroom.assets.where(:user_id => current_user.id).reverse
+        assets = @classroom.assets.where(:user_id => current_user.id).reverse
       end
+
+      @assets = Kaminari.paginate_array(assets).page(params[:page])
     end
 
     # Handles deletion of a file
