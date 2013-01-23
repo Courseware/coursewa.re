@@ -11,6 +11,12 @@ module Coursewareable
     # All files listing page
     def index
       authorize!(:dashboard, @classroom)
+
+      if can?(:contribute, @classroom)
+        @assets = @classroom.assets.reverse
+      else
+        @assets = @classroom.assets.where(:user_id => current_user.id).reverse
+      end
     end
 
     # Handles deletion of a file

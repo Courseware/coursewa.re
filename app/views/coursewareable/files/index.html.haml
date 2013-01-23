@@ -4,16 +4,11 @@
 
 #files
   .eight.columns
-    - if can?(:contribute, @classroom)
-      - assets = @classroom.assets.reverse
-    - else
-      - assets = @classroom.assets.where(:user_id => current_user.id).reverse
-
-    - if assets.empty?
+    - if @assets.empty?
       %p
         = _('No files were uploaded yet.')
     - else
-      - assets.each do |file|
+      - @assets.each do |file|
         %h6
           = file.description
         %hr

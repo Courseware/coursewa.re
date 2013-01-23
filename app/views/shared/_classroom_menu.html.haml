@@ -1,3 +1,8 @@
+- if can?(:contribute, @classroom)
+  - files_count = @classroom.assets.count
+- else
+  - files_count = @classroom.assets.where(:user_id => current_user.id).count
+
 .row
   .twelve.columns
     %ul
@@ -5,8 +10,10 @@
         = link_to(_('Timeline'), dashboard_classroom_path)
       %li{:class => (current_page?(syllabus_path) ? 'current' : '')}
         = link_to(_('Syllabus'), syllabus_path)
-      - if @classroom.assets.count > 0
+
+      - if files_count > 0
         %li{:class => (current_page?(files_path) ? 'current' : '')}
-          = link_to(_('%d Files') % @classroom.assets.count, files_path)
+          = link_to(_('%d Files') % files_count, files_path)
+
       %li{:class => (current_page?(staff_classroom_path) ? 'current' : '')}
         = link_to(_('Staff'), staff_classroom_path)
