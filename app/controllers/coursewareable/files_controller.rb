@@ -10,6 +10,7 @@ module Coursewareable
 
     # All files listing page
     def index
+      authorize!(:dashboard, @classroom)
     end
 
     # Handles deletion of a file
