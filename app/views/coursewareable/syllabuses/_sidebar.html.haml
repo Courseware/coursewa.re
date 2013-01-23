@@ -8,9 +8,9 @@
       %p.smaller
         = _('Last time updated by %s on %s') % [@syllabus.user.name, @syllabus.updated_at.to_s(:pretty)]
 
-      - unless @lectures.empty? or @classroom.assignments.empty?
+      - unless @classroom.lectures.empty?
         %p
-          = _('There are %d lectures with a total of %d assignments.') % [@lectures.count, @classroom.assignments.count]
+          = _('There are %d lectures with a total of %d assignments.') % [@classroom.lectures.count, @classroom.assignments.count]
       %p
         = link_to(_('Jump to course structure'), '#lectures-tree')
     - else
