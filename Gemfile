@@ -14,6 +14,7 @@ gem 'gravatar_image_tag'
 gem 'public_activity'
 gem 'bugsnag'
 gem 'daemons'
+gem 'kaminari'
 
 # Speedup a bit things
 gem 'multi_json'
