@@ -20,7 +20,9 @@ module Coursewareable
     # User Dashboard handler
     def dashboard
       redirect_to root_path unless logged_in?
-      @timeline = current_user.activities_as_owner.reverse
+      timeline = current_user.activities_as_owner.reverse
+      @timeline = Kaminari.paginate_array(timeline).page(params[:page])
+      render(:partial => 'timeline') if request.xhr?
     end
 
     # About page

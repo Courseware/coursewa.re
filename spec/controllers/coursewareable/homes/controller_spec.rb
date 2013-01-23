@@ -19,16 +19,32 @@ describe Coursewareable::HomesController do
   end
 
   describe 'GET dashboard' do
-    before { get(:dashboard, :use_route => :coursewareable) }
-    it { should redirect_to(login_path) }
+    context 'http request' do
+      before { get(:dashboard, :use_route => :coursewareable) }
+      it { should redirect_to(login_path) }
 
-    context 'when logged in' do
-      before(:all) do
-        setup_controller_request_and_response
-        @controller.send(:auto_login, user)
+      context 'when logged in' do
+        before(:all) do
+          setup_controller_request_and_response
+          @controller.send(:auto_login, user)
+        end
+
+        it { should render_template(:dashboard) }
       end
+    end
 
-      it { should render_template(:dashboard) }
+    context 'xhr request' do
+      before { xhr(:get, :dashboard, :use_route => :coursewareable) }
+      it { should redirect_to(login_path) }
+
+      context 'when logged in' do
+        before(:all) do
+          setup_controller_request_and_response
+          @controller.send(:auto_login, user)
+        end
+
+        it { should render_template(:timeline) }
+      end
     end
   end
 
