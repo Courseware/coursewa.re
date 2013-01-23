@@ -67,3 +67,14 @@ nav#classroom-menu {
     }
   }
 }
+
+.sidebar .classrooms-list {
+  .icon-background i {
+    position: relative;
+    right: 0;
+    top: 15px;
+    z-index: 1;
+    font-size: 30px;
+    color: $bw_9;
+  }
+}
