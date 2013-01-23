@@ -28,7 +28,7 @@
                 &bull;
                 = link_to(_('Remove this file'), file_path(file), :method => :delete, :id => "remove-file-#{file.id}")
 
-          .four.columns.icon-background
+          .four.columns.icon-background.align-right
             - if file.type.match(/image/i)
               = image_tag(file.attachment.url(:small))
             - else
