@@ -20,7 +20,7 @@
 
     - if user_plan.allowed_collaborators > 0
       .collaboration-stats
-        - collaborations_count = current_user.created_classrooms.map(&:collaborations_count).reduce(:+)
+        - collaborations_count = current_user.created_classrooms_collaborations_count
         - collaborations_pct = (collaborations_count * 100) / user_plan.allowed_collaborators
         .nice.secondary.progress
           %span.meter{:style => "width: #{collaborations_pct}%"}
