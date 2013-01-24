@@ -37,6 +37,7 @@ module Coursewareable
       new_member = Coursewareable::User.find_by_email(params[:member_email])
       @classroom.members.push(new_member) unless new_member.nil?
 
+      # TODO: Check abilities first
       new_collab = Coursewareable::User.find_by_email(
         params[:collaborator_email])
       @classroom.collaborators.push(new_collab) unless new_collab.nil?
