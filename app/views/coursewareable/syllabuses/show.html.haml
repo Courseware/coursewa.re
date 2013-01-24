@@ -13,11 +13,21 @@
       = @syllabus.content.html_safe
 
     - else
-      = link_to(_('Update Classroom Syllabus'), edit_syllabus_path, :class => 'syllabus-create')
+      %h4
+        = _('Not updated yet')
+      %hr
+        - if can?(:create, @syllabus)
+          = link_to(_('Update the syllabus now'), edit_syllabus_path, :class => 'button primary syllabus-create')
+        - else
+          %p
+            = _('None of the classroom collaborators managed to update the syllabus.')
+          %p
+            = _('Please check back again in a while.')
 
     - unless @lectures.blank?
 
       %h3
+        %i.left.icon-structure
         = _('Course structure')
 
       %ul#lectures-tree.hierarchical-list
