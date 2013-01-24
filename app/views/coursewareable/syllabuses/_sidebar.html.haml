@@ -1,6 +1,8 @@
 .four.columns
   .row.sidebar
     %h5
+      - if can?(:update, @syllabus)
+        %a.icon-edit.right{:href => edit_syllabus_path}
       = _('Classroom syllabus')
     %hr
 
