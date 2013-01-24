@@ -1,0 +1,17 @@
+%span.timestamp
+  = activity.created_at.to_s(:pretty)
+%p{ :class => activity.key.parameterize }
+
+  - classroom_link = link_to(_('classroom'), root_url(:subdomain => activity.recipient.slug))
+
+  - if activity.trackable and activity.trackable.user == p[:current_user]
+    - name = _('you')
+  - else
+    - name = activity.parameters[:user_name]
+
+  - if activity.owner == p[:current_user]
+    = _('You added %s to %s members.' % [name, classroom_link])
+  - else
+    = _('%s added %s to %s members.' % [activity.owner.name, classroom_link, name])
+%hr
+
