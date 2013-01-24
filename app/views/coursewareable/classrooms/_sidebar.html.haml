@@ -1,11 +1,12 @@
 .four.columns
   .row.sidebar
 
-    - if can?(:update, @classroom)
-      = link_to(_('Customize'), edit_classroom_path, :class => 'right')
-
     %h5
       = _('About this classroom')
+
+      - if can?(:update, @classroom)
+        %a.icon-settings.right{:href => edit_classroom_path}
+
     %hr
 
     - responses_count = current_user.responses.where(:classroom_id => @classroom.id).count

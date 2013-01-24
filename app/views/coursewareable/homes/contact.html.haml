@@ -44,12 +44,9 @@
           = hidden_field_tag(:val2, val2)
           = text_field_tag(:sum, nil, :required => true, :placeholder => 'Fill in if you are a human')
 
-      .actions
-        .row
-          .nine.offset-by-three.columns.end
-            .row
-              .four.columns
-                = submit_tag(_('Send it'), :class => 'button primary', :id => :submit_contact)
+      .row
+        .twelve.columns.align-right
+          = submit_tag(_('Send it'), :class => 'button primary', :id => :submit_contact)
 
 
   .four.columns.sidebar
@@ -60,29 +57,28 @@
 
     .row
       .one.column
-        %i.general.foundicon-mail
+        %i.icon-mail
       .eleven.columns.end
         %a{:href => 'mailto:hello@coursewa.re'}
           hello at coursewa.re
 
     .row
       .one.column
-        %i.social.foundicon-twitter
+        %i.icon-twitter
       .eleven.columns.end
         %a{:href => 'http://twitter.com/coursewa_re'}
           @coursewa_re
 
     .row
       .one.column
-        %i.social.foundicon-github
+        %i.icon-github
       .eleven.columns.end
         %a{:href => 'http://github.com/courseware'}
           github.com/courseware
 
     .row
       .one.column
-        %span{:style => 'font-size: 18px'}
-          &#9996;
+        %i.icon-angellist
       .eleven.columns.end
         %a{:href => 'http://angel.co/courseware'}
           angel.co/courseware

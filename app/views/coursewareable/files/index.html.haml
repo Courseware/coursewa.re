@@ -32,7 +32,7 @@
             - if file.type.match(/image/i)
               = image_tag(file.attachment.url(:small))
             - else
-              %i.general.foundicon-paper-clip
+              %span.icon-attach
 
     = paginate(@assets)
 
