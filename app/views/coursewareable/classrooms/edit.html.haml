@@ -82,29 +82,36 @@
               %p
                 = _('Collaborators act as teachers in your classroom.')
                 = _('They can build and edit content pages just as you.')
-              %p
-                = _('Add a new collaborator by typing their email address.')
 
-              = text_field_tag :collaborator_email, nil
+              - if can?(:create, @classroom.collaborations.build)
+                %p
+                  = _('Add a new collaborator by typing their email address.')
+                = text_field_tag :collaborator_email, nil
+              - else
+                %p
+                  = _('Your subscription plan does not allow adding new collaborators.')
+                %p
+                  = link_to(_('Check your plan usages or upgrade.'), my_account_users_url(:subdomain => false))
 
               %h5
                 = _('Existing collaborators')
               %hr
 
-              - if @classroom.collaborators.empty?
+              - unless @classroom.collaborations_count > 0
                 %p
                   = _('No collaborators were added.')
               - else
                 %ul#collaborators-list.inline-list
                   - @classroom.collaborations.each do |colab|
-                    %li
-                      .avatar.left
-                        = gravatar_image_tag(colab.user.email, :alt => colab.user.name, :gravatar => {:size => 30})
-                      %p
-                        = colab.user.name
+                    - unless colab.new_record?
+                      %li
+                        .avatar.left
+                          = gravatar_image_tag(colab.user.email, :alt => colab.user.name, :gravatar => {:size => 30})
+                        %p
+                          = colab.user.name
 
-                        %br
-                        = link_to(_('Remove'), collaboration_path(colab), :method => :delete, :id => "remove-collaboration-#{colab.id}", :class => 'smaller')
+                          %br
+                          = link_to(_('Remove'), collaboration_path(colab), :method => :delete, :id => "remove-collaboration-#{colab.id}", :class => 'smaller')
 
       .row
         .ten.offset-by-two.columns
