@@ -25,12 +25,13 @@ nav#classroom-menu {
       float: left;
       padding-right: 20px;
       padding-left: 20px;
+      margin-right: 10px;
 
       a {
-        font-size: 16px;
+        font-size: 14px;
         text-decoration: none;
         color: $bodyFontColor;
-        line-height: 47px;
+        line-height: 50px;
 
         &:hover {
           color: $bw_1;
@@ -38,14 +39,21 @@ nav#classroom-menu {
       }
 
       &.current {
+        margin-right: 10px;
+        height: 50px;
+        border-bottom: 3px solid $mainColor;
+      }
+
+      &:hover {
+        height: 50px;
         border-bottom: 3px solid $secondaryColor;
+
+        a {
+          color: $secondaryColor !important;
+        }
       }
 
-      &:first-child {
-        padding-left: 0;
-      }
-
-      &:first-child.current {
+      &:first-child, &:first-child.current {
         padding-left: 20px;
         margin-left: -20px;
       }
