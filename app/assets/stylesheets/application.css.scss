@@ -1,16 +1,16 @@
+@charset "UTF-8";
+
 /**
  * Coursewa.re
  * Summer 2012, 2013
  */
 
-// Load Foundation
-
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700&subset=latin,latin-ext");
-@import 'foundation-icons';
+@import 'fonts';
 
 @import 'compass/css3';
 @import 'modular-scale';
 
+// Load Foundation
 @import 'foundation/functions/all';
 
 @import 'foundation/settings';

@@ -99,9 +99,6 @@ GEM
     fast_gettext (0.7.0)
     ffaker (1.15.0)
     ffi (1.3.1)
-    foundation-icons-sass-rails (2.0.0)
-      railties (>= 3.1.1)
-      sass-rails (>= 3.1.1)
     friendly_id (4.0.9)
     fssm (0.2.9)
     gettext (2.3.7)
@@ -344,7 +341,6 @@ DEPENDENCIES
   email_spec
   fabrication
   ffaker
-  foundation-icons-sass-rails
   gettext
   gettext_i18n_rails
   gravatar_image_tag

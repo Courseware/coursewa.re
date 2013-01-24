@@ -1,0 +1,14 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700&subset=latin,latin-ext");
+
+@font-face {
+  font-family: 'courseware';
+  src: font-url("courseware.eot");
+  src: font-url("courseware.eot?#iefix") format('embedded-opentype'),
+       font-url("courseware.woff") format('woff'),
+       font-url("courseware.ttf") format('truetype'),
+       font-url("courseware.svg#courseware") format('svg');
+  font-weight: normal;
+  font-style: normal;
+};
+
+@import 'courseware-codes';

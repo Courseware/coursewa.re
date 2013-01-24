@@ -59,7 +59,7 @@
 }
 
 .heart {
-  font-size: 12px;
+  font-size: 14px;
   color: $alertColor;
 }
 
@@ -107,4 +107,36 @@ dl dd {
 
 .padded-ten {
   padding: 10px;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: 'courseware';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  opacity: 0.8;
+/* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+/* Animation center compensation - magrins should be symmetric */
+/* remove if not needed */
+  margin-left: 0.2em;
+/* you can be more comfortable with increased icons size */
+/* font-size: 120%; */
+/* Uncomment for 3D effect */
+/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+a[class^="icon-"],
+a[class*=" icon-"] {
+  color: $bodyFontColor;
+  text-decoration: none !important;
+  &:hover {
+    color: $secondaryColor;
+  }
 }
