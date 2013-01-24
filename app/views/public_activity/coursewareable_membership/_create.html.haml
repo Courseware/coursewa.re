@@ -7,11 +7,11 @@
   - if activity.trackable and activity.trackable.user == p[:current_user]
     - name = _('you')
   - else
-    - name = activity.parameters[:user_name]
+    - name = activity.trackable.user.name
 
   - if activity.owner == p[:current_user]
     = _('You added %s to %s members.' % [name, classroom_link])
   - else
-    = _('%s added %s to %s members.' % [activity.owner.name, classroom_link, name])
+    = _('%s added %s to %s members.' % [activity.owner.name, name, classroom_link])
 %hr
 
