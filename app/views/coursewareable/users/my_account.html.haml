@@ -16,7 +16,7 @@
       = _('This includes the following:')
 
     .row
-      .formatted
+      .twelve.columns.formatted
         %ul
           %li
             - unless user_plan.expires_in.nil?
@@ -30,12 +30,10 @@
           %li
             = _('%s of allowed space for uploads') % number_to_human_size(user_plan.allowed_space, :locale => :en)
 
-      %hr
-      .seven.columns
-        %h5.marginless-top
+    .row
+      .twelve.columns.align-right
+        %hr.marginless-bottom
+        %h5.marginless-top.highlight.padded-ten.marginless-top
           = _('Monthly cost: %s') % number_to_currency(plan[:cost])
-      .five.columns.end.align-right
-        %span.button.disabled
-          = _('Upgrade')
 
 = render(:partial => 'account_sidebar')
