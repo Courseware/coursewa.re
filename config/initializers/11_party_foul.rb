@@ -4,11 +4,11 @@ PartyFoul.configure do |config|
   config.ignored_exceptions = %w(
     ActiveRecord::RecordNotFound
     ActionController::RoutingError
-    ActionController::InvalidAuthenticityToken
-    CGI::Session::CookieStore::TamperedWithCookie
-    ActionController::UnknownAction
-    AbstractController::ActionNotFound
   )
+  # More below
+  # ActionController::InvalidAuthenticityToken
+  # ActionController::UnknownAction
+  # AbstractController::ActionNotFound
 
   # The OAuth token for the account that will be opening the issues on Github
   config.oauth_token        = '4228908ebeccca80d1bac0363d3d774492c290c3'
