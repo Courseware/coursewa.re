@@ -15,7 +15,7 @@
       - classrooms_pct = (current_user.created_classrooms_count * 100) / user_plan.allowed_classrooms
       .nice.progress.secondary
         %span.meter{:style => "width: #{classrooms_pct}%"}
-      %p.smaller.align-center
+      %p.smaller
         = _('You created %d classrooms of %d available.') % [current_user.created_classrooms_count, user_plan.allowed_classrooms]
 
     - if user_plan.allowed_collaborators > 0
@@ -24,14 +24,14 @@
         - collaborations_pct = (collaborations_count * 100) / user_plan.allowed_collaborators
         .nice.secondary.progress
           %span.meter{:style => "width: #{collaborations_pct}%"}
-        %p.smaller.align-center
+        %p.smaller
           = _('You are using %d collaborators of %d available.') % [collaborations_count, user_plan.allowed_collaborators]
 
     .storage-stats
       - consumed_space = (user_plan.used_space * 100) / user_plan.allowed_space
       .nice.progress.secondary
         %span.meter{:style => "width: #{consumed_space}%"}
-      %p.smaller.align-center
+      %p.smaller
         = _('%s of used space out of %s available') % [number_to_human_size(user_plan.used_space, :locale => :en), number_to_human_size(user_plan.allowed_space, :locale => :en) ]
 
 

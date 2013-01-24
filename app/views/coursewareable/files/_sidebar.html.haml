@@ -24,9 +24,9 @@
       %hr
       - plan = current_user.plan
       - consumed_space = (plan.used_space * 100) / plan.allowed_space
-      .nice.success.progress
+      .nice.progress.secondary
         %span.meter{:style => "width: #{consumed_space}%"}
 
-      %p.smaller.align-center
+      %p.smaller
         = _('%s of used space out of %s available') % [number_to_human_size(plan.used_space, :locale => :en), number_to_human_size(plan.allowed_space, :locale => :en) ]
 

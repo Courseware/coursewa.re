@@ -196,8 +196,13 @@ header {
     margin-left: 10px;
     margin-right: -10px;
 
+    h5:first-child {
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
     h5 {
-      margin-top: 0;
+      margin-top: 25px;
       margin-bottom: 0;
     }
 
@@ -210,6 +215,19 @@ header {
         content: "\2013 \00a0";
       }
     }
+
+    .progress {
+      border: 1px solid $mainColor;
+      padding: 0;
+      margin-top: 15px;
+      margin-bottom: 0;
+      height: 15px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+
   }
 
   .paginator {
