@@ -70,13 +70,14 @@
                     .avatar.left
                       = gravatar_image_tag(mem.user.email, :alt => mem.user.name, :gravatar => {:size => 30})
                     %p
+                      %a.icon-remove.right{:href => membership_path(mem), 'data-method' => :delete, :id => "remove-membership-#{mem.id}"}
                       = mem.user.name
                       %br
-                      - if mem.user.id == current_user.id
-                        %span.smaller
+                      %span.smaller
+                        - if mem.user.id == current_user.id
                           = _('You own this classroom.')
-                      - else
-                        = link_to(_('Remove'), membership_path(mem), :method => :delete, :id => "remove-membership-#{mem.id}", :class => 'smaller')
+                        - else
+                          = mem.user.email
 
             %li#collaboratorsTab
               %p
@@ -108,10 +109,12 @@
                         .avatar.left
                           = gravatar_image_tag(colab.user.email, :alt => colab.user.name, :gravatar => {:size => 30})
                         %p
+                          %a.icon-remove.right{:href => collaboration_path(colab), 'data-method' => :delete, :id => "remove-collaboration-#{colab.id}"}
                           = colab.user.name
-
                           %br
-                          = link_to(_('Remove'), collaboration_path(colab), :method => :delete, :id => "remove-collaboration-#{colab.id}", :class => 'smaller')
+                          %span.smaller
+                            = colab.user.email
+
 
       .row
         .ten.offset-by-two.columns
