@@ -50,9 +50,6 @@ GEM
     bcrypt-ruby (3.0.1)
     bourne (1.1.2)
       mocha (= 0.10.5)
-    bugsnag (1.2.12)
-      httparty (>= 0.6, < 1.0)
-      multi_json (~> 1.0)
     builder (3.0.4)
     cancan (1.6.8)
     cane (2.5.0)
@@ -106,6 +103,12 @@ GEM
       locale
     gettext_i18n_rails (0.9.0)
       fast_gettext (>= 0.4.8)
+    github_api (0.8.8)
+      faraday (~> 0.8.1)
+      hashie (~> 1.2.0)
+      multi_json (~> 1.4)
+      nokogiri (~> 1.5.2)
+      oauth2
     gravatar_image_tag (1.1.3)
     guard (1.6.1)
       listen (>= 0.6.0)
@@ -121,6 +124,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (~> 3.1)
       railties (>= 3.1, < 4.1)
+    hashie (1.2.0)
     highline (1.6.15)
     hike (1.2.1)
     httparty (0.10.0)
@@ -183,6 +187,8 @@ GEM
       cocaine (~> 0.4.0)
       mime-types
     parallel (0.6.1)
+    party_foul (0.1.0)
+      github_api (~> 0.8.8)
     pg (0.14.1)
     polyglot (0.3.3)
     pry (0.9.11.4)
@@ -329,7 +335,6 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
-  bugsnag
   cancan
   cane
   capybara
@@ -352,6 +357,7 @@ DEPENDENCIES
   mina
   multi_json
   oj
+  party_foul
   pg
   pry
   public_activity

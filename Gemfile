@@ -12,7 +12,6 @@ gem 'gettext_i18n_rails'
 gem 'roadie'
 gem 'gravatar_image_tag'
 gem 'public_activity'
-gem 'bugsnag'
 gem 'daemons'
 gem 'kaminari'
 
@@ -24,6 +23,7 @@ group :production do
   gem 'pg'
   gem 'puma'
   gem 'aws-sdk'
+  gem 'party_foul'
 end
 
 group :development do

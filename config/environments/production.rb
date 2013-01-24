@@ -86,4 +86,7 @@ Courseware::Application.configure do
       :secret_access_key => aws_config['production']['secret_access_key']
     }
   }
+
+  # Enable Party Foul exceptions notifier
+  config.middleware.insert_before(-1, 'PartyFoul::Middleware')
 end
