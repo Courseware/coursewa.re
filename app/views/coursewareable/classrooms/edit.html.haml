@@ -2,8 +2,6 @@
 = head_embed javascript_include_tag('editor')
 = head_embed stylesheet_link_tag('editor')
 
-= head_embed javascript_include_tag('jquery_ujs')
-
 #classroom
   .eight.columns
     = form_for(@classroom, :url => classroom_path) do |f|
@@ -36,86 +34,10 @@
         .ten.columns
           = f.file_field :header_image
           %em.smaller
-            = _('At least %{width}px by %{height}px is required.') % Courseware.config.header_image_size
-
-      %br
-      .row
-        .two.columns
-          = label_tag nil, _('Users'), :class => 'inline right'
-        .ten.columns
-          %dl.tabs
-            %dd.active
-              %a{:href => "#members"}
-                = _('Members')
-            %dd
-              %a{:href => "#collaborators"}
-                = _('Collaborators')
-          %ul.tabs-content
-            %li#membersTab.active
-              %p
-                = _('Members act as students in your classroom.')
-                = _('They respond to assessments and can receive grades.')
-              %p
-                = _('Add a new member by typing their email address.')
-
-              = email_field_tag :member_email, nil
-
-              %h5
-                = _('Existing members')
-              %hr
-
-              %ul#members-list.inline-list
-                - @classroom.memberships.each do |mem|
-                  %li
-                    .avatar.left
-                      = gravatar_image_tag(mem.user.email, :alt => mem.user.name, :gravatar => {:size => 30})
-                    %p
-                      %a.icon-remove.right{:href => membership_path(mem), 'data-method' => :delete, :id => "remove-membership-#{mem.id}"}
-                      = mem.user.name
-                      %br
-                      %span.smaller
-                        - if mem.user.id == current_user.id
-                          = _('You own this classroom.')
-                        - else
-                          = mem.user.email
-
-            %li#collaboratorsTab
-              %p
-                = _('Collaborators act as teachers in your classroom.')
-                = _('They can build and edit content pages just as you.')
-
-              - if can?(:create, @classroom.collaborations.build)
-                %p
-                  = _('Add a new collaborator by typing their email address.')
-                = text_field_tag :collaborator_email, nil
-              - else
-                %p
-                  = _('Your subscription plan does not allow adding new collaborators.')
-                %p
-                  = link_to(_('Check your plan usages or upgrade.'), my_account_users_url(:subdomain => false))
-
-              %h5
-                = _('Existing collaborators')
-              %hr
-
-              - unless @classroom.collaborations_count > 0
-                %p
-                  = _('No collaborators were added.')
-              - else
-                %ul#collaborators-list.inline-list
-                  - @classroom.collaborations.each do |colab|
-                    - unless colab.new_record?
-                      %li
-                        .avatar.left
-                          = gravatar_image_tag(colab.user.email, :alt => colab.user.name, :gravatar => {:size => 30})
-                        %p
-                          %a.icon-remove.right{:href => collaboration_path(colab), 'data-method' => :delete, :id => "remove-collaboration-#{colab.id}"}
-                          = colab.user.name
-                          %br
-                          %span.smaller
-                            = colab.user.email
-
+            = _('Should be at least %{width}px width and %{height}px height.') % Courseware.config.header_image_size
 
       .row
         .ten.offset-by-two.columns
           = f.submit _('Update'), :id => 'edit_classroom', :class => 'button primary'
+
+  = render(:partial => 'edit_sidebar')

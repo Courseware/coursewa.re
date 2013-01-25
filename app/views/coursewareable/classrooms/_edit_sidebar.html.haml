@@ -1,0 +1,16 @@
+.four.columns
+  .row.sidebar
+
+    %h5
+      = _('Classroom customization')
+
+    %hr
+
+    %p
+      = _('Since you are the classroom owner you can customize some of the details.')
+
+    %p
+      = _('All the uploaded header images can later be found under the <em>files</em> tab.')
+
+    %p
+      != _('You can also manage classroom %s and %s.') % [link_to(_('collaborators'), collaborations_path), link_to(_('members'), memberships_path)]
