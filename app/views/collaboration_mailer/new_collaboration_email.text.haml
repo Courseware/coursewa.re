@@ -1,0 +1,11 @@
+= _('Hello %s,') % @user.name
+===============================================================================
+
+= _('%s added you as a collaborator to %s classroom') % [@classroom.owner.name, @classroom.title]
+
+= _('You can access the classroom at: %{url}') % {:url => @url}
+
+= _('Thanks for teaching with Coursewa.re')
+
+= _('This email was sent to %{email} email owner!') % {:email => @user.email}
+= _('If you think this is an error, please ignore this message.')

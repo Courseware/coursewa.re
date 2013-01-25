@@ -46,6 +46,8 @@ module Coursewareable
         new_collab = Coursewareable::User.find_by_email(
           params[:collaborator_email])
         @classroom.collaborators.push(new_collab) unless new_collab.nil?
+        ::CollaborationMailer.delay.new_collaboration_email(
+          @classroom.collaborations.reload.last)
       end
 
       redirect_to edit_classroom_url(:subdomain => @classroom.reload.slug)
