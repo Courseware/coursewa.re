@@ -10,6 +10,9 @@ PartyFoul.configure do |config|
   # ActionController::UnknownAction
   # AbstractController::ActionNotFound
 
+  # The names of the HTTP headers to not report
+  # config.filtered_http_headers = ['Cookie']
+
   # The OAuth token for the account that will be opening the issues on Github
   config.oauth_token        = '4228908ebeccca80d1bac0363d3d774492c290c3'
 

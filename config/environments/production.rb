@@ -88,5 +88,5 @@ Courseware::Application.configure do
   }
 
   # Enable Party Foul exceptions notifier
-  config.middleware.insert_before(-1, 'PartyFoul::Middleware')
+  config.middleware.use('PartyFoul::Middleware')
 end
