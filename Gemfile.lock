@@ -1,6 +1,6 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: ffef95c536bff5198d6c13511fbf81b426a03f85
+  revision: 0b6fb8ef1fd6b8938beb7644e3967625fd2aadb5
   specs:
     coursewareable (0.0.1)
       cancan
@@ -285,7 +285,7 @@ GEM
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
     slop (3.4.3)
-    sorcery (0.8.0)
+    sorcery (0.8.1)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
       oauth2 (~> 0.8.0)

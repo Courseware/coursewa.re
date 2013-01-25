@@ -35,13 +35,6 @@ module Coursewareable
         params[:classroom].except(:color_scheme, :header_image, :color))
 
       # TODO: Move this to its own controller
-      new_member = Coursewareable::User.find_by_email(params[:member_email])
-      unless new_member.nil?
-        @classroom.members.push(new_member)
-        ::MembershipMailer.delay.new_member_email(@classroom.memberships.last)
-      end
-
-      # TODO: Move this to its own controller
       if can?(:create, @classroom.collaborations.build)
         new_collab = Coursewareable::User.find_by_email(
           params[:collaborator_email])

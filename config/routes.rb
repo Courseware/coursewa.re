@@ -40,8 +40,8 @@ Coursewareable::Engine.routes.draw do
         get :dashboard, :path => '/'
         post :announce
         get :staff
-        resources(:memberships, :only => [:destroy])
         resources(:collaborations, :only => [:destroy])
+        resources(:memberships, :only => [:index, :create, :destroy])
         resource(:syllabus, :only => [:show, :edit, :update, :create])
         resources(:images, :only => [:index, :create, :destroy])
         resources(:uploads, :only => [:index, :create, :destroy])
