@@ -36,7 +36,10 @@ module Coursewareable
 
       # TODO: Move this to its own controller
       new_member = Coursewareable::User.find_by_email(params[:member_email])
-      @classroom.members.push(new_member) unless new_member.nil?
+      unless new_member.nil?
+        @classroom.members.push(new_member)
+        ::MembershipMailer.delay.new_member_email(@classroom.memberships.last)
+      end
 
       # TODO: Move this to its own controller
       if can?(:create, @classroom.collaborations.build)
