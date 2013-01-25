@@ -34,13 +34,16 @@ module Coursewareable
       @classroom.update_attributes(
         params[:classroom].except(:color_scheme, :header_image, :color))
 
+      # TODO: Move this to its own controller
       new_member = Coursewareable::User.find_by_email(params[:member_email])
       @classroom.members.push(new_member) unless new_member.nil?
 
-      # TODO: Check abilities first
-      new_collab = Coursewareable::User.find_by_email(
-        params[:collaborator_email])
-      @classroom.collaborators.push(new_collab) unless new_collab.nil?
+      # TODO: Move this to its own controller
+      if can?(:create, @classroom.collaborations.build)
+        new_collab = Coursewareable::User.find_by_email(
+          params[:collaborator_email])
+        @classroom.collaborators.push(new_collab) unless new_collab.nil?
+      end
 
       redirect_to edit_classroom_url(:subdomain => @classroom.reload.slug)
     end

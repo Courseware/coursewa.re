@@ -142,10 +142,16 @@ describe Coursewareable::ClassroomsController do
         it { classroom.members.map(&:email).should include(member) }
       end
 
-      context 'adds a new collaborator' do
+      context 'does not add a new collaborator' do
         let(:collab) { Fabricate(:confirmed_user).email }
 
-        it { classroom.collaborators.map(&:email).should include(collab) }
+        it { classroom.collaborators.map(&:email).should_not include(collab) }
+
+        context 'except when limits allow this' do
+          before(:all) {classroom.owner.plan.increment!(:allowed_collaborators)}
+
+          it { classroom.collaborators.map(&:email).should include(collab) }
+        end
       end
     end
   end
