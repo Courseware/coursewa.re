@@ -14,6 +14,7 @@ module Coursewareable
 
     # Handles creation
     def create
+      authorize!(:update, @classroom)
       collaboration = @classroom.collaborations.build
 
       collab = Coursewareable::User.find_by_email(params[:email])

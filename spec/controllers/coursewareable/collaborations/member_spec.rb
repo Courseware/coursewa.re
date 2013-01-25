@@ -3,7 +3,11 @@ require 'spec_helper'
 describe Coursewareable::CollaborationsController do
 
   let(:classroom) { Fabricate('coursewareable/classroom') }
-  let(:user) { Fabricate(:confirmed_user) }
+  let(:membership) do
+    Fabricate('coursewareable/membership', :classroom => classroom)
+  end
+
+  let(:member) { membership.user }
 
   describe 'GET index' do
     before(:each) do
@@ -11,10 +15,10 @@ describe Coursewareable::CollaborationsController do
       get(:index, :use_route => :coursewareable)
     end
 
-    context 'being logged in as a user' do
+    context 'being logged in as a member' do
       before(:all) do
         setup_controller_request_and_response
-        @controller.send(:auto_login, user)
+        @controller.send(:auto_login, member)
       end
 
       it { should redirect_to(login_path) }
@@ -28,10 +32,10 @@ describe Coursewareable::CollaborationsController do
       post(:create, :email => email, :use_route => :coursewareable)
     end
 
-    context 'being logged in as a user' do
+    context 'being logged in as a member' do
       before(:all) do
         setup_controller_request_and_response
-        @controller.send(:auto_login, user)
+        @controller.send(:auto_login, member)
       end
 
       it { should redirect_to(login_path) }
@@ -39,7 +43,6 @@ describe Coursewareable::CollaborationsController do
   end
 
   describe 'DELETE destroy' do
-
     let(:collaboration) do
       Fabricate('coursewareable/collaboration', :classroom => classroom)
     end
@@ -50,10 +53,10 @@ describe Coursewareable::CollaborationsController do
              :use_route => :coursewareable)
     end
 
-    context 'being logged in as a user' do
+    context 'being logged in as a member' do
       before(:all) do
         setup_controller_request_and_response
-        @controller.send(:auto_login, user)
+        @controller.send(:auto_login, member)
       end
 
       it { should redirect_to(login_path) }
