@@ -1,0 +1,43 @@
+= title _('Manage classroom collaborators')
+
+= head_embed javascript_include_tag('jquery_ujs')
+
+#collaborations
+  .eight.columns
+    %h4
+      = _('Add a new collaborator')
+    %hr
+
+    - if can?(:create, @classroom.collaborations.build)
+      = form_tag(collaborations_path, :id => 'new_collaboration') do
+        %p
+          = _('Add a new collaborator by typing his email address below.')
+
+        = email_field_tag :email, nil
+
+        %p
+          = submit_tag _('Add collaborator'), :id => 'submit_collaboration', :class => 'button primary'
+    - else
+      %p
+        = _('Your subscription plan does not allow adding new collaborators.')
+      %p
+        = link_to(_('Check your plan usages or upgrade.'), my_account_users_url(:subdomain => false))
+
+    %h4
+      = _('%d collaborators') % @classroom.collaborations_count
+    %hr
+
+    %ul#collaborators-list.inline-list
+      - @classroom.collaborations.reload.each do |collab|
+        %li
+          .avatar.left
+            = gravatar_image_tag(collab.user.email, :alt => collab.user.name, :gravatar => {:size => 30})
+          %p
+            - if can?(:destroy, collab)
+              %a.icon-remove.right{:href => collaboration_path(collab), 'data-method' => :delete, :id => "remove-collaboration-#{collab.id}"}
+            = collab.user.name
+            %br
+            %span.smaller
+              = collab.user.email
+
+  = render(:partial => 'sidebar')

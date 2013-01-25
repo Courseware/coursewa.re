@@ -3,17 +3,38 @@ module Coursewareable
   class CollaborationsController < ApplicationController
     # Abilities checking
     load_and_authorize_resource :class => Coursewareable::Collaboration
+    skip_authorize_resource
 
-    before_filter :load_classroom, :only => [:destroy]
+    before_filter :load_classroom
+
+    # Handles index listing screen
+    def index
+      authorize!(:update, @classroom)
+    end
+
+    # Handles creation
+    def create
+      collaboration = @classroom.collaborations.build
+
+      collab = Coursewareable::User.find_by_email(params[:email])
+      redirect_to(collaborations_path) and return if collab.nil?
+
+      collaboration.user = collab
+      if can?(:create, collaboration) and collaboration.save
+        flash[:success] = _('%s was added to collaborators') % collab.name
+        ::CollaborationMailer.delay.new_collaboration_email(collaboration)
+      end
+
+      redirect_to(collaborations_path)
+    end
 
     # Removes a collaborator
     def destroy
-      if @classroom.collaborations.destroy(params[:id])
-        flash[:success] = _('Collaborator removed successfully.')
-      else
-        flash[:alert] = _('There was an error. Please try again.')
-      end
-      redirect_to edit_classroom_path
+      collaboration = @classroom.collaborations.find(params[:id])
+      authorize!(:destroy, collaboration)
+
+      collaboration.destroy
+      redirect_to collaborations_path
     end
 
     protected

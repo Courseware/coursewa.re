@@ -34,15 +34,6 @@ module Coursewareable
       @classroom.update_attributes(
         params[:classroom].except(:color_scheme, :header_image, :color))
 
-      # TODO: Move this to its own controller
-      if can?(:create, @classroom.collaborations.build)
-        new_collab = Coursewareable::User.find_by_email(
-          params[:collaborator_email])
-        @classroom.collaborators.push(new_collab) unless new_collab.nil?
-        ::CollaborationMailer.delay.new_collaboration_email(
-          @classroom.collaborations.reload.last)
-      end
-
       redirect_to edit_classroom_url(:subdomain => @classroom.reload.slug)
     end
 
