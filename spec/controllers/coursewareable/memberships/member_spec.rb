@@ -3,6 +3,10 @@ require 'spec_helper'
 describe Coursewareable::MembershipsController do
 
   let(:classroom) { Fabricate('coursewareable/classroom') }
+  let(:classroom_membership) do
+    Fabricate('coursewareable/membership', :classroom => classroom)
+  end
+  let(:member) { classroom_membership.user }
 
   describe 'GET index' do
     before(:each) do
@@ -10,40 +14,30 @@ describe Coursewareable::MembershipsController do
       get(:index, :use_route => :coursewareable)
     end
 
-    context 'being logged in as a owner' do
+    context 'being logged in as a member' do
       before(:all) do
         setup_controller_request_and_response
-        @controller.send(:auto_login, classroom.owner)
+        @controller.send(:auto_login, member)
       end
 
-      it { should render_template(:index) }
+      it { should redirect_to(login_path) }
     end
   end
 
   describe 'POST create' do
-    let(:existing_user) { Fabricate(:confirmed_user) }
-    let(:email) { existing_user.email }
-
+    let(:email) { '' }
     before(:each) do
-      @controller.send(:auto_login, classroom.owner)
       @request.host = "#{classroom.slug}.#{@request.host}"
       post(:create, :email => email, :use_route => :coursewareable)
     end
 
-    context 'being logged in as an owner' do
-      it do
-        classroom.members.map(&:email).should include(email)
-        should redirect_to(memberships_path)
+    context 'being logged in as a member' do
+      before(:all) do
+        setup_controller_request_and_response
+        @controller.send(:auto_login, member)
       end
 
-      context 'and using an invalid email' do
-        let(:email) { Faker::Internet.email }
-
-        it do
-          classroom.collaborators.map(&:email).should_not include(email)
-          should redirect_to(memberships_path)
-        end
-      end
+      it { should redirect_to(login_path) }
     end
   end
 
@@ -57,14 +51,14 @@ describe Coursewareable::MembershipsController do
       delete(:destroy, :id => membership.id, :use_route => :coursewareable)
     end
 
-    context 'being logged in as a owner' do
+    context 'being logged in as a member' do
       before(:all) do
         setup_controller_request_and_response
-        @controller.send(:auto_login, classroom.owner)
+        @controller.send(:auto_login, member)
       end
 
-      it { should redirect_to(memberships_path) }
-      it { classroom.memberships.should be_empty }
+      it { should redirect_to(login_path) }
     end
   end
+
 end

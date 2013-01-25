@@ -14,6 +14,7 @@ module Coursewareable
 
     # Handles creation
     def create
+      authorize!(:update, @classroom)
       membership = @classroom.memberships.build
 
       member = Coursewareable::User.find_by_email(params[:email])
