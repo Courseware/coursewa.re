@@ -83,16 +83,13 @@ describe Coursewareable::ClassroomsController do
 
   describe 'PUT update' do
     let(:attrs) { Fabricate.build('coursewareable/classroom') }
-    let(:member) { '' }
-    let(:collab) { '' }
 
     before do
       @controller.send(:auto_login, classroom.owner)
       @request.host = "#{classroom.slug}.#{@request.host}"
       put(:update, :use_route => :coursewareable, :classroom => {
         :title => attrs.title, :description => attrs.description,
-        :slug => attrs.slug, :header_image => attrs.header_image
-      }, :member_email => member, :collaborator_email => collab)
+        :slug => attrs.slug, :header_image => attrs.header_image})
     end
 
     context 'being logged in as owner' do
@@ -136,23 +133,17 @@ describe Coursewareable::ClassroomsController do
         end
       end
 
-      context 'adds a new member' do
-        let(:member) { Fabricate(:confirmed_user).email }
+      context 'with an invalid file as header image' do
+        before(:all) do
+          attrs.header_image = fixture_file_upload('/test.txt', 'text/plain')
+        end
 
-        it { classroom.members.map(&:email).should include(member) }
-      end
-
-      context 'does not add a new collaborator' do
-        let(:collab) { Fabricate(:confirmed_user).email }
-
-        it { classroom.collaborators.map(&:email).should_not include(collab) }
-
-        context 'except when limits allow this' do
-          before(:all) {classroom.owner.plan.increment!(:allowed_collaborators)}
-
-          it { classroom.collaborators.map(&:email).should include(collab) }
+        it do
+          classroom.reload.header_image.should be_nil
+          should redirect_to(edit_classroom_url(:subdomain => classroom.slug))
         end
       end
+
     end
   end
 

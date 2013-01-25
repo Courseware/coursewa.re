@@ -31,8 +31,12 @@ module Coursewareable
     # Handles submitted changes
     def update
       authorize!(:update, @classroom)
-      @classroom.update_attributes(
-        params[:classroom].except(:color_scheme, :header_image, :color))
+
+      # Remove any built temporary image
+      @classroom.images.reload
+
+      attrs = params[:classroom].except(:color_scheme, :header_image, :color)
+      @classroom.update_attributes(attrs)
 
       redirect_to edit_classroom_url(:subdomain => @classroom.reload.slug)
     end
@@ -79,21 +83,21 @@ module Coursewareable
     def change_header_image
       authorize!(:update, @classroom)
 
-      upload = params[:classroom][:header_image]
-      return if upload.blank?
-
-      size = Paperclip::Geometry.from_file(upload)
-      ok_size = Courseware.config.header_image_size
-
-      return if size.width < ok_size[:width] or size.height != ok_size[:height]
-
       himg = @classroom.images.build
       himg.attachment = params[:classroom][:header_image]
       himg.description = _('New header image')
       himg.assetable = @classroom
       himg.user = current_user
+      return unless himg.valid?
 
-      @classroom.update_attribute(:header_image, himg.id) if himg.save
+      size = Paperclip::Geometry.from_file(himg.attachment)
+      ok_size = Courseware.config.header_image_size
+
+      return if size.width < ok_size[:width] or size.height != ok_size[:height]
+
+      if can?(:create, himg) and himg.save
+        @classroom.update_attribute(:header_image, himg.id)
+      end
     end
 
   end

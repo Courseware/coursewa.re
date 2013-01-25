@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coursewareable::MembershipsController, :focus => true do
+describe Coursewareable::MembershipsController do
 
   before do
     @routes = Coursewareable::Engine.routes
