@@ -37,7 +37,11 @@ describe Coursewareable::CollaborationsController do
       end
 
       context 'with plan limits allowed to add a collaborator' do
-        before(:all){ classroom.owner.plan.increment!(:allowed_collaborators) }
+        before(:all) do
+          classroom.owner.plan.increment!(:allowed_collaborators)
+          CollaborationMailer.stub(:delay).and_return(CollaborationMailer)
+          CollaborationMailer.should_receive(:new_collaboration_email)
+        end
 
         it do
           classroom.collaborators.map(&:email).should include(email)

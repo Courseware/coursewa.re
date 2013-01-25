@@ -31,6 +31,11 @@ describe Coursewareable::MembershipsController do
     end
 
     context 'being logged in as an owner' do
+      before(:all) do
+        MembershipMailer.stub(:delay).and_return(MembershipMailer)
+        MembershipMailer.should_receive(:new_member_email)
+      end
+
       it do
         classroom.members.map(&:email).should include(email)
         should redirect_to(memberships_path)
