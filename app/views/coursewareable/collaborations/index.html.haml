@@ -27,17 +27,21 @@
       = _('%d collaborators') % @classroom.collaborations_count
     %hr
 
-    %ul#collaborators-list.inline-list
-      - @classroom.collaborations.reload.each do |collab|
-        %li
-          .avatar.left
-            = gravatar_image_tag(collab.user.email, :alt => collab.user.name, :gravatar => {:size => 30})
-          %p
-            - if can?(:destroy, collab)
-              %a.icon-remove.right{:href => collaboration_path(collab), 'data-method' => :delete, :id => "remove-collaboration-#{collab.id}"}
-            = collab.user.name
-            %br
-            %span.smaller
-              = collab.user.email
+    - if @classroom.collaborations.reload.empty?
+      %p
+        = _('No collaborators were added.')
+    - else
+      %ul#collaborators-list.inline-list
+        - @classroom.collaborations.each do |collab|
+          %li
+            .avatar.left
+              = gravatar_image_tag(collab.user.email, :alt => collab.user.name, :gravatar => {:size => 30})
+            %p
+              - if can?(:destroy, collab)
+                %a.icon-remove.right{:href => collaboration_path(collab), 'data-method' => :delete, :id => "remove-collaboration-#{collab.id}"}
+              = collab.user.name
+              %br
+              %span.smaller
+                = collab.user.email
 
   = render(:partial => 'sidebar')
