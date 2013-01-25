@@ -13,7 +13,7 @@
         %p
           = _('Add a new collaborator by typing his email address below.')
 
-        = email_field_tag :email, nil
+        = email_field_tag :email, nil, :required => true
 
         %p
           = submit_tag _('Add collaborator'), :id => 'submit_collaboration', :class => 'button primary'

@@ -12,7 +12,7 @@
       %p
         = _('Add a new member by typing his email address below.')
 
-      = email_field_tag :email, nil
+      = email_field_tag :email, nil, :required => true
 
       %p
         = submit_tag _('Add member'), :id => 'submit_membership', :class => 'button primary'
