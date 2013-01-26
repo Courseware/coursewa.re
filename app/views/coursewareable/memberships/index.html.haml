@@ -4,9 +4,8 @@
 
 #memberships
   .eight.columns
-    %h4
-      = _('Add a new member')
-    %hr
+
+    = render('shared/classroom_customization_tabs')
 
     = form_tag(memberships_path, :id => 'new_membership') do
       %p

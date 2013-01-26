@@ -1,0 +1,7 @@
+%dl.tabs
+  %dd{:class => current_page?(edit_classroom_path) ? 'active' : nil}
+    = link_to(_('Customize classroom'), edit_classroom_path)
+  %dd{:class => current_page?(memberships_path) ? 'active' : nil}
+    = link_to(_('Manage users'), memberships_path)
+  %dd{:class => current_page?(collaborations_path) ? 'active' : nil}
+    = link_to(_('Manage collaborators'), collaborations_path)

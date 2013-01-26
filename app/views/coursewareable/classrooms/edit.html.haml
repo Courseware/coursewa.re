@@ -4,6 +4,9 @@
 
 #classroom
   .eight.columns
+
+    = render('shared/classroom_customization_tabs')
+
     = form_for(@classroom, :url => classroom_path) do |f|
       .row
         .two.columns
