@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20100429 at Thu Jan 24 18:43:41 2013
+Created by FontForge 20100429 at Sun Jan 27 16:41:17 2013
  By root
 Copyright (C) 2012 by original authors @ fontello.com
 </metadata>
@@ -19,7 +19,7 @@ Copyright (C) 2012 by original authors @ fontello.com
     bbox="14.25 -160 1086 860"
     underline-thickness="50"
     underline-position="-100"
-    unicode-range="U+00D6-1F554"
+    unicode-range="U+002B-1F554"
   />
 <missing-glyph horiz-adv-x="364" 
 d="M33 0v666h265v-666h-265zM66 33h199v600h-199v-600z" />
@@ -29,6 +29,10 @@ d="M33 0v666h265v-666h-265zM66 33h199v600h-199v-600z" />
  />
     <glyph glyph-name="nonmarkingreturn" horiz-adv-x="333" 
  />
+    <glyph glyph-name="plus" unicode="+" horiz-adv-x="610" 
+d="M565 400q30 0 30 -50t-30 -50h-210v-210q0 -30 -50 -30t-50 30v210h-210q-30 0 -30 50t30 50h210v210q0 30 50 30t50 -30v-210h210z" />
+    <glyph glyph-name="hyphen" unicode="-" horiz-adv-x="610" 
+d="M565 400q30 0 30 -50t-30 -50h-520q-30 0 -30 50t30 50h520z" />
     <glyph glyph-name="Odieresis" unicode="&#xd6;" horiz-adv-x="746" 
 d="M15 136q0 61 25 94.5t77 48.5q-16 39 -16 59q0 32 35 70q38 35 69 35q17 0 40 -9q-46 131 -69 208q-24 81 -24 115q0 47 24 75t67 28q73 0 173 -295l17 -49q6 15 12 33q100 292 180 292q40 0 63.5 -27.5t23.5 -69.5q0 -28 -24 -113q-20 -68 -66 -200q61 -15 85 -58.5
 t24 -128.5q0 -179 -106 -291q-108 -113 -274 -113q-65 0 -127 24q-56 20 -107 66.5t-76 98.5q-26 55 -26 107zM135 218q-23 0 -39 -24.5t-16 -52.5q0 -23 14 -59q19 -46 56 -86t80 -62q56 -28 129 -28q129 0 217 97q87 96 87 243q0 44 -4.5 67.5t-20.5 37.5
