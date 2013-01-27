@@ -1,5 +1,5 @@
 %p{ :class => activity.key.parameterize }
-  - if activity.trackable and activity.trckable.lecture
+  - if activity.trackable and activity.trackable.lecture
     - lecture_link = link_to(_('lecture'), lecture_url(activity.trackable.lecture, :subdomain => activity.trackable.classroom.slug))
   - else
     - lecture_link = _('lecture (deleted meanwhile)')

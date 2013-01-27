@@ -1,9 +1,23 @@
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
-  - if activity.owner == p[:current_user]
-    - grades_link = link_to(_('updated %s grade'), lecture_assignment_grades_url(activity.trackable.assignment.lecture, activity.trackable.assignment, :subdomain => activity.trackable.classroom.slug)) % activity.trackable.receiver.name
-    = _('You %s on assignment <em>%s</em>' % [grades_link, activity.trackable.assignment.title] )
+
+  - if activity.trackable and activity.trackable.receiver
+    - receiver_name = _('you') if activity.trackable.receiver.name == p[:current_user]
+    - receiver_name = activity.trackable.receiver.name if activity.trackable.receiver.name != p[:current_user]
   - else
-    = _('%s updated %s grade on assignment <em>%s</em>' % [activity.owner.name, activity.trackable.receiver.name, activity.trackable.assignment.title])
+    - receiver_name = activity.parameters[:receiver_name]
+
+  - if activity.owner
+    - user_name = activity.owner.name
+  - else
+    - user_name = activity.parameters[:user_name]
+
+  - if activity.trackable and activity.trackable.assignment
+    - assignment_title = _('%s work') % link_to(_('assignment'), lecture_assignment_grades_url(activity.trackable.assignment.lecture, activity.trackable.assignment, :subdomain => activity.trackable.classroom.slug))
+  - else
+    - assignment_title = _('assignment work (deleted meanwhile)')
+
+  - if activity.owner == p[:current_user]
+    = _('You re-evaluated %s %s.' % [receiver_name, assignment_title])
+  - else
+    = _('%s re-evaluated %s %s.' % [user_name, receiver_name, assignment_title])
 %hr
