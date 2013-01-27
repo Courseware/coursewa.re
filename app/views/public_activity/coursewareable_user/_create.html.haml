@@ -1,8 +1,11 @@
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
+  - if activity.owner
+    - user_name = activity.owner.name
+  - else
+    - user_name = activity.parameters[:user_name]
+
   - if activity.owner == p[:current_user]
     = _('You started using Courseware.')
   - else
-    = _('%s started using Courseware.' % activity.owner.name)
+    = _('%s started using Courseware.' % user_name)
 %hr

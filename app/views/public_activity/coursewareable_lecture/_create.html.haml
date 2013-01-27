@@ -1,9 +1,17 @@
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
-  - lecture_link = link_to(activity.trackable.title, lecture_url(activity.trackable, :subdomain => activity.trackable.classroom.slug))
-  - if activity.owner == p[:current_user]
-    = _('You added %s lecture' % lecture_link )
+
+  - if activity.trackable and activity.trackable.classroom
+    - lecture_title = link_to(_('lecture'), lecture_url(activity.trackable, :subdomain => activity.trackable.classroom.slug))
   - else
-    = _('%s added %s lecture' % [activity.owner.name, lecture_link])
+    - lecture_title = _('lecture (deleted meanwhile)')
+
+  - if activity.owner
+    - user_name = activity.owner.name
+  - else
+    - user_name = activity.parameters[:user_name]
+
+  - if activity.owner == p[:current_user]
+    = _('You added a new %s.' % lecture_title )
+  - else
+    = _('%s added a new %s.' % [user_name, lecture_title])
 %hr

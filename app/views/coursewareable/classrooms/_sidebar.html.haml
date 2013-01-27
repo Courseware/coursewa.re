@@ -9,6 +9,12 @@
 
     %hr
 
+    %p
+      - if @classroom.syllabus
+        = @classroom.syllabus.intro
+      - else
+        != _('Next: %s.') % link_to(_('update the syllabus'), edit_syllabus_path)
+
     - responses_count = current_user.responses.where(:classroom_id => @classroom.id).count
     - assignments_count = @classroom.assignments.count
     - coverage = ((responses_count * 100) / assignments_count) if assignments_count > 0

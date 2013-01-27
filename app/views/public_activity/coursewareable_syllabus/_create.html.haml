@@ -1,9 +1,16 @@
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
-  - syllabus_link = link_to(_('the syllabus'), syllabus_url(:subdomain => activity.trackable.classroom.slug))
+  - if activity.trackable
+    - syllabus_link = link_to(_('the syllabus'), syllabus_url(:subdomain => activity.trackable.classroom.slug))
+  - else
+    - syllabus_link = _('the syllabus')
+
+  - if activity.owner
+    - user_name = activity.owner.name
+  - else
+    - user_name = activity.parameters[:user_name]
+
   - if activity.owner == p[:current_user]
     = _('You updated %s.' % syllabus_link)
   - else
-    = _('%s updated %s.' % [activity.owner.name, syllabus_link])
+    = _('%s updated %s.' % [user_name, syllabus_link])
 %hr

@@ -1,8 +1,16 @@
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
-  - if activity.owner == p[:current_user]
-    = _('You created %s classroom.' % activity.trackable.title)
+  - if activity.trackable
+    - classroom_title = link_to((_('%s classroom') % activity.trackable.title), root_url(:subdomain => activity.trackable.slug))
   - else
-    = _('%s created %s classroom.' % [activity.owner.name, activity.trackable.title])
+    - classroom_title = _('%s classroom (deleted meanwhile)') % activity.parameters[:classroom_title]
+
+  - if activity.owner
+    - user_name = activity.owner.name
+  - else
+    - user_name = activity.parameters[:user_name]
+
+  - if activity.owner == p[:current_user]
+    = _('You created %s.' % classroom_title)
+  - else
+    = _('%s created %s.' % [user_name, classroom_title])
 %hr

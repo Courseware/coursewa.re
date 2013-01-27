@@ -1,9 +1,0 @@
-- @timeline.each do |event|
-  .row
-    .two.columns.author.avatar
-      = gravatar_image_tag(event.owner.email, :alt => event.owner.name)
-
-    .ten.columns.end.activity
-      = render_activity(event, :current_user => current_user)
-
-= paginate(@timeline, {:run_as_xhr => true, :next_title => _('More') })

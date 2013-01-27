@@ -61,7 +61,8 @@ module Coursewareable
       activity_key = 'announcement.create'
       current_user.activities_as_owner.create(
         :key => activity_key, :recipient => @classroom, :parameters => {
-          :content => Sanitize.clean(params[:announcement])
+          :content => Sanitize.clean(params[:announcement]),
+          :user_name => current_user.name
         })
       flash[:success] = _('Announcement was posted')
       redirect_to(dashboard_classroom_path)

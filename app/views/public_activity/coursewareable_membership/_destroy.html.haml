@@ -1,18 +1,19 @@
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
 
-  - classroom_link = link_to(_('classroom'), root_url(:subdomain => activity.recipient.slug))
-
-  - if activity.trackable and activity.trackable.user == p[:current_user]
-    - name = _('you')
+  - if activity.recipient
+    - classroom_title = link_to((_('%s classroom') % activity.recipient.title), root_url(:subdomain => activity.recipient.slug))
   - else
-    - name = activity.parameters[:user_name]
+    - classroom_title = _('%s classroom (deleted meanwhile)') % activity.parameters[:classroom_title]
+
+  - member_name = activity.parameters[:member_name]
+
+  - if activity.owner
+    - user_name = activity.owner.name
+  - else
+    - user_name = activity.parameters[:user_name]
 
   - if activity.owner == p[:current_user]
-    = _('You removed %s from %s members.' % [name, classroom_link])
+    = _('You removed %s from %s members.' % [member_name, classroom_title])
   - else
-    = _('%s removed %s from %s members.' % [activity.owner.name, name, classroom_link])
+    = _('%s removed %s from %s members.' % [user_name, member_name, classroom_title])
 %hr
-
-

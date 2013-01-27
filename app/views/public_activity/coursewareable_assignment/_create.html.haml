@@ -1,9 +1,21 @@
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
-  - lecture_link = link_to(activity.trackable.lecture.title, lecture_url(activity.trackable.lecture, :subdomain => activity.trackable.lecture.classroom.slug))
-  - if activity.owner == p[:current_user]
-    = _('You updated %s lecture assignment <em>%s</em>' % [lecture_link, activity.trackable.title] )
+  - if activity.trackable and activity.trckable.lecture
+    - lecture_link = link_to(_('lecture'), lecture_url(activity.trackable.lecture, :subdomain => activity.trackable.classroom.slug))
   - else
-    = _('%s updated %s lecture assignment <em>%s</em>' % [activity.owner.name, lecture_link, activity.trackable.title])
+    - lecture_link = _('lecture (deleted meanwhile)')
+
+  - if activity.recipient
+    - classroom_title = _('%s classroom') % activity.recipient.title
+  - else
+    - classroom_title = _('%s classroom') % activity.parameters[:classroom_title]
+
+  - if activity.owner
+    - user_name = activity.owner.name
+  - else
+    - user_name = activity.parameters[:user_name]
+
+  - if activity.owner == p[:current_user]
+    = _('You add a new assignment to %s %s.' % [classroom_title, lecture_link] )
+  - else
+    = _('%s add a new assignment to %s %s.' % [user_name, classroom_title, lecture_link] )
 %hr

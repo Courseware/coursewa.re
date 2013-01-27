@@ -1,8 +1,11 @@
-%span.timestamp
-  = activity.created_at.to_s(:pretty)
 %p{ :class => activity.key.parameterize }
+  - if activity.owner
+    - user_name = activity.owner.name
+  - else
+    - user_name = activity.parameters[:user_name]
+
   - if activity.owner == p[:current_user]
     = _('You left an announcement... <blockquote>%s</blockquote>' % [activity.parameters[:content]] )
   - else
-    = _('%s left an announcement... <blockquote>%s</blockquote>' % [activity.owner.name, activity.parameters[:content]] )
+    = _('%s left an announcement... <blockquote>%s</blockquote>' % [user_name, activity.parameters[:content]] )
 %hr
