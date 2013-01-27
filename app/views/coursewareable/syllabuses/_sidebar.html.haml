@@ -2,7 +2,7 @@
   .row.sidebar
     %h5
       - if can?(:update, @syllabus)
-        %a.icon-edit.right{:href => edit_syllabus_path}
+        %a.icon-edit.right{:href => edit_syllabus_path, :title => _('Update syllabus')}
       = _('Classroom syllabus')
     %hr
 
@@ -18,3 +18,27 @@
     - else
       %p
         = _('Start by updating the classroom syllabus.')
+
+    - unless @classroom.lectures.empty?
+      %h5
+        - if can?(:create, @classroom.lectures.build)
+          %a.icon-feather.right{:href => new_lecture_path, :title => _('Create a new lecture')}
+        = _('Main Lectures')
+      %hr
+
+      %ul
+      - @classroom.lectures.reload.each do |lecture|
+        - unless lecture.parent_lecture
+          %li.no-listing-style
+            - unless lecture.child_lectures.empty?
+              = link_to('', '#', :class => 'icon-plus right expands', 'data-expand-target' => 'p.smaller', 'data-toggle-class' => 'icon-minus')
+
+            = link_to(truncate(lecture.title, :length => 37), lecture_path(lecture))
+            - unless lecture.child_lectures.empty?
+              %p.marginless-bottom.smaller.hide
+                - lec_count = lecture.child_lectures.count
+                - lec_title = pluralize(lec_count, _('more lecture'), _('more lectures'))
+                - lec = lecture.child_lectures.sample
+                - lec_link = link_to(lec.title, lecture_path(lec))
+                %em
+                  != _('...%s. And %s, including %s.') % [lecture.title[34..-1], lec_title, lec_link]

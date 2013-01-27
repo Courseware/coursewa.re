@@ -24,11 +24,34 @@
         return false;
       });
     },
+
+    /**
+     * Handles on lick expanding of elements
+     */
+    enable_on_click_expanding: function(selector, trigger) {
+      $(selector).on('click', trigger, function(event){
+        var $this = $(this),
+          target = $this.data('expand-target'),
+          toggleClass = $this.data('toggle-class');
+
+        if ( $this.hasClass(toggleClass) ) {
+          $this.parent().find(target).addClass('hide');
+          $this.removeClass(toggleClass);
+        } else {
+          $this.parent().find(target).removeClass('hide');
+          $this.addClass(toggleClass);
+        }
+
+        return false;
+      });
+    },
+
     /**
      * Start Courseware plugins/modules
      */
     run: function() {
       Courseware.enable_xhr_requests('#content', 'a.run-as-xhr');
+      Courseware.enable_on_click_expanding('#content', 'a.expands');
 
       $.fn.foundationAlerts           ? $doc.foundationAlerts() : null;
       $.fn.foundationButtons          ? $doc.foundationButtons() : null;
