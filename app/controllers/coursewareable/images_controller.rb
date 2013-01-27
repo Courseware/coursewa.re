@@ -16,7 +16,7 @@ module Coursewareable
       respond_to do |format|
         # format.html
         format.json {
-          render :json => @classroom.images.except(:last).collect { |img| {
+          render :json => @classroom.images.reload.collect { |img| {
             :folder => img.assetable.title,
             :image => img.url(:large),
             :thumb => img.url(:small),
