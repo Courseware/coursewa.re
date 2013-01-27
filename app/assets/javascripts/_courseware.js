@@ -7,7 +7,7 @@
   win.Courseware = {
     /**
      * Handles xhr "tagged" requests
-     * On `trigger` clicks element `data="parent-container-id"`
+     * On `trigger` clicks, element `data="parent-container-id"`
      * element will be replaced with ajax result.
      */
     enable_xhr_requests: function(selector, trigger) {
