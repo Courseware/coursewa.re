@@ -26,7 +26,7 @@
           = link_to(_('Add your first lecture'), new_lecture_path)
     - else
       %h5
-        - if can?(:manage, @classroom.lectures.build)
+        - if can?(:contribute, @classroom)
           %a.icon-feather.right{:href => new_lecture_path, :title => _('Create a new lecture')}
         = _('Lectures')
       %hr
