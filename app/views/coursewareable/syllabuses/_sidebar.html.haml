@@ -26,13 +26,13 @@
           = link_to(_('Add your first lecture'), new_lecture_path)
     - else
       %h5
-        - if can?(:create, @classroom.lectures.build)
+        - if can?(:manage, @classroom.lectures.first)
           %a.icon-feather.right{:href => new_lecture_path, :title => _('Create a new lecture')}
         = _('Lectures')
       %hr
 
       %ul
-      - @classroom.lectures.reload.each do |lecture|
+      - @classroom.lectures.each do |lecture|
         - unless lecture.parent_lecture
           %li.no-listing-style
             - unless lecture.child_lectures.empty?
