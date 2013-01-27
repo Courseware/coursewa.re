@@ -39,6 +39,8 @@ module Coursewareable
     def update
       authorize!(:update, @syllabus)
 
+      redirect_to(edit_syllabus_path) and return if @syllabus.new_record?
+
       if @syllabus.update_attributes(params[:syllabus])
         # Change last user who edited syllabus to current user
         @syllabus.update_attribute(:user, current_user)

@@ -68,11 +68,25 @@ describe Coursewareable::SyllabusesController do
     end
 
     context 'being logged in as collaborator' do
-      it do
-        should render_template(:show)
-        classroom.syllabus.title.should eq(syllabus.title)
+      it 'wont update syllabus if it was not created first' do
+        should redirect_to(edit_syllabus_path)
+        classroom.syllabus.should be_nil
+      end
+
+      context 'and syllabus exist' do
+        before(:all) do
+          Fabricate('coursewareable/syllabus', :classroom => classroom,
+                    :user => classroom.owner)
+        end
+
+        it 'updates the syllabus' do
+          should render_template(:show)
+          classroom.syllabus.title.should eq(syllabus.title)
+          classroom.syllabus.user.should eq(collaborator)
+        end
       end
     end
+
   end
 
 end
