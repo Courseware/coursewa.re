@@ -21,7 +21,7 @@
 
 
     - if @classroom.lectures.empty?
-      - if @classroom.syllabus.nil?
+      - if !@classroom.syllabus.nil? and can?(:contribute, @classroom)
         %p
           = link_to(_('Add your first lecture'), new_lecture_path)
     - else
@@ -32,7 +32,7 @@
       %hr
 
       %ul
-      - @classroom.lectures.reload.each do |lecture|
+      - @classroom.lectures.each do |lecture|
         - unless lecture.parent_lecture
           %li.no-listing-style
             - unless lecture.child_lectures.empty?
