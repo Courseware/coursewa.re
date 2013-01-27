@@ -19,11 +19,16 @@
       %p
         = _('Start by updating the classroom syllabus.')
 
-    - unless @classroom.lectures.empty?
+
+    - if @classroom.lectures.empty?
+      - if @classroom.syllabus.nil?
+        %p
+          = link_to(_('Add your first lecture'), new_lecture_path)
+    - else
       %h5
         - if can?(:create, @classroom.lectures.build)
           %a.icon-feather.right{:href => new_lecture_path, :title => _('Create a new lecture')}
-        = _('Main Lectures')
+        = _('Lectures')
       %hr
 
       %ul
