@@ -38,6 +38,7 @@
 .icon-book:before { content: '📕'; } /* '\1f4d5' */
 .icon-book-1:before { content: '\e804'; } /* '' */
 .icon-book-open:before { content: '\e803'; } /* '' */
+.icon-announce:before { content: '📣'; } /* '\1f4e3' */
 .icon-box:before { content: '📦'; } /* '\1f4e6' */
 .icon-newspaper:before { content: '📰'; } /* '\1f4f0' */
 .icon-search:before { content: '🔍'; } /* '\1f50d' */
