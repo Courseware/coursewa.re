@@ -16,6 +16,6 @@
     - user_name = activity.parameters[:user_name]
 
   - if activity.owner == p[:current_user]
-    = _('You add a new assignment to %s %s.' % [classroom_title, lecture_link] )
+    = _('You added a new assignment to %s %s.' % [classroom_title, lecture_link] )
   - else
-    = _('%s add a new assignment to %s %s.' % [user_name, classroom_title, lecture_link] )
+    = _('%s added a new assignment to %s %s.' % [user_name, classroom_title, lecture_link] )
