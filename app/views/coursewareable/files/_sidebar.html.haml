@@ -20,6 +20,7 @@
 
     - if can?(:contribute, @classroom)
       %h5
+        = link_to('', my_account_users_path, :title => _('Your account page'), :class => 'icon-stats right')
         = _('Stats')
       %hr
       - plan = current_user.plan
