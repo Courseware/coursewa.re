@@ -40,6 +40,10 @@
       %section#content{:role => :main}
         %div.row{ :id => "#{controller.action_name}-#{controller.controller_name}"}
           = render('shared/alerts')
+
+          - unless @classroom.nil?
+            = yield(:breadcrumbs) if content_for?(:breadcrumbs)
+
           = yield
 
   = render('shared/footer')

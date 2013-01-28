@@ -5,14 +5,21 @@ module Coursewareable
     #
     # @param [String] page_title
     def title(page_title)
-      content_for :title, page_title.to_s
+      content_for(:title, page_title) if page_title
     end
 
     # Helper to set embeds in HEAD
     #
     # @param [String] content
     def head_embed(content)
-      content_for :head_embed, content if content
+      content_for(:head_embed, content) if content
+    end
+
+    # Helper to set breadcrumbs content
+    #
+    # @param [String] content
+    def breadcrumbs(content)
+      content_for(:breadcrumbs, content) if content
     end
 
     # Helper to render the classroom header image

@@ -36,6 +36,24 @@ describe Coursewareable::ApplicationHelper do
     end
   end
 
+  describe '#breadcrumbs' do
+    let(:content_text) { Faker::Lorem.sentence }
+
+    before(:each) { @view_flow = ActionView::OutputFlow.new }
+
+    subject { helper.content_for(:breadcrumbs) }
+
+    context 'when no breadcrumbs was set' do
+      it { should be_empty }
+    end
+
+    context 'when breadcrumbs was set' do
+      before { breadcrumbs(content_text) }
+
+      it { should match(content_text) }
+    end
+  end
+
   describe '#header_image' do
     let(:image) { Fabricate('coursewareable/image') }
     let(:classroom) { image.classroom }
