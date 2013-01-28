@@ -1,3 +1,5 @@
+- @icon_name = 'icon-book'
+
 %p{ :class => activity.key.parameterize }
 
   - if activity.trackable and activity.trackable.classroom
@@ -14,4 +16,3 @@
     = _('You added a new %s.' % lecture_title )
   - else
     = _('%s added a new %s.' % [user_name, lecture_title])
-%hr

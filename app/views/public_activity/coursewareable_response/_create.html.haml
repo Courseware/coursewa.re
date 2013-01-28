@@ -1,3 +1,5 @@
+- @icon_name = 'icon-docs'
+
 %p{ :class => activity.key.parameterize }
 
   - if activity.owner
@@ -18,4 +20,3 @@
     = _('You left a %s on classroom %s.' % [response_title, assignment_title])
   - else
     = _('%s left a %s on classroom %s.' % [user_name, response_title, assignment_title])
-%hr

@@ -1,3 +1,5 @@
+- @icon_name = 'icon-heart'
+
 %p{ :class => activity.key.parameterize }
   - if activity.owner
     - user_name = activity.owner.name
@@ -8,4 +10,3 @@
     = _('You started using Courseware.')
   - else
     = _('%s started using Courseware.' % user_name)
-%hr

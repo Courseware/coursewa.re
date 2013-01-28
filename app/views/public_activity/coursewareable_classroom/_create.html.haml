@@ -1,3 +1,5 @@
+- @icon_name = 'icon-free'
+
 %p{ :class => activity.key.parameterize }
   - if activity.trackable
     - classroom_title = link_to((_('%s classroom') % activity.trackable.title), root_url(:subdomain => activity.trackable.slug))
@@ -13,4 +15,3 @@
     = _('You created %s.' % classroom_title)
   - else
     = _('%s created %s.' % [user_name, classroom_title])
-%hr

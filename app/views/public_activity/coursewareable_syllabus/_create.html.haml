@@ -1,3 +1,5 @@
+- @icon_name = 'icon-book-open'
+
 %p{ :class => activity.key.parameterize }
   - if activity.trackable
     - syllabus_link = link_to(_('the syllabus'), syllabus_url(:subdomain => activity.trackable.classroom.slug))
@@ -13,4 +15,3 @@
     = _('You updated %s.' % syllabus_link)
   - else
     = _('%s updated %s.' % [user_name, syllabus_link])
-%hr

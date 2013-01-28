@@ -1,3 +1,5 @@
+- @icon_name = 'icon-users'
+
 %p{ :class => activity.key.parameterize }
 
   - if activity.recipient
@@ -16,4 +18,3 @@
     = _('You removed %s from %s collaborators.' % [collaborator_name, classroom_title])
   - else
     = _('%s removed %s from %s collaborators.' % [user_name, collaborator_name, classroom_title])
-%hr

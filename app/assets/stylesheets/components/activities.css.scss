@@ -1,2 +1,9 @@
 #activities {
+  .backgroundify span {
+    position: relative;
+    right: -10px;
+    z-index: 1;
+    font-size: 14px;
+    color: $bw_9;
+  }
 }

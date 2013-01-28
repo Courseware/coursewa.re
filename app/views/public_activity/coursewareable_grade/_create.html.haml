@@ -1,3 +1,5 @@
+- @icon_name = 'icon-hammer'
+
 %p{ :class => activity.key.parameterize }
 
   - if activity.trackable and activity.trackable.receiver
@@ -20,4 +22,3 @@
     = _('You evaluated %s %s.' % [receiver_name, assignment_title])
   - else
     = _('%s evaluated %s %s.' % [user_name, receiver_name, assignment_title])
-%hr

@@ -1,3 +1,4 @@
+- @icon_name = 'icon-newspaper'
 %p{ :class => activity.key.parameterize }
   - if activity.trackable and activity.trackable.lecture
     - lecture_link = link_to(_('lecture'), lecture_url(activity.trackable.lecture, :subdomain => activity.trackable.classroom.slug))
@@ -18,4 +19,3 @@
     = _('You add a new assignment to %s %s.' % [classroom_title, lecture_link] )
   - else
     = _('%s add a new assignment to %s %s.' % [user_name, classroom_title, lecture_link] )
-%hr

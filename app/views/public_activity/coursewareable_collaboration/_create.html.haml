@@ -1,3 +1,5 @@
+- @icon_name = 'icon-user-add'
+
 %p{ :class => activity.key.parameterize }
 
   - if activity.recipient
@@ -21,4 +23,3 @@
     = _('You added %s to %s collaborators.' % [collaborator_name, classroom_title])
   - else
     = _('%s added %s to %s collaborators.' % [user_name, collaborator_name, classroom_title])
-%hr
