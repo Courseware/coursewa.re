@@ -19,6 +19,7 @@ module Coursewareable
       end
 
       @assets = Kaminari.paginate_array(assets).page(params[:page])
+      render(:partial => 'listing') if request.xhr?
     end
 
     # Handles deletion of a file

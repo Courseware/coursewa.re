@@ -8,32 +8,6 @@
       %p
         = _('No files were uploaded yet.')
     - else
-      - @assets.each do |file|
-        %h4
-          = file.description
-        %hr
-        .row.hide-overflow
-          .eight.columns
-            %p
-              - user_name = (current_user.id == file.user.id) ? _('you') : file.user.name
-              - if file.type.match(/image/i)
-                = _('Image was uploaded by %s on %s') % [user_name, file.attachment_updated_at.to_s(:pretty)]
-              - else
-                = _('File uploaded by %s on %s') % [user_name, file.attachment_updated_at.to_s(:pretty)]
-              %p.smaller
-                - unless file.assetable_type.match(/classroom/i)
-                  = link_to(_('Go to related page'), polymorphic_url(file.assetable))
-                  &bull;
-                = link_to(_('Download this file'), file.attachment.url)
-                &bull;
-                = link_to(_('Remove this file'), file_path(file), :method => :delete, :id => "remove-file-#{file.id}")
-
-          .four.columns.backgroundify.align-right
-            - if file.type.match(/image/i)
-              = image_tag(file.attachment.url(:small))
-            - else
-              %span.icon-attach
-
-    = paginate(@assets)
+      = render('listing')
 
   = render(:partial => 'sidebar')

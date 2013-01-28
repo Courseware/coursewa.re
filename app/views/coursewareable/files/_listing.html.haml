@@ -1,0 +1,46 @@
+- last_timestamp = nil
+- @assets.each do |file|
+  - if last_timestamp != file.attachment_updated_at.to_date
+    - last_timestamp = file.attachment_updated_at.to_date
+    .row
+      .twelve.columns
+        %h4
+          - if last_timestamp.today?
+            = _('Today')
+          - elsif last_timestamp == Date.yesterday
+            = _('Yesterday')
+          - else
+            = file.attachment_updated_at.to_s(:pretty_date)
+        %hr
+
+  .row
+    .one.columns.timestamp.smaller.align-right
+      = file.attachment_updated_at.to_s(:pretty_time)
+
+    .eleven.columns.end.activity
+      %h5
+        = file.description
+      %hr
+      .row.hide-overflow
+        .eight.columns
+          %p
+            - user_name = (current_user.id == file.user.id) ? _('You') : file.user.name
+            - if file.type.match(/image/i)
+              = _('%s uploaded an image on %s') % [user_name, file.attachment_updated_at.to_s(:pretty)]
+            - else
+              = _('%s uploaded a file on %s') % [user_name, file.attachment_updated_at.to_s(:pretty)]
+            %p.smaller
+              - unless file.assetable_type.match(/classroom/i)
+                = link_to(_('Go to related page'), polymorphic_url(file.assetable))
+                &bull;
+              = link_to(_('Download this file'), file.attachment.url)
+              &bull;
+              = link_to(_('Remove this file'), file_path(file), :method => :delete, :id => "remove-file-#{file.id}")
+
+        .four.columns.backgroundify.align-right
+          - if file.type.match(/image/i)
+            = image_tag(file.attachment.url(:small))
+          - else
+            %span.icon-attach
+
+= paginate(@assets, {:run_as_xhr => true, :next_title => _('More') })
