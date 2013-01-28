@@ -8,7 +8,7 @@
     %ul
       %li{:class => (current_page?(dashboard_classroom_path) ? 'current' : '')}
         = link_to(_('Timeline'), dashboard_classroom_path)
-      %li{:class => (current_page?(syllabus_path) ? 'current' : '')}
+      %li{:class => (request.fullpath.match(/syllabus|lecture/) ? 'current' : '')}
         = link_to(_('Syllabus'), syllabus_path)
 
       - if files_count > 0
