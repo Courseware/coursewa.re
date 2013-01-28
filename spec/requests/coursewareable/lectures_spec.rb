@@ -40,7 +40,6 @@ describe 'Lectures' do
       page.source.should match(@lecture.content)
       page.should have_content(@lecture.requisite)
       page.should have_css('#lecture')
-      page.should have_css('#lecture .lecture-update')
     end
 
     it 'should update lecture if logged in' do
