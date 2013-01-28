@@ -14,7 +14,7 @@ module Coursewareable
       authorize!(:dashboard, @classroom)
       timeline = @classroom.all_activities
       @timeline = Kaminari.paginate_array(timeline).page(params[:page])
-      render(:partial => 'timeline') if request.xhr?
+      render(:partial => 'shared/timeline') if request.xhr?
     end
 
     # Classroom creation page
