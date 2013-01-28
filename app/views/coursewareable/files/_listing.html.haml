@@ -4,7 +4,7 @@
     - last_timestamp = file.attachment_updated_at.to_date
     .row
       .twelve.columns
-        %h4
+        %h5
           - if last_timestamp.today?
             = _('Today')
           - elsif last_timestamp == Date.yesterday
@@ -14,11 +14,17 @@
         %hr
 
   .row
-    .one.columns.timestamp.smaller.align-right
+    .two.columns.timestamp.smaller.align-left
       = file.attachment_updated_at.to_s(:pretty_time)
 
-    .eleven.columns.end.activity
-      %h5
+    .one.columns.backgroundify.align-right
+      - if file.type.match(/image/i)
+        %span.icon-picture
+      - else
+        %span.icon-attach
+
+    .nine.columns.end.activity
+      %h4
         = file.description
       %hr
       .row.hide-overflow
@@ -37,10 +43,8 @@
               &bull;
               = link_to(_('Remove this file'), file_path(file), :method => :delete, :id => "remove-file-#{file.id}")
 
-        .four.columns.backgroundify.align-right
+        .four.columns.align-right
           - if file.type.match(/image/i)
             = image_tag(file.attachment.url(:small))
-          - else
-            %span.icon-attach
 
 = paginate(@assets, {:run_as_xhr => true, :next_title => _('More') })

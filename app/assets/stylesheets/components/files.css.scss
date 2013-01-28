@@ -1,13 +1,14 @@
 #files {
   .timestamp {
-    margin-top: 21px;
+    line-height: 25px;
   }
 
   .backgroundify span {
+    line-height: 25px;
     position: relative;
-    top: -5px;
+    right: -10px;
     z-index: 1;
-    font-size: 80px;
+    font-size: 14px;
     color: $bw_9;
   }
 }
