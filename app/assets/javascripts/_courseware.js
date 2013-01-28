@@ -47,11 +47,21 @@
     },
 
     /**
+     * Handles alerts hiding after a timeout
+     */
+    hide_alerts_after_timeout: function(selector, timeout) {
+      setTimeout( function() {
+        $(selector).fadeOut( 'slow' );
+      }, timeout * 1000);
+    },
+
+    /**
      * Start Courseware plugins/modules
      */
     run: function() {
       Courseware.enable_xhr_requests('#content', 'a.run-as-xhr');
       Courseware.enable_on_click_expanding('#content', 'a.expands');
+      Courseware.hide_alerts_after_timeout('#notifications .alert-box', 3);
 
       $.fn.foundationAlerts           ? $doc.foundationAlerts() : null;
       $.fn.foundationButtons          ? $doc.foundationButtons() : null;
