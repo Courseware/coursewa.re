@@ -6,14 +6,33 @@ describe Coursewareable::ClassroomsController do
   let(:user) { Fabricate(:confirmed_user) }
 
   describe 'GET dashboard' do
-    before do
-      @controller.send(:auto_login, user)
-      @request.host = "#{classroom.slug}.#{@request.host}"
-      get(:dashboard, :use_route => :coursewareable)
+    context 'http request' do
+      before do
+        @controller.send(:auto_login, user)
+        @request.host = "#{classroom.slug}.#{@request.host}"
+        get(:dashboard, :use_route => :coursewareable)
+      end
+
+      context 'being logged in as user' do
+        it { should redirect_to(login_path) }
+      end
     end
 
-    context 'being logged in as user' do
+    context 'xhr request' do
+      before do
+        @request.host = "#{classroom.slug}.#{@request.host}"
+        xhr(:get, :dashboard, :use_route => :coursewareable)
+      end
       it { should redirect_to(login_path) }
+
+      context 'when logged in as user' do
+        before(:all) do
+          setup_controller_request_and_response
+          @controller.send(:auto_login, user)
+        end
+
+        it { should redirect_to(login_path) }
+      end
     end
   end
 

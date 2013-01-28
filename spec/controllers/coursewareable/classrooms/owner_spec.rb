@@ -6,14 +6,28 @@ describe Coursewareable::ClassroomsController do
   let(:classroom) { Fabricate('coursewareable/classroom') }
 
   describe 'GET dashboard' do
-    before do
-      @controller.send(:auto_login, classroom.owner)
-      @request.host = "#{classroom.slug}.#{@request.host}"
-      get(:dashboard, :use_route => :coursewareable)
+    context 'http request' do
+      before do
+        @controller.send(:auto_login, classroom.owner)
+        @request.host = "#{classroom.slug}.#{@request.host}"
+        get(:dashboard, :use_route => :coursewareable)
+      end
+
+      context 'being logged in as owner' do
+        it { should render_template(:dashboard) }
+      end
     end
 
-    context 'being logged in as owner' do
-      it { should render_template(:dashboard) }
+    context 'xhr request' do
+      before do
+        @controller.send(:auto_login, classroom.owner)
+        @request.host = "#{classroom.slug}.#{@request.host}"
+        xhr(:get, :dashboard, :use_route => :coursewareable)
+      end
+
+      context 'being logged in as owner' do
+        it { should render_template(:timeline) }
+      end
     end
   end
 
