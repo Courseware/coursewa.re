@@ -4,7 +4,7 @@
   .eight.columns
 
     - if can?(:contribute, @classroom)
-      = form_tag(announce_classroom_path, :id => :announce) do
+      = form_tag(announce_classroom_path, :id => :announce, :class => 'hide') do
         = text_area_tag(:announcement, nil, :required => true, :placeholder => _('Post an announcement for this classroom...'))
         .row
           .twelve.columns

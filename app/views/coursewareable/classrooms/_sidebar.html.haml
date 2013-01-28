@@ -13,6 +13,10 @@
       - else
         != _('Next: %s.') % link_to(_('update the syllabus'), edit_syllabus_path)
 
+    %p
+      - if can?(:contribute, @classroom)
+        != _('Got something important to say, %s.') % link_to(_('write an announcement'), '#', :class => 'expands', 'data-expand-target' => '#announce', 'data-look-allover' => 'true' )
+
     - responses_count = current_user.responses.where(:classroom_id => @classroom.id).count
     - assignments_count = @classroom.assignments.count
     - coverage = ((responses_count * 100) / assignments_count) if assignments_count > 0
