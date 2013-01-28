@@ -79,7 +79,7 @@ header {
     .dropdown {
       padding-top: 10px !important;
       height: 42px;
-      text-transform: capitalize;
+      text-transform: none;
 
       > ul {
         background: $navBackgroundColor !important;
