@@ -216,6 +216,10 @@ header {
       margin-bottom: 10px;
       margin-left: 10px;
 
+      li {
+        font-size: 13px;
+      }
+
       li:before {
         content: "\2013 \00a0";
       }
