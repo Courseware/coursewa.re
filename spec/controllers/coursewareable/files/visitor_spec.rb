@@ -5,13 +5,26 @@ describe Coursewareable::FilesController do
   let(:classroom) { Fabricate('coursewareable/classroom') }
 
   describe 'GET index' do
-    before do
-      @request.host = "#{classroom.slug}.#{@request.host}"
-      get(:index, :use_route => :coursewareable)
+    context 'http request' do
+      before do
+        @request.host = "#{classroom.slug}.#{@request.host}"
+        get(:index, :use_route => :coursewareable)
+      end
+
+      context 'not being logged in' do
+        it { should redirect_to(login_path) }
+      end
     end
 
-    context 'not being logged in' do
-      it { should redirect_to(login_path) }
+    context 'xhr request' do
+      before do
+        @request.host = "#{classroom.slug}.#{@request.host}"
+        xhr(:get, :index, :use_route => :coursewareable)
+      end
+
+      context 'not being logged in' do
+        it { should redirect_to(login_path) }
+      end
     end
   end
 

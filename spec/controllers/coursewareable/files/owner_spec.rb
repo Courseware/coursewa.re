@@ -5,14 +5,32 @@ describe Coursewareable::FilesController do
   let(:classroom) { Fabricate('coursewareable/classroom') }
 
   describe 'GET index' do
-    before(:each) do
-      @controller.send(:auto_login, classroom.owner)
-      @request.host = "#{classroom.slug}.#{@request.host}"
-      get(:index, :use_route => :coursewareable)
+    context 'http request' do
+      before(:each) do
+        @controller.send(:auto_login, classroom.owner)
+        @request.host = "#{classroom.slug}.#{@request.host}"
+        get(:index, :use_route => :coursewareable)
+      end
+
+      context 'being logged in as owner' do
+        it { should render_template(:index) }
+      end
     end
 
-    context 'being logged in as owner' do
-      it { should render_template(:index) }
+    context 'xhr request' do
+      before do
+        @request.host = "#{classroom.slug}.#{@request.host}"
+        xhr(:get, :index, :use_route => :coursewareable)
+      end
+
+      context 'when logged in as owner' do
+        before(:all) do
+          setup_controller_request_and_response
+          @controller.send(:auto_login, classroom.owner)
+        end
+
+        it { should render_template('listing') }
+      end
     end
   end
 
