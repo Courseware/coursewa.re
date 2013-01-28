@@ -32,14 +32,29 @@
       $(selector).on('click', trigger, function(event){
         var $this = $(this),
           target = $this.data('expand-target'),
+          global = $this.data('look-allover'),
           toggleClass = $this.data('toggle-class');
 
         if ( $this.hasClass(toggleClass) ) {
-          $this.parent().find(target).addClass('hide');
-          $this.removeClass(toggleClass);
+          if ( global ) {
+            $(target).slideUp('slow').addClass('hide');
+          } else {
+            $this.parent().find(target).slideUp('slow').addClass('hide');
+          }
+
+          if ( toggleClass ) {
+            $this.removeClass(toggleClass);
+          }
         } else {
-          $this.parent().find(target).removeClass('hide');
-          $this.addClass(toggleClass);
+          if ( global ) {
+            $(target).slideDown('slow').removeClass('hide');
+          } else {
+            $this.parent().find(target).slideDown('slow').removeClass('hide');
+          }
+
+          if ( toggleClass ) {
+            $this.addClass(toggleClass);
+          }
         }
 
         return false;
