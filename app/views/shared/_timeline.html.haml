@@ -7,7 +7,7 @@
     - last_timestamp = event.created_at.to_date
     .row
       .twelve.columns
-        %h4
+        %h5
           - if last_timestamp.today?
             = _('Today')
           - elsif last_timestamp == Date.yesterday
