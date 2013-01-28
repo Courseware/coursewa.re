@@ -1,0 +1,23 @@
+- max_child_count = 3
+%ul.lectures-listing
+  - @lectures.each do |lecture|
+    - unless lecture.parent_lecture
+      %li
+        - unless lecture.child_lectures.empty?
+          = link_to('', '#', :class => 'icon-plus right expands', 'data-expand-target' => '.child-lectures-listing', 'data-toggle-class' => 'icon-minus')
+
+        = link_to(lecture.title, lecture_path(lecture))
+        - unless lecture.child_lectures.empty?
+          .child-lectures-listing.hide
+            %ul
+              - child_lectures = lecture.child_lectures.limit(max_child_count)
+              - child_lectures.each do |child_lecture|
+                %li
+                  = link_to(child_lecture.title, lecture_path(child_lecture))
+
+                - if child_lectures.last.eql?(child_lecture)
+                  - remaining = lecture.child_lectures.offset(max_child_count).count
+                  - if remaining > 0
+                    %p.marginless-bottom.smaller
+                      - lec_title = pluralize(remaining, _('more lecture'), _('more lectures'))
+                      != _('Including %s.') % link_to(lec_title, '#lectures-tree')

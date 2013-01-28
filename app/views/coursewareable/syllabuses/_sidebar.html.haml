@@ -31,19 +31,5 @@
         = _('Lectures')
       %hr
 
-      %ul
-      - @classroom.lectures.each do |lecture|
-        - unless lecture.parent_lecture
-          %li.no-listing-style
-            - unless lecture.child_lectures.empty?
-              = link_to('', '#', :class => 'icon-plus right expands', 'data-expand-target' => 'p.smaller', 'data-toggle-class' => 'icon-minus')
-
-            = link_to(truncate(lecture.title, :length => 37), lecture_path(lecture))
-            - unless lecture.child_lectures.empty?
-              %p.marginless-bottom.smaller.hide
-                - lec_count = lecture.child_lectures.count
-                - lec_title = pluralize(lec_count, _('more lecture'), _('more lectures'))
-                - lec = lecture.child_lectures.sample
-                - lec_link = link_to(lec.title, lecture_path(lec))
-                %em
-                  != _('...%s. And %s, including %s.') % [lecture.title[34..-1], lec_title, lec_link]
+      - @lectures = @classroom.lectures
+      = render('sidebar_lectures_listing')
