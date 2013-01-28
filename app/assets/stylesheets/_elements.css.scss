@@ -115,6 +115,11 @@ dl dd {
   list-style: none;
 }
 
+.timestamp {
+  font-size: 10px;
+  color: $bw_7;
+}
+
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   font-family: 'courseware';
