@@ -1,9 +1,10 @@
 = title _('Create a new lecture')
 = head_embed javascript_include_tag('editor')
 = head_embed stylesheet_link_tag('editor')
+= breadcrumbs(render('editor_breadcrumbs'))
 
-.row#lecture
-  .seven.columns
+#lecture
+  .eight.columns
 
     = form_for(@lecture, :url => lectures_path) do |f|
       %p
@@ -28,4 +29,4 @@
         = f.submit _('Create'), :id => 'submit_lecture', :class => 'button primary'
         = link_to _('Cancel'), syllabus_path, :class => 'pull right'
 
-  = render(:partial => 'sidebar')
+  = render(:partial => 'editor_sidebar')

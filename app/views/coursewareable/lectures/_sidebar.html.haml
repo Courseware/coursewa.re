@@ -1,11 +1,32 @@
-.four.columns.offset-by-one
-  .row.classrooms-sidebar
+.four.columns
+  .row.sidebar
     %h5
-      = _('Lecture Sidebar')
+      - if can?(:update, @lecture)
+        %a.icon-edit.right{:href => edit_lecture_path(@lecture), :title => _('Update this lecture')}
+      = _('About this lecture')
+    %hr
 
-    %pre
-      TODO:
-      How many assignments
-      How many responses
-      How many grades
-      Relevant coverage
+    %p.smaller
+      = _('Last time updated by %s on %s') % [@lecture.user.name, @lecture.updated_at.to_s(:pretty)]
+
+    %h5
+      - if can?(:contribute, @classroom)
+        %a.icon-newspaper.right{:href => new_lecture_assignment_path(@lecture), :title => _('Create a new assignment for this lecture')}
+      = _('Lecture assignments')
+    %hr
+
+    %p
+      - unless @lecture.assignments.count > 0
+        = _('No assignments were added yet.')
+      - else
+        - single = _('There is one assignment for this lecture.')
+        - multiple = _('There are %d assignments for this lecture.') % @lecture.assignments.count
+        = (@lecture.assignments.count == 1) ? single : multiple
+
+
+    -# %pre
+    -#   TODO:
+    -#   How many assignments
+    -#   How many responses
+    -#   How many grades
+    -#   Relevant coverage

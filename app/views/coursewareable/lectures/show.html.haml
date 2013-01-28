@@ -2,11 +2,11 @@
 = breadcrumbs(render('breadcrumbs'))
 
 #lecture
-  .seven.columns
-    %small
+  .eight.columns.formatted
+
+    .panel
       = @lecture.requisite.html_safe
 
-    %hr
     = @lecture.content.html_safe
 
     %hr
@@ -19,9 +19,5 @@
     - if can?(:manage, @lecture)
       %p
         = link_to(_('Create an assignment'), new_lecture_assignment_path(@lecture), :class => 'button small primary assignment-add')
-
-    %p
-      %small
-        = link_to(_('Update'), edit_lecture_path(@lecture), :class => 'lecture-update')
 
   = render(:partial => 'sidebar')

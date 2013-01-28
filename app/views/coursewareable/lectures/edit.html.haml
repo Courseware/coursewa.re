@@ -1,9 +1,10 @@
 = title _('Update lecture')
 = head_embed javascript_include_tag('editor')
 = head_embed stylesheet_link_tag('editor')
+= breadcrumbs(render('editor_breadcrumbs'))
 
-.row#lecture
-  .seven.columns
+#lecture
+  .eight.columns
 
     = form_for(@lecture) do |f|
       %p
@@ -26,6 +27,6 @@
         = hidden_field_tag :assetable_type, @lecture.class, :class => 'assetable_type'
         = hidden_field_tag :assetable_id, @lecture.id, :class => 'assetable_id'
         = f.submit _('Update'), :id => 'submit_lecture', :class => 'button primary'
-        = link_to _('Cancel'), syllabus_path, :class => 'pull right'
+        = link_to _('Cancel'), lecture_path(@lecture), :class => 'pull right'
 
   = render(:partial => 'sidebar')

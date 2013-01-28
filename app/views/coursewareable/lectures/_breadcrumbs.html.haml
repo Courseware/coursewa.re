@@ -1,8 +1,7 @@
 .twelve.columns
   %ul.breadcrumbs
     %li
-      %span
-        = _('Syllabus')
+      = link_to(_('Syllabus'), syllabus_path)
     %li.current
       %span
         = @lecture.title
