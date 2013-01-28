@@ -222,7 +222,8 @@ header {
     }
 
     .progress {
-      border: 1px solid $mainColor;
+      background-color: $bw_10;
+      border: 1px solid $bw_9;
       padding: 0;
       margin-top: 15px;
       margin-bottom: 0;
