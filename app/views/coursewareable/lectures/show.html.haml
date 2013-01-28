@@ -1,26 +1,26 @@
 = title _(@lecture.title)
+= breadcrumbs(render('breadcrumbs'))
 
-.row#lecture
-  .seven.columns
-    %small
-      = @lecture.requisite.html_safe
+.seven.columns
+  %small
+    = @lecture.requisite.html_safe
 
-    %hr
-    = @lecture.content.html_safe
+  %hr
+  = @lecture.content.html_safe
 
-    %hr
-    - unless @lecture.assignments.empty?
-      %ul#assignments
-        - @lecture.assignments.each do |assignment|
-          %li
-            = link_to(assignment.title, lecture_assignment_path(@lecture, assignment))
+  %hr
+  - unless @lecture.assignments.empty?
+    %ul#assignments
+      - @lecture.assignments.each do |assignment|
+        %li
+          = link_to(assignment.title, lecture_assignment_path(@lecture, assignment))
 
-    - if can?(:manage, @lecture)
-      %p
-        = link_to(_('Create an assignment'), new_lecture_assignment_path(@lecture), :class => 'button small primary assignment-add')
-
+  - if can?(:manage, @lecture)
     %p
-      %small
-        = link_to(_('Update'), edit_lecture_path(@lecture), :class => 'lecture-update')
+      = link_to(_('Create an assignment'), new_lecture_assignment_path(@lecture), :class => 'button small primary assignment-add')
 
-  = render(:partial => 'sidebar')
+  %p
+    %small
+      = link_to(_('Update'), edit_lecture_path(@lecture), :class => 'lecture-update')
+
+= render(:partial => 'sidebar')
