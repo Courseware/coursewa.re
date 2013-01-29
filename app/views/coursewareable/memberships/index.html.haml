@@ -9,7 +9,7 @@
 
     = form_tag(memberships_path, :id => 'new_membership') do
       %p
-        = _('Add a new member by typing his email address below.')
+        = _('Add members by typing their email address below. They will receive an email to join.')
 
       = email_field_tag :email, nil, :required => true
 
