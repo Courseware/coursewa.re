@@ -10,4 +10,4 @@
       = _('Since you are the classroom owner you can customize some of the details.')
 
     %p
-      = _('All the uploaded header images can later be found under the <em>files</em> tab.')
+      != _('All the uploaded header images can later be found under the %s.') % link_to(_('files menu'), files_path)
