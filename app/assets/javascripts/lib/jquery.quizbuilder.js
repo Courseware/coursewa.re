@@ -311,7 +311,7 @@
 
   /**
    * A really lightweight plugin wrapper around the constructor,
-   * preventing against multiple instantiations
+   * preventing against multiple instances
    */
   $.fn[pluginName] = function ( options ) {
     return this.each(function () {
