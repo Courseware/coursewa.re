@@ -16,10 +16,10 @@
         = f.text_area :content, :class => 'wysiwyg-full', :required => true
 
       %p
-        = check_box_tag :has_quiz
+        = check_box_tag :has_quiz, nil, nil, :class => 'expands', 'data-expand-target' => '.quiz-builder', 'data-look-allover' => 'true', 'data-toggle-class' => 'expanded'
         = label_tag :has_quiz, _('This is a quiz')
 
-      %div.hide.quiz-builder{'data-quiz' => :auto, 'data-from-store' => :true}
+      %div.hide.quiz-builder{'data-quiz' => :auto, 'data-from-store' => :false}
         = f.hidden_field :quiz, :class => 'quiz-store'
         = render(:partial => 'quiz_builder_template')
 
