@@ -10,8 +10,10 @@
       = _('Subscription plan: %s') % user_plan.slug
     %hr
 
-    %p.smaller.align-right
-      = _('You started using it on %s') % user_plan.updated_at.to_s(:pretty)
+    - if user_plan.expires_in
+      %p.smaller.align-right
+        = _('This plan expires on %s') % user_plan.expires_in.to_s(:pretty_date_and_year)
+
     %p
       = _('This includes the following:')
 
