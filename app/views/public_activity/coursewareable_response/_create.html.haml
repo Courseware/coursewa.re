@@ -14,7 +14,7 @@
 
   - response_title = _('response')
   - if activity.trackable and activity.trackable.user == p[:current_user]
-    - response_title = link_to(_('response'), lecture_assignment_response_url(activity.trackable.assignment.lecture, activity.trackable.assignment, lecture.trackable :subdomain => activity.trackable.classroom.slug))
+    - response_title = link_to(_('response'), lecture_assignment_response_url(activity.trackable.assignment.lecture, activity.trackable.assignment, lecture.trackable, :subdomain => activity.trackable.classroom.slug))
 
   - if activity.owner == p[:current_user]
     = _('You left a %s on classroom %s.' % [response_title, assignment_title])
