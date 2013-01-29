@@ -10,7 +10,7 @@
     - if can?(:create, @classroom.collaborations.build)
       = form_tag(collaborations_path, :id => 'new_collaboration') do
         %p
-          = _('Add a new collaborator by typing his email address below.')
+          = _('Add collaborators by typing their email address below. They will receive an email to join.')
 
         = email_field_tag :email, nil, :required => true
 
