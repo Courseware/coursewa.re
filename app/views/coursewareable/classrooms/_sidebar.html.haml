@@ -7,10 +7,10 @@
       = _('About this classroom')
     %hr
 
-    %p
-      - if @classroom.syllabus
-        = @classroom.syllabus.intro
-      - else
+    - if @classroom.syllabus
+      = simple_format(@classroom.syllabus.intro)
+    - else
+      %p
         != _('Next: %s.') % link_to(_('update the syllabus'), edit_syllabus_path)
 
     %p
