@@ -18,7 +18,4 @@
 // require foundation/jquery.foundation.orbit
 // require foundation/jquery.foundation.mediaQueryToggle
 
-
-// require_tree .
-
 // =require ./_courseware
