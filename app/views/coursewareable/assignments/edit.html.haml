@@ -16,7 +16,8 @@
         = f.text_area :content, :class => 'wysiwyg-full', :required => true
 
       %p
-        = check_box_tag :has_quiz, nil, (@assignment.quiz.blank? ? false : true)
+        - expanded_class = (@assignment.quiz.blank? ? '' : 'expanded')
+        = check_box_tag :has_quiz, nil, (@assignment.quiz.blank? ? false : true), :class => ['expands', expanded_class], 'data-expand-target' => '.quiz-builder', 'data-look-allover' => 'true', 'data-toggle-class' => 'expanded'
         = label_tag :has_quiz, _('This is a quiz')
 
       %div.hide.quiz-builder{'data-quiz' => :auto, 'data-from-store' => :true}
