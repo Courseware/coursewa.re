@@ -57,7 +57,10 @@
           }
         }
 
-        return false;
+        // Skip link clicking event propagation
+        if ( $this.get(0).tagName === 'A' ) {
+          return false;
+        }
       });
     },
 
@@ -75,7 +78,7 @@
      */
     run: function() {
       Courseware.enable_xhr_requests('#content', 'a.run-as-xhr');
-      Courseware.enable_on_click_expanding('#content', 'a.expands');
+      Courseware.enable_on_click_expanding('#content', '.expands');
       Courseware.hide_alerts_after_timeout('#notifications .alert-box', 3);
 
       $.fn.foundationAlerts           ? $doc.foundationAlerts() : null;
