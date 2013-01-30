@@ -1,12 +1,8 @@
 #breadcrumbs {
-  border-top: 6px solid $bw_9;
-  margin-top: -40px;
+  margin-top: -35px;
   margin-left: -10px;
   margin-right: -10px;
   margin-bottom: 60px;
-
-  .columns {
-  }
 
   ul.breadcrumbs {
     background: none;
@@ -21,8 +17,11 @@
       a, span {
         text-transform: none;
         color: $bw_4;
-        text-decoration: none;
         font-size: 11px;
+      }
+
+      a:hover {
+        color: $secondaryColor;
       }
 
       &:before {
