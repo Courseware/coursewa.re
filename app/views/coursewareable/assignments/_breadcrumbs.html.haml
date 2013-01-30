@@ -1,0 +1,9 @@
+.twelve.columns
+  %ul.breadcrumbs
+    %li
+      = link_to(_('Syllabus'), syllabus_path)
+    %li
+      = link_to(@lecture.title, lecture_path(@lecture))
+    %li.current
+      %span
+        = @assignment.title

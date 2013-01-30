@@ -1,0 +1,14 @@
+.twelve.columns
+  %ul.breadcrumbs
+    %li
+      = link_to(_('Syllabus'), syllabus_path)
+    %li
+      = link_to(@lecture.title, lecture_path(@lecture))
+    - unless @assignment.new_record?
+      %li.current
+        %span
+          = _('Editing: %s') % @assignment.title
+    - else
+      %li.current
+        %span
+          = _('You are going to create a new assignment...')
