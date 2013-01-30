@@ -62,12 +62,7 @@ nav#classroom-menu {
 }
 
 .sidebar .classrooms-list {
-  .icon-background i {
-    position: relative;
-    right: 0;
-    top: 7px;
-    z-index: 1;
-    font-size: 30px;
+  .backgroundify i {
     color: $bw_9;
   }
 }

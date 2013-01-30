@@ -8,10 +8,10 @@
         %dt
           = link_to(classroom.title, root_url(:subdomain => classroom.slug))
           - if classroom.owner.eql?(current_user)
-            %span.icon-background.right
+            %span.backgroundify.right
               %i.icon-star
           - elsif classroom.collaborators.include?(current_user)
-            %span.icon-background.right
+            %span.backgroundify.right
               %i.icon-users
         %dd
           = classroom.description.html_safe
