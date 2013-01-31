@@ -1,9 +1,9 @@
 - max_child_count = 3
 %ul.lectures-listing
   - if can?(:contribute, @classroom)
-  %li
-    %strong
-      = link_to(_('Add a new lecture'), new_lecture_path)
+    %li
+      %strong
+        = link_to(_('Add a new lecture'), new_lecture_path)
   - @lectures.each do |lecture|
     - unless lecture.parent_lecture
       %li
