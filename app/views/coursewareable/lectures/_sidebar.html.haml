@@ -12,21 +12,31 @@
     %h5
       - if can?(:contribute, @classroom)
         %a.icon-newspaper.right{:href => new_lecture_assignment_path(@lecture), :title => _('Create a new assignment for this lecture')}
-      = _('Lecture assignments')
+      = pluralize(@lecture.assignments.count, _('lecture assignment'), _('lecture assignments'))
     %hr
 
-    %p
-      - unless @lecture.assignments.count > 0
+    - unless @lecture.assignments.count > 0
+      %p
         = _('No assignments were added yet.')
-      - else
-        - single = _('There is one assignment for this lecture.')
-        - multiple = _('There are %d assignments for this lecture.') % @lecture.assignments.count
-        = (@lecture.assignments.count == 1) ? single : multiple
+
+    %ul.assignments-listing
+      %li
+        %strong
+          = link_to(_('Create a new assignment'), new_lecture_assignment_path(@lecture))
+      - @lecture.assignments.each do |assignment|
+        - response = current_user.responses.where(:assignment_id => assignment.id)
+        %li
+          = link_to(assignment.title, lecture_assignment_path(assignment))
+          - unless can?(:contribute, @classroom)
+            = link_to('', '#', :class => 'icon-plus right expands', 'data-expand-target' => '.assignment-details', 'data-toggle-class' => 'icon-minus')
+            %p.assignment-details.smaller.hide
+              - if response.empty?
+                != _('You did not respond yet to this assignment. %s.') % link_to(_('You can do it now'), new_lecture_assignment_response_path(@lecture, assignment))
+              - else
+                != _('You have responded to this assignment. %s.') % link_to(_('You can review the response'), lecture_assignment_response_path(@lecture, assignment, response.first))
 
 
     -# %pre
     -#   TODO:
-    -#   How many assignments
-    -#   How many responses
     -#   How many grades
     -#   Relevant coverage
