@@ -3,9 +3,15 @@
     %h5
       = _('Your Classrooms')
     %hr
-    %dl.classrooms-list
+
+    %ul.classrooms-listing
+      - if can? :create, current_user.created_classrooms.build
+        %li
+          %strong
+            = link_to('Start a new classroom', start_classroom_path)
+
       - current_user.classrooms.each do |classroom|
-        %dt
+        %li
           = link_to(classroom.title, root_url(:subdomain => classroom.slug))
           - if classroom.owner.eql?(current_user)
             %span.backgroundify.right
@@ -13,8 +19,5 @@
           - elsif classroom.collaborators.include?(current_user)
             %span.backgroundify.right
               %i.icon-users
-        %dd
-          = classroom.description.html_safe
-
-    - if can? :create, current_user.created_classrooms.build
-      = link_to('Start a Classroom', start_classroom_path, :class => 'button primary')
+          %p
+            = classroom.description.html_safe

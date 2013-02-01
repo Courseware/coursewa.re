@@ -61,8 +61,36 @@ nav#classroom-menu {
   }
 }
 
-.sidebar .classrooms-list {
-  .backgroundify i {
-    color: $bw_9;
+#content {
+  .sidebar {
+    .classrooms-listing {
+
+      margin-left: 0;
+
+      li {
+        border-bottom: 1px solid $bw_9;
+        list-style: none;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+
+        p {
+          margin-bottom: 0;
+        }
+
+        &:before {
+          content: none;
+        }
+
+        &:last-child {
+          border-bottom: none;
+          padding-bottom: 0px;
+          margin-bottom: 0px;
+        }
+      }
+
+      .backgroundify i {
+        color: $bw_9;
+      }
+    }
   }
 }
