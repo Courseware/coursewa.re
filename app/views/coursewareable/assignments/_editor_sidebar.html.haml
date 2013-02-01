@@ -1,0 +1,9 @@
+.four.columns
+  .row.sidebar
+    %h5
+      = _('About this assignment')
+    %hr
+
+    - unless @assignment.new_record?
+      %p.smaller
+        = _('Last time updated by %s on %s') % [@assignment.user.name, @assignment.updated_at.to_s(:pretty)]

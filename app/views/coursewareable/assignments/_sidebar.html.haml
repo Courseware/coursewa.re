@@ -1,14 +1,21 @@
 .four.columns
-  .row.classrooms-sidebar
-    %h5
-      = _('Assignment Sidebar')
+  .row.sidebar
+    - if can?(:contribute, @classroom)
+      = render('sidebar_collaborator')
+    - else
+      %h5
+        = _('About this assignment')
+      %hr
 
-    %pre
-      TODO:
-      Relevant lecture
-      Current assignment count/order
+      %p.smaller
+        = _('Last time updated by %s on %s') % [@assignment.user.name, @assignment.updated_at.to_s(:pretty)]
 
-      If created already:
-      Nr. of questions
-      Nr. of responses
-      Nr. of grades
+      -# %pre
+      -#   TODO:
+      -#   Relevant lecture
+      -#   Current assignment count/order
+
+      -#   If created already:
+      -#   Nr. of questions
+      -#   Nr. of responses
+      -#   Nr. of grades

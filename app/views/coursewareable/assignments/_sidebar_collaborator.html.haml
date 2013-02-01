@@ -1,0 +1,8 @@
+%h5
+  = link_to(_(''), edit_lecture_assignment_path(@lecture, @assignment), :class => 'icon-edit right')
+  = _('About this assignment')
+%hr
+
+%p.smaller
+  = _('Last time updated by %s on %s.') % [@assignment.user.name, @assignment.updated_at.to_s(:pretty)]
+  = link_to(_('You can update this assignment'), edit_lecture_assignment_path(@lecture, @assignment))
