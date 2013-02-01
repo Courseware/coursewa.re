@@ -5,7 +5,8 @@
 
 %p.smaller
   - unless @lecture.new_record?
-    = _('Last time updated by %s on %s') % [@lecture.user.name, @lecture.updated_at.to_s(:pretty)]
+    = _('Last time updated by %s on %s.') % [@lecture.user.name, @lecture.updated_at.to_s(:pretty)]
+    = link_to(_('You can update this lecture'), edit_lecture_path(@lecture))
 
 %h5
   %a.icon-newspaper.right{:href => new_lecture_assignment_path(@lecture), :title => _('Create a new assignment for this lecture')}

@@ -1,13 +1,15 @@
 .four.columns
   .row.sidebar
     %h5
-      = _('Lecture editor sidebar')
+      = _('Lecture syllabus description')
     %hr
 
+    - unless @lecture.new_record?
+      %p.smaller
+        = _('Last time updated by %s on %s') % [@lecture.user.name, @lecture.updated_at.to_s(:pretty)]
 
-    -# %pre
-    -#   TODO:
-    -#   How many assignments
-    -#   How many responses
-    -#   How many grades
-    -#   Relevant coverage
+    - if @classroom.syllabus and @classroom.syllabus.intro
+      = simple_format(@classroom.syllabus.intro)
+    - else
+      %p
+        = link_to(_('You can also update the classroom syllabus'))
