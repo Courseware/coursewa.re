@@ -1,0 +1,30 @@
+%h5
+  - if can?(:update, @classroom)
+    %a.icon-settings.right{:href => edit_classroom_path, :title => _('Manage this classroom')}
+  = _('About this classroom')
+%hr
+
+- if @classroom.syllabus
+  = simple_format(@classroom.syllabus.intro)
+- else
+  %p
+    != _('Next: %s.') % link_to(_('update the syllabus'), edit_syllabus_path)
+
+%p
+  != _('Got something important to say, %s.') % link_to(_('write an announcement'), '#', :class => 'expands', 'data-expand-target' => '#announce', 'data-look-allover' => 'true' )
+
+%h5
+  = _('Some stats')
+%hr
+
+%ul
+  %li
+    = _('%d members') % @classroom.memberships_count
+  %li
+    = _('%d lectures') % @classroom.lectures.count
+  %li
+    = _('%d assignments') % @classroom.assignments.count
+  %li
+    = _('%d responses') % current_user.responses.where(:classroom_id => @classroom.id).count
+  %li
+    = _('%d grades') % @classroom.grades.count

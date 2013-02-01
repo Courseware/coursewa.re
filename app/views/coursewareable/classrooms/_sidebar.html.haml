@@ -1,42 +1,23 @@
 .four.columns
   .row.sidebar
-
-    %h5
-      - if can?(:update, @classroom)
-        %a.icon-settings.right{:href => edit_classroom_path, :title => _('Manage this classroom')}
-      = _('About this classroom')
-    %hr
-
-    - if @classroom.syllabus
-      = simple_format(@classroom.syllabus.intro)
+    - if can?(:contribute, @classroom)
+      = render('sidebar_collaborator')
     - else
-      %p
-        != _('Next: %s.') % link_to(_('update the syllabus'), edit_syllabus_path)
 
-    %p
-      - if can?(:contribute, @classroom)
-        != _('Got something important to say, %s.') % link_to(_('write an announcement'), '#', :class => 'expands', 'data-expand-target' => '#announce', 'data-look-allover' => 'true' )
+      %h5
+        = _('About this classroom')
+      %hr
 
-    - responses_count = current_user.responses.where(:classroom_id => @classroom.id).count
-    - assignments_count = @classroom.assignments.count
-    - coverage = ((responses_count * 100) / assignments_count) if assignments_count > 0
+      - if @classroom.syllabus
+        = simple_format(@classroom.syllabus.intro)
 
-    %ul
-      %li
-        = _('%d members') % @classroom.memberships_count
-      %li
-        = _('%d lectures') % @classroom.lectures.count
-      %li
-        = _('%d assignments') % assignments_count
-      %li
-        = _('%d responses') % responses_count
-      %li
-        = _('%d grades') % @classroom.grades.count
-
-    - if cannot?(:contribute, @classroom) and assignments_count > 0
       %h5
         = _('Your progress')
       %hr
+
+      - responses_count = current_user.responses.where(:classroom_id => @classroom.id).count
+      - assignments_count = @classroom.assignments.count
+      - coverage = ((responses_count * 100) / assignments_count) if assignments_count > 0
 
       .nice.success.progress
         %span.meter{:style => "width: #{coverage.to_i}%"}
