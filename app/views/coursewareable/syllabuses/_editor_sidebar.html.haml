@@ -1,0 +1,21 @@
+.four.columns
+  .row.sidebar
+    %h5
+      = _('Classroom syllabus')
+    %hr
+
+    - unless @syllabus.new_record?
+      %p.smaller
+        = _('Last time updated by %s on %s.') % [@syllabus.user.name, @syllabus.updated_at.to_s(:pretty)]
+
+      - unless @classroom.lectures.empty?
+        %p
+          = _('There are %d lectures with a total of %d assignments.') % [@classroom.lectures.count, @classroom.assignments.count]
+
+    %h5
+      %a.icon-feather.right{:href => new_lecture_path, :title => _('Create a new lecture')}
+      = _('Lectures')
+    %hr
+
+    - @lectures = @classroom.lectures
+    = render('sidebar_lectures_listing')
