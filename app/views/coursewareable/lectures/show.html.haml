@@ -9,15 +9,4 @@
 
     = @lecture.content.html_safe
 
-    %hr
-    - unless @lecture.assignments.empty?
-      %ul#assignments
-        - @lecture.assignments.each do |assignment|
-          %li
-            = link_to(assignment.title, lecture_assignment_path(@lecture, assignment))
-
-    - if can?(:manage, @lecture)
-      %p
-        = link_to(_('Create an assignment'), new_lecture_assignment_path(@lecture), :class => 'button small primary assignment-add')
-
   = render(:partial => 'sidebar')
