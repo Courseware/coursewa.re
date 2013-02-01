@@ -1,43 +1,31 @@
 .four.columns
   .row.sidebar
-    %h5
-      - if can?(:update, @lecture)
-        %a.icon-edit.right{:href => edit_lecture_path(@lecture), :title => _('Update this lecture')}
-      = _('About this lecture')
-    %hr
+    - if can?(:contribute, @classroom)
+      = render('sidebar_collaborator')
+    - else
+      %h5
+        = _('About this lecture')
+      %hr
 
-    %p.smaller
-      = _('Last time updated by %s on %s') % [@lecture.user.name, @lecture.updated_at.to_s(:pretty)]
+      %p.smaller
+        = _('Last time updated by %s on %s') % [@lecture.user.name, @lecture.updated_at.to_s(:pretty)]
 
-    %h5
-      - if can?(:contribute, @classroom)
-        %a.icon-newspaper.right{:href => new_lecture_assignment_path(@lecture), :title => _('Create a new assignment for this lecture')}
-      = pluralize(@lecture.assignments.count, _('lecture assignment'), _('lecture assignments'))
-    %hr
+      %h5
+        = pluralize(@lecture.assignments.count, _('lecture assignment'), _('lecture assignments'))
+      %hr
 
-    - unless @lecture.assignments.count > 0
-      %p
-        = _('No assignments were added yet.')
+      - unless @lecture.assignments.count > 0
+        %p
+          = _('No assignments were added yet.')
 
-    %ul.assignments-listing
-      - if can?(:contribute, @classroom)
-        %li
-          %strong
-            = link_to(_('Create a new assignment'), new_lecture_assignment_path(@lecture))
-      - @lecture.assignments.each do |assignment|
-        - response = current_user.responses.where(:assignment_id => assignment.id)
-        %li
-          = link_to(assignment.title, lecture_assignment_path(assignment))
-          - unless can?(:contribute, @classroom)
+      %ul.assignments-listing
+        - @lecture.assignments.each do |assignment|
+          - response = current_user.responses.where(:assignment_id => assignment.id)
+          %li
+            = link_to(assignment.title, lecture_assignment_path(assignment))
             = link_to('', '#', :class => 'icon-plus right expands', 'data-expand-target' => '.assignment-details', 'data-toggle-class' => 'icon-minus')
             %p.assignment-details.smaller.hide
               - if response.empty?
                 != _('You did not respond yet to this assignment. %s.') % link_to(_('You can do it now'), new_lecture_assignment_response_path(@lecture, assignment))
               - else
                 != _('You have responded to this assignment. %s.') % link_to(_('You can review the response'), lecture_assignment_response_path(@lecture, assignment, response.first))
-
-
-    -# %pre
-    -#   TODO:
-    -#   How many grades
-    -#   Relevant coverage

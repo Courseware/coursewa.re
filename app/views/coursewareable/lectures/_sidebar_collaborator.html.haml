@@ -1,0 +1,36 @@
+%h5
+  %a.icon-edit.right{:href => edit_lecture_path(@lecture), :title => _('Update this lecture')}
+  = _('About this lecture')
+%hr
+
+%p.smaller
+  - unless @lecture.new_record?
+    = _('Last time updated by %s on %s') % [@lecture.user.name, @lecture.updated_at.to_s(:pretty)]
+
+%h5
+  %a.icon-newspaper.right{:href => new_lecture_assignment_path(@lecture), :title => _('Create a new assignment for this lecture')}
+  = pluralize(@lecture.assignments.count, _('lecture assignment'), _('lecture assignments'))
+%hr
+
+- unless @lecture.assignments.count > 0
+  %p
+    = _('No assignments were added yet.')
+
+%ul.assignments-listing
+  %li
+    %strong
+      = link_to(_('Create a new assignment'), new_lecture_assignment_path(@lecture))
+  - @lecture.assignments.each do |assignment|
+    %li
+      = link_to(assignment.title, lecture_assignment_path(@lecture, assignment))
+      = link_to('', '#', :class => 'icon-plus right expands', 'data-expand-target' => '.assignment-details', 'data-toggle-class' => 'icon-minus')
+      %p.assignment-details.smaller.hide
+        - if assignment.responses.empty?
+          = _('There are no responses for this assignment.')
+        - else
+          - if assignment.responses.count == 1
+            != _('There is %s for this assignment.') % link_to(_('one response '), lecture_assignment_response_path(@lecture, assignment, assignment.responses.first))
+          - else
+            = _('There are %d responses for this assignment.') % assignment.responses.count
+          - grades_link = link_to(pluralize(assignment.grades.count, _('grade'), _('grades')), lecture_assignment_grades_path(@lecture, assignment))
+          != _('This assignment also has %s.') % grades_link
