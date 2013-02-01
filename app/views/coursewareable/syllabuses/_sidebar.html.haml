@@ -1,35 +1,27 @@
 .four.columns
   .row.sidebar
-    %h5
-      - if can?(:update, @syllabus)
-        %a.icon-edit.right{:href => edit_syllabus_path, :title => _('Update syllabus')}
-      = _('Classroom syllabus')
-    %hr
+    - if can?(:contribute, @classroom)
+      = render('sidebar_collaborator')
+    - else
+      %h5
+        = _('Classroom syllabus')
+      %hr
 
-    - unless @syllabus.new_record?
-      %p.smaller
-        = _('Last time updated by %s on %s') % [@syllabus.user.name, @syllabus.updated_at.to_s(:pretty)]
+      - unless @syllabus.new_record?
+        %p.smaller
+          = _('Last time updated by %s on %s') % [@syllabus.user.name, @syllabus.updated_at.to_s(:pretty)]
 
       - unless @classroom.lectures.empty?
         %p
           = _('There are %d lectures with a total of %d assignments.') % [@classroom.lectures.count, @classroom.assignments.count]
-      %p
-        = link_to(_('Jump to course structure'), '#lectures-tree')
-    - else
-      %p
-        = _('Start by updating the classroom syllabus.')
-
-
-    - if @classroom.lectures.empty?
-      - if !@classroom.syllabus.nil? and can?(:contribute, @classroom)
         %p
-          = link_to(_('Add your first lecture'), new_lecture_path)
-    - else
-      %h5
-        - if can?(:contribute, @classroom)
-          %a.icon-feather.right{:href => new_lecture_path, :title => _('Create a new lecture')}
-        = _('Lectures')
-      %hr
+          = link_to(_('Jump to course structure'), '#lectures-tree')
 
-      - @lectures = @classroom.lectures
-      = render('sidebar_lectures_listing')
+
+      - unless @classroom.lectures.empty?
+        %h5
+          = _('Lectures')
+        %hr
+
+        - @lectures = @classroom.lectures
+        = render('sidebar_lectures_listing')
