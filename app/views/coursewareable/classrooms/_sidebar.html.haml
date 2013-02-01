@@ -8,8 +8,10 @@
         = _('About this classroom')
       %hr
 
-      - if @classroom.syllabus and @classroom.syllabus.intro
+      - if @classroom.syllabus and !@classroom.syllabus.intro.blank?
         = simple_format(@classroom.syllabus.intro)
+      - else
+        = simple_format(@classroom.description)
 
       %h5
         = _('Your progress')

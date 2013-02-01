@@ -6,10 +6,10 @@
       %h3
         = @syllabus.title
 
-      - if @syllabus.intro
+      - unless @syllabus.intro.blank?
         .panel
           %p
-            = @syllabus.intro
+            = simple_format(@syllabus.intro)
 
       = @syllabus.content.html_safe
 
