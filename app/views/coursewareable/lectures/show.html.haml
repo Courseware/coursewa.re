@@ -4,8 +4,9 @@
 #lecture
   .eight.columns.formatted
 
-    .panel
-      = @lecture.requisite.html_safe
+    - if @lecture.requisite
+      .panel
+        = @lecture.requisite.html_safe
 
     = @lecture.content.html_safe
 
