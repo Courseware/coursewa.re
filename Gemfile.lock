@@ -195,6 +195,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-rails (0.2.2)
+      pry (>= 0.9.10)
     public_activity (0.5.4)
       actionpack (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -361,6 +363,7 @@ DEPENDENCIES
   party_foul
   pg
   pry
+  pry-rails
   public_activity
   puma
   quiet_assets

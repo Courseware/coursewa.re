@@ -39,6 +39,7 @@ group :development do
   gem 'cane'
   gem 'seedbank'
   gem 'mina', :require => false
+  gem 'pry-rails'
 end
 
 group :assets do
