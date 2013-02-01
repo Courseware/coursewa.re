@@ -6,9 +6,10 @@
       %h3
         = @syllabus.title
 
-      .panel
-        %p
-          = @syllabus.intro
+      - if @syllabus.intro
+        .panel
+          %p
+            = @syllabus.intro
 
       = @syllabus.content.html_safe
 
