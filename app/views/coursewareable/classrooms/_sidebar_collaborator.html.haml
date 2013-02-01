@@ -4,7 +4,7 @@
   = _('About this classroom')
 %hr
 
-- if @classroom.syllabus
+- if @classroom.syllabus and @classroom.syllabus.intro
   = simple_format(@classroom.syllabus.intro)
 - else
   %p
