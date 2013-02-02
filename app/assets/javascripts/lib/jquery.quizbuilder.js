@@ -290,11 +290,18 @@
      * @param event, Object
      */
     controls: function() {
-      var self = this;
+      var self = this,
+        $element = $( self.element );
 
       // Bind main controls
       $.each( this.options.controls, function( key, ctrl ){
-        $( ctrl ).on( 'click', self, self[ key + 'Handler' ] );
+        $( ctrl ).on( 'click', function( event ) {
+          self[ key + 'Handler' ]( {data: self} );
+          // Scroll to latest element
+          $( 'html, body' ).animate( {
+            scrollTop: $element.offset().top + $element.height()
+          }, 500 );
+        } );
       });
 
       // Bind radio/checkboxes deletion controls
@@ -302,9 +309,9 @@
         var toRem = ctrl.replace( '.template', ' .remove' );
         var toAdd = ctrl.replace( '.template', ' .add' );
         var toDel = ctrl.replace( '.template', ' .delete' );
-        $( self.element ).on( 'click', toRem, self, self[ 'removeAnswer' ] );
-        $( self.element ).on( 'click', toAdd, self, self[ 'addAnswer' ] );
-        $( self.element ).on( 'click', toDel, self, self[ 'deleteQuestion' ] );
+        $element.on( 'click', toRem, self, self[ 'removeAnswer' ] );
+        $element.on( 'click', toAdd, self, self[ 'addAnswer' ] );
+        $element.on( 'click', toDel, self, self[ 'deleteQuestion' ] );
       });
     }
   }
