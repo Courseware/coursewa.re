@@ -13,6 +13,11 @@
 .button {
   text-transform: uppercase;
   border: 1px solid $btnBorderColor;
+
+  &.simple {
+    background: $white;
+    border: 1px solid $bw_9d5;
+  }
 }
 
 .naked {
@@ -109,6 +114,10 @@ dl dd {
 
 .padded-ten {
   padding: 10px;
+}
+
+.padded-top-ten {
+  padding-top: 10px;
 }
 
 .no-listing-style {

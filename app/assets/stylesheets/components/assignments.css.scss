@@ -1,0 +1,37 @@
+#assignment {
+
+  .question.row {
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 3px dotted $white;
+    @include opacity(0.3);
+
+    &:hover {
+      @include opacity(1);
+    }
+  }
+
+  a {
+    &.alert {
+      color: $alertColor;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.success {
+      color: $successColor;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+  }
+
+  .option-validation {
+    input[type="checkbox"] {
+      height: 14px;
+    }
+  }
+}

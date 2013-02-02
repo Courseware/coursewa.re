@@ -1,48 +1,62 @@
-%p
-  %a.quiz-new-text.small.button{:href => "#"} Single Answer
-  %a.quiz-new-radios.small.button{:href => "#"} Multiple Options – One Answer
-  %a.quiz-new-checkboxes.small.button{:href => "#"} Multiple Options – Multiple Answers
+%h5.marginless-top
+  = _('Pick a question type from bellow:')
+%ul.button-group.align-center
+  %li
+    %a.quiz-new-text.tiny.button.simple.icon-plus{:href => "#"}
+      = _('Single answer')
+  %li
+    %a.quiz-new-radios.tiny.button.simple.icon-plus{:href => "#"}
+      = _('Multiple options and one answer')
+  %li
+    %a.quiz-new-checkboxes.tiny.button.simple.icon-plus{:href => "#"}
+      = _('Multiple options with answers')
 
-%hr
   .quiz-text.template.question.row{:style => "display: none"}
     .twelve.columns.question-content
-      %textarea.input Question
+      %textarea.input{:placeholder => _('Your question content...')}
       .row.option
         .eleven.offset-by-one.columns.option-content
-          %textarea Answer
+          %textarea{:placeholder => _('Possible answer content...')}
     .row
-      .twelve.columns.alignright
-        %a.button.tiny.alert.delete{:href => "#"} Delete
-    %hr
+      .twelve.columns.align-right
+        %a.alert.delete.icon-remove{:href => "#"}
+          = _('Remove question')
+
   .quiz-radios.template.question.row{:style => "display: none"}
     .twelve.columns.question-content
-      %textarea.input Question
+      %textarea.input{:placeholder => _('Your question content...')}
       .row.option
-        .one.columns.option-validation
+        .one.columns.option-validation.align-center
           %input{:name => "unique", :type => "radio"}
-        .nine.columns.option-content
-          %textarea Answer
-        .two.columns
-          %a.button.tiny.alert.remove{:href => "#"} Remove
+          %p.padded-top-ten
+            %a.alert.remove.icon-remove{:href => "#", :title => _('Remove this option')}
+              -# = _('Remove option')
+        .eleven.columns.option-content
+          %textarea{:placeholder => _('Possible answer content...')}
     .row
-      .nine.columns
-        %a.button.tiny.success.add{:href => "#"} Add a new option
-      .three.columns.alignright
-        %a.button.tiny.alert.delete{:href => "#"} Delete
-    %hr
+      .six.columns
+        %a.add.icon-plus{:href => "#"}
+          = _('New option')
+      .six.columns.align-right
+        %a.alert.delete.icon-remove{:href => "#"}
+          = _('Remove question')
+
   .quiz-checkboxes.template.question.row{:style => "display: none"}
     .twelve.columns.question-content
-      %textarea.input Question
+      %textarea.input{:placeholder => _('Your question content...')}
       .row.option
-        .one.columns.option-validation
+        .one.columns.option-validation.align-center
           %input{:type => "checkbox"}
-        .nine.columns.option-content
-          %textarea Answer
-        .two.columns
-          %a.button.tiny.alert.remove{:href => "#"} Remove
+          %p.padded-top-ten
+            %a.alert.remove.icon-remove{:href => "#", :title => _('Remove this option')}
+              -# = _('Remove option')
+        .eleven.columns.option-content
+          %textarea{:placeholder => _('Possible answer content...')}
     .row
-      .nine.columns
-        %a.button.tiny.success.add{:href => "#"} Add a new option
-      .three.columns.alignright
-        %a.button.tiny.alert.delete{:href => "#"} Delete
-    %hr
+      .six.columns
+        %a.add.icon-plus{:href => "#"}
+          = _('New option')
+      .six.columns.align-right
+        %a.alert.delete.icon-remove{:href => "#"}
+          = _('Remove question')
+
