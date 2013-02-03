@@ -74,6 +74,20 @@
     },
 
     /**
+     * Handle a friendly modal message if assetable object is not available yet
+     */
+    redactor_unsaved_modal: function( selector ) {
+      if ( $( selector ).val().length === 0 ) {
+        // TODO: add support for a localized message
+        return '<div id="redactor_modal_content">Please save this page first.' +
+          '</div><div id="redactor_modal_footer">' +
+          '<a href="javascript:void(null);" ' +
+          ' class="redactor_modal_btn redactor_btn_modal_close">' +
+          RLANG.cancel + '</a></div>';
+      }
+    },
+
+    /**
      * Start Courseware plugins/modules
      */
     run: function() {

@@ -35,7 +35,9 @@
         authenticity_token: $('meta[name="csrf-token"]').attr('content'),
         assetable_type: $('.assetable_type').val(),
         assetable_id: $('.assetable_id').val()
-      }
+      },
+      modal_image: Courseware.redactor_unsaved_modal( '.assetable_id' ),
+      modal_file: Courseware.redactor_unsaved_modal( '.assetable_id' )
     });
   });
 }(jQuery))
