@@ -1,26 +1,130 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
-</head>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='Coursewa.re' name='generator'>
+    <!--[if lt IE 9]>
+      <script src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <link href="/favicon.png" rel="shortcut icon" type="image/png" />
+    <title>Page was not found &bull; The Courseware Project</title>
+    <style type="text/css">
+      @import url("http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700&subset=latin,latin-ext");
+      @font-face {
+        font-family: 'courseware';
+        src: url(/assets/courseware.eot);
+        src: url(/assets/courseware.eot?#iefix) format("embedded-opentype"),
+             url(/assets/courseware.woff) format("woff"),
+             url(/assets/courseware.ttf) format("truetype"),
+             url(/assets/courseware.svg#courseware) format("svg");
+        font-weight: normal;
+        font-style: normal;
+      }
 
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
+      [class^="icon-"]:before,
+      [class*=" icon-"]:before {
+        font-family: 'courseware';
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        display: inline-block;
+        text-decoration: inherit;
+        width: 1em;
+        margin-right: 0.2em;
+        text-align: center;
+      }
+
+      .heart {
+        color: #F44;
+        margin-left: -2px;
+        margin-right: -4px;
+        opacity: 0.8;
+      }
+
+      .icon-heart:before {
+        content: '\e805';
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f5f6f7;
+        font-family: "Open Sans", sans-serif;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 14px;
+        color: #3b4045;
+        position: relative;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1, h3, p {
+        font-weight: 200;
+      }
+
+      .wrap {
+        margin-top: 7%;
+        background: transparent url('/assets/courseware-big.png') top center no-repeat;
+        min-width: 420px;
+        padding-top: 140px;
+        text-align: center;
+      }
+
+      .content {
+        background: #362f2d url(/assets/bg-texture.png) top left repeat-x;
+        padding: 20px 0;
+        color: white;
+      }
+
+      .content p {
+        padding-left: 25%;
+      }
+
+      .signature {
+        font-style: italic;
+        font-size: 80%;
+        display: block;
+      }
+
+      a {
+        color: white;
+        text-decoration: underline;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      .withlove {
+        text-align: right;
+        padding-right: 10%;
+        font-size: 90%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <div class="content">
+        <h1>Hey, we could not find the page you are looking for.</h1>
+        <h3>
+          Please visit our <a href="http://coursewa.re">homepage</a>
+          or try the <em>back</em> button in your browser.
+        </h3>
+        <p>
+          Thanks for teaching with us.
+          <span class="signature">
+            &mdash; The Courseware Project team.
+          </span>
+        </p>
+      </div>
+
+      <p class="withlove">
+        With <i class='icon-heart heart'></i> from Transylvania
+      </p>
+
+    </div>
+  </body>
 </html>
