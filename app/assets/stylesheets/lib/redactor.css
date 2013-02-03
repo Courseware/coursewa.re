@@ -3,9 +3,10 @@
 	border: 1px solid #ddd;
 	overflow: visible;
 }
-.redactor_box, .redactor_box textarea {
-	background-color: #fff;
-}
+/* OVERWRITE */
+/* .redactor_box, .redactor_box textarea { */
+/* 	background-color: #fff; */
+/* } */
 
 body .redactor_air {
 	position: absolute;
@@ -26,13 +27,14 @@ body .redactor_box_fullscreen {
     z-index: 2000;
 }
 
+/* OVERWRITE */
 .redactor_box textarea {
 	font-family: Menlo, Monaco, monospace, sans-serif;
-	font-size: 13px;
+	/* font-size: 13px; */
 	overflow: auto;
 	resize: none;
-	margin: 0;
-	padding: 0;
+	/* margin: 0; */
+	/* padding: 0; */
 	display: block;
 	position: relative;
 	z-index: 1004;
@@ -605,9 +607,10 @@ body .redactor_toolbar li a.redactor_btn_alignment	 		{ background-position: -62
 	-o-transition: border 0.3s ease-in;
 	transition: border 0.3s ease-in;
 }
-#redactor_modal textarea {
-	line-height: 1.4em;
-}
+/* OVERWRITE */
+/* #redactor_modal textarea { */
+	/* line-height: 1.4em; */
+/* } */
 #redactor_modal input:focus,
 #redactor_modal textarea:focus {
 	outline: none;
