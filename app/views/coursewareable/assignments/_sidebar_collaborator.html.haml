@@ -6,3 +6,43 @@
 %p.smaller
   = _('Last time updated by %s on %s.') % [@assignment.user.name, @assignment.updated_at.to_s(:pretty)]
   = link_to(_('You can update this assignment'), edit_lecture_assignment_path(@lecture, @assignment))
+
+%h5
+  = _('Stats')
+%hr
+
+%p
+  != _('This assignment relates to %s lecture.') % link_to(@lecture.title, lecture_path(@lecture))
+
+%p.icon-docs
+  - assignments_count = pluralize(@lecture.assignments.count, _('more assignment'), _('more assignments'))
+  - responses_count = pluralize(@lecture.responses.count, _('response'), _('more responses'))
+  - if @lecture.assignments.count > 1
+    = _('There are %s and %s for this lecture.') % [assignments_count, responses_count]
+  - elsif @lecture.assignments.count == 1
+    = _('There is %s and %s for this lecture.') % [assignments_count, responses_count]
+  - else
+    = _('This is the first assignment for this lecture.')
+
+%p.icon-hammer
+  != _('You can also %s for this assignment.') % link_to(_('update the grades'), lecture_assignment_grades_path(@lecture, @assignment))
+
+%h5
+  = pluralize(@assignment.grades.count, _('assignment grade'), _('assignment grades'))
+%hr
+
+- if @assignment.grades.empty?
+  %p
+    != _('There are no grades for this assignment, but you can % now.') % link_to(_('add a grade now'), lecture_assignment_grades_path(@lecture, @assignment))
+- else
+  %ul.itemized.grades-listing
+    %li
+      %strong
+        = link_to(_('Grade someone else'), new_lecture_assignment_grade_path(@lecture, @assignment))
+    - @assignment.grades.limit(3).each do |grade|
+      %li
+        - grade_for = _('Grade for %s') % grade.receiver.name
+        = link_to(grade_for, edit_lecture_assignment_grade_path(@lecture, @assignment, grade))
+    - if @assignment.grades.count > 3
+      %li.smaller.align-right
+        != _('Including %s...') % link_to(_('%d more grades') % @assignment.grades.offset(3).count, lecture_assignment_grades_path(@lecture, @assignment))

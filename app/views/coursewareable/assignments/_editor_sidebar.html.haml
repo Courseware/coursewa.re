@@ -4,6 +4,15 @@
       = _('About this assignment')
     %hr
 
-    - unless @assignment.new_record?
-      %p.smaller
-        = _('Last time updated by %s on %s') % [@assignment.user.name, @assignment.updated_at.to_s(:pretty)]
+    %p
+      != _('You are about to add a new assignment to %s lecture.') % link_to(@lecture.title, lecture_path(@lecture))
+
+    %p
+      - assignments_count = pluralize(@lecture.assignments.count, _('assignment'), _('assignments'))
+      - responses_count = pluralize(@lecture.responses.count, _('response'), _('responses'))
+      - if @lecture.assignments.count > 1
+        = _('There are already %s with %s for this lecture.') % [assignments_count, responses_count]
+      - elsif @lecture.assignments.count == 1
+        = _('There is already %s with %s for this lecture.') % [assignments_count, responses_count]
+      - else
+        = _('This would be the first assignment for this lecture.')
