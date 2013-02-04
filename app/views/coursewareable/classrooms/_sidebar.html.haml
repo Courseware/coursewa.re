@@ -37,13 +37,13 @@
             = pluralize(@classroom.memberships_count, _('member'), _('members'))
         %li
           %span.icon-book
-            = _('%d lectures') % @classroom.lectures.count
+            = link_to(pluralize(@classroom.lectures.count, _('lecture'), _('lectures')), syllabus_path)
         %li
           %span.icon-newspaper
-            = _('%d assignments') % @classroom.assignments.count
+            = pluralize(@classroom.assignments.count, _('assignment'), _('assignments'))
         %li
           %span.icon-docs
-            = _('%d responses') % @classroom.responses.count
+            = pluralize(@classroom.responses.count, _('response'), _('responses'))
         %li
           %span.icon-trophy
-            = _('%d grades') % @classroom.grades.count
+            = pluralize(@classroom.grades.count, _('grade'), _('grades'))
