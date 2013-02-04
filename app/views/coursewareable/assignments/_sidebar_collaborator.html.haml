@@ -27,6 +27,19 @@
 %p.icon-hammer
   != _('You can also %s for this assignment.') % link_to(_('update the grades'), lecture_assignment_grades_path(@lecture, @assignment))
 
+
+%h5
+  = pluralize(@assignment.responses.count, _('assignment response'), _('assignment responses'))
+%hr
+- if @assignment.responses.empty?
+  %p
+    = _('There are no responses to evaluate.')
+- else
+  %ul.itemized.responses-listing
+    - @assignment.responses.each do |response|
+      %li
+        = link_to(_('%s response') % response.user.name, lecture_assignment_response_path(@lecture, @assignment, response))
+
 %h5
   = pluralize(@assignment.grades.count, _('assignment grade'), _('assignment grades'))
 %hr
