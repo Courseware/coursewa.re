@@ -26,3 +26,24 @@
 
       %p.smaller.align-center
         = _('%d responses out of %d assignments') % [responses_count, assignments_count ]
+
+      %h5
+        = _('Some stats')
+      %hr
+
+      %ul.itemized
+        %li
+          %span.icon-users
+            = pluralize(@classroom.memberships_count, _('member'), _('members'))
+        %li
+          %span.icon-book
+            = _('%d lectures') % @classroom.lectures.count
+        %li
+          %span.icon-newspaper
+            = _('%d assignments') % @classroom.assignments.count
+        %li
+          %span.icon-docs
+            = _('%d responses') % @classroom.responses.count
+        %li
+          %span.icon-trophy
+            = _('%d grades') % @classroom.grades.count

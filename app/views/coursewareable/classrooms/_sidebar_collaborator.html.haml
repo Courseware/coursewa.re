@@ -17,14 +17,19 @@
   = _('Some stats')
 %hr
 
-%ul
+%ul.itemized
   %li
-    = _('%d members') % @classroom.memberships_count
+    %span.icon-users
+      = link_to(pluralize(@classroom.memberships_count, _('member'), _('members')), memberships_path)
   %li
-    = _('%d lectures') % @classroom.lectures.count
+    %span.icon-book
+      = _('%d lectures') % @classroom.lectures.count
   %li
-    = _('%d assignments') % @classroom.assignments.count
+    %span.icon-newspaper
+      = _('%d assignments') % @classroom.assignments.count
   %li
-    = _('%d responses') % current_user.responses.where(:classroom_id => @classroom.id).count
+    %span.icon-docs
+      = _('%d responses') % @classroom.responses.count
   %li
-    = _('%d grades') % @classroom.grades.count
+    %span.icon-trophy
+      = _('%d grades') % @classroom.grades.count
