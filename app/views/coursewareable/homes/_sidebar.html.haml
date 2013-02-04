@@ -4,7 +4,7 @@
       = _('Your Classrooms')
     %hr
 
-    %ul.classrooms-listing
+    %ul.itemized.classrooms-listing
       - if can? :create, current_user.created_classrooms.build
         %li
           %strong

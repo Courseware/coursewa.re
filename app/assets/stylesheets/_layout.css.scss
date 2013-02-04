@@ -225,6 +225,29 @@ header {
       }
     }
 
+    ul.itemized {
+      margin-left: 0;
+
+      li {
+        border-bottom: 1px solid $bw_9;
+        list-style: none;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+
+        &:before {
+          content: none;
+        }
+
+        &:last-child {
+          border-bottom: none;
+          padding-bottom: 0px;
+          margin-bottom: 0px;
+        }
+
+      }
+
+    }
+
     .progress {
       background-color: $bw_10;
       border: 1px solid $bw_9;
