@@ -1,30 +1,30 @@
 %h5.marginless-top
-  = _('Pick a question type to add from bellow:')
+  = _('Add questions')
 %ul.button-group.align-center
   %li
     %a.quiz-new-text.tiny.button.simple.icon-plus{:href => "#"}
       = _('Single answer')
   %li
     %a.quiz-new-radios.tiny.button.simple.icon-plus{:href => "#"}
-      = _('Multiple options and one answer')
+      = _('Multiple choices, one answer')
   %li
     %a.quiz-new-checkboxes.tiny.button.simple.icon-plus{:href => "#"}
-      = _('Multiple options with answers')
+      = _('Multiple choices, multiple answers')
 
   .quiz-text.template.question.row{:style => "display: none"}
     .twelve.columns.question-content
-      %textarea.input{:placeholder => _('Your question content...')}
+      %textarea.input{:placeholder => _('Question content...')}
       .row.option
         .eleven.offset-by-one.columns.option-content
           %textarea{:placeholder => _('Possible answer content...')}
     .row
       .twelve.columns.align-right
         %a.alert.delete.icon-remove{:href => "#"}
-          = _('Remove question')
+          = _('Remove entire question')
 
   .quiz-radios.template.question.row{:style => "display: none"}
     .twelve.columns.question-content
-      %textarea.input{:placeholder => _('Your question content...')}
+      %textarea.input{:placeholder => _('Question content...')}
       .row.option
         .one.columns.option-validation.align-center
           %input{:name => "unique", :type => "radio"}
@@ -36,27 +36,27 @@
     .row
       .six.columns
         %a.add.icon-plus{:href => "#"}
-          = _('New option')
+          = _('Add another choice')
       .six.columns.align-right
         %a.alert.delete.icon-remove{:href => "#"}
-          = _('Remove question')
+          = _('Remove entire question')
 
   .quiz-checkboxes.template.question.row{:style => "display: none"}
     .twelve.columns.question-content
-      %textarea.input{:placeholder => _('Your question content...')}
+      %textarea.input{:placeholder => _('Question content...')}
       .row.option
         .one.columns.option-validation.align-center
           %input{:type => "checkbox"}
           %p.padded-top-ten
-            %a.alert.remove.icon-remove{:href => "#", :title => _('Remove this option')}
-              -# = _('Remove option')
+            %a.alert.remove.icon-remove{:href => "#", :title => _('Remove this choice')}
+              -# = _('Remove choice')
         .eleven.columns.option-content
           %textarea{:placeholder => _('Possible answer content...')}
     .row
       .six.columns
         %a.add.icon-plus{:href => "#"}
-          = _('New option')
+          = _('Add another choice')
       .six.columns.align-right
         %a.alert.delete.icon-remove{:href => "#"}
-          = _('Remove question')
+          = _('Remove entire question')
 

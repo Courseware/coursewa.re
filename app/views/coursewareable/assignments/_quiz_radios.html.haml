@@ -5,10 +5,8 @@
 
     - question['options'].each_with_index do |answer, index|
       .row.option
-        .one.columns.option-validation
+        .one.columns.option-validation.align-center
           %input{:name => "unique", :type => "radio", :disabled => true, :checked => answer['valid']}
         .eleven.columns.option-content
           %textarea{:disabled => true}
             = answer['content']
-
-  %hr

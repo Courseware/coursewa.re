@@ -8,8 +8,8 @@
 
     - if can?(:manage, @assignment) and !@assignment.quiz.blank?
       %div.quiz-viewer
-        %hr
         - @assignment.quiz.each do |question|
-          = render(:partial => "quiz_#{question['type']}", :locals => {:question => question})
+          .panel
+            = render(:partial => "quiz_#{question['type']}", :locals => {:question => question})
 
   = render(:partial => 'sidebar')
