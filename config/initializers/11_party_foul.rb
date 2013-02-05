@@ -1,7 +1,7 @@
 PartyFoul.configure do |config|
   # the collection of exceptions to be ignored by PartyFoul
   # The constants here *must* be represented as strings
-  config.ignored_exceptions = %w(
+  config.blacklisted_exceptions = %w(
     ActiveRecord::RecordNotFound
     ActionController::RoutingError
   )
