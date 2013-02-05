@@ -36,4 +36,20 @@ describe GenericMailer do
     its('body.encoded') { should match(params[:message]) }
   end
 
+  describe '#support_email' do
+    let(:new_params) do
+      params[:category] = 'ui_ux'
+      params[:current_path] = 'some_path'
+      params
+    end
+    subject { GenericMailer.survey_email(params) }
+
+    its(:subject) { should match(new_params[:name]) }
+    its(:from) { should eq([Courseware.config.default_email_address]) }
+    its(:to) { should eq(
+      ["help+#{new_params[:category]}@#{Courseware.config.domain_name}"]) }
+    its('body.encoded') { should match(new_params[:message]) }
+    its('body.encoded') { should match(new_params[:current_path]) }
+  end
+
 end
