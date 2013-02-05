@@ -30,7 +30,7 @@
       - responses = @assignment.responses.where(:user_id => current_user.id)
       - if responses.empty?
         %p.icon-docs
-          != _('You did not respond to this lecture assignment. You can %s.') % link_to(_('do it now'), new_lecture_assignment_response_path(@lecture, @assignment))
+          != _('You did not respond to this lecture assignment. You can %s.') % link_to(_('do it now'), new_lecture_assignment_response_path(@lecture, @assignment), :id => 'assignment-add-response')
       - else
         - response = responses.first
         %p.icon-docs
