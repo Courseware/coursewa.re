@@ -5,10 +5,10 @@
   .six.columns
     %a{:href => root_url(:subdomain => false)}
       = image_tag('courseware.png', :alt => 'The Courseware Project')
-  .six.columns.align-right
+  .three.offset-by-three.columns.align-right
     - if logged_in?
       .feedback
-        = link_to(_('Feedback'), '#', 'data-reveal-id' => 'feedbackModal', :class => 'modal-trigger')
+        = link_to(_('Send feedback'), '#', 'data-reveal-id' => 'feedbackModal', :class => 'modal-trigger button simple tiny')
 
       .small.button.dropdown.naked
         %a{:href => '#'}

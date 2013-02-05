@@ -6,6 +6,11 @@
     color: $white;
     text-transform: uppercase;
     display: block;
+    color: $txtColor;
+
+    &:hover {
+      color: $secondaryColor;
+    }
   }
 
   .close-reveal-modal {
