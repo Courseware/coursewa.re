@@ -39,6 +39,7 @@ module Coursewareable
 
     # Handles response screen
     def show
+      @lecture = @assignment.lecture
       @assignment.responses.find(params[:id])
     end
 

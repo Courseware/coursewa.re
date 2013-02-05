@@ -1,0 +1,14 @@
+.twelve.columns
+  %ul.breadcrumbs
+    %li
+      = link_to(_('Syllabus'), syllabus_path)
+    %li
+      = link_to(@lecture.title, lecture_path(@lecture))
+    %li
+      = link_to(@assignment.title, lecture_assignment_path(@lecture, @assignment))
+    %li.current
+      %span
+        - if @response.user == current_user
+          = _('Your response')
+        - else
+          = _('%s response') % @response.user.name

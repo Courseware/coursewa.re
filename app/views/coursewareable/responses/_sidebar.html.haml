@@ -1,10 +1,27 @@
-.four.columns.offset-by-one
-  .row.classrooms-sidebar
+.four.columns
+  .row.sidebar
     %h5
-      = _('Response Sidebar')
+      = _('Response Stats')
+    %hr
+
+    - unless @response.stats.blank?
+      %p
+        Quiz coverage is:
+        = ("%.2f%" % @response.coverage)
+
+      %p
+        You did
+        = @response.stats[:wrong]
+        answers wrong from
+        = @response.stats[:all]
+        possible correct answers.
 
     %pre
       TODO:
+      Relevant assignment
+      Relevant lecture
+      Who created it
+      When created
       Relevant assignment
       Relevant lecture
       Who created it
