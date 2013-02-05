@@ -74,6 +74,35 @@
     },
 
     /**
+     * Handles survey submission
+     */
+    submit_survey: function(selector, modalId, timeout) {
+      var $form = $( selector );
+      $form.on( 'submit', function( event ) {
+        event.preventDefault();
+
+        $.ajax({
+          url: $form.attr( 'action' ),
+          type: $form.attr( 'method' ),
+          data: {
+            current_path: $form.find( 'input[name="current_path"]' ).val(),
+            message: $form.find( 'textarea[name="message"]' ).val(),
+            category: $form.find( 'input[name="category"]' ).filter( ':checked' ).val(),
+            authenticity_token: $('meta[name="csrf-token"]').attr('content')
+          },
+          success: function(content) {
+            $form.addClass('hide').after( '<h5>' + content + '</h5>' );
+            setTimeout( function() {
+              $( modalId ).trigger( 'reveal:close' );
+              $form.removeClass( 'hide' ).parent().find( 'h5' ).remove();
+              $form.find( 'textarea' ).val( '' );
+            }, timeout * 1000 );
+          }
+        });
+      } );
+    },
+
+    /**
      * Handle a friendly modal message if assetable object is not available yet
      */
     redactor_unsaved_modal: function( selector ) {
@@ -94,6 +123,7 @@
       Courseware.enable_xhr_requests('#content', 'a.run-as-xhr');
       Courseware.enable_on_click_expanding('#content', '.expands');
       Courseware.hide_alerts_after_timeout('#notifications .alert-box', 3);
+      Courseware.submit_survey( '#survey', '#feedbackModal', 3 );
 
       $.fn.foundationAlerts           ? $doc.foundationAlerts() : null;
       $.fn.foundationButtons          ? $doc.foundationButtons() : null;

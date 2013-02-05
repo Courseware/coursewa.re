@@ -23,6 +23,14 @@ describe Coursewareable::HomesController do
       get('/contact').should route_to('coursewareable/homes#contact')
     end
 
+    it 'for feedback' do
+      post('/feedback').should route_to('coursewareable/homes#feedback')
+    end
+
+    it 'for survey' do
+      post('/survey').should route_to('coursewareable/homes#survey')
+    end
+
     describe 'on a subdomain' do
       it 'goes to classroom langing page' do
         get('http://test.lvh.me').should route_to(

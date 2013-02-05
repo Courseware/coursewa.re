@@ -31,6 +31,7 @@ Coursewareable::Engine.routes.draw do
       get :about
       get :contact
       post :feedback
+      post :survey
     end
   end
 

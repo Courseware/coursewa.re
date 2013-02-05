@@ -34,4 +34,15 @@ class GenericMailer < ActionMailer::Base
     subject = _('%s invites you to try Courseware') % [user.name]
     mail(:to => params[:email], :subject => subject)
   end
+
+  # Sends an email containing a user survey form feedback
+  #
+  # @param [Hash] params, with email details
+  def survey_email(params)
+    @params = params
+    email = 'help+%s@%s' % [params[:category], Courseware.config.domain_name]
+    mail(:to => email, :subject => _('[%s] %s needs help!') % [
+      Courseware.config.domain_name, params[:name]
+    ])
+  end
 end

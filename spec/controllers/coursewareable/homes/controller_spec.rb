@@ -79,4 +79,55 @@ describe Coursewareable::HomesController do
     end
   end
 
+  describe 'POST survey' do
+    context 'http request' do
+      let(:params) { {:use_route => :coursewareable} }
+
+      before do
+        @controller.send(:auto_login, user)
+        post(:survey, params)
+      end
+
+      it { should redirect_to(dashboard_home_path) }
+
+      context 'with valid params' do
+        let(:params) do
+          { :use_route => :coursewareable,
+            :message => Faker::Lorem.paragraphs }
+        end
+        before(:all) do
+          GenericMailer.stub(:delay).and_return(GenericMailer)
+          GenericMailer.should_receive(:survey_email)
+        end
+
+        it { should redirect_to(dashboard_home_path) }
+      end
+    end
+
+    context 'xhr request' do
+      let(:params) { {:use_route => :coursewareable} }
+
+      before do
+        @controller.send(:auto_login, user)
+        xhr(:post, :survey, params)
+      end
+
+      it { response.should be_success }
+
+      context 'with valid params' do
+        let(:params) do
+          { :use_route => :coursewareable,
+            :message => Faker::Lorem.paragraphs }
+        end
+
+        before(:all) do
+          GenericMailer.stub(:delay).and_return(GenericMailer)
+          GenericMailer.should_receive(:survey_email)
+        end
+
+        it { response.should be_success }
+      end
+    end
+  end
+
 end

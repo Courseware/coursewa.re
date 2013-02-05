@@ -1,0 +1,24 @@
+.feedback {
+  .modal-trigger {
+    margin-right: 100px;
+    margin-bottom: -30px;
+    margin-top: 10px;
+    color: $white;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .close-reveal-modal {
+    text-decoration: none;
+  }
+
+  label.inline {
+    line-height: 20px;
+  }
+
+  .reveal-modal {
+    h4, h5, p, a {
+      color: $txtColor;
+    }
+  }
+}

@@ -20,6 +20,7 @@
 
 @import 'foundation/common/base';
 @import 'foundation/components/grid';
+@import 'foundation/components/modules/reveal';
 @import 'foundation/components/modules/buttons';
 @import 'foundation/components/modules/tabs';
 @import 'foundation/components/modules/ui';
@@ -39,3 +40,4 @@
 @import 'components/breadcrumbs';
 @import 'components/lectures';
 @import 'components/assignments';
+@import 'components/feedback';

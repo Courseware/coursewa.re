@@ -6,7 +6,7 @@ module Coursewareable
     load_and_authorize_resource :class => Coursewareable::Classroom
     skip_authorize_resource
     # Do not require login for homepage
-    skip_before_filter :require_login, :except => [:dashboard]
+    skip_before_filter :require_login, :except => [:dashboard, :survey]
 
     # Main page handler
     def index
@@ -57,6 +57,25 @@ module Coursewareable
 
       flash[:success] = _('Thank you. Your message is on its way to us.')
       redirect_to(contact_home_path)
+    end
+
+    # User feedback survey handler
+    def survey
+      if params[:message].blank?
+        message = _('You did not write anything. Please try again.')
+      else
+        params[:name] = current_user.name
+        params[:email] = current_user.email
+        params[:remote_ip] = request.remote_ip
+        message = _('Thank you for sharing your experience with us.')
+        ::GenericMailer.delay.survey_email(params)
+      end
+
+      if request.xhr?
+        render(:layout => false, :inline => message)
+      else
+        redirect_to(dashboard_home_path, :notice => message)
+      end
     end
 
   end

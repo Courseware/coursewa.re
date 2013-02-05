@@ -1,0 +1,31 @@
+.feedback
+  #feedbackModal.reveal-modal.medium.hide
+    %a{:class => 'close-reveal-modal'}
+      &#215;
+
+    %h4
+      = _('Hey %s,') % current_user.name
+    %p
+      = _('please tell us how we can make Courseware better!')
+
+    = form_tag survey_home_url(:subdomain => false), :id => 'survey' do
+      %p
+        = _('Select a relevant category for this feedback:')
+      .row
+        .six.columns
+          = radio_button_tag(:category, :force_majeure, nil, :class => 'left inline')
+          = label_tag(:category_force_majeure, _('Errors or unexpected behavior'), :class => 'smaller left inline')
+          %hr
+          = radio_button_tag(:category, :ui_ux, true, :class => 'left inline')
+          = label_tag(:category_ui_ux, _('Interface and design'), :class => 'smaller left inline')
+        .six.columns
+          = radio_button_tag(:category, :features, nil, :class => 'left inline')
+          = label_tag(:category_features, _('Suggestions and features'), :class => 'smaller left inline')
+          %hr
+          = radio_button_tag(:category, :other, nil, :class => 'left inline')
+          = label_tag(:category_other, _('Other issues'), :class => 'smaller left inline')
+
+      = hidden_field_tag(:current_path, request.fullpath)
+      = text_area_tag(:message, nil, :required => true, :placeholder => _('Hey guys, check this out...'))
+
+      = submit_tag(_('I am done. Send it.'), :class => 'button primary', :id => 'submit_survey')
