@@ -19,9 +19,9 @@
       %p
         - expanded_class = (@assignment.quiz.blank? ? '' : 'expanded')
         = check_box_tag :has_quiz, nil, (@assignment.quiz.blank? ? false : true), :class => ['expands left marginless-top', expanded_class], 'data-expand-target' => '.quiz-builder', 'data-look-allover' => 'true', 'data-toggle-class' => 'expanded'
-        = label_tag :has_quiz, _('This assignment carries a quiz')
+        = label_tag :has_quiz, _('Add a quiz to this assignment')
 
-      .hide.panel.quiz-builder{'data-quiz' => :auto, 'data-from-store' => :true}
+      .hide.quiz-builder{'data-quiz' => :auto, 'data-from-store' => :true}
         = f.hidden_field :quiz, :value => @assignment.quiz.to_json, :class => 'quiz-store'
         = render(:partial => 'quiz_builder_template')
 

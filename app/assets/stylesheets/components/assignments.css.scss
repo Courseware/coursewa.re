@@ -3,11 +3,14 @@
   .question.row {
     padding-top: 20px;
     margin-top: 20px;
-    border-top: 3px dotted $white;
-    @include opacity(0.3);
+
+    background: $bw_10;
+    border: 1px solid $bw_9;
+    padding: 20px 10px;
+    margin: 10px 0;
 
     &:hover {
-      @include opacity(1);
+      
     }
   }
 
