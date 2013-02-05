@@ -46,7 +46,7 @@
 
 - if @assignment.grades.empty?
   %p
-    != _('There are no grades for this assignment, but you can % now.') % link_to(_('add a grade now'), lecture_assignment_grades_path(@lecture, @assignment))
+    != _('There are no grades for this assignment, but you can %s now.') % link_to(_('add a grade'), lecture_assignment_grades_path(@lecture, @assignment))
 - else
   %ul.itemized.grades-listing
     %li
