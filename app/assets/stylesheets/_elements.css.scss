@@ -129,6 +129,11 @@ dl dd {
   color: $bw_7;
 }
 
+.panel {
+  background: $bw_10;
+  border: 1px solid $bw_9;
+}
+
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   font-family: 'courseware';
