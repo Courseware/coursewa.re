@@ -107,8 +107,9 @@
 
       var self = event.data;
       var tmpl = $( self.element ).find( self.options.templates.text ).clone();
-      tmpl.removeClass( 'template' ).show();
+      tmpl.removeClass( 'template' );
       $( self.element ).append( tmpl );
+      tmpl.slideDown();
       return tmpl;
     },
 
@@ -132,8 +133,9 @@
 
       var self = event.data;
       var tmpl = $( self.element ).find( self.options.templates.radios ).clone();
-      tmpl.removeClass( 'template' ).show();
+      tmpl.removeClass( 'template' );
       $( self.element ).append( tmpl );
+      tmpl.slideDown();
       return tmpl;
     },
 
@@ -166,8 +168,9 @@
 
       var self = event.data;
       var tmpl = $( self.element ).find( self.options.templates.checkboxes ).clone();
-      tmpl.removeClass( 'template' ).show();
+      tmpl.removeClass( 'template' );
       $( self.element ).append( tmpl );
+      tmpl.slideDown();
       return tmpl;
     },
 
@@ -195,7 +198,9 @@
      * @param event, Object
      */
     removeAnswer: function( event ) {
-      $(this).parents( '.option' ).remove();
+      $(this).parents( '.option' ).slideUp( 'normal', function() {
+        $(this).remove();
+      } );
       return false;
     },
 
@@ -204,7 +209,9 @@
      * @param event, Object
      */
     deleteQuestion: function( event ) {
-      $(this).parents( '.question' ).remove();
+      $(this).parents( '.question' ).slideUp( 'normal', function() {
+        $(this).remove();
+      } );
       return false;
     },
 
@@ -219,9 +226,11 @@
       var self = event.data;
       var template = $(this).parents( '.question' ).attr( 'class' );
       template = template.match( /quiz\-\w+/ )[0]
-      var answer = $( self.element ).find( '.template.' + template + ' .option' ).clone();
-      $(this).parents( '.question' ).find( '.question-content' ).append( answer );
-      return answer;
+      var $answer = $( self.element ).find( '.template.' + template + ' .option' ).clone();
+      $answer.hide();
+      $(this).parents( '.question' ).find( '.question-content' ).append( $answer );
+      $answer.slideDown();
+      return $answer;
     },
 
     /**
