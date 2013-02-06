@@ -14,7 +14,7 @@
     - user_name = activity.parameters[:user_name]
 
   - if activity.trackable and activity.trackable.assignment
-    - assignment_title = _('%s work') % link_to(_('assignment'), lecture_assignment_grades_url(activity.trackable.assignment.lecture, activity.trackable.assignment, :subdomain => activity.trackable.classroom.slug))
+    - assignment_title = _('%s work') % link_to(_('assignment'), lecture_assignment_url(activity.trackable.assignment.lecture, activity.trackable.assignment, :subdomain => activity.trackable.classroom.slug))
   - else
     - assignment_title = _('assignment work (deleted meanwhile)')
 
