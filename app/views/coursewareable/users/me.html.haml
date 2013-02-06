@@ -2,31 +2,32 @@
 = head_embed javascript_include_tag('editor')
 = head_embed stylesheet_link_tag('editor')
 
-.seven.columns
+#profile
+  .eight.columns
 
-  = form_for @user do |f|
+    = form_for @user do |f|
 
-    .row
-      .three.columns
-        = f.label(:first_name, _('First Name'), :class => [:right, :inline])
-      .nine.columns
-        = f.text_field(:first_name)
+      .row
+        .three.columns
+          = f.label(:first_name, _('First Name'), :class => [:right, :inline])
+        .nine.columns
+          = f.text_field(:first_name)
 
-    .row
-      .three.columns
-        = f.label(:first_name, _('Last Name'), :class => [:right, :inline])
-      .nine.columns
-        = f.text_field(:last_name)
+      .row
+        .three.columns
+          = f.label(:first_name, _('Last Name'), :class => [:right, :inline])
+        .nine.columns
+          = f.text_field(:last_name)
 
-    .row
-      .three.columns
-        = f.label(:description, _('Short Description'), :class => [:right, :inline])
-      .nine.columns
-        %p
-          = f.text_area(:description, :class => 'wysiwyg-minimal')
+      .row
+        .three.columns
+          = f.label(:description, _('Short Description'), :class => [:right, :inline])
+        .nine.columns
+          %p
+            = f.text_area(:description, :class => 'wysiwyg-minimal')
 
-    .row
-      .nine.columns.offset-by-three
-        = f.submit(_('Update'), :class => 'button primary', :id => :submit_profile)
+      .row
+        .nine.columns.offset-by-three
+          = f.submit(_('Update'), :class => 'button primary', :id => :submit_profile)
 
 = render(:partial => 'sidebar')
