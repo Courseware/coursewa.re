@@ -21,7 +21,7 @@
     - if can?(:contribute, @classroom)
       %h5
         = link_to('', my_account_users_path, :title => _('Your account page'), :class => 'icon-stats right')
-        = _('Stats')
+        = _('Current usage')
       %hr
       - plan = current_user.plan
       - consumed_space = (plan.used_space * 100) / plan.allowed_space
