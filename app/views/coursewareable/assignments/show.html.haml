@@ -7,9 +7,11 @@
     = @assignment.content.html_safe
 
     - if can?(:manage, @assignment) and !@assignment.quiz.blank?
+      %h5
+        = _('Quiz preview')
+
       %div.quiz-viewer
         - @assignment.quiz.each do |question|
-          .panel
-            = render(:partial => "quiz_#{question['type']}", :locals => {:question => question})
+          = render(:partial => "quiz_#{question['type']}", :locals => {:question => question})
 
   = render(:partial => 'sidebar')

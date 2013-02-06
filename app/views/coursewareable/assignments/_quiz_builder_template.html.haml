@@ -1,6 +1,6 @@
 %h5.marginless-top
   = _('Add questions')
-%ul.button-group.align-center
+%ul.button-group
   %li
     %a.quiz-new-text.tiny.button.simple.icon-plus{:href => "#"}
       = _('Single answer')
@@ -19,7 +19,7 @@
           %textarea{:placeholder => _('Possible answer content...')}
     .row
       .twelve.columns.align-right
-        %a.alert.delete.icon-remove{:href => "#"}
+        %a.alert.delete.icon-remove.smaller{:href => "#"}
           = _('Remove entire question')
 
   .quiz-radios.template.question.row{:style => "display: none"}
@@ -38,7 +38,7 @@
         %a.add.icon-plus{:href => "#"}
           = _('Add another choice')
       .six.columns.align-right
-        %a.alert.delete.icon-remove{:href => "#"}
+        %a.alert.delete.icon-remove.smaller{:href => "#"}
           = _('Remove entire question')
 
   .quiz-checkboxes.template.question.row{:style => "display: none"}
@@ -57,6 +57,6 @@
         %a.add.icon-plus{:href => "#"}
           = _('Add another choice')
       .six.columns.align-right
-        %a.alert.delete.icon-remove{:href => "#"}
+        %a.alert.delete.icon-remove.smaller{:href => "#"}
           = _('Remove entire question')
 

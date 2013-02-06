@@ -9,8 +9,16 @@
     padding: 20px 10px;
     margin: 10px 0;
 
+    .icon-remove {
+      visibility: hidden;
+    }
+
     &:hover {
-      
+      background: $yellowHighlightColor;
+
+      .icon-remove {
+        visibility: visible;
+      }
     }
   }
 
