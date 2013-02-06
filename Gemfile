@@ -32,7 +32,7 @@ group :development do
   gem 'quiet_assets'
   # gem 'rack-bug', :github => 'brynary/rack-bug', :branch => 'rails3'
   gem 'letter_opener'
-  gem 'rails-erd', :require => false
+  # gem 'rails-erd'
   gem 'yard', :require => false
   gem 'gettext', :require => false
   gem 'ruby_parser', :require => false
