@@ -22,7 +22,7 @@
         - @lecture.assignments.each do |assignment|
           - response = current_user.responses.where(:assignment_id => assignment.id)
           %li
-            = link_to(assignment.title, lecture_assignment_path(assignment))
+            = link_to(assignment.title, lecture_assignment_path(@lecture, assignment))
             = link_to('', '#', :class => 'icon-plus right expands', 'data-expand-target' => '.assignment-details', 'data-toggle-class' => 'icon-minus')
             %p.assignment-details.smaller.hide
               - if response.empty?
