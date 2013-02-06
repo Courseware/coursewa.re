@@ -1,18 +1,23 @@
-= title _('Your response to: %s' % @assignment.title)
+- if current_user == @response.user
+  - user_name = _('Your')
+- else
+  - user_name = @response.user.name
+
+= title _('%s response') % user_name
 = head_embed javascript_include_tag('jquery_ujs')
 = breadcrumbs(render('breadcrumbs'))
 
 #response
-  .eight.columns
+  .eight.columns.formatted
 
     = @response.content.html_safe
 
     - unless @response.answers.blank?
-      - @response.answers.each_with_index do |question, question_id|
-        = render(:partial => "quiz_#{question['type']}", :locals => {:question => question, :question_id => question_id, :show_results => true})
+      %h5
+        = _('Quiz answers')
 
-    - if can?(:destroy, @response)
-      %p
-        = link_to(_('Delete'), lecture_assignment_response_path, :method => :delete, :class => 'button small', :id =>'response-delete')
+      - @response.answers.each_with_index do |question, question_id|
+        .panel
+          = render(:partial => "quiz_#{question['type']}", :locals => {:question => question, :question_id => question_id, :show_results => true})
 
   = render('sidebar')

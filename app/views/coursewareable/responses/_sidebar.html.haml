@@ -4,6 +4,9 @@
       = _('Response details')
     %hr
 
+    %p.smaller
+      = _('Last time updated by %s on %s') % [@response.user.name, @response.updated_at.to_s(:pretty)]
+
     - unless @response.stats.blank?
       %p
         Quiz coverage is:

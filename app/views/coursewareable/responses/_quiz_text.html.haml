@@ -1,7 +1,6 @@
 .quiz-text.question.row
   .twelve.columns.question-content
-    %h3
-      = question['content']
+    = question['content']
 
     - answer = question['options'].first
     - option_id = 'txt-%d-0' % question_id
@@ -13,5 +12,3 @@
         - option_value = show_results ? answer['content'] : nil
         %textarea{:placeholder => _('Your answer'), :name => option_name, :disabled => show_results, :id => option_id}
           = option_value
-
-  %hr

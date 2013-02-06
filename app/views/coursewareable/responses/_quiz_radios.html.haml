@@ -1,7 +1,6 @@
 .quiz-radios.question.row
   .twelve.columns.question-content
-    %h3
-      = question['content']
+    = question['content']
 
     - question['options'].each_with_index do |answer, index|
       - option_klass = (answer['wrong'] and show_results) ? 'wrong' : nil
@@ -10,13 +9,8 @@
       - option_name = "response[answers][%d][options][answer]" % [question_id, index]
       - option_value = ((answer['wrong'] or answer['valid']) and show_results) ? true : false
       .row.option{:class => option_klass}
-        .one.columns.option-validation
-          %p
-            %input{:name => "unique", :type => "radio", :id => option_id, :name => option_name, :value => index, :checked => option_value, :disabled => show_results}
+        .one.columns.option-validation.padded-top-ten
+          %input{:name => "unique", :type => "radio", :id => option_id, :name => option_name, :value => index, :checked => option_value, :disabled => show_results}
         .eleven.columns.option-content
-          %p
-            %label{:for => option_id}
-              = answer['content']
-
-  %hr
-
+          %label{:for => option_id}
+            = answer['content']
