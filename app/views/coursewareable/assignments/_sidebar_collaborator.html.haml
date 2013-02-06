@@ -7,10 +7,6 @@
   = _('Last time updated by %s on %s.') % [@assignment.user.name, @assignment.updated_at.to_s(:pretty)]
   = link_to(_('You can update this assignment'), edit_lecture_assignment_path(@lecture, @assignment))
 
-%h5
-  = _('Stats')
-%hr
-
 %p
   != _('This assignment relates to %s lecture.') % link_to(@lecture.title, lecture_path(@lecture))
 

@@ -23,10 +23,6 @@
         - else
           = _('This is the first assignment for this lecture.')
 
-      %h5
-        = _('Stats')
-      %hr
-
       - responses = @assignment.responses.where(:user_id => current_user.id)
       - if responses.empty?
         %p.icon-docs
