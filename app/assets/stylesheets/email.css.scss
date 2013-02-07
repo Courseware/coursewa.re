@@ -115,10 +115,16 @@ MOBILE TARGETING
 body {
   background: #eeeeee;
   color: #848b91;
+  font-size: 110%;
 }
 
 body * {
   font-family: 'Open Sans', sans-serif;
+}
+
+body p {
+  line-height: 20px;
+  margin-bottom: 10px;
 }
 
 #backgroundTable, table {
@@ -146,16 +152,22 @@ body * {
 }
 
 #content h3 {
+  font-size: 30px;
+  line-height: 35px;
   color: #848b91 !important;
 }
 
 #footer h5 {
   color: #848b91 !important;
   margin-top: 0;
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 10px;
 }
 
 #footer p {
-  margin-top: 0
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .spacing {
