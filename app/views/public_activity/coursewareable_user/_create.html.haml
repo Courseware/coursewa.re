@@ -7,6 +7,6 @@
     - user_name = activity.parameters[:user_name]
 
   - if activity.owner == p[:current_user]
-    = _('You started using Courseware.')
+    != _('You started using Courseware. You can %s now.') % link_to(_('update your profile'), me_users_url(:subdomain => false))
   - else
     = _('%s started using Courseware.' % user_name)
