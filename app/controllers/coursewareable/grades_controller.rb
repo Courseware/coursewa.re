@@ -2,7 +2,7 @@ module Coursewareable
   # Grades controller
   class GradesController < ApplicationController
     # Abilities checking for our nested resource
-    load_and_authorize_resource :class => Coursewareable::Assignment
+    load_and_authorize_resource :class => Coursewareable::Grade
     skip_authorize_resource :only => [:create, :new, :index]
 
     before_filter :load_classroom_assignment
