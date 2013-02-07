@@ -117,6 +117,10 @@ body {
   color: #848b91;
 }
 
+body * {
+  font-family: 'Open Sans', sans-serif;
+}
+
 #backgroundTable, table {
   border: none;
 }
@@ -147,6 +151,11 @@ body {
 
 #footer h5 {
   color: #848b91 !important;
+  margin-top: 0;
+}
+
+#footer p {
+  margin-top: 0
 }
 
 .spacing {

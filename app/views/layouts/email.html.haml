@@ -25,9 +25,7 @@
             %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "600"}
               %tr
                 %td{:align => "left", :valign => "center"}
-                  %h3 Hello,
-                  %div
-                    = yield
+                  = yield
         %tr
           %td.spacing.white{:align => "center", :valign => "top"}
         %tr#footer
@@ -39,6 +37,11 @@
                 %td{:align => "left", :valign => "top", :width => "50%"}
                   %h5
                     The Courseware Project Team
-                %td{:align => "right", :valign => "center", :width => "50%"}
+                  %small
+                    23rd Emil Isac
+                    %br/
+                    Cluj-Napoca, Cluj, Transylvania, 400023 Romania
+                %td{:align => "right", :valign => "top", :width => "50%"}
                   %p
-                    With &hearts; from Transylvania.
+                    %small
+                      With &hearts; from Transylvania.
