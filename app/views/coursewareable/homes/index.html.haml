@@ -5,9 +5,10 @@
   .row
     .five.offset-by-one.columns
       %p
-        Early tester invitations to be sent early '13.
+        In open beta now!
+        != '%s.' % link_to('Proceed to login', login_path)
       %p
-        Leave your email to get one first:
+        Leave your email for updates:
     %form{:action => "http://nerd.us2.list-manage1.com/subscribe/post?u=59506454890eccfca9e0901fa&amp;id=af55867378", :method => "post"}
       .four.columns
         %input{:name => "EMAIL", :required => "", :type => "email"}/
