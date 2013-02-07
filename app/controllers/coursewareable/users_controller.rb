@@ -7,8 +7,6 @@ module Coursewareable
     skip_load_and_authorize_resource :except => [:create, :suggest]
     # Do not ask authentication
     skip_before_filter :require_login, :only => [:new, :activate, :create]
-    # Check for registration code before creating the user
-    before_filter :check_registration_code, :only => [:create]
 
     # Handles user creation screen
     def new
@@ -79,30 +77,11 @@ module Coursewareable
         redirect_to(invite_users_path) and return
       end
 
-      code = BCrypt::Password.create(Courseware.config.registration_code)
-      params[:registration_link] = signup_url(
-        :subdomain => false, :registration_code => code)
+      params[:registration_link] = signup_url(:subdomain => false)
       ::GenericMailer.delay.invitation_email(current_user, params)
 
       flash[:success] = _('Invitation sent')
       redirect_to(invite_users_path)
-    end
-
-    private
-
-    # Allow only requests containing valid registration code
-    def check_registration_code
-      code = params[:registration_code]
-      if code.blank?
-        flash[:alert] = _('Registration code is missing.')
-        redirect_to(signup_path) and return
-      end
-
-      pass = BCrypt::Password.new(code) rescue nil
-      unless pass == Courseware.config.registration_code
-        flash[:alert] = _('Registration code is wrong.')
-        redirect_to(signup_path) and return
-      end
     end
 
   end

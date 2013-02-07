@@ -8,13 +8,11 @@ describe 'Users' do
     email = Faker::Internet.email
     passwd = Faker::Product.letters(8)
     emails_count = ActionMailer::Base.deliveries.count
-    secret = BCrypt::Password.create(Courseware.config.registration_code)
 
     within('#new_user') do
       fill_in 'user_email', :with => email
       fill_in 'user_password', :with => passwd
       fill_in 'user_password_confirmation', :with => passwd
-      fill_in 'registration_code', :with => secret
     end
 
     click_button 'submit_signup'
@@ -32,13 +30,11 @@ describe 'Users' do
 
     users_count = Coursewareable::User.count
     emails_count = ActionMailer::Base.deliveries.count
-    secret = BCrypt::Password.create(Courseware.config.registration_code)
 
     within('#new_user') do
       fill_in 'user_email', :with => ''
       fill_in 'user_password', :with => ''
       fill_in 'user_password_confirmation', :with => ''
-      fill_in 'registration_code', :with => secret
     end
 
     click_button 'submit_signup'
