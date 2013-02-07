@@ -1,96 +1,44 @@
-!!!
+!!! Strict
 %html{:xmlns => "http://www.w3.org/1999/xhtml"}
   %head
-    %meta{:content => "width=device-width", :name => "viewport"}/
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
 
-  <link rel="stylesheet" type="text/css" href="/assets/email.css" />
-  <link rel="stylesheet" type="text/css" href="/assets/email.css" data-immutable="true" />
+    <link rel="stylesheet" type="text/css" href="/assets/email.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/email.css" data-immutable="true" />
 
-  %body{:bgcolor => "#FFFFFF"}
-    / HEADER
-    %table.head-wrap{:bgcolor => "#999999"}
-      %tr
-        %td
-        %td.header.container
-          .content
-            %table
+  %body
+    %center
+      %table#backgroundTable
+        %tr#nav
+          %td{:align => "center"}
+            %table{:cellpadding => "0", :cellspacing => "0", :width => "600"}
               %tr
-                %td
-                  = image_tag('courseware.png', :alt => 'The Courseware Project')
-                %td{:align => "right"}
-                  %h6.collapse The Courseware Project
-        %td
-    / /HEADER
-    / BODY
-    %table.body-wrap
-      %tr
-        %td
-        %td.container{:bgcolor => "#FFFFFF"}
-          .content
-            %table
+                %td#logo{:align => "left", :valign => "center", :width => "50%"}
+                  %a{:href => "http://coursewa.re", :style => "text-decoration: none;", :target => "_blank", :title => "The Courseware Project"}
+                    = image_tag('courseware.png', :alt => 'The Courseware Project')
+                %td#brand{:align => "right", :valign => "center", :width => "50%"} THE COURSEWARE PROJECT
+        %tr
+          %td.spacing.white{:align => "center", :valign => "top"}
+        %tr
+          %td.white{:align => "center", :valign => "center"}
+            %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "600"}
               %tr
-                %td
-                  = yield
-                  %p.thanks
-                    %em
-                      = _('Thank you for teaching with Coursewa.re')
-                  -# %p.callout
-                    -# Highlight
-                    %a{:href => "#"} Click it! »
-                  / /Callout Panel
-                  / social & contact
-                  %table.social{:width => "100%"}
-                    %tr
-                      %td
-                        / column 1
-                        %table.column{:align => "left"}
-                          %tr
-                            %td
-                              %h5
-                                = _('Find us on:')
-                              %p
-                                %a.soc-btn.fb{:href => "#"} Facebook
-                                %a.soc-btn.tw{:href => "http://twitter.com/coursewa_re"} Twitter
-                                %a.soc-btn.gp{:href => "#"} Google+
-                        / /column 1
-                        / column 2
-                        %table.column{:align => "left"}
-                          %tr
-                            %td
-                              %h5
-                                = _('Contact:')
-                              %p
-                                23rd Emil Isac
-                                %br/
-                                Cluj-Napoca, Cluj, Transylvania, 400023 Romania
-                                %br/
-                                +4-0364-260-100 / +4-0364-260-102
-                                %br/
-                                %a{:href => "emailto:hello@coursewa.re"} hello@coursewa.re
-                        / /column 2
-                        %span.clear
-                  / /social & contact
-          / /content
-        %td
-    / /BODY
-    / FOOTER
-    %table.footer-wrap
-      %tr
-        %td
-        %td.container
-          / content
-          .content
-            %table
+                %td{:align => "left", :valign => "center"}
+                  %h3 Hello,
+                  %div
+                    = yield
+        %tr
+          %td.spacing.white{:align => "center", :valign => "top"}
+        %tr#footer
+          %td{:align => "center", :valign => "center"}
+            %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "600"}
               %tr
-                %td{:align => "center"}
-                  -# %p
-                  -#   %a{:href => "#"} Terms
-                  -#   |
-                  -#   %a{:href => "#"} Privacy
-                  -#   |
-                  -#   %a{:href => "#"}
-                  -#     %unsubscribe Unsubscribe
-          / /content
-        %td
-    / /FOOTER
+                %td.spacing{:align => "center", :valign => "top"}
+              %tr
+                %td{:align => "left", :valign => "top", :width => "50%"}
+                  %h5
+                    The Courseware Project Team
+                %td{:align => "right", :valign => "center", :width => "50%"}
+                  %p
+                    With &hearts; from Transylvania.
