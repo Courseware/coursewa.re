@@ -26,16 +26,6 @@ describe 'Responses' do
 
 
       it { page.should_not have_css('#assignment-add-response') }
-
-      context 'can delete the existing response' do
-        let(:url_to_visit) { lecture_assignment_response_url(
-          lecture, assignment, response, :subdomain => classroom.slug) }
-
-        it do
-          click_on('response-delete')
-          assignment.responses.reload.should be_empty
-        end
-      end
     end
 
     context 'as a user' do
