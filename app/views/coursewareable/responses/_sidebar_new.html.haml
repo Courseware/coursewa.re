@@ -1,0 +1,15 @@
+.four.columns
+  .row.sidebar
+    %h5
+      = _('Response details')
+    %hr
+
+    %p.icon-plus.expands{'data-expand-target' => '.assignment_content', 'data-toggle-class' => 'icon-minus', 'data-look-allover' => 'true'}
+      = link_to(_('Show assignment description'), '#response' )
+    %hr
+
+    %p.icon-newspaper
+      != _('You are about to leave a response for %s assignment.') % link_to(@assignment.title, lecture_assignment_path(@lecture, @assignment))
+
+    %p.icon-book
+      != _('The assignment relevant lecture is %s.') % link_to(@lecture.title, lecture_path(@lecture))

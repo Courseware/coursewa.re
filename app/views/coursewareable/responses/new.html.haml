@@ -1,22 +1,33 @@
-= title _('Respond to: %s' % @assignment.title)
+= title _('You are about to leave a new response')
 = head_embed javascript_include_tag('editor')
 = head_embed stylesheet_link_tag('editor')
+= breadcrumbs(render('breadcrumbs'))
 
 .row#response
-  .seven.columns
+  .eight.columns
+
+    .hide.assignment_content
+      %h4.marginless-top
+        = @assignment.title
+      %hr
+      .formatted
+        = @assignment.content.html_safe
+
+    %h4.marginless-top
+      = _('Your response')
+    %hr
 
     = form_for(@response, :url => lecture_assignment_responses_path) do |f|
-      %p
-        %h3
-          = _('Your response')
-        = f.text_area :content, :class => 'wysiwyg-full', :required => true
+      = f.text_area :content, :class => 'wysiwyg', :required => true
 
       - unless @assignment.quiz.blank?
-        %p
-          = _('Please answer the quiz below')
+        %h5
+          = _('Please also answer the questions below')
+        %hr
 
         - @assignment.quiz.each_with_index do |question, question_id|
-          = render(:partial => "quiz_#{question['type']}", :locals => {:question => question, :question_id => question_id, :show_results => false})
+          .panel
+            = render(:partial => "quiz_#{question['type']}", :locals => {:question => question, :question_id => question_id, :show_results => false})
 
       %p
         = hidden_field_tag :assetable_type, @response.class, :class => 'assetable_type'
@@ -24,4 +35,4 @@
         = f.submit _('Create'), :id => 'submit_response', :class => 'button primary'
         = link_to _('Cancel'), lecture_assignment_path(@assignment.lecture, @assignment), :class => 'pull right'
 
-  = render(:partial => 'sidebar')
+  = render('sidebar_new')

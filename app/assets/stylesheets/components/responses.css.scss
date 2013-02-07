@@ -7,5 +7,10 @@
     &.correct {
       background-color: rgba($successColor, 0.2);
     }
+
+    input[type="radio"] {
+      height: 40px;
+    }
   }
+
 }

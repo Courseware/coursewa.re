@@ -7,25 +7,22 @@
     %p.smaller
       = _('Last time updated by %s on %s') % [@response.user.name, @response.updated_at.to_s(:pretty)]
 
+    %p.icon-newspaper
+      != _('This response was sent for %s assignment.') % link_to(@assignment.title, lecture_assignment_path(@lecture, @assignment))
+
+    %p.icon-book
+      != _('Response relevant lecture is %s.') % link_to(@lecture.title, lecture_path(@lecture))
+
     - unless @response.stats.blank?
-      %p
-        Quiz coverage is:
-        = ("%.2f%" % @response.coverage)
+      %p.icon-stats
+        - correct_count = @response.stats[:all] - @response.stats[:wrong]
+        - answer_title = pluralize(correct_count, _('correct answer'), _('correct answers'))
+        = _('Response coverage is %.2f%% and represents %s out of %d possible.') % [ @response.coverage, answer_title, @response.stats[:all] ]
 
-      %p
-        You did
-        = @response.stats[:wrong]
-        answers wrong from
-        = @response.stats[:all]
-        possible correct answers.
-
-    %pre
-      TODO:
-      Relevant assignment
-      Relevant lecture
-      Who created it
-      When created
-      Relevant assignment
-      Relevant lecture
-      Who created it
-      When created
+    - if @response.grade
+      %p.icon-hammer
+        - grade_title = '%' if @response.grade.form == 'percent'
+        != _('%s graded this response with <strong>%s%s</strong> on %s.') % [@response.grade.user.name, @response.grade.mark, grade_title, @response.grade.updated_at.to_s(:pretty)]
+    - elsif can?(:contribute, @classroom)
+      %p.icon-hammer
+        != _('This response was not graded yet, you can %s.') % link_to(_('do it now'), lecture_assignment_grades_path(@lecture, @assignment))

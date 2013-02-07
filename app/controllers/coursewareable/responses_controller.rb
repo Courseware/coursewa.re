@@ -13,6 +13,7 @@ module Coursewareable
       @response = @assignment.responses.build
       @response.classroom = @classroom
       @response.user = current_user
+      @lecture = @assignment.lecture
 
       authorize!(:create, @response)
     end

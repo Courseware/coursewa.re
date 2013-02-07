@@ -9,7 +9,7 @@
       - option_name = "response[answers][%d][options][answer]" % [question_id, index]
       - option_value = ((answer['wrong'] or answer['valid']) and show_results) ? true : false
       .row.option{:class => option_klass}
-        .one.columns.option-validation.padded-top-ten
+        .one.columns.option-validation
           %input{:name => "unique", :type => "radio", :id => option_id, :name => option_name, :value => index, :checked => option_value, :disabled => show_results}
         .eleven.columns.option-content
           %label{:for => option_id}
