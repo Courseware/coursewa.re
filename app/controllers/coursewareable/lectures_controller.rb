@@ -37,7 +37,7 @@ module Coursewareable
 
       if @lecture.new_record? and @lecture.save
         flash[:success] = _('Lecture was created.')
-        redirect_to edit_lecture_url(@lecture, :subdomain => @classroom.slug)
+        redirect_to lecture_url(@lecture, :subdomain => @classroom.slug)
       else
         flash[:alert] = _('There was an error, please try again.')
         render :new
@@ -55,7 +55,7 @@ module Coursewareable
         flash[:alert] = _('There was an error, please try again.')
       end
 
-      redirect_to edit_lecture_url(@lecture, :subdomain => @classroom.slug)
+      redirect_to lecture_url(@lecture, :subdomain => @classroom.slug)
     end
 
     # Handles lecture deletion
