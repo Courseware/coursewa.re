@@ -25,4 +25,10 @@ PartyFoul.configure do |config|
 
   # The repository for this application
   config.repo               = 'coursewa.re'
+
+  # The background processor handler
+  config.processor = PartyFoul::Processors::DelayedJob
+
+  # Additional labels to be added
+  config.additional_labels = ['party_foul-ed']
 end if defined?(PartyFoul)
