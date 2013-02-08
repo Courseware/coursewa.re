@@ -33,6 +33,7 @@ nav#classroom-menu {
         text-decoration: none;
         color: $bodyFontColor;
         line-height: 50px;
+        display: block;
 
         &:hover {
           color: $bw_1;
