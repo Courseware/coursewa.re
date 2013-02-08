@@ -21,5 +21,11 @@ describe Coursewareable::LecturesHelper do
 
       it { should match("selected value='#{selected}'") }
     end
+
+    context 'with a nil argument' do
+      let(:lectures) { nil }
+
+      it { should eq(nil) }
+    end
   end
 end
