@@ -27,7 +27,8 @@ PartyFoul.configure do |config|
   config.repo               = 'coursewa.re'
 
   # The background processor handler
-  config.processor = PartyFoul::Processors::DelayedJob
+  # Disable for now, breaks things
+  # config.processor = PartyFoul::Processors::DelayedJob
 
   # Additional labels to be added
   config.additional_labels = ['party_foul-ed']
