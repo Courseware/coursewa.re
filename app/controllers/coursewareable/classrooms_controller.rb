@@ -91,8 +91,13 @@ module Coursewareable
       himg.user = current_user
       return unless himg.valid?
 
-      size = Paperclip::Geometry.from_file(params[:classroom][:header_image])
       ok_size = Courseware.config.header_image_size
+      # Wrap this in a rescue block to avoid all kind of weird exceptions
+      begin
+        size = Paperclip::Geometry.from_file(params[:classroom][:header_image])
+      rescue
+        return
+      end
 
       return if size.width < ok_size[:width] or size.height != ok_size[:height]
 
