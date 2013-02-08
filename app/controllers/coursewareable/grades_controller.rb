@@ -9,11 +9,9 @@ module Coursewareable
 
     # List index screen
     def index
-      @grade = @assignment.grades.build
-      @grade.classroom = @classroom
-      authorize!(:manage, @grade)
-
-      @grades = @assignment.grades.reload
+      authorize!(:contribute, @classroom)
+      @lecture = @assignment.lecture
+      @grades = @assignment.grades
     end
 
     # Creation screen
@@ -22,6 +20,7 @@ module Coursewareable
       @grade.classroom = @classroom
       authorize!(:create, @grade)
 
+      @lecture = @assignment.lecture
       # TODO: localize Number, Percent, Letter
       @forms = @grade.class::ALLOWED_FORMS.map { |f| [_(f.capitalize), f] }
       @members = @classroom.members.map { |u|
@@ -51,6 +50,7 @@ module Coursewareable
     # Editing screen
     def edit
       @grade = @assignment.grades.find(params[:id])
+      @lecture = @assignment.lecture
       @forms = @grade.class::ALLOWED_FORMS.map { |f| [_(f.capitalize), f] }
     end
 

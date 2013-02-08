@@ -1,29 +1,29 @@
-= title _('Add a new grade')
+= title _('Update %s\'s grade') % @grade.receiver.name
+= breadcrumbs(render('breadcrumbs'))
 
-.row#lecture
-  .seven.columns
+#grade
+  .eight.columns
+
+    %h4
+      %span.avatar
+        = gravatar_image_tag(@grade.receiver.email, :alt => @grade.receiver.name, :gravatar => { :size => 25 })
+      = _('%s grade') % @grade.receiver.name
+    %hr
 
     = form_for(@grade, :url => lecture_assignment_grade_path) do |f|
       .row
-        .two.columns
-          %p
-            = f.label :mark, _('Grade')
-            = f.text_field :mark, :required => true
+        .four.columns
+          = f.label :form, _('Format'), :class => 'left four inline'
+          = f.select :form, @forms, {:selected => @grade.form}, {:required => true, :class => 'eight inline'}
 
-        .three.columns
-          %p
-            = f.label :form, _('Format')
-            = f.select :form, @forms, :required => true
-
-        .six.offset-by-one.columns
-          %p.avatar
-            = f.label :receiver, _('Graded user')
-            = gravatar_image_tag(@grade.receiver.email, :alt => @grade.receiver.name, :gravatar => { :size => 20 })
-            = @grade.receiver.name
+        .three.columns.align-right
+          = f.label :mark, _('Grade'), :class => 'left six inline'
+          = f.text_field :mark, {:required => true, :class => 'five right inline'}
+        .five.columns.align-right
 
       %p
-        = f.label :comment, _('Leave a comment')
-        = f.text_area :comment
+        = f.label :comment, _('If you have feedback to add, fill in below')
+        = f.text_area :comment, :rows => 4
 
       %p
         = f.submit _('Save'), :id => 'update_grade', :class => 'button primary'
