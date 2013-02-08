@@ -134,6 +134,15 @@ dl dd {
   border: 1px solid $bw_9;
 }
 
+table thead {
+  background: $bw_10;
+
+  tr th {
+    font-weight: normal;
+    color: $txtColor;
+  }
+}
+
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   font-family: 'courseware';

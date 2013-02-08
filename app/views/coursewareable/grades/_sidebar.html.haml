@@ -1,14 +1,27 @@
-.four.columns.offset-by-one
-  .row.classrooms-sidebar
+.four.columns
+  .row.sidebar
     %h5
-      = _('Gradebook Sidebar')
-    %p
-      = link_to(_('New grade'), new_lecture_assignment_grade_path(@assignment.lecture, @assignment), :class => 'button small primary', :id => 'new_grade')
+      = _('Assignment grades')
+    %hr
 
-    %pre
-      TODO:
-      Relevant lecture
-      Relevant assignment
-      Available responses count
-      Grades added/counted
-      Some stats?!?
+    - if !@grade.nil? and !@grade.new_record?
+      %p.smaller
+        = _('This grade was added by %s on %s') % [@grade.user.name, @grade.updated_at.to_s(:pretty)]
+      %hr
+
+    %ul.itemized
+      %li
+        %strong
+          = link_to(_('Add a new grade'), new_lecture_assignment_grade_path(@lecture, @assignment), :id => 'new_grade')
+      - if !@assignment.grades.limit(5).empty? and @grades.nil?
+        - @assignment.grades.limit(5).each do |grade|
+          %li
+            = link_to(_('%s grade') % grade.receiver.name, lecture_assignment_grade_path(@lecture, @assignment, grade))
+      - if !@assignment.grades.offset(5).empty? and @grades.nil?
+        %li
+          = link_to(_('Including %d more...') % @assignment.grades.offset(5).count, lecture_assignment_grades_path(@lecture, @assignment))
+      - if !@grades.nil?
+        %li
+          = link_to(_('Grades assignment'), lecture_assignment_path(@lecture, @assignment))
+        %li
+          = link_to(_('Grades lecture'), lecture_path(@lecture))
