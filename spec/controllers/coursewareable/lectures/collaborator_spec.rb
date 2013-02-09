@@ -62,7 +62,7 @@ describe Coursewareable::LecturesController do
     end
 
     context 'being logged in as a collaborator' do
-      it { should redirect_to(edit_lecture_path(classroom.lectures.first)) }
+      it { should redirect_to(lecture_path(classroom.lectures.first)) }
     end
   end
 
@@ -82,7 +82,7 @@ describe Coursewareable::LecturesController do
 
     context 'being logged in as a collaborator' do
       it do
-        should redirect_to(edit_lecture_path(lecture))
+        should redirect_to(lecture_path(lecture))
         lecture.title.should eq(attrs.title)
       end
     end

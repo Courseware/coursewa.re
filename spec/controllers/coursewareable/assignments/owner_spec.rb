@@ -76,7 +76,7 @@ describe Coursewareable::AssignmentsController do
     context 'being logged in as a owner' do
       subject { lecture.assignments.first }
       it do
-        should redirect_to(edit_lecture_assignment_path(lecture, subject))
+        should redirect_to(lecture_assignment_path(lecture, subject))
         subject.title.should eq(attrs.title)
         subject.quiz.first['options'].size.should eq(2)
         subject.quiz.first[:content].should eq(quiz_data.first['content'])
@@ -87,7 +87,7 @@ describe Coursewareable::AssignmentsController do
         let(:has_quiz) { false }
 
         it do
-          should redirect_to(edit_lecture_assignment_path(lecture, subject))
+          should redirect_to(lecture_assignment_path(lecture, subject))
           subject.title.should eq(attrs.title)
           subject.quiz.should be_nil
         end
@@ -127,7 +127,7 @@ describe Coursewareable::AssignmentsController do
 
     context 'being logged in as a owner' do
       it do
-        should redirect_to(edit_lecture_assignment_path(lecture, assignment))
+        should redirect_to(lecture_assignment_path(lecture, assignment))
         assignment.title.should eq(attrs.title)
         assignment.quiz.first[:content].should eq(quiz_data.first['content'])
       end
@@ -136,7 +136,7 @@ describe Coursewareable::AssignmentsController do
         let(:has_quiz) { false }
 
         it do
-          should redirect_to(edit_lecture_assignment_path(lecture, assignment))
+          should redirect_to(lecture_assignment_path(lecture, assignment))
           assignment.title.should eq(attrs.title)
           assignment.quiz.should be_nil
         end

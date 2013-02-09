@@ -38,7 +38,7 @@ module Coursewareable
       attrs = params[:classroom].except(:color_scheme, :header_image, :color)
       @classroom.update_attributes(attrs)
 
-      redirect_to edit_classroom_url(:subdomain => @classroom.reload.slug)
+      redirect_to dashboard_classroom_url(:subdomain => @classroom.reload.slug)
     end
 
     # Handles classroom creation

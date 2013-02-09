@@ -39,8 +39,8 @@ describe Coursewareable::GradesController do
         })
       end
 
-      it { should redirect_to(edit_lecture_assignment_grade_path(
-        lecture.slug, assignment.slug, assignment.grades.first.id)) }
+      it { should redirect_to(lecture_assignment_grades_path(
+        lecture.slug, assignment.slug)) }
     end
   end
 
@@ -85,8 +85,8 @@ describe Coursewareable::GradesController do
         grade.receiver.id.should_not eq(collaborator.id)
         grade.mark.should eq(70)
         grade.form.should eq('percent')
-        should redirect_to(edit_lecture_assignment_grade_path(
-          lecture.slug, assignment.slug, grade.id))
+        should redirect_to(lecture_assignment_grades_path(
+          lecture.slug, assignment.slug))
       end
     end
   end
