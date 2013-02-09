@@ -1,0 +1,22 @@
+.twelve.columns
+  %ul.breadcrumbs
+    %li
+      = link_to(_('Syllabus'), syllabus_path)
+    %li
+      = link_to(@lecture.title, lecture_path(@lecture))
+    %li
+      = link_to(@assignment.title, lecture_assignment_path(@lecture, @assignment))
+    - if @grade.nil?
+      %li.current
+        %span
+          = _('Gradebook')
+    - else
+      %li
+        %span
+          = link_to(_('Gradebook'), lecture_assignment_grades_path(@lecture, @assignment))
+      %li.current
+        %span
+          - if @grade.new_record?
+            = _('You are adding a new grade')
+          - else
+            = _('%s grade') % @grade.receiver.name

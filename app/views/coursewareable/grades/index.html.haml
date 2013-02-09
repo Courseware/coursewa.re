@@ -1,22 +1,46 @@
-= title _('Grades for %s') % @assignment.title
+= title _('Assignment grades')
+= breadcrumbs(render('breadcrumbs'))
 
-.row#grades
-  .seven.columns
+#grade
+  .eight.columns
+
+    - grades_title = pluralize(@grades.count, _('grade'), _('grades'))
+    %h4
+      = _('%s for this assignment') % grades_title
+    %hr
+
     - if @grades.empty?
       %p
-        = _('Sorry no grades exist. Try adding one.')
+        != _('Sorry there are no grades so far. %s?') % link_to(_('Want to add one'), new_lecture_assignment_grade_path(@lecture, @assignment))
+
     - else
-      %ul.inline-list
-        - @grades.each do |grade|
-          %li{:id => "grade-#{grade.id}"}
-            .panel
-              %p
-                %span.label.secondary
-                  = grade.mark
-              %p.avatar
+      %table.twelve
+        %thead
+          %tr
+            %th
+              = _('Name')
+            %th
+              = _('Grade')
+            %th
+              = _('Response')
+            %th
+              = _('Assignment')
+        %tbody
+          - @grades.each do |grade|
+            %tr{:id => "grade-#{grade.id}"}
+              %td.avatar
                 = gravatar_image_tag(grade.receiver.email, :alt => grade.receiver.name, :gravatar => { :size => 20 })
                 = grade.receiver.name
-              %p
-                = link_to(_('Update'), edit_lecture_assignment_grade_path(@assignment.lecture, @assignment, grade), :class => 'small button primary', :id => "update_grade-#{grade.id}")
+              %td
+                = grade.mark.to_s + (grade.form == 'percent' ? '%' : '')
+                = link_to('', edit_lecture_assignment_grade_path(@lecture, @assignment, grade), :class => 'right icon-edit', :title => 'Update this grade')
+              %td
+                -#TODO: improve the response-vs-grade linkage workflow
+                -# - if grade.response.nil?
+                = _('No response linked.')
+                -# - else
+                -#   = link_to((_('%s') % grade.response.id), lecture_assignment_response_path(@lecture, @assignment, grade.response))
+              %td
+                = link_to(truncate(@assignment.title, :length => 30), lecture_assignment_path(@lecture, @assignment))
 
   = render(:partial => 'sidebar')
