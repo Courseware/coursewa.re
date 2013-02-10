@@ -53,9 +53,8 @@ describe 'Grades' do
           new_grade.receiver.id.should eq(receiver.id)
           new_grade.comment.should eq(Sanitize.clean(attrs.comment))
 
-          page.current_url.should eq(edit_lecture_assignment_grade_url(
-            lecture.slug, assignment.slug, new_grade.id,
-            :subdomain => classroom.slug))
+          page.current_url.should eq(lecture_assignment_grades_url(
+            lecture.slug, assignment.slug, :subdomain => classroom.slug))
         end
       end
 
@@ -74,9 +73,8 @@ describe 'Grades' do
           grade.form.should eq('percent')
           grade.comment.should eq(Sanitize.clean(attrs.comment))
 
-          page.current_url.should eq(edit_lecture_assignment_grade_url(
-            lecture.slug, assignment.slug, grade.id,
-            :subdomain => classroom.slug))
+          page.current_url.should eq(lecture_assignment_grades_url(
+            lecture.slug, assignment.slug, :subdomain => classroom.slug))
         end
       end
 

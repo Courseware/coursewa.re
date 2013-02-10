@@ -29,7 +29,7 @@ describe 'Assignments' do
 
         page.source.should match(assignment.title)
         page.should have_css('#notifications .success')
-        page.should have_css('#assignment_title')
+        page.should have_css('#assignment')
       end
     end
   end

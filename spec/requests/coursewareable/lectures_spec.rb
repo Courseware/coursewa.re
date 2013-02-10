@@ -23,7 +23,7 @@ describe 'Lectures' do
 
     page.source.should match(lecture.title)
     page.should have_css('#notifications .success')
-    page.should have_css('#lecture_title')
+    page.should have_css('#lecture')
   end
 
   describe 'when lecture exists' do
