@@ -38,8 +38,8 @@ module Coursewareable
 
       if @grade.save
         flash[:success] = _('Grade saved.')
-        redirect_to edit_lecture_assignment_grade_path(
-          params[:lecture_id], @assignment, @grade)
+        redirect_to lecture_assignment_grades_path(
+          params[:lecture_id], @assignment)
       else
         flash[:error] = _('There was an error, please try again.')
         redirect_to new_lecture_assignment_grade_path(
@@ -60,12 +60,13 @@ module Coursewareable
 
       if grade.update_attributes(params[:grade].except(:receiver_id))
         flash[:success] = _('Grade saved.')
+        redirect_to lecture_assignment_grades_path(
+          params[:lecture_id], @assignment)
       else
         flash[:error] = _('There was an error, please try again.')
+        redirect_to edit_lecture_assignment_grade_path(
+          params[:lecture_id], @assignment, grade)
       end
-
-      redirect_to edit_lecture_assignment_grade_path(
-        params[:lecture_id], @assignment, grade)
     end
 
     # Handles deletion
