@@ -168,6 +168,10 @@ describe Coursewareable::ClassroomsController do
       @request.host = "#{classroom.slug}.#{@request.host}"
       post(:announce, :use_route => :coursewareable,
            :announcement => attrs.description)
+
+      # The following lines will fail because the classroom hasn't members than owner
+      AnnounceMailer.stub(:delay).and_return(AnnounceMailer)
+      AnnounceMailer.should_receive(:new_announce_email)
     end
 
     context 'being logged in as owner' do
