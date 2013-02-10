@@ -1,6 +1,6 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: 005470986614d5015f32399e9fc651651060b4aa
+  revision: cb9d565f0adef278e922a4c7de746fd95f0e6720
   specs:
     coursewareable (0.0.1)
       cancan
@@ -157,7 +157,7 @@ GEM
       treetop (~> 1.4.8)
     metaclass (0.0.1)
     method_source (0.8.1)
-    mime-types (1.20.1)
+    mime-types (1.21)
     mina (0.2.1)
       open4
       rake
