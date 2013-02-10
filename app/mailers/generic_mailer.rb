@@ -33,6 +33,9 @@ class GenericMailer < ActionMailer::Base
   def invitation_email(user, params)
     @params = params
     subject = _('%s invites you to try Courseware') % [user.name]
+    # Since this is an invitation email coming from user initiative,
+    # overwrite `reply-to` so that `params[:email]` does not reply to
+    # Courseware.config.default_email_address but to user's email address.
     mail(:to => params[:email], :subject => subject, :reply_to => user.email)
   end
 
