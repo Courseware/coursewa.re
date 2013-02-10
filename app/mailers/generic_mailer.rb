@@ -1,7 +1,8 @@
 # Handles generic emails
 class GenericMailer < ActionMailer::Base
-  default from: Courseware.config.default_email_address
   layout 'email'
+  default(:from => Courseware.config.default_email_address,
+    :reply_to => Courseware.config.support_email_address)
 
   # Sends an email containing a support query from contact page
   #
@@ -32,7 +33,7 @@ class GenericMailer < ActionMailer::Base
   def invitation_email(user, params)
     @params = params
     subject = _('%s invites you to try Courseware') % [user.name]
-    mail(:to => params[:email], :subject => subject)
+    mail(:to => params[:email], :subject => subject, :reply_to => user.email)
   end
 
   # Sends an email containing a user survey form feedback

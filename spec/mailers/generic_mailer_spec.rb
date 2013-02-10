@@ -11,6 +11,7 @@ describe GenericMailer do
 
     its(:subject) { should match(params[:name]) }
     its(:from) { should eq([Courseware.config.default_email_address]) }
+    its(:reply_to) { should eq([Courseware.config.support_email_address]) }
     its(:to) { should eq(["help@#{Courseware.config.domain_name}"]) }
     its('body.encoded') { should match(params[:message]) }
   end
@@ -20,6 +21,7 @@ describe GenericMailer do
 
     its(:subject) { should match(params[:name]) }
     its(:from) { should eq([Courseware.config.default_email_address]) }
+    its(:reply_to) { should eq([Courseware.config.support_email_address]) }
     its(:to) { should eq(["hello@#{Courseware.config.domain_name}"]) }
     its('body.encoded') { should match(params[:message]) }
     its('body.encoded') { should match(params[:email]) }
@@ -32,11 +34,12 @@ describe GenericMailer do
 
     its(:subject) { should match(user.name) }
     its(:from) { should eq([Courseware.config.default_email_address]) }
+    its(:reply_to) { should eq([user.email]) }
     its(:to) { should eq([params[:email]]) }
     its('body.encoded') { should match(params[:message]) }
   end
 
-  describe '#support_email' do
+  describe '#survey_email' do
     let(:new_params) do
       params[:category] = 'ui_ux'
       params[:current_path] = 'some_path'
@@ -46,6 +49,7 @@ describe GenericMailer do
 
     its(:subject) { should match(new_params[:name]) }
     its(:from) { should eq([Courseware.config.default_email_address]) }
+    its(:reply_to) { should eq([Courseware.config.support_email_address]) }
     its(:to) { should eq(
       ["help+#{new_params[:category]}@#{Courseware.config.domain_name}"]) }
     its('body.encoded') { should match(new_params[:message]) }
