@@ -25,7 +25,7 @@
             = radio_button_tag(:category, :other, nil, :class => 'left inline')
             = label_tag(:category_other, _('Other issues'), :class => 'smaller left inline marginless-bottom')
 
-      = hidden_field_tag(:current_path, request.fullpath)
+      = hidden_field_tag(:current_path, request.url)
       = text_area_tag(:message, nil, :required => true, :placeholder => _('Hey guys, check this out...'))
 
       = submit_tag(_('Send this'), :class => 'button small primary', :id => 'submit_survey')
