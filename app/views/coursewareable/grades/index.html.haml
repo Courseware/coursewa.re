@@ -33,7 +33,7 @@
                 = grade.receiver.name
               %td
                 = grade.mark.to_s + (grade.form == 'percent' ? '%' : '')
-                = link_to('', edit_lecture_assignment_grade_path(@lecture, @assignment, grade), :class => 'right icon-edit', :title => 'Update this grade')
+                = link_to('', edit_lecture_assignment_grade_path(@lecture, @assignment, grade), :class => 'right icon-edit', :id => "update_grade-#{grade.id}", :title => 'Update this grade')
               %td
                 -#TODO: improve the response-vs-grade linkage workflow
                 -# - if grade.response.nil?
