@@ -1,6 +1,6 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: cb9d565f0adef278e922a4c7de746fd95f0e6720
+  revision: a9e2360b6bcf35ef4c4e9e56209a085aa4346d23
   specs:
     coursewareable (0.0.1)
       cancan
@@ -88,7 +88,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    fabrication (2.5.4)
+    fabrication (2.6.0)
     faraday (0.8.5)
       multipart-post (~> 1.1)
     fast_gettext (0.7.0)
@@ -101,7 +101,7 @@ GEM
       locale
     gettext_i18n_rails (0.9.1)
       fast_gettext (>= 0.4.8)
-    github_api (0.8.10)
+    github_api (0.8.11)
       faraday (~> 0.8.1)
       hashie (~> 1.2.0)
       multi_json (~> 1.4)
@@ -144,8 +144,8 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.2.0)
       addressable (~> 2.3)
-    letter_opener (1.0.0)
-      launchy (>= 2.0.4)
+    letter_opener (1.1.0)
+      launchy (~> 2.2.0)
     levenshtein (0.2.2)
     libv8 (3.11.8.13)
     listen (0.7.2)
