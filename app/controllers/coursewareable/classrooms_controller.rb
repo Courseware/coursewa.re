@@ -59,16 +59,12 @@ module Coursewareable
       authorize!(:contribute, @classroom)
 
       activity_key = 'announcement.create'
-      @announcement = current_user.activities_as_owner.create(
+      announcement = current_user.activities_as_owner.create(
         :key => activity_key, :recipient => @classroom, :parameters => {
           :content => Sanitize.clean(params[:announcement]),
           :user_name => current_user.name
         })
-      @announcement.recipient.members.each do |user|
-        unless user.email == @announcement.recipient.owner.email
-          ::AnnounceMailer.delay.new_announce_email(@announcement, user)
-        end
-      end
+      ::AnnounceMailer.delay.new_announce_email(announcement)
       flash[:success] = _('Announcement was posted')
       redirect_to(dashboard_classroom_path)
     end

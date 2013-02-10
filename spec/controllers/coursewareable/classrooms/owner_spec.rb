@@ -164,14 +164,12 @@ describe Coursewareable::ClassroomsController do
     let(:attrs) { Fabricate.build('coursewareable/classroom') }
 
     before do
+      AnnounceMailer.stub(:delay).and_return(AnnounceMailer)
+      AnnounceMailer.should_receive(:new_announce_email)
       @controller.send(:auto_login, classroom.owner)
       @request.host = "#{classroom.slug}.#{@request.host}"
       post(:announce, :use_route => :coursewareable,
            :announcement => attrs.description)
-
-      # The following lines will fail because the classroom hasn't members than owner
-      AnnounceMailer.stub(:delay).and_return(AnnounceMailer)
-      AnnounceMailer.should_receive(:new_announce_email)
     end
 
     context 'being logged in as owner' do

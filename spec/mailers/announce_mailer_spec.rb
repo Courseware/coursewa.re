@@ -9,7 +9,7 @@ describe AnnounceMailer do
   end
 
   describe "#new_announce_email" do
-    let(:mail) {AnnounceMailer.new_announce_email(announcement, membership.user)}
+    let(:mail) {AnnounceMailer.new_announce_email(announcement)}
     it "should be valid" do
         mail.should have_subject("New announcement in #{membership.classroom.title}")
         mail.should deliver_to(membership.user.email)
