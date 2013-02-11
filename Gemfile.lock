@@ -1,12 +1,12 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: 43f36fa1f686e41d7a6c00492ac088a8627913a6
+  revision: c2bea8afa1e4fd5b5dc5e81865e76780925512ff
   specs:
     coursewareable (0.0.1)
       cancan
       friendly_id
       paperclip
-      public_activity
+      public_activity (= 0.5.4)
       sanitize
       sorcery
 
@@ -359,7 +359,7 @@ DEPENDENCIES
   pg
   pry
   pry-rails
-  public_activity (= 0.5.4)
+  public_activity
   puma
   quiet_assets
   rails
