@@ -14,11 +14,12 @@ describe 'Lectures' do
     visit new_lecture_url(:subdomain => classroom.slug)
 
     lecture = Fabricate.build('coursewareable/lecture',
-      :classroom => classroom, :user => classroom.owner)
+      :classroom => classroom, :user => classroom.owner, :position => rand(10))
 
     page.fill_in('lecture_title', :with => lecture.title)
     page.fill_in('lecture_requisite', :with => lecture.requisite)
     page.fill_in('lecture_content', :with => lecture.content)
+    page.fill_in('lecture_position', :with => lecture.position)
     page.click_on('submit_lecture')
 
     page.source.should match(lecture.title)
@@ -46,12 +47,13 @@ describe 'Lectures' do
       sign_in_with(classroom.owner.email)
       visit edit_lecture_url(@lecture, :subdomain => classroom.slug)
 
-      lecture = Fabricate.build('coursewareable/lecture',
+      lecture = Fabricate.build('coursewareable/lecture', :position => rand(10),
         :classroom => classroom, :user => classroom.owner)
 
       page.fill_in('lecture_title', :with => lecture.title)
       page.fill_in('lecture_requisite', :with => lecture.requisite)
       page.fill_in('lecture_content', :with => lecture.content)
+      page.fill_in('lecture_position', :with => lecture.position)
       page.click_on('submit_lecture')
 
       page.source.should match(lecture.title)
