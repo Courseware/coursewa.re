@@ -41,6 +41,7 @@ module Coursewareable
         flash[:success] = _('Grade saved.')
         redirect_to lecture_assignment_grades_path(
           params[:lecture_id], @assignment)
+        ::GradesMailer.delay.new_grade_email(@grade)
       else
         flash[:error] = _('There was an error, please try again.')
         redirect_to new_lecture_assignment_grade_path(
@@ -62,6 +63,7 @@ module Coursewareable
         flash[:success] = _('Grade saved.')
         redirect_to lecture_assignment_grades_path(
           params[:lecture_id], @assignment)
+        ::GradesMailer.delay.update_grade_email(grade)
       else
         flash[:error] = _('There was an error, please try again.')
         redirect_to edit_lecture_assignment_grade_path(
