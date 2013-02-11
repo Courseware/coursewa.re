@@ -252,6 +252,14 @@ header {
           margin-bottom: 0px;
         }
 
+        ul {
+          margin-bottom: 0;
+
+          li:first-child {
+            padding-top: 10px;
+            border-top: 1px solid $bw_9;
+          }
+        }
       }
 
     }
