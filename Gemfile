@@ -11,9 +11,11 @@ gem 'delayed_job_active_record'
 gem 'gettext_i18n_rails'
 gem 'roadie'
 gem 'gravatar_image_tag'
-gem 'public_activity'
 gem 'daemons'
 gem 'kaminari'
+# TODO: Remove pins when issues get fixed
+gem 'public_activity', '0.5.4'
+gem 'sorcery', '0.8.1'
 
 # Speedup a bit things
 gem 'multi_json'
