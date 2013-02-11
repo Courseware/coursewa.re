@@ -156,7 +156,6 @@ describe Coursewareable::ClassroomsController do
           should redirect_to(dashboard_classroom_url(:subdomain => classroom.slug))
         end
       end
-
     end
   end
 
