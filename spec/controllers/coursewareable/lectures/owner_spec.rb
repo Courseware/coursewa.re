@@ -54,7 +54,7 @@ describe Coursewareable::LecturesController do
       @request.host = "#{classroom.slug}.#{@request.host}"
       post(:create, :use_route => :coursewareable, :lecture => {
         :title => lecture.title, :content => lecture.content,
-        :requisite => lecture.requisite
+        :requisite => lecture.requisite, :position => lecture.position
       })
     end
 
