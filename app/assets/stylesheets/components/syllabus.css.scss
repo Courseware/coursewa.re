@@ -8,19 +8,11 @@
       line-height: 24px;
     }
   }
-
-  .sidebar {
-    ul.lectures-listing {
-
-      li {
-        & .child-lectures-listing {
-          ul {
-            margin-top: 10px;
-          }
-        }
-
-      }
-    }
-  }
-
 }
+
+.sidebar {
+  ul li .child-lectures-listing ul {
+    margin-top: 10px;
+  }
+}
+

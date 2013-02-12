@@ -1,10 +1,10 @@
 - max_child_count = 3
 %ul.itemized.lectures-listing
-  - if can?(:contribute, @classroom)
+  - if can?(:contribute, classroom)
     %li
       %strong
         = link_to(_('Add a new lecture'), new_lecture_path)
-  - @lectures.each do |lecture|
+  - lectures.each do |lecture|
     - unless lecture.parent_lecture
       %li
         - unless lecture.child_lectures.empty?

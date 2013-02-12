@@ -28,5 +28,4 @@
     = _('Lectures')
   %hr
 
-  - @lectures = @classroom.lectures
-  = render('sidebar_lectures_listing')
+  = render(:partial => 'shared/sidebar_lectures_listing', :locals => {:lectures => @classroom.lectures, :classroom => @classroom})
