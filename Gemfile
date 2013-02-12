@@ -13,8 +13,7 @@ gem 'roadie'
 gem 'gravatar_image_tag'
 gem 'daemons'
 gem 'kaminari'
-# TODO: Remove pins when issues get fixed
-gem 'public_activity', '0.5.4'
+gem 'public_activity'
 gem 'sorcery', '0.8.1'
 
 # Speedup a bit things

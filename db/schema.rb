@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122120036) do
+ActiveRecord::Schema.define(:version => 20130211190356) do
 
   create_table "coursewareable_activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -107,15 +107,16 @@ ActiveRecord::Schema.define(:version => 20130122120036) do
   add_index "coursewareable_grades", ["user_id"], :name => "index_coursewareable_grades_on_user_id"
 
   create_table "coursewareable_lectures", :force => true do |t|
-    t.string   "slug",              :null => false
+    t.string   "slug",                             :null => false
     t.string   "title"
     t.text     "content"
     t.text     "requisite"
     t.integer  "parent_lecture_id"
     t.integer  "user_id"
     t.integer  "classroom_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "position",          :default => 0
   end
 
   add_index "coursewareable_lectures", ["classroom_id"], :name => "index_coursewareable_lectures_on_classroom_id"
