@@ -13,6 +13,27 @@
       - else
         = simple_format(@classroom.description)
 
+      - unless @classroom.lectures.empty?
+        %h5
+          = _('Lectures')
+        %hr
+
+        = render(:partial => 'shared/sidebar_lectures_listing', :locals => {:lectures => @classroom.lectures, :classroom => @classroom})
+
+      %h5
+        = _('Your progress')
+      %hr
+
+      - responses_count = current_user.responses.where(:classroom_id => @classroom.id).count
+      - assignments_count = @classroom.assignments.count
+      - coverage = ((responses_count * 100) / assignments_count) if assignments_count > 0
+
+      .nice.success.progress
+        %span.meter{:style => "width: #{coverage.to_i}%"}
+
+      %p.smaller.align-center
+        = _('%d responses out of %d assignments') % [responses_count, assignments_count ]
+
       %hr
 
       %ul.itemized
@@ -31,17 +52,3 @@
         %li
           %span.icon-trophy
             = pluralize(@classroom.grades.count, _('grade'), _('grades'))
-
-      %h5
-        = _('Your progress')
-      %hr
-
-      - responses_count = current_user.responses.where(:classroom_id => @classroom.id).count
-      - assignments_count = @classroom.assignments.count
-      - coverage = ((responses_count * 100) / assignments_count) if assignments_count > 0
-
-      .nice.success.progress
-        %span.meter{:style => "width: #{coverage.to_i}%"}
-
-      %p.smaller.align-center
-        = _('%d responses out of %d assignments') % [responses_count, assignments_count ]
