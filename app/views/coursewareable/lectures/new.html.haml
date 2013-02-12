@@ -16,7 +16,7 @@
           = f.label :parent_lecture_id, _('Parent lecture')
           = select_tag 'lecture[parent_lecture_id]', list_lecture_options(@lectures), { :prompt => _('No parent lecture') }
         .three.offset-by-one.columns
-          = f.label :position, _('Hierarchy position')
+          = f.label :position, _('Lecture position')
           = f.number_field :position, :class => 'five'
 
       %p
