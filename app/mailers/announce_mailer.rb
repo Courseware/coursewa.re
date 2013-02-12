@@ -11,7 +11,7 @@ class AnnounceMailer < ActionMailer::Base
           @announcement = announcement
           @user = user
           mail(:to => user.email,
-              :subject => "New announcement in #{announcement[:recipient][:title]}")
+              :subject => _("New announcement in %s") % announcement[:recipient][:title])
         end
       end
   end

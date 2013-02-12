@@ -5,6 +5,7 @@
   Informations about grade:
   = _("Assignment: %s") % @content.assignment.title
   = _("Lecture: %s") % @content.assignment.lecture.title
-  = _("Comment: %s") % @content.comment
+  - unless @content.comment.nil?
+    = _("Comment: %s") % @content.comment
   = _("Mark: %s") % @content.mark
   = _("Date: %s") % @date

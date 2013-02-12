@@ -3,5 +3,5 @@
 
 %p
   = _('An announcement was posted in the %s by %s') % [@announcement[:recipient][:title],@announcement[:recipient][:owner]]
-%p
+%blockquote  
   = _('Message: %s') % @announcement[:parameters][:content]
