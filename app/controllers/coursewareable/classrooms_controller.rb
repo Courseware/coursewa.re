@@ -65,7 +65,7 @@ module Coursewareable
           :content => Sanitize.clean(params[:announcement]),
           :user_name => current_user.name
         })
-      ::AnnounceMailer.delay.new_announce_email(announcement)
+      ::AnnouncementMailer.delay.new_announce_email(announcement)
       flash[:success] = _('Announcement was posted')
       redirect_to(dashboard_classroom_path)
     end
