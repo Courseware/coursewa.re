@@ -1,0 +1,11 @@
+%h3
+  = _("%s, graded you") % @grade_user.name
+
+%p
+  Informations about grade:
+  = _("Assignment: %s") % @content.assignment.title
+  = _("Lecture: %s") % @content.assignment.lecture.title
+  - unless @content.comment.nil?
+    = _("Comment: %s") % @content.comment
+  = _("Mark: %s") % @content.mark
+  = _("Date: %s") % @date

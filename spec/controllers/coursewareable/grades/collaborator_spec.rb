@@ -30,6 +30,8 @@ describe Coursewareable::GradesController do
 
     context 'being logged in as collaborator' do
       before do
+        GradesMailer.stub(:delay).and_return(GradesMailer)
+        GradesMailer.should_receive(:new_grade_email)
         @controller.send(:auto_login, collaborator)
         @request.host = "#{classroom.slug}.#{@request.host}"
         post(:create, :lecture_id => lecture.slug,:use_route => :coursewareable,
@@ -71,6 +73,8 @@ describe Coursewareable::GradesController do
 
     context 'being logged in as collaborator' do
       before do
+        GradesMailer.stub(:delay).and_return(GradesMailer)
+        GradesMailer.should_receive(:update_grade_email)
         @controller.send(:auto_login, collaborator)
         @request.host = "#{classroom.slug}.#{@request.host}"
         put(:update, :lecture_id => lecture.slug, :id => grade.id,

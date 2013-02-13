@@ -1,0 +1,7 @@
+%h3
+  = _('Hello %s,') % @user.name
+
+%p
+  = _('An announcement was posted in the %s by %s') % [@announcement[:recipient][:title],@announcement[:recipient][:owner]]
+%blockquote  
+  = _('Message: %s') % @announcement[:parameters][:content]
