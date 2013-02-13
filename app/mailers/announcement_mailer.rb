@@ -6,16 +6,18 @@ class AnnouncementMailer < ActionMailer::Base
   #
   # @param [PublicActivity::Activity] announcement, the announcement object
   def new_announcement_email(announcement)
-    classroom = announcement.recipient
+    @announcement = announcement
+    @classroom = announcement.recipient
+    @members = @classroom.members - [@classroom.owner]
+
+    # Do not try to send this if the only member is the owner
+    return if @members.empty?
+
     subject = _('A new announcement was posted in %s classroom') % [
-      classroom.title
+      @classroom.title
     ]
-
-    classroom.members.each do |member|
-      next if member.email == classroom.owner.email
-
-      @announcement = announcement
-      @user = member
+    @members.each do |member|
+      @member = member
       mail(:to => member.email, :subject => subject)
     end
   end
