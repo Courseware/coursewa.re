@@ -163,8 +163,8 @@ describe Coursewareable::ClassroomsController do
     let(:attrs) { Fabricate.build('coursewareable/classroom') }
 
     before do
-      AnnounceMailer.stub(:delay).and_return(AnnounceMailer)
-      AnnounceMailer.should_receive(:new_announce_email)
+      AnnouncementMailer.stub(:delay).and_return(AnnouncementMailer)
+      AnnouncementMailer.should_receive(:new_announcement_email)
       @controller.send(:auto_login, classroom.owner)
       @request.host = "#{classroom.slug}.#{@request.host}"
       post(:announce, :use_route => :coursewareable,
