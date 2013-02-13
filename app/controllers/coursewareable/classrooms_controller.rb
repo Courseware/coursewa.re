@@ -75,6 +75,32 @@ module Coursewareable
       authorize!(:dashboard, @classroom)
     end
 
+    def privacy
+      authorize!(:dashboard, @classroom)
+      membership = current_user.memberships.find_by_classroom_id(@classroom.id)
+      if membership.email_announcement.nil?
+        membership.email_announcement = {:grade => "true", :announce => "true",
+          :collaboration => "true", :generic => "true", :membership => "true"}.to_s
+        if membership.valid?
+          membership.save
+        end
+      end
+      @email_settings = eval(membership.email_announcement)
+    end
+
+    def update_privacy
+      membership = current_user.memberships.find_by_classroom_id(@classroom.id)
+      membership.email_announcement = params[:email_announcement].to_s
+      if membership.valid?
+        membership.save
+        flash[:success] = _('Privacy settings updated successfully')
+        redirect_to(privacy_classroom_path)
+      else
+        flash[:alert] = _('Privacy settings can not be updated')
+        redirect_to(privacy_classroom_path)
+      end
+    end
+
     protected
 
     # Loads current classroom

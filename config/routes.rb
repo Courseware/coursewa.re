@@ -41,6 +41,8 @@ Coursewareable::Engine.routes.draw do
         get :dashboard, :path => '/'
         post :announce
         get :staff
+        get :privacy
+        post :update_privacy
         resources(:memberships, :only => [:index, :create, :destroy])
         resources(:collaborations, :only => [:index, :create, :destroy])
         resource(:syllabus, :only => [:show, :edit, :update, :create])
