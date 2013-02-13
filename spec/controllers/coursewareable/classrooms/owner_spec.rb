@@ -109,7 +109,8 @@ describe Coursewareable::ClassroomsController do
     context 'being logged in as owner' do
       before { classroom.reload }
       it do
-        should redirect_to(dashboard_classroom_url(:subdomain => classroom.slug))
+        should redirect_to(
+          dashboard_classroom_url(:subdomain => classroom.slug))
         classroom.title.should eq(attrs.title)
       end
 
@@ -117,7 +118,8 @@ describe Coursewareable::ClassroomsController do
         before(:all) { attrs.slug = Faker::Lorem.sentence[0..31] }
         it do
           classroom.reload.slug.should eq(attrs.slug.parameterize)
-          should redirect_to(dashboard_classroom_url(:subdomain => attrs.slug.parameterize))
+          should redirect_to(
+            dashboard_classroom_url(:subdomain => attrs.slug.parameterize))
         end
       end
 
@@ -128,7 +130,8 @@ describe Coursewareable::ClassroomsController do
 
         it do
           classroom.reload.header_image.should be_nil
-          should redirect_to(dashboard_classroom_url(:subdomain => classroom.slug))
+          should redirect_to(
+            dashboard_classroom_url(:subdomain => classroom.slug))
         end
       end
 
@@ -142,7 +145,8 @@ describe Coursewareable::ClassroomsController do
 
         it do
           classroom.reload.header_image.should eq(classroom.images.last.id)
-          should redirect_to(dashboard_classroom_url(:subdomain => classroom.slug))
+          should redirect_to(
+            dashboard_classroom_url(:subdomain => classroom.slug))
         end
       end
 
@@ -153,7 +157,8 @@ describe Coursewareable::ClassroomsController do
 
         it do
           classroom.reload.header_image.should be_nil
-          should redirect_to(dashboard_classroom_url(:subdomain => classroom.slug))
+          should redirect_to(
+            dashboard_classroom_url(:subdomain => classroom.slug))
         end
       end
     end
