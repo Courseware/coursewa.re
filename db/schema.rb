@@ -65,8 +65,9 @@ ActiveRecord::Schema.define(:version => 20130211190356) do
     t.integer  "user_id"
     t.integer  "classroom_id"
     t.string   "type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "email_announcement"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   add_index "coursewareable_associations", ["classroom_id"], :name => "index_coursewareable_associations_on_classroom_id"
