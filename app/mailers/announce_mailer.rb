@@ -6,6 +6,7 @@ class AnnounceMailer < ActionMailer::Base
   #
   # param [Hash] announcement, with email address and details
   def new_announce_email(announcement)
+    unless announcement[:recipient].nil?
       announcement[:recipient].members.each do |user|
         unless user.email == announcement[:recipient].owner.email
           @announcement = announcement
@@ -14,5 +15,6 @@ class AnnounceMailer < ActionMailer::Base
               :subject => _("New announcement in %s") % announcement[:recipient][:title])
         end
       end
+    end
   end
 end
