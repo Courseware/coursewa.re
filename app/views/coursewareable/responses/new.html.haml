@@ -18,7 +18,8 @@
     %hr
 
     = form_for(@response, :url => lecture_assignment_responses_path) do |f|
-      = f.text_area :content, :class => 'wysiwyg', :required => true
+      %p
+        = f.text_area :content, :class => 'wysiwyg', :required => true
 
       - unless @assignment.quiz.blank?
         %h5
