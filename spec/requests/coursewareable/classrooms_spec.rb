@@ -44,4 +44,12 @@ describe 'Classrooms' do
     page.should have_content(ann_txt)
   end
 
+  it 'shows privacy panel if logged in' do
+    sign_in_with(classroom.owner.email)
+    visit privacy_classroom_url(:subdomain => classroom.slug)
+
+    page.should have_content("Email settings for #{classroom.title}")
+    page.should have_button('Update')
+  end
+
 end

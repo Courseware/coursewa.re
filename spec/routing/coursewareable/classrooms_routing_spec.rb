@@ -40,5 +40,17 @@ describe Coursewareable::ClassroomsController do
         'coursewareable/classrooms#announce')
     end
 
+    describe 'privacy' do
+      it 'panel' do
+        get('http://test.lvh.me/privacy').should route_to(
+          'coursewareable/classrooms#privacy')
+      end
+
+      it 'update' do
+        post('http://test.lvh.me/update_privacy').should route_to(
+          'coursewareable/classrooms#update_privacy')
+      end
+    end
+
   end
 end
