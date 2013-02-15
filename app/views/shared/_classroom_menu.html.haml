@@ -17,3 +17,6 @@
 
       %li{:class => (current_page?(staff_classroom_path) ? 'current' : '')}
         = link_to(_('Staff'), staff_classroom_path)
+
+      %li{:class => (current_page?(privacy_classroom_path) ? 'current' : '')}
+        = link_to(_('Privacy'), privacy_classroom_path)
