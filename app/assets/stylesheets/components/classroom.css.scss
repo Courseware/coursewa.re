@@ -65,6 +65,10 @@ nav#classroom-menu {
 
 #content {
   .sidebar {
+    iframe {
+      max-width: 100%;
+    }
+
     .classrooms-listing {
       .backgroundify i {
         color: $bw_9;

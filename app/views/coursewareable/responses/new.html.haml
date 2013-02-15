@@ -11,7 +11,7 @@
         = @assignment.title
       %hr
       .formatted
-        = @assignment.content.html_safe
+        = auto_oembed(@assignment.content).html_safe
 
     %h4.marginless-top
       = _('Your response')

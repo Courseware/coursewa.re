@@ -1,7 +1,7 @@
 .quiz-text.question.row
   .twelve.columns.question-content
     %textarea.input{:disabled => true}
-      = question['content']
+      = auto_oembed(question['content']).html_safe
 
     .row.option
       .eleven.offset-by-one.columns.option-content

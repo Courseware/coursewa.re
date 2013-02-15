@@ -9,9 +9,9 @@
       %hr
 
       - if @classroom.syllabus and !@classroom.syllabus.intro.blank?
-        = simple_format(@classroom.syllabus.intro)
+        = auto_oembed(simple_format(@classroom.syllabus.intro)).html_safe
       - else
-        = simple_format(@classroom.description)
+        = auto_oembed(simple_format(@classroom.description)).html_safe
 
       - unless @classroom.lectures.empty?
         %h5

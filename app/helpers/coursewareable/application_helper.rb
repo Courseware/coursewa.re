@@ -85,7 +85,7 @@ module Coursewareable
     # @return [String], the rendered partial content
     def fetch_and_render_oembed(url)
       begin
-        response = OEmbed::Providers.get(url)
+        response = OEmbed::Providers.get(url.to_str)
       rescue
         response = nil
       end
