@@ -75,9 +75,13 @@ module Coursewareable
       authorize!(:dashboard, @classroom)
     end
 
+    # Manage email settings
     def privacy
       authorize!(:dashboard, @classroom)
+      # Search for specific membership
       membership = current_user.memberships.find_by_classroom_id(@classroom.id)
+      # Fill email_announcement if it's nil
+      # TODO: this should be moved in membership#create
       if membership.email_announcement.nil?
         membership.email_announcement = {:grade => "true", :announce => "true",
           :collaboration => "true", :generic => "true", :membership => "true"}.to_s
@@ -85,11 +89,16 @@ module Coursewareable
           membership.save
         end
       end
+      # convert from string to hash
       @email_settings = eval(membership.email_announcement)
     end
 
+    # Update email settings
     def update_privacy
+      authorize!(:dashboard, @classroom)
+      # Search for specific membership
       membership = current_user.memberships.find_by_classroom_id(@classroom.id)
+      # Convert the hash to string
       membership.email_announcement = params[:email_announcement].to_s
       if membership.valid?
         membership.save
