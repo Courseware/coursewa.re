@@ -15,6 +15,7 @@ gem 'daemons'
 gem 'kaminari'
 gem 'public_activity'
 gem 'sorcery', '0.8.1'
+gem 'ruby-oembed'
 
 # Speedup a bit things
 gem 'multi_json'

@@ -1,0 +1,3 @@
+- title = _('%s by %s (%s)') % [oembed.title, oembed.author_name, oembed.license]
+%a{ :href => oembed.web_page.html_safe }
+  %img{ :src => oembed.url.html_safe, :alt => title.html_safe, :title => title.html_safe }
