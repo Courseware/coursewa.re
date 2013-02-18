@@ -4,7 +4,7 @@
 #assignment
   .eight.columns.formatted
 
-    = @assignment.content.html_safe
+    = auto_oembed(@assignment.content).html_safe
 
     - if can?(:manage, @assignment) and !@assignment.quiz.blank?
       %h5

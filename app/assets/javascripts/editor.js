@@ -11,13 +11,16 @@
      */
     $('.wysiwyg-minimal').redactor({
       airButtons: ['bold', 'italic', 'deleted', '|', 'link'],
+      convertLinks: false,
       air: true
     });
 
     /**
      * Basic wysiwyg support
      */
-    $('.wysiwyg').redactor();
+    $('.wysiwyg').redactor({
+      convertLinks: false
+    });
 
     /**
      * Assets-aware wysiwyg support
@@ -25,6 +28,7 @@
     $('.wysiwyg-full').redactor({
       fixed: true,
       wym: true,
+      convertLinks: false,
       convertDivs: false,
       imageUpload: '/images',
       imageGetJson: '/images',

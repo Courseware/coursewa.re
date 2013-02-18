@@ -92,4 +92,45 @@ describe Coursewareable::ApplicationHelper do
       it { should match('assets/headers/3.jpg') }
     end
   end
+
+  describe '#auto_oembed' do
+    let(:youtube_link) { 'https://www.youtube.com/watch?v=XxGr6Wnkp64' }
+    let(:flikr_link) { 'http://www.flickr.com/photos/brumlive/4414821637' }
+    let(:dummy_link) { 'http://this.is.not.an.oembed.link.com' }
+
+    let(:link) { '' }
+    let(:text) do
+      %Q(Here take a look at this media #{link}. It should look nice.)
+    end
+
+    subject { helper.auto_oembed(text) }
+
+    context 'for content with no links' do
+      let(:text) { '' }
+
+      it { should eq('') }
+    end
+
+    context 'for content with no links' do
+      before { OEmbed::Providers.should_not_receive(:get) }
+
+      it { should eq(text) }
+    end
+
+    context 'for content with no oembed links' do
+      let(:link) { dummy_link }
+
+      it { should eq(text) }
+    end
+
+    context 'for content with oembed links' do
+      let(:link) { youtube_link + ' ' + flikr_link }
+
+      it do
+        should match(/\<iframe/)
+        should match(/\<img/)
+      end
+    end
+
+  end
 end
