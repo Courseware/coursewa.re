@@ -50,5 +50,51 @@ module Coursewareable
       @header_image = path_to_image("headers/#{image_id}.jpg")
       render('shared/header_image')
     end
+
+    # Turns all http(s) URLs into HTML content if URL is an oembed link
+    #
+    # @param [String] text, the text to be checked for URLs
+    # @return [String], the updated `text` with oembed content
+    def auto_oembed(text)
+      return ''.html_safe if text.blank?
+
+      content = {}
+      urls = URI.extract(text, %w(http https))
+
+      return text.html_safe unless urls.count > 0
+
+      urls.each do |url|
+        html = fetch_and_render_oembed(url)
+        content[url] = html unless html.blank?
+      end
+
+      content.each_pair do |key, value|
+        text.sub!(key, value)
+      end
+
+      return text.html_safe
+    end
+
+    private
+
+    # Tries to fetch `url` content from oembed providers
+    # On success renders a partial from `shared/auto_oembed` based on
+    # provider response type.
+    #
+    # @param [String] url, the URL to be checked
+    # @return [String], the rendered partial content
+    def fetch_and_render_oembed(url)
+      begin
+        response = OEmbed::Providers.get(url.to_str)
+      rescue
+        response = nil
+      end
+
+      render(
+        :partial => "auto_oembed/#{response.type}",
+        :locals => {:oembed => response}
+      ) unless response.nil?
+    end
+
   end
 end

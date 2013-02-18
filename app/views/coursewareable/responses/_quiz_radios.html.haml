@@ -1,6 +1,6 @@
 .quiz-radios.question.row
   .twelve.columns.question-content
-    = question['content']
+    = auto_oembed(question['content']).html_safe
 
     - question['options'].each_with_index do |answer, index|
       - option_klass = (answer['wrong'] and show_results) ? 'wrong' : nil

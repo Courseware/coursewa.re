@@ -10,7 +10,7 @@
 #response
   .eight.columns.formatted
 
-    = @response.content.html_safe
+    = auto_oembed(@response.content).html_safe
 
     - unless @response.answers.blank?
       %h5

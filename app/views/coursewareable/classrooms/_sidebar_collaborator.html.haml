@@ -5,7 +5,7 @@
 %hr
 
 - if @classroom.syllabus and @classroom.syllabus.intro
-  = simple_format(@classroom.syllabus.intro)
+  = auto_oembed(simple_format(@classroom.syllabus.intro)).html_safe
 - else
   %p
     != _('Next: %s.') % link_to(_('update the syllabus'), edit_syllabus_path)

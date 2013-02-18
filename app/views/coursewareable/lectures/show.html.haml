@@ -6,8 +6,8 @@
 
     - unless @lecture.requisite.blank?
       .panel
-        = @lecture.requisite.html_safe
+        = auto_oembed(@lecture.requisite).html_safe
 
-    = @lecture.content.html_safe
+    = auto_oembed(@lecture.content).html_safe
 
   = render(:partial => 'sidebar')
