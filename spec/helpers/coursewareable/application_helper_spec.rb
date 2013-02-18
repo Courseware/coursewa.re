@@ -120,8 +120,6 @@ describe Coursewareable::ApplicationHelper do
     context 'for content with no oembed links' do
       let(:link) { dummy_link }
 
-      before { Kernel.should_not_receive(:render) }
-
       it { should eq(text) }
     end
 
