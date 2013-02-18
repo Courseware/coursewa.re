@@ -20,6 +20,7 @@ module Coursewareable
 
     # Handles response creation
     def create
+      @lecture = @assignment.lecture
       @response = @assignment.responses.build(params[:response])
       @response.classroom = @classroom
       @response.user = current_user
@@ -31,7 +32,7 @@ module Coursewareable
       if @response.save
         flash[:success] = _('Your response was added.')
         redirect_to lecture_assignment_response_path(
-          params[:lecture_id], @assignment, @response)
+          @lecture, @assignment, @response)
       else
         flash[:alert] = _('There was an error, please try again.')
         render :new
