@@ -20,6 +20,9 @@ module Coursewareable
       member = Coursewareable::User.find_by_email(params[:email])
       redirect_to(memberships_path) and return if member.nil?
 
+      membership.email_announcement = { :grade => true, :announce => true,
+        :collaboration => true, :generic => true, :membership => true }
+
       membership.user = member
       if can?(:create, membership) and membership.save
         flash[:success] = _('%s was added to classroom members') % member.name

@@ -84,5 +84,36 @@ module Coursewareable
       redirect_to(invite_users_path)
     end
 
+    # Manage email settings
+    def notifications
+      # fill email field for current_user's classrooms.
+      current_user.memberships.all.each do |m|
+        if m.email_announcement.empty?
+          m.email_announcement = {
+            :grade => true, :announce => true,
+            :collaboration => true, :generic => true,
+            :membership => true
+          }
+          m.save if m.valid?
+        end
+      end
+
+      @memberships = current_user.memberships.all
+    end
+
+    # Update email settings
+    def update_notifications
+      # Search for specific membership
+      memberships = current_user.memberships.all
+      memberships.each do |m|
+        m.email_announcement = params[:memberships][m.id.to_s.to_sym][:email_announcement]
+        if m.valid?
+          m.save
+        end
+      end
+      flash[:success] = _('Notifications settings updated successfully')
+      redirect_to(notifications_users_path)
+   end
+
   end
 end

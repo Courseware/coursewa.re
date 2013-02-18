@@ -84,4 +84,18 @@ describe 'Users' do
     ActionMailer::Base.deliveries.count.should eq(emails_count + 1)
   end
 
+  it 'should be able to manage settings' do
+    classroom = Fabricate('coursewareable/classroom')
+    sign_in_with(classroom.owner.email)
+
+    visit notifications_users_url
+
+    page.should have_content(classroom.title.capitalize)
+    page.should have_checked_field('memberships[1][email_announcement][grade]')
+    page.uncheck('memberships[1][email_announcement][grade]')
+    page.should have_button('Update')
+    click_button('Update')
+
+    page.should have_unchecked_field('memberships[1][email_announcement][grade]')
+  end
 end

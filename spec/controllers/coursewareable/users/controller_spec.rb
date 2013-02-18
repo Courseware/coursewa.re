@@ -151,4 +151,64 @@ describe Coursewareable::UsersController do
       end
     end
   end
+
+  describe 'GET notifications' do
+    context 'when logged in' do
+      before do
+        @controller.send(:auto_login, Fabricate('coursewareable/user'))
+        get(:notifications, :use_route => :coursewareable)
+      end
+
+      it { should render_template(:notification) }
+    end
+
+    context 'when not logged in' do
+      before do
+        get(:notifications, :use_route => :coursewareable)
+      end
+
+      it { should redirect_to(login_path) }
+    end
+  end
+
+  describe 'POST update_notifications' do
+    let(:classroom) { Fabricate('coursewareable/classroom') }
+
+    context 'when logged in' do
+      before do
+        @controller.send(:auto_login, classroom.owner)
+        post(:update_notifications, :use_route => :coursewareable,
+          :memberships => {
+            "1" => {
+              :email_announcement => {
+                "grade" => false, "announce" => false,
+                "collaboration" => false, "generic" => false,
+                "membership" => false }}})
+      end
+
+      it 'should change email notification settings' do
+        should redirect_to(notifications_users_path)
+        flash.now[:success].should eq("Notifications settings updated successfully")
+        membership = classroom.owner.memberships.first
+        membership.email_announcement.should eq({
+              "grade" => false, "announce" => false,
+              "collaboration" => false, "generic" => false,
+              "membership" => false })
+      end
+    end
+
+    context 'when not logged in' do
+      before do
+        post(:update_notifications, :use_route => :coursewareable,
+          :memberships => {
+            "1" => {
+              :email_announcement => {
+                "grade" => false, "announce" => false,
+                "collaboration" => false, "generic" => false,
+                "membership" => false }}})
+      end
+
+      it { should redirect_to(login_path) }
+    end
+  end
 end

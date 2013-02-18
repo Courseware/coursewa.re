@@ -44,5 +44,13 @@ describe Coursewareable::UsersController do
     it 'for personal profile page updates' do
       put('/users/1').should route_to('coursewareable/users#update', :id => '1')
     end
+
+    it 'for notifications settings page' do
+      get('/users/notifications').should route_to('coursewareable/users#notifications')
+    end
+
+    it 'for notifications settings update' do
+      post('/users/update_notifications').should route_to('coursewareable/users#update_notifications')
+    end
   end
 end

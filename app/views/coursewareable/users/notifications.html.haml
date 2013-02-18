@@ -1,0 +1,28 @@
+= title _("Notifications settings")
+
+#privacy
+  %h3
+    Privacy settings
+  %p
+    = _("Below you can change notifications for every classroom you are part of.")
+  %p
+    = form_for :memberships, :url => update_notifications_users_path do |f|
+      - unless @memberships.empty?
+        - @memberships.each do |m|
+          .row
+            .one.columns
+              = m.classroom.title.capitalize
+              %h6
+                = m.classroom.description
+            = f.fields_for m.id.to_s do |g|
+              = g.fields_for :email_announcement do |h|
+                - m.email_announcement.each do |key, value|
+                  .two.columns
+                    = h.label key do
+                      = h.check_box key, { :checked => value }, "true", "false"
+                      = _("%s") % key.to_s.capitalize
+        .row
+          = f.submit "Update", :class => "button primary"
+      - else
+        %h4
+          = _("You don't belong to any classroom")

@@ -179,40 +179,4 @@ describe Coursewareable::ClassroomsController do
     end
   end
 
-  describe 'GET privacy' do
-    before do
-      @controller.send(:auto_login, classroom.owner)
-      @request.host = "#{classroom.slug}.#{@request.host}"
-      get(:privacy, :use_route => :coursewareable)
-    end
-
-    context 'being logged in as member' do
-      it { response.should be_success }
-      it { membership = classroom.owner.memberships.first.reload
-           membership.email_announcement.should_not be_nil }
-    end
-  end
-
-  describe 'POST update_privacy' do
-    let(:email_params) do
-      { :grade => "false",
-        :announce => "false",
-        :collaboration => "false",
-        :generic => "false",
-        :membership => "false" }.to_s
-    end
-
-    before do
-      @controller.send(:auto_login, classroom.owner)
-      @request.host = "#{classroom.slug}.#{@request.host}"
-      post(:update_privacy, :use_route => :coursewareable,
-           :email_announcement => email_params )
-    end
-
-    context 'being logged in as member' do
-      it { membership = classroom.owner.memberships.first.reload
-           membership.email_announcement.should eq(email_params) }
-    end
-  end
-
 end
