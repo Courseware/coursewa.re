@@ -17,6 +17,7 @@ rerun.txt
 pickle-email-*.html
 .yardoc
 *.*~
+*.swp
 locale/*/LC_MESSAGES/*
 .tddium*
 ERD.pdf
