@@ -17,10 +17,10 @@
             = f.fields_for m.id.to_s do |g|
               = g.fields_for :email_announcement do |h|
                 - m.email_announcement.each do |key, value|
-                  .two.columns
+                  .three.columns
                     = h.label key do
                       = h.check_box key, { :checked => value }, "true", "false"
-                      = _("%s") % key.to_s.capitalize
+                      = _("%s notifications") % key.to_s.gsub('_', ' ').capitalize
         .row
           = f.submit "Update", :class => "button primary"
       - else

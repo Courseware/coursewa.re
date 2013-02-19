@@ -86,24 +86,13 @@ module Coursewareable
 
     # Manage email settings
     def notifications
-      # fill email field for current_user's classrooms.
-      current_user.memberships.all.each do |m|
-        if m.email_announcement.empty?
-          m.email_announcement = {
-            :grade => true, :announce => true,
-            :collaboration => true, :generic => true,
-            :membership => true
-          }
-          m.save if m.valid?
-        end
-      end
-
+      # Get current_user memberships
       @memberships = current_user.memberships.all
     end
 
     # Update email settings
     def update_notifications
-      # Search for specific membership
+      # Search for specific memberships
       memberships = current_user.memberships.all
       memberships.each do |m|
         m.email_announcement = params[:memberships][m.id.to_s.to_sym][:email_announcement]

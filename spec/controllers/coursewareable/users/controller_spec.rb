@@ -182,8 +182,7 @@ describe Coursewareable::UsersController do
             "1" => {
               :email_announcement => {
                 "grade" => false, "announce" => false,
-                "collaboration" => false, "generic" => false,
-                "membership" => false }}})
+                "generic" => false}}})
       end
 
       it 'should change email notification settings' do
@@ -192,8 +191,7 @@ describe Coursewareable::UsersController do
         membership = classroom.owner.memberships.first
         membership.email_announcement.should eq({
               "grade" => false, "announce" => false,
-              "collaboration" => false, "generic" => false,
-              "membership" => false })
+              "generic" => false})
       end
     end
 
@@ -204,8 +202,7 @@ describe Coursewareable::UsersController do
             "1" => {
               :email_announcement => {
                 "grade" => false, "announce" => false,
-                "collaboration" => false, "generic" => false,
-                "membership" => false }}})
+                "generic" => false}}})
       end
 
       it { should redirect_to(login_path) }
