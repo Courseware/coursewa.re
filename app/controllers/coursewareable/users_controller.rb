@@ -77,6 +77,7 @@ module Coursewareable
         redirect_to(invite_users_path) and return
       end
 
+      current_user.sent_invitations.create(:email => params[:email])
       params[:registration_link] = signup_url(:subdomain => false)
       ::GenericMailer.delay.invitation_email(current_user, params)
 

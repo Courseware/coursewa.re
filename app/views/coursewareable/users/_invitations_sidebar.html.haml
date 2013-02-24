@@ -1,0 +1,27 @@
+.four.columns
+  .row.sidebar
+
+    %h5
+      = _('Sent invitations')
+    %hr
+
+    %p
+      = _('Below you can find a short list of latest invitations.')
+
+    - unless current_user.sent_invitations.empty?
+      %ul.itemized
+        - current_user.sent_invitations.limit(5).each do |inv|
+          %li.backgroundify
+            = inv.email
+            - if inv.user
+              %span.right.icon-ok{:title => _('Accepted')}
+            - if inv.classroom
+              %span.right.icon-user-add{:title => _('Part of the classroom')}
+
+        - left_count = current_user.sent_invitations.offset(5).count
+        - if left_count > 0
+          %li.align-right
+            = _('Including %d more invitations.') % left_count
+    - else
+      %p
+        = _('No invitations sent yet.')

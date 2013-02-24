@@ -1,22 +1,29 @@
-= title _('Invite a friend')
+= title _('Invitations')
 
-.eight.columns
+#invitations
+  .eight.columns
 
-  = form_tag send_invitation_users_path, :id => 'new_invitation' do
+    %h4
+      = _('Invite a friend to Courseware')
+    %hr
 
-    .row
-      .three.columns
-        = label_tag(:email, _('Email to invite'), :class => [:right, :inline])
-      .nine.columns.end
-        = text_field_tag(:email, nil, :required => true)
+    = form_tag send_invitation_users_path, :id => 'new_invitation' do
 
-    .row
-      .three.columns
-        = label_tag(:message, _('Your message'), :class => [:right, :inline])
-      .nine.columns.end
-        - msg = _("Hey,\nI found this web-based learning tool, and thought you might want to try it out.\n\nThanks.")
-        = text_area_tag(:message, msg, :rows => 7, :required => true)
+      .row
+        .three.columns
+          = label_tag(:email, _('His email'), :class => [:right, :inline])
+        .nine.columns.end
+          = text_field_tag(:email, nil, :required => true)
 
-    .row
-      .twelve.columns.align-right
-        = submit_tag(_('Send'), :class => 'button primary', :id => :submit_invitation)
+      .row
+        .three.columns
+          = label_tag(:message, _('A friendly note'), :class => [:right, :inline])
+        .nine.columns.end
+          - msg = _("Hey,\nI found this web-based learning tool, and thought you might want to try it out.\n\nThanks.")
+          = text_area_tag(:message, msg, :rows => 7, :required => true)
+
+      .row
+        .twelve.columns.align-right
+          = submit_tag(_('Send'), :class => 'button primary', :id => :submit_invitation)
+
+  = render('invitations_sidebar')
