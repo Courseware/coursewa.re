@@ -1,6 +1,6 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: 4a8bb89e9d8bd1b9780f695d141a66bd9f237976
+  revision: 2e425fd9e2a9d828c526afbf7c309558cc78424f
   specs:
     coursewareable (0.0.1)
       cancan
@@ -92,7 +92,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fabrication (2.6.1)
-    faraday (0.8.5)
+    faraday (0.8.6)
       multipart-post (~> 1.1)
     fast_gettext (0.7.0)
     ffaker (1.15.0)
@@ -236,7 +236,7 @@ GEM
     rake (10.0.3)
     rb-inotify (0.9.0)
       ffi (>= 0.5.0)
-    rdoc (3.12.1)
+    rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.2)
     roadie (2.3.4)
