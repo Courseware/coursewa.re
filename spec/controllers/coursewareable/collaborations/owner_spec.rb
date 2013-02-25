@@ -49,12 +49,17 @@ describe Coursewareable::CollaborationsController do
         end
       end
 
-      context 'with plan limits allowing a collaborator and invalid email' do
-        before(:all){ classroom.owner.plan.increment!(:allowed_collaborators) }
+      context 'with plan limits ok and unregistered email' do
         let(:email) { Faker::Internet.email }
+        before(:all) do
+          classroom.owner.plan.increment!(:allowed_collaborators)
+          CollaborationMailer.stub(:delay).and_return(CollaborationMailer)
+          CollaborationMailer.should_receive(:new_invitation_email)
+        end
 
         it do
           classroom.collaborators.map(&:email).should_not include(email)
+          classroom.invitations.map(&:email).should include(email)
           should redirect_to(collaborations_path)
         end
       end

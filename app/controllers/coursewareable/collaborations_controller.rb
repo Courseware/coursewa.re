@@ -17,8 +17,15 @@ module Coursewareable
       authorize!(:update, @classroom)
       collaboration = @classroom.collaborations.build
 
-      collab = Coursewareable::User.find_by_email(params[:email])
-      redirect_to(collaborations_path) and return if collab.nil?
+      collab = Coursewareable::User.where(:email => params[:email]).first
+      if collab.nil?
+        invitation = current_user.sent_invitations.create(
+          :email => params[:email], :classroom => @classroom,
+          :role => Coursewareable::Collaboration.name)
+        ::CollaborationMailer.delay.new_invitation_email(invitation)
+        flash[:success] = _('An invitation was sent to %s.') % params[:email]
+        redirect_to(collaborations_path) and return
+      end
 
       collaboration.user = collab
       if can?(:create, collaboration) and collaboration.save
