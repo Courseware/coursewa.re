@@ -2,11 +2,16 @@
 
 %p{ :class => activity.key.parameterize }
   - if activity.owner
-    - user_name = activity.owner.name
+    - creator_name = activity.owner.name
   - else
-    - user_name = activity.parameters[:creator_name]
+    - creator_name = activity.parameters[:creator_name]
+
+  - if activity.trackable.email == p[:current_user].email
+    - user_name = _('you')
+  - else
+    - user_name = activity.trackable.email
 
   - if activity.owner == p[:current_user]
-    = _('You invited %s.' % activity.trackable.email)
+    = _('You invited %s.' % user_name)
   - else
-    = _('%s invited %s.' % [user_name, activity.trackable.email])
+    = _('%s invited %s.' % [creator_name, user_name])
