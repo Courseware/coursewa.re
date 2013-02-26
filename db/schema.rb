@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130217190128) do
-=======
 ActiveRecord::Schema.define(:version => 20130223214333) do
->>>>>>> master
 
   create_table "coursewareable_activities", :force => true do |t|
     t.integer  "trackable_id"
