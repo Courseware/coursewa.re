@@ -13,7 +13,6 @@ class GradesMailer < ActionMailer::Base
     )
     settings = grade.receiver.memberships.find_by_classroom_id(
       grade.classroom.id).email_announcement
-    )
     if settings[:send_grades]
       subject = "One of your responses was graded by #{@grade.user.name}"
       mail(:to => grade.receiver.email, :subject => subject)
@@ -30,7 +29,6 @@ class GradesMailer < ActionMailer::Base
     )
     settings = grade.receiver.memberships.find_by_classroom_id(
       grade.classroom.id).email_announcement
-    )
     if settings[:send_grades]
       subject = "One of your assignment grades was updated by #{@grade.user.name}"
       mail(:to => grade.receiver.email, :subject => subject )
