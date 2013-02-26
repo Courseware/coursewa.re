@@ -181,8 +181,8 @@ describe Coursewareable::UsersController do
           :memberships => {
             "1" => {
               :email_announcement => {
-                "grade" => false, "announce" => false,
-                "generic" => false}}})
+                "send_grades" => false, "send_announcements" => false,
+                "send_generic" => false}}})
       end
 
       it 'should change email notification settings' do
@@ -190,8 +190,8 @@ describe Coursewareable::UsersController do
         flash.now[:success].should eq("Notifications settings updated successfully")
         membership = classroom.owner.memberships.first
         membership.email_announcement.should eq({
-              "grade" => false, "announce" => false,
-              "generic" => false})
+              "send_grades" => false, "send_announcements" => false,
+              "send_generic" => false})
       end
     end
 

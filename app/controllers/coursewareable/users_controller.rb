@@ -95,9 +95,10 @@ module Coursewareable
       # Search for specific memberships
       memberships = current_user.memberships.all
       memberships.each do |m|
-        m.email_announcement = params[:memberships][m.id.to_s.to_sym][:email_announcement]
-        if m.valid?
-          m.save
+        settings = params[:memberships][m.id.to_s.to_sym][:email_announcement]
+        unless m.update_attribute(:email_announcement, settings)
+          flash[:alert] = _('Notifications settings did not update')
+          redirect_to(notifications_users_path) and return
         end
       end
       flash[:success] = _('Notifications settings updated successfully')
