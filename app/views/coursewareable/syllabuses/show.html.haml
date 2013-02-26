@@ -9,9 +9,9 @@
       - unless @syllabus.intro.blank?
         .panel
           %p
-            = simple_format(@syllabus.intro)
+            = auto_oembed simple_format(@syllabus.intro)
 
-      = @syllabus.content.html_safe
+      = auto_oembed(@syllabus.content).html_safe
 
     - else
       %h4
@@ -33,6 +33,5 @@
 
       %ul#lectures-tree.hierarchical-list
         = list_lectures_tree(@lectures)
-
 
   = render(:partial => 'sidebar')

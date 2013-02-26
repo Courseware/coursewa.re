@@ -1,31 +1,39 @@
+# Mailer to handle [Coursewareable::Grade] emails
 class GradesMailer < ActionMailer::Base
   default from: Courseware.config.default_email_address
   layout 'email'
 
-  # Send email to user when a grade is created
+  # Sends an email to user when he gets a grade
   #
-  # param [Hash] params with details about grade
+  # @param [Hash] params with details about grade
   def new_grade_email(grade)
-    @grade_user = grade.user
-    @content = grade
-    @date = Time.now
-    email_settings = @grade_user.memberships.find_by_classroom_id(
+    @grade = grade
+    @assignment_url = coursewareable.lecture_assignment_url(
+      grade.assignment.lecture, grade.assignment
+    )
+    settings = grade.receiver.memberships.find_by_classroom_id(
       grade.classroom.id).email_announcement
-    if email_settings[:send_grades]
-      mail(:to => grade.receiver.email,
-            :subject => "#{@grade_user.name} graded you!")
+    )
+    if settings[:send_grades]
+      subject = "One of your responses was graded by #{@grade.user.name}"
+      mail(:to => grade.receiver.email, :subject => subject)
     end
   end
 
+  # Sends an email to user when he's grade is updated
+  #
+  # @param [Hash] params with details about grade
   def update_grade_email(grade)
-    @grade_user = grade.user
-    @content = grade
-    @date = Time.now
-    email_settings = grade.receiver.memberships.find_by_classroom_id(
-    grade.classroom.id).email_announcement
-    if email_settings[:send_grades]
-      mail(:to => grade.receiver.email,
-            :subject => "#{@grade_user.name} modified your grade!")
+    @grade = grade
+    @assignment_url = coursewareable.lecture_assignment_url(
+      grade.assignment.lecture, grade.assignment
+    )
+    settings = grade.receiver.memberships.find_by_classroom_id(
+      grade.classroom.id).email_announcement
+    )
+    if settings[:send_grades]
+      subject = "One of your assignment grades was updated by #{@grade.user.name}"
+      mail(:to => grade.receiver.email, :subject => subject )
     end
   end
 end

@@ -1,11 +1,12 @@
 %h3
-  = _("%s, graded you") % @grade_user.name
+  = _('%s graded you on one of the assignments') % @grade.user.name
 
 %p
-  Informations about grade:
-  = _("Assignment: %s") % @content.assignment.title
-  = _("Lecture: %s") % @content.assignment.lecture.title
-  - unless @content.comment.nil?
-    = _("Comment: %s") % @content.comment
-  = _("Mark: %s") % @content.mark
-  = _("Date: %s") % @date
+  != _('Please visit the link below for the details: %s ') % link_to(@grade.assignment.title, @assignment_url)
+
+- unless @grade.comment.blank?
+  %p
+    = _('%s also left the following feedback:') % @grade.user.name
+
+  %blockquote
+    = @grade.comment

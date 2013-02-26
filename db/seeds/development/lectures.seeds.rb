@@ -1,5 +1,6 @@
 after 'development:classrooms' do
-  me = Coursewareable::User.find_by_email('stas@nerd.ro')
+  email = '%s@coursewa.re' % (ENV['USER'] || 'dev')
+  me = Coursewareable::User.find_by_email(email)
   my_classroom = me.classrooms.first
 
   5.times {

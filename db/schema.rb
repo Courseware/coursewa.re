@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130217190128) do
+=======
+ActiveRecord::Schema.define(:version => 20130223214333) do
+>>>>>>> master
 
   create_table "coursewareable_activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -106,6 +110,21 @@ ActiveRecord::Schema.define(:version => 20130217190128) do
   add_index "coursewareable_grades", ["receiver_id"], :name => "index_coursewareable_grades_on_receiver_id"
   add_index "coursewareable_grades", ["response_id"], :name => "index_coursewareable_grades_on_response_id"
   add_index "coursewareable_grades", ["user_id"], :name => "index_coursewareable_grades_on_user_id"
+
+  create_table "coursewareable_invitations", :force => true do |t|
+    t.integer  "classroom_id"
+    t.integer  "creator_id"
+    t.integer  "user_id"
+    t.string   "email"
+    t.string   "role"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "coursewareable_invitations", ["classroom_id"], :name => "index_coursewareable_invitations_on_classroom_id"
+  add_index "coursewareable_invitations", ["creator_id"], :name => "index_coursewareable_invitations_on_creator_id"
+  add_index "coursewareable_invitations", ["email"], :name => "index_coursewareable_invitations_on_email"
+  add_index "coursewareable_invitations", ["user_id"], :name => "index_coursewareable_invitations_on_user_id"
 
   create_table "coursewareable_lectures", :force => true do |t|
     t.string   "slug",                             :null => false

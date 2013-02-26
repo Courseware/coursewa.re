@@ -1,0 +1,8 @@
+%h3
+  = _('Hello %s,') % @member.name
+
+%p
+  = _('An new announcement was posted for %s classroom by %s') % [@classroom.title, @announcement.owner.name]
+
+%blockquote
+  = @announcement.parameters[:content]

@@ -38,9 +38,9 @@
             - correct = response.stats[:all] - response.stats[:wrong]
             != _('There were %d correct answers out of %d possible.') % [correct, response.stats[:all]]
 
-        - grades = @assignment.grades.where(:response_id => response.id)
-        - unless grades.empty?
-          - format = '%' if grades.first.form == 'percentage'
-          %p.icon-hammer
-            != _('It was graded with <strong>%s%s</strong> by %s on %s.') % [grades.first.mark, format, grades.first.user.name, grades.first.updated_at.to_s(:pretty_date)]
+      - grades = @assignment.grades.where(:receiver_id => current_user.id)
+      - unless grades.empty?
+        - format = '%' if grades.first.form == 'percentage'
+        %p.icon-hammer
+          != _('Your grade for this assignment is <strong>%s%s</strong>, added by %s on %s.') % [grades.first.mark, format, grades.first.user.name, grades.first.updated_at.to_s(:pretty_date)]
 

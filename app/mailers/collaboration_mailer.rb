@@ -1,3 +1,4 @@
+# Mailer to handle [Coursewareable::Collaboration] emails
 class CollaborationMailer < ActionMailer::Base
   default from: Courseware.config.default_email_address
   layout 'email'
