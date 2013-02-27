@@ -11,10 +11,14 @@ class GradesMailer < ActionMailer::Base
     @assignment_url = coursewareable.lecture_assignment_url(
       grade.assignment.lecture, grade.assignment
     )
-    settings = grade.receiver.memberships.find_by_classroom_id(
-      grade.classroom.id).email_announcement
-    if settings[:send_grades]
-      subject = "One of your responses was graded by #{@grade.user.name}"
+    # Find email settings for current user
+    settings = grade.receiver.memberships.where(
+      :classroom_id => grade.classroom.id
+    ).first
+    if settings.send_grades
+      subject = _("One of your responses was graded by %s") % [
+        @grade.user.name
+      ]
       mail(:to => grade.receiver.email, :subject => subject)
     end
   end
@@ -27,10 +31,14 @@ class GradesMailer < ActionMailer::Base
     @assignment_url = coursewareable.lecture_assignment_url(
       grade.assignment.lecture, grade.assignment
     )
-    settings = grade.receiver.memberships.find_by_classroom_id(
-      grade.classroom.id).email_announcement
-    if settings[:send_grades]
-      subject = "One of your assignment grades was updated by #{@grade.user.name}"
+    # Find email settings for current user
+    settings = grade.receiver.memberships.where(
+      :classroom_id => grade.classroom.id
+    ).first
+    if settings.send_grades
+      subject = _("One of your assignment grades was updated by %s") % [
+        @grade.user.name
+      ]
       mail(:to => grade.receiver.email, :subject => subject )
     end
   end

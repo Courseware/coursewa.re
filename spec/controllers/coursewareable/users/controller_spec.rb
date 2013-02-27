@@ -180,9 +180,8 @@ describe Coursewareable::UsersController do
         post(:update_notifications, :use_route => :coursewareable,
           :memberships => {
             "1" => {
-              :email_announcement => {
                 "send_grades" => false, "send_announcements" => false,
-                "send_generic" => false}}})
+                "send_generic" => false}})
       end
 
       it 'should change email notification settings' do
@@ -190,8 +189,8 @@ describe Coursewareable::UsersController do
         flash.now[:success].should eq("Notifications settings updated successfully")
         membership = classroom.owner.memberships.first
         membership.email_announcement.should eq({
-              "send_grades" => false, "send_announcements" => false,
-              "send_generic" => false})
+              :send_grades => false, :send_announcements => false,
+              :send_generic => false})
       end
     end
 
@@ -200,9 +199,8 @@ describe Coursewareable::UsersController do
         post(:update_notifications, :use_route => :coursewareable,
           :memberships => {
             "1" => {
-              :email_announcement => {
                 "grade" => false, "announce" => false,
-                "generic" => false}}})
+                "generic" => false}})
       end
 
       it { should redirect_to(login_path) }

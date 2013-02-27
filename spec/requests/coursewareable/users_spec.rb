@@ -91,11 +91,13 @@ describe 'Users' do
     visit notifications_users_url
 
     page.should have_content(classroom.title.capitalize)
-    page.should have_checked_field('memberships[1][email_announcement][send_grades]')
-    page.uncheck('memberships[1][email_announcement][send_grades]')
+    page.should have_checked_field('memberships[1][send_grades]')
+    page.should have_checked_field('memberships[1][send_announcements]')
+    page.uncheck('memberships[1][send_grades]')
     page.should have_button('Update')
     click_button('Update')
 
-    page.should have_unchecked_field('memberships[1][email_announcement][send_grades]')
+    page.should have_unchecked_field('memberships[1][send_grades]')
+    page.should have_checked_field('memberships[1][send_announcements]')
   end
 end

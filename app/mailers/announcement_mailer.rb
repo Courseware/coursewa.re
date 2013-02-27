@@ -19,9 +19,11 @@ class AnnouncementMailer < ActionMailer::Base
     ]
     @members.each do |member|
       @member = member
-      settings = member.memberships.find_by_classroom_id(
-        @classroom.id).email_announcement
-      if settings[:send_announcements]
+      # Find email settings for current user
+      settings = member.memberships.where(
+        :classroom_id => @classroom.id
+      ).first
+      if settings.send_announcements
         mail(:to => member.email, :subject => subject)
       end
     end

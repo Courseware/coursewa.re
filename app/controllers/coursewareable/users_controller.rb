@@ -87,19 +87,18 @@ module Coursewareable
     # Manage email settings
     def notifications
       # Get current_user memberships
-      @memberships = current_user.memberships.all
+      @memberships = current_user.memberships
     end
 
     # Update email settings
     def update_notifications
       # Search for specific memberships
-      memberships = current_user.memberships.all
-      memberships.each do |m|
-        settings = params[:memberships][m.id.to_s.to_sym][:email_announcement]
-        unless m.update_attribute(:email_announcement, settings)
-          flash[:alert] = _('Notifications settings did not update')
-          redirect_to(notifications_users_path) and return
-        end
+      current_user.memberships.each do |m|
+        settings = params[:memberships][m.id.to_s]
+        m.update_attribute(:send_grades, settings[:send_grades])
+        m.update_attribute(:send_generic, settings[:send_generic])
+        m.update_attribute(:send_announcements, settings[:send_announcements])
+        puts m.send_announcements
       end
       flash[:success] = _('Notifications settings updated successfully')
       redirect_to(notifications_users_path)
