@@ -1,6 +1,6 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: 4a8bb89e9d8bd1b9780f695d141a66bd9f237976
+  revision: 9d8370f8b75e361546c88bc497e1714b45d8de76
   specs:
     coursewareable (0.0.1)
       cancan
@@ -81,7 +81,7 @@ GEM
     database_cleaner (0.9.1)
     delayed_job (3.0.5)
       activesupport (~> 3.0)
-    delayed_job_active_record (0.4.1)
+    delayed_job_active_record (0.4.2)
       activerecord (>= 2.1.0, < 4)
       delayed_job (~> 3.0)
     diff-lcs (1.1.3)
@@ -92,7 +92,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fabrication (2.6.1)
-    faraday (0.8.5)
+    faraday (0.8.6)
       multipart-post (~> 1.1)
     fast_gettext (0.7.0)
     ffaker (1.15.0)
@@ -134,8 +134,7 @@ GEM
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
     httpauth (0.2.0)
-    i18n (0.6.1)
-    io-console (0.3)
+    i18n (0.6.2)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -152,7 +151,7 @@ GEM
       launchy (~> 2.2.0)
     levenshtein (0.2.2)
     libv8 (3.11.8.13)
-    listen (0.7.2)
+    listen (0.7.3)
     locale (2.0.8)
     lumberjack (1.0.2)
     mail (2.4.4)
@@ -173,7 +172,7 @@ GEM
       sassy-math (>= 1.5)
     multi_json (1.6.1)
     multi_xml (0.5.3)
-    multipart-post (1.1.5)
+    multipart-post (1.2.0)
     nokogiri (1.5.6)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -191,9 +190,8 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     parallel (0.6.2)
-    party_foul (1.1.0)
+    party_foul (1.1.1)
       github_api (~> 0.8.8)
-      io-console (~> 0.3.0)
     pg (0.14.1)
     polyglot (0.3.3)
     pry (0.9.12)
@@ -236,7 +234,7 @@ GEM
     rake (10.0.3)
     rb-inotify (0.9.0)
       ffi (>= 0.5.0)
-    rdoc (3.12.1)
+    rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.2)
     roadie (2.3.4)
@@ -307,7 +305,7 @@ GEM
       httparty (>= 0.8.1)
       json
     terminal-table (1.4.5)
-    therubyracer (0.11.3)
+    therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
     thor (0.17.0)
@@ -326,7 +324,7 @@ GEM
     websocket (1.0.7)
     xpath (1.0.0)
       nokogiri (~> 1.3)
-    yard (0.8.4.1)
+    yard (0.8.5.2)
     zurb-foundation (3.2.5)
       compass (>= 0.12.2)
       modular-scale (= 1.0.6)
