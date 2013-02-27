@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223214333) do
+ActiveRecord::Schema.define(:version => 20130227180114) do
 
   create_table "coursewareable_activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -143,13 +143,13 @@ ActiveRecord::Schema.define(:version => 20130223214333) do
   create_table "coursewareable_plans", :force => true do |t|
     t.integer  "user_id"
     t.integer  "allowed_classrooms"
-    t.integer  "allowed_space"
-    t.integer  "used_space",            :default => 0
+    t.integer  "allowed_space",         :limit => 8
+    t.integer  "used_space",            :limit => 8, :default => 0
     t.integer  "allowed_collaborators"
     t.date     "expires_in"
     t.string   "slug"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   add_index "coursewareable_plans", ["user_id"], :name => "index_coursewareable_plans_on_user_id"

@@ -1,6 +1,6 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: 9d8370f8b75e361546c88bc497e1714b45d8de76
+  revision: 3e5abfae0f3a58f52bc7444aea4e5af9065e88ab
   specs:
     coursewareable (0.0.1)
       cancan
