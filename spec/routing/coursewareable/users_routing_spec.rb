@@ -46,11 +46,13 @@ describe Coursewareable::UsersController do
     end
 
     it 'for notifications settings page' do
-      get('/users/notifications').should route_to('coursewareable/users#notifications')
+      get('/users/notifications').should route_to(
+        'coursewareable/users#notifications')
     end
 
     it 'for notifications settings update' do
-      post('/users/update_notifications').should route_to('coursewareable/users#update_notifications')
+      put('/users/notifications').should route_to(
+        'coursewareable/users#update_notifications')
     end
   end
 end
