@@ -84,20 +84,29 @@ describe 'Users' do
     ActionMailer::Base.deliveries.count.should eq(emails_count + 1)
   end
 
-  it 'should be able to manage settings' do
+  it 'should be able to manage notification settings' do
     classroom = Fabricate('coursewareable/classroom')
     sign_in_with(classroom.owner.email)
 
     visit notifications_users_url
 
-    page.should have_content(classroom.title.capitalize)
-    page.should have_checked_field('memberships[1][send_grades]')
-    page.should have_checked_field('memberships[1][send_announcements]')
-    page.uncheck('memberships[1][send_grades]')
-    page.should have_button('Update')
-    click_button('Update')
+    page.should have_content(classroom.title)
+    page.should have_checked_field(
+      'user_associations_attributes_0_send_grades')
+    page.should have_checked_field(
+      'user_associations_attributes_0_send_generic')
+    page.should have_checked_field(
+      'user_associations_attributes_0_send_announcements')
 
-    page.should have_unchecked_field('memberships[1][send_grades]')
-    page.should have_checked_field('memberships[1][send_announcements]')
+    page.uncheck('user_associations_attributes_0_send_grades')
+    click_button('update_notifications')
+
+    page.should have_unchecked_field(
+      'user_associations_attributes_0_send_grades')
+    page.should have_checked_field(
+      'user_associations_attributes_0_send_generic')
+    page.should have_checked_field(
+      'user_associations_attributes_0_send_announcements')
+    page.should have_css('#notifications .alert-box.success')
   end
 end
