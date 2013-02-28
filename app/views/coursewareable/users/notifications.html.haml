@@ -1,0 +1,37 @@
+= title _('Notifications settings')
+
+#privacy
+  .eight.columns
+    %h4
+      = _('Classroom email settings')
+    %hr
+
+    - if current_user.associations.empty?
+      %p
+        = _('No classroom available.')
+    - else
+      = form_for current_user, :url => notifications_users_path do |f|
+
+        = f.fields_for :associations do |notification|
+
+          %h5
+            = _('%s classroom emails we should send') % notification.object.classroom.title
+          %hr
+
+          .row
+            .four.columns
+              = notification.check_box :send_generic, :class => 'left'
+              = notification.label :send_generic, _('Generic emails')
+
+            .four.columns
+              = notification.check_box :send_announcements, :class => 'left'
+              = notification.label :send_announcements, _('Announcement emails')
+
+            .four.columns
+              = notification.check_box :send_grades, :class => 'left'
+              = notification.label :send_grades, _('Gradebook emails')
+
+        %p.padded-top-ten
+          = f.submit(_('Save'), :class => 'button primary', :id => 'update_notifications')
+
+= render(:partial => 'notifications_sidebar')

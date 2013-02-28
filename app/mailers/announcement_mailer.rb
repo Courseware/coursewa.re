@@ -9,17 +9,17 @@ class AnnouncementMailer < ActionMailer::Base
   def new_announcement_email(announcement)
     @announcement = announcement
     @classroom = announcement.recipient
-    @members = @classroom.members - [@classroom.owner]
+    associations = @classroom.associations - @classroom.associations.where(
+      :user_id => announcement.owner.id)
 
     # Do not try to send this if the only member is the owner
-    return if @members.empty?
+    return if associations.empty?
 
-    subject = _('A new announcement was posted in %s classroom') % [
-      @classroom.title
-    ]
-    @members.each do |member|
-      @member = member
-      mail(:to => member.email, :subject => subject)
+    subject = _('An announcement was posted in %s classroom') % @classroom.title
+    associations.each do |assoc|
+      @member = assoc.user
+      # Find email settings for current user
+      mail(:to => @member.email,:subject => subject) if assoc.send_announcements
     end
   end
 end

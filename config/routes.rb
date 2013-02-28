@@ -19,6 +19,8 @@ Coursewareable::Engine.routes.draw do
       get :my_account
       get :invite
       post :send_invitation
+      get :notifications
+      put :notifications, :to => :update_notifications
     end
   end
 

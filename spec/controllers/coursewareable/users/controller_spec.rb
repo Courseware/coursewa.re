@@ -151,4 +151,60 @@ describe Coursewareable::UsersController do
       end
     end
   end
+
+  describe 'GET notifications' do
+    before do
+      get(:notifications, :use_route => :coursewareable)
+    end
+
+    context 'when logged in' do
+      before(:all) do
+        setup_controller_request_and_response
+        @controller.send(:auto_login, Fabricate('coursewareable/user'))
+      end
+
+      it { should render_template(:notification) }
+    end
+
+    context 'when not logged in' do
+      it { should redirect_to(login_path) }
+    end
+  end
+
+  describe 'PUT notifications' do
+    let(:classroom) { Fabricate('coursewareable/classroom') }
+    let(:association) { classroom.owner.associations.first }
+
+    before do
+      put(:update_notifications, :use_route => :coursewareable, :user => {
+        :associations_attributes => {
+          '0' => {
+            'send_grades' => '0',
+            'send_announcements' => '1',
+            'send_generic' => '1',
+            'id' => association.id
+          }
+        }
+      } )
+    end
+
+    context 'when logged in' do
+      before(:all) do
+        setup_controller_request_and_response
+        @controller.send(:auto_login, classroom.owner)
+      end
+
+      it 'should change email notification settings' do
+        association.reload
+        association.send_grades.should eq('0')
+        association.send_announcements.should eq('1')
+        association.send_generic.should eq('1')
+        should redirect_to(notifications_users_path)
+      end
+    end
+
+    context 'when not logged in' do
+      it { should redirect_to(login_path) }
+    end
+  end
 end
