@@ -14,7 +14,7 @@ set :codename, 'coursewa.re'
 
 set :port, '8000'
 set :user, 'courseware'
-set :domain, 'coursewa.re'
+set :domain, 'lipsett.coursewa.re'
 set :deploy_to, "/home/#{user}/#{codename}"
 set :repository, 'git@github.com:stas/coursewa.re.git'
 set :branch, 'master'
