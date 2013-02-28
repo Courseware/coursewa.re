@@ -1,0 +1,11 @@
+= _('Hello,')
+===============================================================================
+
+= _('%s invited you to join %s classroom') % [@invitation.creator.name, @classroom.title]
+
+= _('Follow the following link to register and get access to the classroom: %{url}') % {:url => @url}
+
+= _('Thanks for using Coursewa.re')
+
+= _('This email was sent to %{email} email owner!') % {:email => @invitation.email}
+= _('If you think this is an error, please ignore this message.')

@@ -17,8 +17,15 @@ module Coursewareable
       authorize!(:update, @classroom)
       membership = @classroom.memberships.build
 
-      member = Coursewareable::User.find_by_email(params[:email])
-      redirect_to(memberships_path) and return if member.nil?
+      member = Coursewareable::User.where(:email => params[:email]).first
+      if member.nil?
+        invitation = current_user.sent_invitations.create(
+          :email => params[:email], :classroom => @classroom,
+          :role => Coursewareable::Membership.name)
+        ::MembershipMailer.delay.new_invitation_email(invitation)
+        flash[:success] = _('An invitation was sent to %s.') % params[:email]
+        redirect_to(memberships_path) and return
+      end
 
       membership.user = member
       if can?(:create, membership) and membership.save

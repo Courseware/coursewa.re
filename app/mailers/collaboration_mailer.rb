@@ -14,4 +14,16 @@ class CollaborationMailer < ActionMailer::Base
       @classroom.title, Courseware.config.domain_name]
     mail(:to => @user.email, :subject => subject)
   end
+
+  # Sends an invitation email to the potential collaborator email
+  #
+  # @param [Coursewareable::Invitation] invitation, the created object
+  def new_invitation_email(invitation)
+    @invitation = invitation
+    @classroom = invitation.classroom
+    @url = coursewareable.signup_url(:subdomain => @classroom.slug)
+    subject = _('You were invited as a collaborator for %s classroom on %s') % [
+      @classroom.title, Courseware.config.domain_name]
+    mail(:to => @invitation.email, :subject => subject)
+  end
 end

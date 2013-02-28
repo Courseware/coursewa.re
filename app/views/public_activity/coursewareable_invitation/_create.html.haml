@@ -1,0 +1,17 @@
+- @icon_name = 'icon-plus'
+
+%p{ :class => activity.key.parameterize }
+  - if activity.owner
+    - creator_name = activity.owner.name
+  - else
+    - creator_name = activity.parameters[:creator_name]
+
+  - if activity.trackable.email == p[:current_user].email
+    - user_name = _('you')
+  - else
+    - user_name = activity.trackable.email
+
+  - if activity.owner == p[:current_user]
+    = _('You invited %s.' % user_name)
+  - else
+    = _('%s invited %s.' % [creator_name, user_name])
