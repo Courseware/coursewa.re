@@ -1,0 +1,16 @@
+%h3
+  = _('Hello,')
+
+%p
+  = _('%s invites you to join %s classroom') % [@invitation.creator.name, @classroom.title]
+
+%p
+  != _('Follow this link to register and get access to the classroom: <a href="%{url}">%{url}</a>') % {:url => @url}
+
+%br/
+%p
+  %small
+    != _('This email was sent to <code>%{email}</code> email owner!') % {:email => @invitation.email}
+  %br/
+  %small
+    = _('If you think this is an error, please ignore this message.')

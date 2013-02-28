@@ -41,11 +41,17 @@ describe Coursewareable::MembershipsController do
         should redirect_to(memberships_path)
       end
 
-      context 'and using an invalid email' do
+      context 'and using an unregistered email' do
         let(:email) { Faker::Internet.email }
+        before(:all) do
+          MembershipMailer.stub(:delay).and_return(MembershipMailer)
+          MembershipMailer.should_not_receive(:new_member_email)
+          MembershipMailer.should_receive(:new_invitation_email)
+        end
 
         it do
           classroom.collaborators.map(&:email).should_not include(email)
+          classroom.invitations.map(&:email).should include(email)
           should redirect_to(memberships_path)
         end
       end

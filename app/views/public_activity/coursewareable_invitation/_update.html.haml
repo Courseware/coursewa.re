@@ -1,0 +1,12 @@
+- @icon_name = 'icon-ok'
+
+%p{ :class => activity.key.parameterize }
+  - user_name = activity.parameters[:user_name]
+  - creator_name = activity.parameters[:creator_name]
+
+  - if user_name == p[:current_user].name
+    = _('You accepted %s invitation.' % creator_name)
+  - elsif creator_name == p[:current_user].name
+    = _('%s accepted your invitation.' % user_name)
+  - else
+    = _('%s accepted %s invitation.' % [user_name, creator_name])
