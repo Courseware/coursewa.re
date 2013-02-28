@@ -85,5 +85,22 @@ module Coursewareable
       redirect_to(invite_users_path)
     end
 
+    # Manage email settings
+    def notifications
+    end
+
+    # Updates email settings
+    def update_notifications
+      # Nested attributes are not working for sorcery, handle update manually
+      params[:user][:associations_attributes].each do |notification|
+        attrs = notification.last
+        next if attrs.blank?
+        association = current_user.associations.where(:id => attrs[:id]).first
+        association.update_attributes(attrs.except(:id)) unless association.nil?
+      end
+      flash[:success] = _('Your notification settings were updated')
+      redirect_to(notifications_users_path)
+    end
+
   end
 end

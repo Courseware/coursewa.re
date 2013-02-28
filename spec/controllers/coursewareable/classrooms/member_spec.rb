@@ -131,5 +131,4 @@ describe Coursewareable::ClassroomsController do
       it { should redirect_to(login_path) }
     end
   end
-
 end
