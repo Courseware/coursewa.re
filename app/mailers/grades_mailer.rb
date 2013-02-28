@@ -12,8 +12,11 @@ class GradesMailer < ActionMailer::Base
       grade.assignment.lecture, grade.assignment
     )
 
-    subject = "One of your responses was graded by #{@grade.user.name}"
-    mail(:to => grade.receiver.email, :subject => subject)
+    receiver = grade.receiver
+    subject = _('One of your responses was graded by %s') % grade.user.name
+    opt = receiver.memberships.where(:classroom_id => grade.classroom.id).first
+
+    mail(:to => receiver.email, :subject => subject) if opt.send_grades
   end
 
   # Sends an email to user when he's grade is updated
@@ -25,7 +28,10 @@ class GradesMailer < ActionMailer::Base
       grade.assignment.lecture, grade.assignment
     )
 
-    subject = "One of your assignment grades was updated by #{@grade.user.name}"
-    mail(:to => grade.receiver.email, :subject => subject )
+    receiver = grade.receiver
+    opt = receiver.memberships.where(:classroom_id => grade.classroom.id).first
+    subject = _('%s updated one of your assignment grades') % grade.user.name
+
+    mail(:to => receiver.email, :subject => subject ) if opt.send_grades
   end
 end

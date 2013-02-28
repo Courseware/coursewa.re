@@ -98,4 +98,3 @@ describe Coursewareable::ClassroomsController do
   end
 
 end
-
