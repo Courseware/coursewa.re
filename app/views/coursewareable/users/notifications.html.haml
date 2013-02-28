@@ -1,27 +1,37 @@
-= title _("Notifications settings")
+= title _('Notifications settings')
 
 #privacy
-  %h3
-    Privacy settings
-  %p
-    = _("Below you can change notifications for every classroom you are part of.")
-  %p
-    = form_for :memberships, :url => update_notifications_users_path do |f|
-      - unless @memberships.empty?
-        - @memberships.each do |m|
+  .eight.columns
+    %h4
+      = _('Classroom email settings')
+    %hr
+
+    - if current_user.associations.empty?
+      %p
+        = _('No classroom available.')
+    - else
+      = form_for current_user, :url => notifications_users_path do |f|
+
+        = f.fields_for :associations do |notification|
+
+          %h5
+            = _('%s classroom emails we should send') % notification.object.classroom.title
+          %hr
+
           .row
-            .one.columns
-              = m.classroom.title.capitalize
-              %h6
-                = m.classroom.description
-            = f.fields_for m.id.to_s do |g|
-              - m.email_announcement.each do |key, value|
-                .three.columns.end
-                  = g.label key do
-                    = g.check_box key, { :checked => value }, "true", "false"
-                    = _("%s notifications") % key.to_s.gsub('send_', '').capitalize
-        .row
-          = f.submit "Update", :class => "button primary"
-      - else
-        %h4
-          = _("You don't belong to any classroom")
+            .four.columns
+              = notification.check_box :send_generic, :class => 'left'
+              = notification.label :send_generic, _('Generic emails')
+
+            .four.columns
+              = notification.check_box :send_announcements, :class => 'left'
+              = notification.label :send_announcements, _('Announcement emails')
+
+            .four.columns
+              = notification.check_box :send_grades, :class => 'left'
+              = notification.label :send_grades, _('Gradebook emails')
+
+        %p.padded-top-ten
+          = f.submit(_('Save'), :class => 'button primary')
+
+= render(:partial => 'notifications_sidebar')
