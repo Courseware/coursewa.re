@@ -153,56 +153,57 @@ describe Coursewareable::UsersController do
   end
 
   describe 'GET notifications' do
+    before do
+      get(:notifications, :use_route => :coursewareable)
+    end
+
     context 'when logged in' do
-      before do
+      before(:all) do
+        setup_controller_request_and_response
         @controller.send(:auto_login, Fabricate('coursewareable/user'))
-        get(:notifications, :use_route => :coursewareable)
       end
 
       it { should render_template(:notification) }
     end
 
     context 'when not logged in' do
-      before do
-        get(:notifications, :use_route => :coursewareable)
-      end
-
       it { should redirect_to(login_path) }
     end
   end
 
-  describe 'POST update_notifications' do
+  describe 'PUT notifications' do
     let(:classroom) { Fabricate('coursewareable/classroom') }
+    let(:association) { classroom.owner.associations.first }
+
+    before do
+      put(:update_notifications, :use_route => :coursewareable, :user => {
+        :associations_attributes => {
+          '0' => {
+            'send_grades' => '0',
+            'send_announcements' => '1',
+            'send_generic' => '1',
+            'id' => association.id
+          }
+        }
+      } )
+    end
 
     context 'when logged in' do
-      before do
+      before(:all) do
+        setup_controller_request_and_response
         @controller.send(:auto_login, classroom.owner)
-        post(:update_notifications, :use_route => :coursewareable,
-          :memberships => {
-            "1" => {
-                "send_grades" => false, "send_announcements" => false,
-                "send_generic" => false}})
       end
 
       it 'should change email notification settings' do
+        association.reload
+        association.send_grades.should eq('0')
+        association.send_announcements.should eq('1')
+        association.send_generic.should eq('1')
         should redirect_to(notifications_users_path)
-        flash.now[:success].should eq("Notifications settings updated successfully")
-        membership = classroom.owner.memberships.first
-        membership.email_announcement.should eq({
-              :send_grades => false, :send_announcements => false,
-              :send_generic => false})
       end
     end
 
     context 'when not logged in' do
-      before do
-        post(:update_notifications, :use_route => :coursewareable,
-          :memberships => {
-            "1" => {
-                "grade" => false, "announce" => false,
-                "generic" => false}})
-      end
-
       it { should redirect_to(login_path) }
     end
   end
