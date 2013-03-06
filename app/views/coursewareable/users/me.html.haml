@@ -21,6 +21,24 @@
 
       .row
         .three.columns
+          = f.label(:email, _('Email'), :class => [:right, :inline])
+        .nine.columns
+          = f.email_field(:email)
+
+      .row
+        .three.columns
+          = f.label(:avatar, _('Avatar'), :class => [:right, :inline])
+        .nine.columns
+          = gravatar_image_tag(current_user.email, :alt => current_user.name, :gravatar => {:size => 64})
+
+      .row
+        .three.columns
+          = f.label(:last_login, _('Last Login'), :class => [:right, :inline])
+        .nine.columns
+          = f.label(_('%s ago') % distance_of_time_in_words(@user.last_login_at, Time.now))
+
+      .row
+        .three.columns
           = f.label(:description, _('Short Description'), :class => [:right, :inline])
         .nine.columns
           %p
