@@ -137,6 +137,7 @@
       $.fn.foundationMagellan         ? $doc.foundationMagellan() : null;
       $.fn.foundationClearing         ? $doc.foundationClearing() : null;
       $.fn.placeholder                ? $( 'input, textarea' ).placeholder() : null;
+      $.fn.nestable                   ? $('.nestable').nestable() : null;
     }
   };
 
