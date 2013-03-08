@@ -4,48 +4,48 @@
 
 #profile
   .eight.columns
-
-    = form_for @user do |f|
-
+    .three.columns
       .row
-        .three.columns
-          = f.label(:first_name, _('First Name'), :class => [:right, :inline])
-        .nine.columns
-          = f.text_field(:first_name)
+        = gravatar_image_tag(current_user.email, :alt => current_user.name, :gravatar => {:size => 130})
+        %p.smaller
+          = _('This is your Gravatar image. You can update it anytime by visiting their website.')
 
-      .row
-        .three.columns
-          = f.label(:first_name, _('Last Name'), :class => [:right, :inline])
-        .nine.columns
-          = f.text_field(:last_name)
+    .nine.columns
+      = form_for @user do |f|
 
-      .row
-        .three.columns
-          = f.label(:email, _('Email'), :class => [:right, :inline])
-        .nine.columns
-          = f.email_field(:email)
+        .row
+          .three.columns
+            = f.label(:first_name, _('First Name'), :class => [:right, :inline])
+          .nine.columns
+            = f.text_field(:first_name)
 
-      .row
-        .three.columns
-          = f.label(:avatar, _('Avatar'), :class => [:right, :inline])
-        .nine.columns
-          = gravatar_image_tag(current_user.email, :alt => current_user.name, :gravatar => {:size => 64})
+        .row
+          .three.columns
+            = f.label(:first_name, _('Last Name'), :class => [:right, :inline])
+          .nine.columns
+            = f.text_field(:last_name)
 
-      .row
-        .three.columns
-          = f.label(:last_login, _('Last Login'), :class => [:right, :inline])
-        .nine.columns
-          = f.label(_('%s ago') % distance_of_time_in_words(@user.last_login_at, Time.now))
+        .row
+          .three.columns
+            = f.label(:email, _('Email'), :class => [:right, :inline])
+          .nine.columns
+            = f.email_field(:email, :readonly => true)
 
-      .row
-        .three.columns
-          = f.label(:description, _('Short Description'), :class => [:right, :inline])
-        .nine.columns
-          %p
-            = f.text_area(:description, :class => 'wysiwyg-minimal')
+        .row
+          .three.columns
+            = f.label(:last_login, _('Last Login'), :class => [:right, :inline])
+          .nine.columns
+            = f.label(_('%s ago') % distance_of_time_in_words(@user.last_login_at, Time.now))
 
-      .row
-        .nine.columns.offset-by-three
-          = f.submit(_('Update'), :class => 'button primary', :id => :submit_profile)
+        .row
+          .three.columns
+            = f.label(:description, _('Short Description'), :class => [:right, :inline])
+          .nine.columns
+            %p
+              = f.text_area(:description, :class => 'wysiwyg-minimal')
+
+        .row
+          .nine.columns.offset-by-three
+            = f.submit(_('Update'), :class => 'button primary', :id => :submit_profile)
 
 = render(:partial => 'sidebar')
