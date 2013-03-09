@@ -49,7 +49,7 @@ group :assets do
   gem 'therubyracer'
   gem 'sass-rails'
   gem 'compass-rails'
-  gem 'zurb-foundation'
+  gem 'zurb-foundation', '3.2.5'
   gem 'turbo-sprockets-rails3'
 end
 
