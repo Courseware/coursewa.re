@@ -11,7 +11,7 @@
     .row
       .three.columns
         .avatar.align-center
-          = gravatar_image_tag(current_user.email, :alt => current_user.name, :gravatar => {:size => 80})
+          = gravatar_image_tag(current_user.email, :alt => current_user.name, :gravatar => {:size => 100})
         %p.smaller
           = _('This is your avatar image. You can update it anytime on %s website.' % link_to('Gravatar', 'http://gravatar.com'))
 
