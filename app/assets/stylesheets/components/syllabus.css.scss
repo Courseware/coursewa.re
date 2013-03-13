@@ -1,12 +1,92 @@
+@mixin hidden-button($width: 11px) {
+  text-indent: 9999px;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  float: left;
+  display: block;
+  width: 0;
+
+  &:before {
+    content: '+';
+    width: $width;
+    position: absolute;
+    text-indent: 0%;
+    display: block;
+  }
+}
+
 #syllabus {
+  $item-height: 22px;
+  $handle-width: 15px;
+  $button-width: 15px;
+
   .panel {
     padding: 0 10px;
   }
 
   #lectures-tree {
+
+    .dd-item {
+      border: 1px solid #eee;
+      list-style-type: none;
+      @include border-radius(2px);
+      position: relative;
+      margin-bottom:4px;
+
+      button {
+        @include hidden-button($button-width);
+        margin-left: $handle-width + 1px;
+      }
+
+      div {
+        display:inline-block;
+      }
+    }
+
     li * li {
       line-height: 24px;
     }
+
+    .dd-handle {
+      width: $handle-width;
+      height: $item-height - 2px;
+      background: #eee;
+      position: absolute;
+      left: 0;
+      top: 0;
+      cursor: pointer;
+    }
+
+    .dd-content {
+      padding-left: $handle-width + 5px;
+    }
+
+    // override style in _layout
+    li:before {
+      content: "";
+    }
+    .dd-placeholder {
+      border: 1px dashed #000;
+    }
+  }
+}
+    
+.dd-empty {
+  border: 2px dashed #eee;
+  background: rgba(200, 200, 200, 0.4);
+}
+
+.dd-dragel {
+  position: absolute;
+  border: 2px dashed #eee;
+  list-style-type: none;
+  background: rgba(200, 200, 200, 0.4);
+  width: 40px;
+  z-index: 9999;
+  button {
+    @include hidden-button;
   }
 }
 
@@ -15,4 +95,3 @@
     margin-top: 10px;
   }
 }
-

@@ -25,6 +25,13 @@
       });
     },
 
+    enable_dnd_lectures: function(selector) {
+      $(selector).nestable();
+      $('.dd').on('change', function(e) {
+        console.log('reordered lectures');
+      })
+    },
+
     /**
      * Handles on lick expanding of elements
      */
@@ -137,7 +144,7 @@
       $.fn.foundationMagellan         ? $doc.foundationMagellan() : null;
       $.fn.foundationClearing         ? $doc.foundationClearing() : null;
       $.fn.placeholder                ? $( 'input, textarea' ).placeholder() : null;
-      $.fn.nestable                   ? $('.nestable').nestable() : null;
+      $.fn.nestable                   ? Courseware.enable_dnd_lectures('.nestable') : null;
     }
   };
 

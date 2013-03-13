@@ -28,12 +28,16 @@
             = _('Please check back again in a while.')
 
     - unless @lectures.blank?
-
       %h3
         %i.left.icon-structure
         = _('Course structure')
 
-      %ul#lectures-tree.hierarchical-list.nestable
-        = list_lectures_tree(@lectures)
+      -if can?(:contribute, @classroom)
+        %ol#lectures-tree.hierarchical-list.dd-list.nestable.dd
+          = list_lectures_tree(@lectures, [], 'lectures_dnd_listing')
+
+      -else
+        %ul#lectures-tree.hierarchical-list
+          = list_lectures_tree(@lectures)
 
   = render(:partial => 'sidebar')
