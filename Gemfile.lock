@@ -359,7 +359,6 @@ DEPENDENCIES
   oj
   party_foul
   pg
-  pry
   pry-rails
   puma
   quiet_assets
