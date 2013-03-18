@@ -13,6 +13,7 @@ gem 'gravatar_image_tag'
 gem 'daemons'
 gem 'kaminari'
 gem 'ruby-oembed'
+gem 'sorcery', '~>0.8'
 
 # Speedup a bit things
 gem 'multi_json'

@@ -1,6 +1,6 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: 0226548de418ed64c1f0ea2908e30fdf83584055
+  revision: cb08923976aa83518f7d383fca69f5b5c92e902d
   specs:
     coursewareable (0.0.1)
       cancan
@@ -46,7 +46,7 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    bcrypt-ruby (2.1.4)
+    bcrypt-ruby (3.0.1)
     bourne (1.2.1)
       mocha (= 0.12.7)
     builder (3.0.4)
@@ -174,12 +174,11 @@ GEM
     multipart-post (1.2.0)
     nokogiri (1.5.7)
     oauth (0.4.7)
-    oauth2 (0.9.1)
+    oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
-      multi_xml (~> 0.5)
       rack (~> 1.2)
     oj (2.0.10)
     open4 (1.3.0)
@@ -285,12 +284,10 @@ GEM
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
     slop (3.4.4)
-    sorcery (0.6.0)
-      bcrypt-ruby (~> 2.1.4)
-      oauth (>= 0.4.4)
-      oauth (>= 0.4.4)
-      oauth2 (>= 0.1.1)
-      oauth2 (>= 0.1.1)
+    sorcery (0.8.1)
+      bcrypt-ruby (~> 3.0.0)
+      oauth (~> 0.4.4)
+      oauth2 (~> 0.8.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -374,6 +371,7 @@ DEPENDENCIES
   seedbank
   shoulda-matchers
   simplecov
+  sorcery (~> 0.8)
   sqlite3
   tddium
   therubyracer
