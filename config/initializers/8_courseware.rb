@@ -7,45 +7,16 @@ module Courseware
   mattr_accessor :config
 end
 
-Courseware.config = Coursewareable.config = OpenStruct.new(
-  :domain_name => 'coursewa.re',
-  :default_email_address => 'no-reply@coursewa.re',
-  :support_email_address => 'help@coursewa.re',
-  :domain_blacklist =>
-    %w(blog api support help mail ftp dashboard www expecting enterprise),
-  :header_image_size => {:width => 1400, :height => 260},
-  :plans => {
-    :free => {
-      :slug => :free,
-      :allowed_classrooms => 1,
-      :allowed_collaborators => 0,
-      :allowed_space => 100.megabytes,
-      :expires_in => nil,
-      :cost => 0
-    },
-    :micro => {
-      :slug => :micro,
-      :allowed_classrooms => 5,
-      :allowed_collaborators => 5,
-      :allowed_space => 5.gigabytes,
-      :expires_in => Time.now + 1.month,
-      :cost => 7
-    },
-    :small => {
-      :slug => :small,
-      :allowed_classrooms => 10,
-      :allowed_collaborators => 10,
-      :allowed_space => 10.gigabytes,
-      :expires_in => Time.now + 1.month,
-      :cost => 12
-    },
-    :medium => {
-      :slug => :medium,
-      :allowed_classrooms => 20,
-      :allowed_collaborators => 20,
-      :allowed_space => 20.gigabytes,
-      :expires_in => Time.now + 1.month,
-      :cost => 22
-    }
-  }
-)
+Courseware.config = Coursewareable.config
+%w(domain_name default_email_address support_email_address
+  header_image_size).each do |member|
+    Courseware.config.new_ostruct_member(member)
+end
+
+Courseware.config.domain_name = 'coursewa.re'
+Courseware.config.default_email_address = 'no-reply@coursewa.re'
+Courseware.config.support_email_address = 'help@coursewa.re'
+Courseware.config.header_image_size = {:width => 1400, :height => 260}
+%w(www expecting enterprise).each do |subdomain|
+  Courseware.config.domain_blacklist.push(subdomain)
+end
