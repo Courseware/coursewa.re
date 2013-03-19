@@ -1,4 +1,5 @@
 require 'ostruct'
+require 'cancan'
 require 'coursewareable'
 
 # Courseware configuration entries
