@@ -1,6 +1,6 @@
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: 1891e397b91450572bed5a6a49c0fbb69c7a7363
+  revision: ed58d8a7bda868efd9d661fc98dd43f663ada1c0
   specs:
     coursewareable (0.0.1)
       cancan
@@ -8,7 +8,7 @@ GIT
       paperclip
       public_activity
       sanitize
-      sorcery
+      sorcery (~> 0.8)
 
 GEM
   remote: https://rubygems.org/
@@ -371,7 +371,6 @@ DEPENDENCIES
   seedbank
   shoulda-matchers
   simplecov
-  sorcery (~> 0.8)
   sqlite3
   tddium
   therubyracer
