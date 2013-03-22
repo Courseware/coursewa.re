@@ -9,7 +9,6 @@
   width: 0;
 
   &:before {
-    content: '+';
     width: $width;
     position: absolute;
     text-indent: 0%;
@@ -18,9 +17,6 @@
 }
 
 #syllabus {
-  $item-height: 22px;
-  $handle-width: 15px;
-  $button-width: 15px;
 
   .panel {
     padding: 0 10px;
@@ -36,8 +32,15 @@
       margin-bottom:4px;
 
       button {
-        @include hidden-button($button-width);
-        margin-left: $handle-width + 1px;
+        @include hidden-button($dndButtonWidth);
+        margin-left: $dndHandleWidth + 1px;
+        &:before {
+          content: '+';
+        }
+
+        &.collapse-button:before {
+          content: '-';
+        }
       }
 
       div {
@@ -50,8 +53,8 @@
     }
 
     .dd-handle {
-      width: $handle-width;
-      height: $item-height - 2px;
+      width: $dndHandleWidth;
+      height: $dndItemHeight - 2px;
       background: #eee;
       position: absolute;
       left: 0;
@@ -60,7 +63,7 @@
     }
 
     .dd-content {
-      padding-left: $handle-width + 5px;
+      padding-left: $dndHandleWidth + 5px;
     }
 
     // override style in _layout
