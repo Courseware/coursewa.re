@@ -26,7 +26,11 @@
     },
 
     enable_dnd_lectures: function(selector) {
-      $(selector).nestable();
+      var options = {
+        collapseBtnHTML: '<button class="collapse-button" data-action="collapse">Collapse</button>'
+      };
+
+      $(selector).nestable( options );
       $('.dd').on('change', function(e) {
         console.log('reordered lectures');
       })
@@ -144,7 +148,7 @@
       $.fn.foundationMagellan         ? $doc.foundationMagellan() : null;
       $.fn.foundationClearing         ? $doc.foundationClearing() : null;
       $.fn.placeholder                ? $( 'input, textarea' ).placeholder() : null;
-      $.fn.nestable                   ? Courseware.enable_dnd_lectures('.nestable') : null;
+      $.fn.nestable                   ? Courseware.enable_dnd_lectures( '.nestable' ) : null;
     }
   };
 
