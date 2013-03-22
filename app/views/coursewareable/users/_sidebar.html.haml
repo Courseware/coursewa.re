@@ -13,3 +13,6 @@
       != _('To check your billing or subscription status, please visit %s.') % link_to(_('your account page'), my_account_users_path)
     %p
       != _('You can edit privacy settings in %s.') % link_to(_('notifications panel'), notifications_users_path)
+
+    %p.smaller.align-right
+      = _('Last login was %s ago.') % distance_of_time_in_words(current_user.last_login_at.time, Time.now, false, :locale => 'en')

@@ -4,7 +4,6 @@ ruby '1.9.3'
 gem 'rails'
 # Load the Coursewareable engine
 gem 'coursewareable', :git => 'https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git'
-gem 'cancan'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
@@ -13,8 +12,6 @@ gem 'roadie'
 gem 'gravatar_image_tag'
 gem 'daemons'
 gem 'kaminari'
-gem 'public_activity'
-gem 'sorcery', '0.8.1'
 gem 'ruby-oembed'
 
 # Speedup a bit things
@@ -30,7 +27,6 @@ end
 
 group :development do
   gem 'sqlite3'
-  gem 'pry'
   gem 'quiet_assets'
   # gem 'rack-bug', :github => 'brynary/rack-bug', :branch => 'rails3'
   gem 'letter_opener'
@@ -49,7 +45,7 @@ group :assets do
   gem 'therubyracer'
   gem 'sass-rails'
   gem 'compass-rails'
-  gem 'zurb-foundation'
+  gem 'zurb-foundation', '3.2.5'
   gem 'turbo-sprockets-rails3'
 end
 

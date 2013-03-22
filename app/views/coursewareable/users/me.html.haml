@@ -4,30 +4,47 @@
 
 #profile
   .eight.columns
+    %h4
+      = current_user.name
+    %hr
 
-    = form_for @user do |f|
+    .row
+      .three.columns
+        .avatar.align-center
+          = gravatar_image_tag(current_user.email, :alt => current_user.name, :gravatar => {:size => 100})
+        %p.smaller
+          = _('This is your avatar image. You can update it anytime on %s website.' % link_to('Gravatar', 'http://gravatar.com'))
 
-      .row
-        .three.columns
-          = f.label(:first_name, _('First Name'), :class => [:right, :inline])
-        .nine.columns
-          = f.text_field(:first_name)
+      .nine.columns
+        = form_for @user do |f|
 
-      .row
-        .three.columns
-          = f.label(:first_name, _('Last Name'), :class => [:right, :inline])
-        .nine.columns
-          = f.text_field(:last_name)
+          .row
+            .three.columns
+              = f.label(:first_name, _('First Name'), :class => [:right, :inline])
+            .nine.columns
+              = f.text_field(:first_name)
 
-      .row
-        .three.columns
-          = f.label(:description, _('Short Description'), :class => [:right, :inline])
-        .nine.columns
-          %p
-            = f.text_area(:description, :class => 'wysiwyg-minimal')
+          .row
+            .three.columns
+              = f.label(:first_name, _('Last Name'), :class => [:right, :inline])
+            .nine.columns
+              = f.text_field(:last_name)
 
-      .row
-        .nine.columns.offset-by-three
-          = f.submit(_('Update'), :class => 'button primary', :id => :submit_profile)
+          .row
+            .three.columns
+              = f.label(:email, _('Email'), :class => [:right, :inline])
+            .nine.columns
+              = f.email_field(:email, :readonly => true, :disabled => true)
+
+          .row
+            .three.columns
+              = f.label(:description, _('Description'), :class => [:right, :inline])
+            .nine.columns
+              %p
+                = f.text_area(:description, :class => 'wysiwyg-minimal')
+
+          .row
+            .twelve.columns.align-right
+              = f.submit(_('Update'), :class => 'button primary', :id => :submit_profile)
 
 = render(:partial => 'sidebar')
