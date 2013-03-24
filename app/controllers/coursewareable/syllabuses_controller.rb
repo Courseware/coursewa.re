@@ -53,6 +53,10 @@ module Coursewareable
       render :show
     end
 
+    def update_lectures
+      @classroom.update_attributes(:lectures_attributes => params[:lectures_attributes])
+    end
+
     protected
 
     # Loads current classroom and its syllabus

@@ -33,8 +33,11 @@
         = _('Course structure')
 
       -if can?(:contribute, @classroom)
-        %ol#lectures-tree.hierarchical-list.dd-list.nestable.dd
-          = list_lectures_tree(@lectures, [], 'lectures_dnd_listing')
+        = form_for(@classroom, :url => {:controller => 'syllabuses', :action => 'update_lectures'}, :html => {:class => 'dd'}) do |f|
+          = hidden_field_tag :assetable_id, @classroom.id, :class => 'test'
+          = hidden_field_tag("authenticity_token", form_authenticity_token)
+          %ol#lectures-tree.hierarchical-list.dd-list
+            = list_lectures_tree(@lectures, [], 'lectures_dnd_listing')
 
       -else
         %ul#lectures-tree.hierarchical-list

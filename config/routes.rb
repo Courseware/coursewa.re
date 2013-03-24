@@ -45,7 +45,9 @@ Coursewareable::Engine.routes.draw do
         get :staff
         resources(:memberships, :only => [:index, :create, :destroy])
         resources(:collaborations, :only => [:index, :create, :destroy])
-        resource(:syllabus, :only => [:show, :edit, :update, :create])
+        resource(:syllabus, :only => [:show, :edit, :update, :create]) do
+          post 'update_lectures' => 'syllabuses#update_lectures'
+        end
         resources(:images, :only => [:index, :create, :destroy])
         resources(:uploads, :only => [:index, :create, :destroy])
         resources(:files, :only => [:index, :destroy])
