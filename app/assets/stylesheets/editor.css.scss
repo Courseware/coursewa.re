@@ -2,4 +2,13 @@
  * Wysiwyg related styles
  */
 
-@import 'lib/redactor.css'
+@import 'lib/redactor.css';
+
+
+.redactor_box, .redactor_box textarea {
+  background-color: none;
+}
+
+.redactor_box textarea {
+  font-size: 14px;
+}

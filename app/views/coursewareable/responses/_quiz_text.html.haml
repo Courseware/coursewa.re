@@ -1,6 +1,7 @@
 .quiz-text.question.row
   .twelve.columns.question-content
-    = auto_oembed(question['content']).html_safe
+    .panel
+      = auto_oembed(question['content']).html_safe
 
     - answer = question['options'].first
     - option_id = 'txt-%d-0' % question_id

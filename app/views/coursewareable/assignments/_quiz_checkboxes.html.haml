@@ -1,6 +1,6 @@
 .quiz-checkboxes.question.row
   .twelve.columns.question-content
-    %textarea.input{:disabled => true}
+    .panel
       = auto_oembed(question['content']).html_safe
 
     - question['options'].each_with_index do |answer, index|
