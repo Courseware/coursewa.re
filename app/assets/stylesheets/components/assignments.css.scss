@@ -43,6 +43,11 @@
   .option-validation {
     input[type="checkbox"] {
       height: 14px;
+      margin-top: 0;
     }
+  }
+
+  .redactor_box {
+    margin-bottom: 15px !important;
   }
 }

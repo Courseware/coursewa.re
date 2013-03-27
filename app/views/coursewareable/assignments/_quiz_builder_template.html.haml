@@ -11,52 +11,52 @@
     %a.quiz-new-checkboxes.tiny.button.simple.icon-plus{:href => "#"}
       = _('Multiple choices, multiple answers')
 
-  .quiz-text.template.question.row{:style => "display: none"}
-    .twelve.columns.question-content
-      %textarea.input{:placeholder => _('Question content...')}
-      .row.option
-        .eleven.offset-by-one.columns.option-content
-          %textarea{:placeholder => _('Possible answer content...')}
-    .row
-      .twelve.columns.align-right
-        %a.alert.delete.icon-remove.smaller{:href => "#"}
-          = _('Remove entire question')
+.quiz-text.template.question.row{:style => "display: none"}
+  .twelve.columns.question-content
+    %textarea.input{:placeholder => _('Question content...')}
+    .row.option
+      .eleven.offset-by-one.columns.option-content
+        %textarea{:placeholder => _('Possible answer content...')}
+  .row
+    .twelve.columns.align-right
+      %a.alert.delete.icon-remove.smaller{:href => "#"}
+        = _('Remove entire question')
 
-  .quiz-radios.template.question.row{:style => "display: none"}
-    .twelve.columns.question-content
-      %textarea.input{:placeholder => _('Question content...')}
-      .row.option
-        .one.columns.option-validation.align-center
-          %input{:name => "unique", :type => "radio"}
-          %p.padded-top-ten
-            %a.alert.remove.icon-remove{:href => "#", :title => _('Remove this option')}
-              -# = _('Remove option')
-        .eleven.columns.option-content
-          %textarea{:placeholder => _('Possible answer content...')}
-    .row
-      .six.columns
-        %a.add.icon-plus{:href => "#"}
-          = _('Add another choice')
-      .six.columns.align-right
-        %a.alert.delete.icon-remove.smaller{:href => "#"}
-          = _('Remove entire question')
+.quiz-radios.template.question.row{:style => "display: none"}
+  .twelve.columns.question-content
+    %textarea.input{:placeholder => _('Question content...')}
+    .row.option
+      .one.columns.option-validation.align-center
+        %input{:name => "unique", :type => "radio"}
+        %p.padded-top-ten
+          %a.alert.remove.icon-remove{:href => "#", :title => _('Remove this option')}
+            -# = _('Remove option')
+      .eleven.columns.option-content
+        %textarea{:placeholder => _('Possible answer content...')}
+  .row
+    .six.columns
+      %a.add.icon-plus{:href => "#"}
+        = _('Add another choice')
+    .six.columns.align-right
+      %a.alert.delete.icon-remove.smaller{:href => "#"}
+        = _('Remove entire question')
 
-  .quiz-checkboxes.template.question.row{:style => "display: none"}
-    .twelve.columns.question-content
-      %textarea.input{:placeholder => _('Question content...')}
-      .row.option
-        .one.columns.option-validation.align-center
-          %input{:type => "checkbox"}
-          %p.padded-top-ten
-            %a.alert.remove.icon-remove{:href => "#", :title => _('Remove this choice')}
-              -# = _('Remove choice')
-        .eleven.columns.option-content
-          %textarea{:placeholder => _('Possible answer content...')}
-    .row
-      .six.columns
-        %a.add.icon-plus{:href => "#"}
-          = _('Add another choice')
-      .six.columns.align-right
-        %a.alert.delete.icon-remove.smaller{:href => "#"}
-          = _('Remove entire question')
+.quiz-checkboxes.template.question.row{:style => "display: none"}
+  .twelve.columns.question-content
+    %textarea.input{:placeholder => _('Question content...')}
+    .row.option
+      .one.columns.option-validation.align-center
+        %input{:type => "checkbox"}
+        %p.padded-top-ten
+          %a.alert.remove.icon-remove{:href => "#", :title => _('Remove this choice')}
+            -# = _('Remove choice')
+      .eleven.columns.option-content
+        %textarea{:placeholder => _('Possible answer content...')}
+  .row
+    .six.columns
+      %a.add.icon-plus{:href => "#"}
+        = _('Add another choice')
+    .six.columns.align-right
+      %a.alert.delete.icon-remove.smaller{:href => "#"}
+        = _('Remove entire question')
 
