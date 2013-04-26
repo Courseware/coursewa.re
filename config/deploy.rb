@@ -65,7 +65,7 @@ desc "Deploys the current version to the server."
 task :deploy => :environment do
   deploy do
     to :prepare do
-      invoke :stop
+      invoke :stop unless ENV['SKIP_STOP']
     end
 
     # Put things that will set up an empty directory into a fully set-up
@@ -77,7 +77,7 @@ task :deploy => :environment do
     invoke :'rails:assets_precompile'
 
     to :launch do
-      invoke :start
+      invoke :start unless ENV['SKIP_START']
     end
   end
 end
