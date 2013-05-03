@@ -23,6 +23,7 @@ Coursewareable::Engine.routes.draw do
       put :notifications, :to => :update_notifications
     end
   end
+  resources :subscriptions
 
   constraints(Subdomains::Allowed) do
     get 'start' => 'classrooms#new', :as => 'start_classroom'
