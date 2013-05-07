@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/nadarei/mina.git
+  revision: 8248fba1222ac4da7f73d422c9a71e99e23df957
+  specs:
+    mina (0.2.1)
+      open4
+      rake
+
+GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
   revision: 77282e29d3cda4e4ac69988f6370e1adc667e3cf
   specs:
@@ -157,9 +165,6 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
-    mina (0.2.1)
-      open4
-      rake
     modular-scale (1.0.6)
       compass (>= 0.12.1)
       sass (>= 3.2.0)
@@ -343,7 +348,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   letter_opener
-  mina
+  mina!
   multi_json
   oj
   party_foul

@@ -36,7 +36,7 @@ group :development do
   gem 'ruby_parser', :require => false
   gem 'cane'
   gem 'seedbank'
-  gem 'mina', :require => false
+  gem 'mina', :require => false, :github => 'nadarei/mina'
   gem 'pry-rails'
 end
 
