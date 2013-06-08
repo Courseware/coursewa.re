@@ -50,6 +50,23 @@ describe Coursewareable::ClassroomsController do
     end
   end
 
+  describe 'GET stats' do
+    let(:format) { :html }
+    before do
+      @request.host = "#{classroom.slug}.#{@request.host}"
+      get(:stats, :use_route => :coursewareable, :format => format)
+    end
+
+    context 'not being logged in' do
+      it { should redirect_to(login_path) }
+
+      context 'format is json' do
+        let(:format) { :json }
+        it { should redirect_to(login_path) }
+      end
+    end
+  end
+
   describe 'POST :create' do
     before do
       @request.host = "#{classroom.slug}.#{@request.host}"

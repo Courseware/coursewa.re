@@ -47,6 +47,7 @@ group :assets do
   gem 'compass-rails'
   gem 'zurb-foundation', '3.2.5'
   gem 'turbo-sprockets-rails3'
+  gem 'd3_rails'
 end
 
 group :development, :test do
