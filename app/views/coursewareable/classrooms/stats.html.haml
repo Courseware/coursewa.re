@@ -1,0 +1,16 @@
+= title  _('%s classroom stats') % @classroom.title
+= head_embed javascript_include_tag('punchcard')
+
+#classroom-stats
+  .eight.columns
+
+    %h4
+      = _('Activities punchcard')
+    %hr
+
+    .row
+      .twelve.columns
+
+        .punchcard
+
+  = render(:partial => 'sidebar')

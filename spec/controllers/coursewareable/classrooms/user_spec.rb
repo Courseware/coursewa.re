@@ -65,6 +65,25 @@ describe Coursewareable::ClassroomsController do
     end
   end
 
+  describe 'GET stats' do
+    let(:format) { :html }
+    before do
+      @controller.send(:auto_login, user)
+      @request.host = "#{classroom.slug}.#{@request.host}"
+      get(:stats, :use_route => :coursewareable, :format => format)
+    end
+
+    context 'being logged in as an user' do
+      it { should redirect_to(login_path) }
+
+      context 'format is json' do
+        let(:format) { :json }
+        it { should redirect_to(login_path) }
+      end
+    end
+
+  end
+
   describe 'POST :create' do
     let(:attrs) { Fabricate.build('coursewareable/classroom') }
 
