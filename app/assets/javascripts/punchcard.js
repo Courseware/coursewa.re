@@ -18,15 +18,6 @@
     chart: null,
     fontSize: 10,
 
-    getKeys: function(dataWithKeys) {
-      var keys = [];
-      $.each(dataWithKeys, function(key, value) {
-        keys.push(key);
-      });
-
-      return keys;
-    },
-
     setupX: function() {
       return d3.scale.linear().domain([0, 23])
         .range([0, this.width - (this.width / 24) - 40]);
