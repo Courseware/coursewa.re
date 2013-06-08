@@ -20,6 +20,14 @@ describe Coursewareable::ClassroomsController do
         'coursewareable/classrooms#staff')
     end
 
+    it 'for stats screen' do
+      get('http://test.lvh.me/stats').should route_to(
+        'coursewareable/classrooms#stats')
+
+      get('http://test.lvh.me/stats.json').should route_to(
+        'coursewareable/classrooms#stats', :format => 'json')
+    end
+
     it 'for dashboard screen' do
       get('http://test.lvh.me/').should route_to(
         'coursewareable/classrooms#dashboard')

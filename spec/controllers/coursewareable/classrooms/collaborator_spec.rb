@@ -63,6 +63,30 @@ describe Coursewareable::ClassroomsController do
     end
   end
 
+  describe 'GET staff' do
+    let(:format) { :html }
+    before do
+      @controller.send(:auto_login, collaborator)
+      @request.host = "#{classroom.slug}.#{@request.host}"
+      get(:stats, :use_route => :coursewareable, :format => format)
+    end
+
+    context 'being logged in as owner' do
+      it { should render_template(:stats) }
+
+      context 'format is json' do
+        let(:format) { :json }
+
+        it 'renders all activities as JSON' do
+          data = JSON.parse(response.body)
+          data.count.should eq(classroom.all_activities.count)
+          data.first.keys.count.should eq(2)
+        end
+      end
+    end
+
+  end
+
   describe 'POST :create' do
     let(:attrs) { Fabricate.build('coursewareable/classroom') }
 
