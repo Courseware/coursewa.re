@@ -37,7 +37,7 @@ group :development do
   gem 'ruby_parser', :require => false
   gem 'cane'
   gem 'seedbank'
-  gem 'mina', :require => false
+  gem 'mina', :require => false, :github => 'nadarei/mina'
   gem 'pry-rails'
 end
 
@@ -48,6 +48,7 @@ group :assets do
   gem 'compass-rails'
   gem 'zurb-foundation', '3.2.5'
   gem 'turbo-sprockets-rails3'
+  gem 'd3_rails'
 end
 
 group :development, :test do

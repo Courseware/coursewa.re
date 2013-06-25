@@ -75,6 +75,18 @@ module Coursewareable
       authorize!(:dashboard, @classroom)
     end
 
+    # Handles time-series stats page
+    def stats
+      authorize!(:dashboard, @classroom)
+
+      respond_to do |format|
+        format.html
+        format.json {
+          render :json => @classroom.all_activities.select([:created_at, :key])
+        }
+      end
+    end
+
     protected
 
     # Loads current classroom

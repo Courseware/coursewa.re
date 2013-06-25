@@ -13,8 +13,8 @@ require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 set :codename, 'coursewa.re'
 
 set :port, '8000'
-set :user, 'courseware'
-set :domain, 'lipsett.coursewa.re'
+set :user, 'deployer'
+set :domain, 'lipsett.nerd.ro'
 set :deploy_to, "/home/#{user}/#{codename}"
 set :repository, 'git@github.com:stas/coursewa.re.git'
 set :branch, 'master'
@@ -65,7 +65,7 @@ desc "Deploys the current version to the server."
 task :deploy => :environment do
   deploy do
     to :prepare do
-      invoke :stop
+      invoke :stop unless ENV['SKIP_STOP']
     end
 
     # Put things that will set up an empty directory into a fully set-up
@@ -77,7 +77,7 @@ task :deploy => :environment do
     invoke :'rails:assets_precompile'
 
     to :launch do
-      invoke :start
+      invoke :start unless ENV['SKIP_START']
     end
   end
 end
@@ -116,11 +116,11 @@ task 'rbenv:prepare' do
   queue %[echo 'eval "$(rbenv init -)"' >> ~/.bash_profile]
 end
 
-desc 'Uses rbenv-build to install ruby-1.9.3-p327'
-task 'rbenv:install:1.9.3-p327' => :environment do
+desc 'Uses rbenv-build to install ruby-1.9.3-p392'
+task 'rbenv:install:1.9.3-p392' => :environment do
   invoke 'rbenv:prepare'
-  queue 'rbenv install 1.9.3-p327'
-  queue 'rbenv local 1.9.3-p327'
+  queue 'rbenv install 1.9.3-p392'
+  queue 'rbenv local 1.9.3-p392'
   queue 'gem install bundler'
   queue 'rbenv rehash'
 end

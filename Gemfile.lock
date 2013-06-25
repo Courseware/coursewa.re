@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/nadarei/mina.git
+  revision: 8248fba1222ac4da7f73d422c9a71e99e23df957
+  specs:
+    mina (0.2.1)
+      open4
+      rake
+
+GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
   revision: e11041ed03a1da79a28e98a0c33db7670a3c3530
   specs:
@@ -76,6 +84,8 @@ GEM
       compass (>= 0.12.2, < 0.14)
     css_parser (1.3.4)
       addressable
+    d3_rails (3.2.1)
+      railties (>= 3.1.0)
     daemons (1.1.9)
     database_cleaner (0.9.1)
     delayed_job (3.0.5)
@@ -160,9 +170,6 @@ GEM
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.21)
-    mina (0.2.1)
-      open4
-      rake
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     modular-scale (1.0.6)
@@ -344,6 +351,7 @@ DEPENDENCIES
   capybara
   compass-rails
   coursewareable!
+  d3_rails
   daemons
   database_cleaner
   delayed_job_active_record
@@ -358,7 +366,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   letter_opener
-  mina
+  mina!
   multi_json
   oj
   party_foul
