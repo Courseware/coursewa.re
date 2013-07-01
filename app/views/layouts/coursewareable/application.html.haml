@@ -32,7 +32,7 @@
         %h2
           = yield(:title)
 
-    - unless @classroom.nil?
+    - unless @classroom.nil? || @classroom.new_record?
       %nav#classroom-menu
         = render('shared/classroom_menu')
 
