@@ -10,27 +10,27 @@ module Coursewareable
     end
 
     def create
-      plan = Coursewareable.config.plans.params[:plan]
+      plan = Coursewareable.config.plans[params[:plan].to_sym]
       user = Coursewareable::User.find(current_user.id)
 
       Stripe::Plan.create(
-        :amount => plan.cost * 100,
+        :amount => plan[:cost] * 100,
         :interval => 'month',
-        :name => '#{plan.slug} plan',
+        :name => '%s plan' % plan[:slug],
         :currency => 'usd',
-        :id => plan.slug
+        :id => plan[:slug]
       )
 
-      customer = Stripe::Customer.create(
+      Stripe::Customer.create(
         :email => user.email,
         :card => params[:stripeToken],
-        :plan => plan.slug
+        :plan => plan[:slug]
       )
 
-      user.plan.update_attributes(plan)
+      user.plan.update_attributes(plan.except(:cost))
 
       flash[:success] = 'Thank you for subscribing to #{plan.slug} plan!'
-      redirect_to me_users
+      redirect_to me_users_path
 
     rescue Stripe::CardError => e
       flash[:alert] = e.message
