@@ -22,6 +22,7 @@ module Coursewareable
       redirect_to root_path unless logged_in?
       timeline = current_user.activities_as_owner.reverse
       @timeline = Kaminari.paginate_array(timeline).page(params[:page])
+      intercom_custom_data.user[:app_activated_at] = Time.now
       render(:partial => 'shared/timeline') if request.xhr?
     end
 
