@@ -63,4 +63,5 @@ group :development, :test do
   gem 'email_spec'
   gem 'simplecov', :require => false
   gem 'tddium', :require => false
+  gem 'stripe-ruby-mock'
 end

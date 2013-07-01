@@ -306,6 +306,8 @@ GEM
     stripe (1.8.2)
       multi_json (>= 1.0.4, < 2)
       rest-client (~> 1.4)
+    stripe-ruby-mock (1.8.1.1)
+      stripe (~> 1.8.1)
     tddium (1.7.4)
       highline
       json
@@ -386,6 +388,7 @@ DEPENDENCIES
   simplecov
   sqlite3
   stripe
+  stripe-ruby-mock
   tddium
   therubyracer
   turbo-sprockets-rails3
