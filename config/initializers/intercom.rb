@@ -1,12 +1,12 @@
 IntercomRails.config do |config|
   # == Intercom app_id
-  # 
+  #
   config.app_id = ENV["INTERCOM_APP_ID"] || "sn1155nl"
 
-  # == Intercom secret key 
-  # This is required to enable secure mode, you can find it on your Intercom 
+  # == Intercom secret key
+  # This is required to enable secure mode, you can find it on your Intercom
   # "security" configuration page.
-  # 
+  #
   config.api_secret = "izq8gcP8zKr4hxej-moQGJ22HiGbglH49-VPz895"
 
   # == Intercom API Key
@@ -25,7 +25,7 @@ IntercomRails.config do |config|
   # If it is `current_user` or `@user`, then you can ignore this
   #
   # config.user.current = Proc.new { current_user }
-  
+
   # == User model class
   # The class which defines your user model
   #
@@ -36,21 +36,21 @@ IntercomRails.config do |config|
   # You can provide either a method name which will be sent to the current
   # user object, or a Proc which will be passed the current user.
   #
-  # config.user.custom_data = {
-  #   :plan => Proc.new { |current_user| current_user.plan.name },
-  #   :favorite_color => :favorite_color
-  # }
+  config.user.custom_data = {
+    :plan => Proc.new { |current_user| current_user.plan.slug },
+    :favorite_color => :favorite_color
+  }
 
   # == User -> Company association
   # A Proc that given a user returns an array of companies
   # that the user belongs to.
-  # 
+  #
   # config.user.company_association = Proc.new { |user| user.companies.to_a }
   # config.user.company_association = Proc.new { |user| [user.company] }
 
   # == Current company name
   # The method/variable that contains the current company for the current user,
-  # in your controllers. 'Companies' are generic groupings of users, so this 
+  # in your controllers. 'Companies' are generic groupings of users, so this
   # could be a company, app or group.
   #
   # config.company.current = Proc.new { @app }
@@ -67,7 +67,7 @@ IntercomRails.config do |config|
   # == Company Plan name
   # This is the name of the plan a company is currently paying (or not paying) for.
   # e.g. Messaging, Free, Pro, etc.
-  #  
+  #
   # config.company.plan = Proc.new { |current_company| current_company.plan.name }
 
   # == Company Monthly Spend
@@ -76,16 +76,16 @@ IntercomRails.config do |config|
   #
   # config.company.monthly_spend = Proc.new { |current_company| current_company.plan.price }
   # config.company.monthly_spend = Proc.new { |current_company| (current_company.plan.price - current_company.subscription.discount) }
- 
+
   # == Inbox Style
   # This enables the Intercom inbox which allows your users to read their
-  # past conversations with your app, as well as start new ones. It is 
+  # past conversations with your app, as well as start new ones. It is
   # disabled by default.
   #   * :default shows a small tab with a question mark icon on it
   #   * :custom attaches the inbox open event to an anchor with an
   #             id of #Intercom.
   #
-  # config.inbox.style = :default 
+  config.inbox.style = :default
   # config.inbox.style = :custom
 
   # == Inbox Counter
