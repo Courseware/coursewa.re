@@ -109,4 +109,22 @@ describe 'Users' do
       'user_associations_attributes_0_send_announcements')
     page.should have_css('#notifications .alert-box.success')
   end
+
+  it 'should be able to send delete account request' do
+    sign_in_with(Fabricate(:confirmed_user).email)
+
+    visit delete_users_url
+
+    page.should have_content('Delete your account')
+    page.should have_field('message')
+    page.should have_button('Send request')
+
+    within('#delete') do
+      fill_in 'message', :with => 'Lorem ipsum'
+    end
+
+    click_button 'Send request'
+
+    page.should have_css('#notifications .alert-box.success')
+  end
 end

@@ -54,5 +54,15 @@ describe Coursewareable::UsersController do
       put('/users/notifications').should route_to(
         'coursewareable/users#update_notifications')
     end
+
+    it 'for delete page' do
+      get('/users/delete').should route_to(
+        'coursewareable/users#delete')
+    end
+
+    it 'for delete request' do
+      post('/users/delete_request').should route_to(
+        'coursewareable/users#delete_request')
+    end
   end
 end
