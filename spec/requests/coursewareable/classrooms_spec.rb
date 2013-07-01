@@ -44,4 +44,19 @@ describe 'Classrooms' do
     page.should have_content(ann_txt)
   end
 
+  context 'menu' do
+    let(:user) { Fabricate(:confirmed_user) }
+
+    it 'can see menu if is member of classroom' do
+      sign_in_with(classroom.owner.email)
+      visit dashboard_classroom_url(:subdomain => classroom.slug)
+      page.should have_css('#classroom-menu')
+    end
+
+    it 'can not see menu if want to create a classroom' do
+      sign_in_with(user.email)
+      visit start_classroom_path
+      page.should_not have_css('#classroom-menu')
+    end
+  end
 end
