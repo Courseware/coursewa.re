@@ -1,0 +1,86 @@
+= title _('Subscribe to a new plan')
+
+#subscribe
+  .three.columns
+    = form_tag(subscriptions_path) do
+      %ul.pricing-table
+        %li.title
+          = _('%s plan') % @plans[:free][:slug].capitalize
+        %li.bullet-item
+          = _('Allowed classrooms: %s') % @plans[:free][:allowed_classrooms]
+        %li.bullet-item
+          = _('Allowed collaborators: %s') % @plans[:free][:allowed_collaborators]
+        %li.bullet-item
+          = _('Allowed space: %s') % number_to_human_size(@plans[:free][:allowed_space])
+        %li.price
+          = _('Price: %s$') % @plans[:free][:cost]
+        %li.cta-button
+          %script.stripe-button{ 'data-label' => 'Subscribe!',
+            'data-name' => _('%s plan - Coursewa.re') % @plans[:free][:slug].capitalize,
+            'data-amount' => _('%s') % @plans[:free][:cost],
+            'data-description' => 'A month\'s subscription',
+            'data-key' => Rails.configuration.stripe[:public_key],
+            :src => 'https://checkout.stripe.com/v2/checkout.js'}
+
+  .three.columns
+    = form_tag(subscriptions_path) do
+      %ul.pricing-table
+        %li.title
+          = _('%s plan') % @plans[:micro][:slug].capitalize
+        %li.bullet-item
+          = _('Allowed classrooms: %s') % @plans[:micro][:allowed_classrooms]
+        %li.bullet-item
+          = _('Allowed collaborators: %s') % @plans[:micro][:allowed_collaborators]
+        %li.bullet-item
+          = _('Allowed space: %s') % number_to_human_size(@plans[:micro][:allowed_space])
+        %li.price
+          = _('Price: %s$') % @plans[:micro][:cost]
+        %li.cta-button
+          %script.stripe-button{ 'data-label' => 'Subscribe!',
+             'data-name' => _('%s plan - Coursewa.re') % @plans[:micro][:slug].capitalize,
+           'data-amount' => _('%s') % [@plans[:micro][:cost] * 100],
+            'data-description' => 'A month\'s subscription',
+            'data-key' => Rails.configuration.stripe[:public_key],
+            :src => 'https://checkout.stripe.com/v2/checkout.js'}
+
+  .three.columns
+    = form_tag(subscriptions_path) do
+      %ul.pricing-table
+        %li.title
+          = _('%s plan') % @plans[:small][:slug].capitalize
+        %li.bullet-item
+          = _('Allowed classrooms: %s') % @plans[:small][:allowed_classrooms]
+        %li.bullet-item
+          = _('Allowed collaborators: %s') % @plans[:small][:allowed_collaborators]
+        %li.bullet-item
+          = _('Allowed space: %s') % number_to_human_size(@plans[:small][:allowed_space])
+        %li.price
+          = _('Price: %s$') % @plans[:small][:cost]
+        %li.cta-button
+          %script.stripe-button{ 'data-label' => 'Subscribe!',
+            'data-name' => _('%s plan - Coursewa.re') % @plans[:small][:slug].capitalize,
+            'data-amount' => _('%s') % [@plans[:small][:cost] * 100],
+            'data-description' => 'A month\'s subscription',
+            'data-key' => Rails.configuration.stripe[:public_key],
+            :src => 'https://checkout.stripe.com/v2/checkout.js'}
+
+  .three.columns
+    = form_tag(subscriptions_path) do
+      %ul.pricing-table
+        %li.title
+          = _('%s plan') % @plans[:medium][:slug].capitalize
+        %li.bullet-item
+          = _('Allowed classrooms: %s') % @plans[:medium][:allowed_classrooms]
+        %li.bullet-item
+          = _('Allowed collaborators: %s') % @plans[:medium][:allowed_collaborators]
+        %li.bullet-item
+          = _('Allowed space: %s') % number_to_human_size(@plans[:medium][:allowed_space])
+        %li.price
+          = _('Price: %s$') % @plans[:medium][:cost]
+        %li.cta-button
+          %script.stripe-button{ 'data-label' => 'Subscribe!',
+            'data-name' => _('%s plan - Coursewa.re') % @plans[:medium][:slug].capitalize,
+            'data-amount' => _('%s') % [@plans[:medium][:cost] * 100],
+            'data-description' => 'A month\'s subscription',
+            'data-key' => Rails.configuration.stripe[:public_key],
+            :src => 'https://checkout.stripe.com/v2/checkout.js'}

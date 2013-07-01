@@ -13,6 +13,7 @@ gem 'gravatar_image_tag'
 gem 'daemons'
 gem 'kaminari'
 gem 'ruby-oembed'
+gem 'stripe'
 
 # Speedup a bit things
 gem 'multi_json'
@@ -62,4 +63,5 @@ group :development, :test do
   gem 'email_spec'
   gem 'simplecov', :require => false
   gem 'tddium', :require => false
+  gem 'stripe-ruby-mock'
 end
