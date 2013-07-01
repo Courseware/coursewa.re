@@ -37,8 +37,11 @@ IntercomRails.config do |config|
   # user object, or a Proc which will be passed the current user.
   #
   config.user.custom_data = {
-    :plan => Proc.new { |current_user| current_user.plan.slug },
-    :favorite_color => :favorite_color
+    :plan => Proc.new { |user| user.plan.slug },
+    :classrooms => Proc.new { |user| user.classrooms.count },
+    :memberships => Proc.new { |user| user.memberships.count },
+    :collaborations => Proc.new { |user| user.collaborations.count },
+    :sent_invitations => Proc.new { |user| user.sent_invitations.count }
   }
 
   # == User -> Company association
