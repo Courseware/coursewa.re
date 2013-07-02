@@ -3,8 +3,8 @@
 #delete
   .eight.columns
     .row
-      %p.panel
-        For the moment, you could not delete your account directly. We can process it manually after you fill the following form to inform us your request.
+      %p
+        = _('We\'re sorry to see you go. Right now, we can only remove your account manually. Please take a moment and let us know how we can make Coursewa.re better, or if there\'s anything we could have done differently.')
 
     .row
       = form_tag delete_request_users_path do
@@ -13,7 +13,7 @@
           .two.columns
             = label_tag(:message, _('Message'), :class => [:right, :inline])
           .ten.columns
-            = text_area_tag(:message, nil, :rows => 7, :required => true, :placeholder => _('Why do you want to leave?'))
+            = text_area_tag(:message, nil, :rows => 7, :required => true, :placeholder => _('I just had to see what this button does... :-)'))
 
         .row
           .ten.columns.offset-by-two
