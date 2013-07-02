@@ -111,19 +111,20 @@ describe 'Users' do
   end
 
   it 'should be able to send delete account request' do
-    sign_in_with(Fabricate(:confirmed_user).email)
+    user = Fabricate(:confirmed_user)
+    sign_in_with(user.email)
 
-    visit delete_users_url
+    visit request_deletion_users_url
 
     page.should have_content('Delete your account')
     page.should have_field('message')
     page.should have_button('Send request')
 
     within('#delete') do
-      fill_in 'message', :with => 'Lorem ipsum'
+      fill_in 'message', :with => Faker::Lorem.paragraph
     end
 
-    click_button 'Send request'
+    click_button 'delete_button'
 
     page.should have_css('#notifications .alert-box.success')
   end

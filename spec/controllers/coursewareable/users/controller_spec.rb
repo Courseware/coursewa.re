@@ -208,18 +208,19 @@ describe Coursewareable::UsersController do
     end
   end
 
-  describe 'GET delete' do
+  describe 'GET request_deletion' do
+    let(:user) { Fabricate(:confirmed_user) }
     before do
-      get(:delete, :use_route => :coursewareable)
+      get(:request_deletion, :use_route => :coursewareable)
     end
 
     context 'when logged in' do
       before(:all) do
         setup_controller_request_and_response
-        @controller.send(:auto_login, Fabricate(:confirmed_user))
+        @controller.send(:auto_login, user)
       end
 
-      it { should render_template(:delete) }
+      it { should render_template(:request_deletion) }
     end
 
     context 'when not logged in' do
@@ -227,16 +228,18 @@ describe Coursewareable::UsersController do
     end
   end
 
-  describe 'POST delete_request' do
+  describe 'POST request_deletion' do
+    let(:user) { Fabricate(:confirmed_user) }
+
     context 'when logged in' do
       before(:each) do
         setup_controller_request_and_response
-        @controller.send(:auto_login, Fabricate(:confirmed_user))
+        @controller.send(:auto_login, user)
         @old_emails_count = ActionMailer::Base.deliveries.count
       end
 
       it 'should send an email and redirect to dashboard' do
-        post(:delete_request, :use_route => :coursewareable,
+        post(:request_deletion, :use_route => :coursewareable,
           :message => Faker::Lorem.paragraph)
 
         (ActionMailer::Base.deliveries.count - @old_emails_count).should eq(1)
@@ -245,17 +248,17 @@ describe Coursewareable::UsersController do
       end
 
       it 'should print an error if message field is empty and redirect back' do
-        post(:delete_request, :use_route => :coursewareable)
+        post(:request_deletion, :use_route => :coursewareable)
 
         ActionMailer::Base.deliveries.count.should eq(@old_emails_count)
         flash.now[:alert].should eq('Please fill the field!')
-        response.should redirect_to(delete_users_path)
+        response.should redirect_to(request_deletion_users_path)
       end
     end
 
     context 'when not logged in' do
       before do
-        post(:delete_request, :use_route => :coursewareable,
+        post(:request_deletion, :use_route => :coursewareable,
           :message => Faker::Lorem.paragraph)
       end
 
