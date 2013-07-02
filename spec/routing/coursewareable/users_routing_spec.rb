@@ -56,13 +56,13 @@ describe Coursewareable::UsersController do
     end
 
     it 'for delete page' do
-      get('/users/delete').should route_to(
-        'coursewareable/users#delete')
+      get('/users/request_deletion').should route_to(
+        'coursewareable/users#request_deletion')
     end
 
     it 'for delete request' do
-      post('/users/delete_request').should route_to(
-        'coursewareable/users#delete_request')
+      post('/users/request_deletion').should route_to(
+        'coursewareable/users#request_deletion')
     end
   end
 end

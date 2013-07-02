@@ -21,8 +21,8 @@ Coursewareable::Engine.routes.draw do
       post :send_invitation
       get :notifications
       put :notifications, :to => :update_notifications
-      get :delete
-      post :delete_request
+      get :request_deletion
+      post :request_deletion
     end
   end
 
