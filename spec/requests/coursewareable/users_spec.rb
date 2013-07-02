@@ -126,6 +126,7 @@ describe 'Users' do
 
     click_button 'delete_button'
 
+    user.reload.id.should eq(user.id)
     page.should have_css('#notifications .alert-box.success')
   end
 end

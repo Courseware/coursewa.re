@@ -243,6 +243,7 @@ describe Coursewareable::UsersController do
           :message => Faker::Lorem.paragraph)
 
         (ActionMailer::Base.deliveries.count - @old_emails_count).should eq(1)
+        user.reload.id.should eq(user.id)
         response.should redirect_to(dashboard_home_path)
         flash.now[:success].should eq('Your request was sent.')
       end
@@ -251,6 +252,7 @@ describe Coursewareable::UsersController do
         post(:request_deletion, :use_route => :coursewareable)
 
         ActionMailer::Base.deliveries.count.should eq(@old_emails_count)
+        user.reload.id.should eq(user.id)
         flash.now[:alert].should eq('Please fill the field!')
         response.should redirect_to(request_deletion_users_path)
       end
