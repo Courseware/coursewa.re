@@ -13,7 +13,6 @@ gem 'gravatar_image_tag'
 gem 'daemons'
 gem 'kaminari'
 gem 'ruby-oembed'
-gem 'intercom-rails'
 
 # Speedup a bit things
 gem 'multi_json'
@@ -24,6 +23,7 @@ group :production do
   gem 'puma'
   gem 'aws-sdk'
   gem 'party_foul'
+  gem 'intercom-rails'
 end
 
 group :development do
