@@ -18,7 +18,7 @@ IntercomRails.config do |config|
   # == Enabled Environments
   # Which enviornments is auto inclusion of the Javascript enabled for
   #
-  config.enabled_environments = ["development", "production"]
+  # config.enabled_environments = ["development", "production"]
 
   # == Curent user name
   # The method/variable that contains the logged in user in your controllers.
@@ -38,9 +38,9 @@ IntercomRails.config do |config|
   #
   config.user.custom_data = {
     :plan => Proc.new { |user| user.plan.slug },
-    :classrooms => Proc.new { |user| user.classrooms.count },
-    :memberships => Proc.new { |user| user.memberships.count },
-    :collaborations => Proc.new { |user| user.collaborations.count },
+    :classrooms => Proc.new { |user| user.created_classrooms_count },
+    :memberships => Proc.new { |user| user.memberships_count },
+    :collaborations => Proc.new { |user| user.collaborations_count },
     :sent_invitations => Proc.new { |user| user.sent_invitations.count }
   }
 
@@ -97,4 +97,4 @@ IntercomRails.config do |config|
   #
   # config.inbox.counter = true
 
-end
+end if defined?(IntercomRails)
