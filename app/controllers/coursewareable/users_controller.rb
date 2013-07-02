@@ -102,25 +102,23 @@ module Coursewareable
       redirect_to(notifications_users_path)
     end
 
-    def delete
-    end
+    def request_deletion
+      if request.post?
+        if params[:message].blank?
+          flash[:alert] = _('Please fill the field!')
+          redirect_to(request_deletion_users_path) and return
+        end
 
-    def delete_request
-      if params[:message].blank?
-        flash[:alert] = _('Please fill the field!')
-        redirect_to(delete_users_path) and return
+        ::GenericMailer.delay.support_email({
+          :name => current_user.name,
+          :email => current_user.email,
+          :remote_ip => request.remote_ip,
+          :message => params[:message]
+        })
+
+        flash[:success] = _('Your request was sent.')
+        redirect_to(dashboard_home_path)
       end
-
-      parameters = {
-        :name => current_user.name,
-        :email => current_user.email,
-        :remote_ip => request.remote_ip,
-        :message => params[:message]
-      }
-      ::GenericMailer.delay.support_email(parameters)
-
-      flash[:success] = _('Your request was sent.')
-      redirect_to(dashboard_home_path)
     end
 
   end
