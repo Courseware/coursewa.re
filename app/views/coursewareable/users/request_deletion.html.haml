@@ -4,10 +4,12 @@
   .eight.columns
     .row
       %p
-        = _('We\'re sorry to see you go. Right now, we can only remove your account manually. Please take a moment and let us know how we can make Coursewa.re better, or if there\'s anything we could have done differently.')
+        We're sorry to see you go. Right now, we can only remove your account manually.
+        Please take a moment and let us know how we can make Coursewa.re better,
+        or if there\'s anything we could have done differently.
 
     .row
-      = form_tag delete_request_users_path do
+      = form_tag request_deletion_users_path do
 
         .row
           .two.columns
@@ -17,6 +19,6 @@
 
         .row
           .ten.columns.offset-by-two
-            = submit_tag(_('Send request'), :class => 'button primary')
+            = submit_tag(_('Send request'), :id => 'delete_button', :class => 'button primary')
 
 = render(:partial => 'sidebar')
