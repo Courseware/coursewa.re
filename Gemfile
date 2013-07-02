@@ -23,6 +23,7 @@ group :production do
   gem 'puma'
   gem 'aws-sdk'
   gem 'party_foul'
+  gem 'intercom-rails'
 end
 
 group :development do
