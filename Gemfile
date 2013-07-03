@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails'
+gem 'rails', '~> 3.2'
 # Load the Coursewareable engine
 gem 'coursewareable', :git => 'https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git'
 gem 'haml-rails'
@@ -29,15 +29,14 @@ end
 group :development do
   gem 'sqlite3'
   gem 'quiet_assets'
-  # gem 'rack-bug', :github => 'brynary/rack-bug', :branch => 'rails3'
   gem 'letter_opener'
   # gem 'rails-erd'
   gem 'yard', :require => false
   gem 'gettext', :require => false
   gem 'ruby_parser', :require => false
   gem 'cane'
-  gem 'seedbank'
-  gem 'mina', :require => false, :github => 'nadarei/mina'
+  gem 'seedbank', '0.3.0.pre'
+  gem 'mina', :require => false, :github => 'stas/mina', :branch => 'rbenv_and_ruby-build_support'
   gem 'pry-rails'
 end
 
@@ -46,7 +45,7 @@ group :assets do
   gem 'therubyracer'
   gem 'sass-rails'
   gem 'compass-rails'
-  gem 'zurb-foundation', '3.2.5'
+  gem 'zurb-foundation', '~> 3.2'
   gem 'turbo-sprockets-rails3'
   gem 'd3_rails'
 end
