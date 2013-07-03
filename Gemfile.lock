@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/stas/mina.git
-  revision: 31a49200aa8d14c693822324b8f311cc23e6c269
+  revision: f858d8293d04a95eaed7f0912de79cb21207171b
   branch: rbenv_and_ruby-build_support
   specs:
     mina (0.2.1)
