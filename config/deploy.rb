@@ -4,12 +4,6 @@ require 'mina/git'
 require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 # require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
-# Basic settings:
-#   domain       - The hostname to SSH to.
-#   deploy_to    - Path to deploy into.
-#   repository   - Git repo to clone from. (needed by mina/git)
-#   branch       - Branch name to deploy. (needed by mina/git)
-
 set :codename, 'coursewa.re'
 
 set :port, '8000'
@@ -27,10 +21,6 @@ set :app_path, lambda { "#{deploy_to}/#{current_path}" }
 # (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
 set :shared_paths, ['config/database.yml', 'log', 'tmp']
-
-# Optional settings:
-#   set :user, 'foobar'    # Username in the server to SSH to.
-#   set :port, '30000'     # SSH port number.
 
 # This task is the environment that is loaded for most commands, such as
 # `mina deploy` or `mina rake`.
@@ -100,35 +90,3 @@ task :restart => :environment do
   invoke :stop
   invoke :start
 end
-
-desc 'Installs dependent OS packages/libs along with latest rbenv'
-task 'rbenv:prepare' do
-  queue! 'echo "Make sure these are installed:"'
-  queue! 'echo "git-core libxml2-dev libxslt1-dev libreadline-dev libssl-dev ' +
-   'openssl zlib1g-dev zlib1g libyaml-dev build-essential libpq-dev"'
-
-  queue 'git clone git://github.com/sstephenson/rbenv.git ~/.rbenv'
-  queue 'git clone git://github.com/sstephenson/ruby-build.git ' +
-    '~/.rbenv/plugins/ruby-build'
-
-  queue %[echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile]
-  queue %[source ~/.bash_profile]
-  queue %[echo 'eval "$(rbenv init -)"' >> ~/.bash_profile]
-end
-
-desc 'Uses rbenv-build to install ruby-2.0.0-p247'
-task 'rbenv:install:2.0.0-p247' => :environment do
-  invoke 'rbenv:prepare'
-  queue 'rbenv install 2.0.0-p247'
-  queue 'rbenv local 2.0.0-p247'
-  queue 'gem install bundler'
-  queue 'rbenv rehash'
-end
-
-# For help in making your deploy script, see the Mina documentation:
-#
-#  - http://nadarei.co/mina
-#  - http://nadarei.co/mina/tasks
-#  - http://nadarei.co/mina/settings
-#  - http://nadarei.co/mina/helpers
-
