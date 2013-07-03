@@ -8,10 +8,6 @@ module Courseware
 end
 
 Courseware.config = Coursewareable.config
-%w(domain_name default_email_address support_email_address
-  header_image_size).each do |member|
-    Courseware.config.member = :none
-end
 
 Courseware.config.domain_name = 'coursewa.re'
 Courseware.config.default_email_address = 'no-reply@coursewa.re'
