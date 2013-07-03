@@ -9,14 +9,13 @@ GIT
 
 GIT
   remote: https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git
-  revision: 7b91570ef631d7497d0b9edac71a878becdf5034
+  revision: 40445f69d3684f05fa6e94bb09fcc453f09106c5
   specs:
     coursewareable (0.0.1)
       cancan
       friendly_id
       paperclip
       public_activity
-      rails (~> 3.2)
       sanitize
       sorcery (>= 0.8)
 
