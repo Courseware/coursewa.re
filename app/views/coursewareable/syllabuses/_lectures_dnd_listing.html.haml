@@ -1,0 +1,7 @@
+%li.dd-item{:"data-id" => lecture.id}
+  .dd-handle
+  .dd-content
+    = link_to(lecture.title, lecture_path(lecture))
+  - unless lecture.child_lectures.empty?
+    %ol.marginless-bottom.dd-list
+      = list_lectures_tree(lecture.child_lectures, listed_ids)

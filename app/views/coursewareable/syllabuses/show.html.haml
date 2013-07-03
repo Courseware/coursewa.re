@@ -1,5 +1,7 @@
 = title _('%s classroom syllabus') % @classroom.title
 
+= head_embed javascript_include_tag('jquery.nestable')
+
 #syllabus
   .eight.columns.formatted
     - unless @syllabus.new_record?
@@ -26,12 +28,19 @@
             = _('Please check back again in a while.')
 
     - unless @lectures.blank?
-
       %h3
         %i.left.icon-structure
         = _('Course structure')
 
-      %ul#lectures-tree.hierarchical-list
-        = list_lectures_tree(@lectures)
+      -if can?(:contribute, @classroom)
+        = form_for(@classroom, :url => {:controller => 'syllabuses', :action => 'update_lectures'}, :html => {:class => 'dd'}) do |f|
+          = hidden_field_tag :assetable_id, @classroom.id, :class => 'test'
+          = hidden_field_tag("authenticity_token", form_authenticity_token)
+          %ol#lectures-tree.hierarchical-list.dd-list
+            = list_lectures_tree(@lectures, [], 'lectures_dnd_listing')
+
+      -else
+        %ul#lectures-tree.hierarchical-list
+          = list_lectures_tree(@lectures)
 
   = render(:partial => 'sidebar')

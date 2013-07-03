@@ -20,13 +20,55 @@
           success: function(content) {
             $(target).replaceWith(content)
           }
-        })
+        });
         return false;
       });
     },
 
+    enable_dnd_lectures: function(selector) {
+      //var ajaxOpts = {
+        //url: 
+      //}
+      var get_lecture_pos = function(el, i, arr, collect_array, parent_id) {
+        var ret = {id: el.id, position: i};
+        if (typeof(parent_id) !== 'undefined') {
+          ret.parent_lecture_id = parent_id;
+        }
+        collect_array.push(ret);
+        if (el.children) {
+          var i = 0, len = el.children.length;
+          for (i = 0; i < len; i++) {
+            get_lecture_pos(el.children[i], i, el.children, collect_array, el.id);
+          }
+        }
+      };
+      var options = {
+        collapseBtnHTML: '<button class="collapse-button" data-action="collapse">Collapse</button>'
+      };
+
+      $(selector).nestable(options);
+      $('.dd').on('change', function(e) {
+        console.log(e);
+        //$.ajax({
+          //url: $(selector).attr( 'action' ),
+          //authenticity_token: $('meta[name="csrf-token"]').attr('content'),
+          //method: 'POST'
+        //});
+        console.log('reordered lectures');
+        var order = $('.dd').nestable('serialize'),
+            lectures_attributes = [], i = 0, len = order.length;
+
+          for (i = 0; i < len; i++) {
+            get_lecture_pos(order[i], i, order, lectures_attributes);
+          }
+          console.log(lectures_attributes);
+      });
+      
+
+    },
+
     /**
-     * Handles on lick expanding of elements
+     * Handles on click expanding of elements
      */
     enable_on_click_expanding: function(selector, trigger) {
       $(selector).on('click', trigger, function(event){
@@ -137,6 +179,7 @@
       $.fn.foundationMagellan         ? $doc.foundationMagellan() : null;
       $.fn.foundationClearing         ? $doc.foundationClearing() : null;
       $.fn.placeholder                ? $( 'input, textarea' ).placeholder() : null;
+      $.fn.nestable                   ? Courseware.enable_dnd_lectures( '.dd' ) : null;
     }
   };
 

@@ -18,6 +18,8 @@ pickle-email-*.html
 .yardoc
 *.*~
 *.swp
+*.swo
+*.vim
 locale/*/LC_MESSAGES/*
 .tddium*
 ERD.pdf
