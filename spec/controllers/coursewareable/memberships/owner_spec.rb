@@ -64,15 +64,13 @@ describe Coursewareable::MembershipsController do
     end
 
     before(:each) do
+      @controller.send(:auto_login, owner)
       @request.host = "#{classroom.slug}.#{@request.host}"
       delete(:destroy, :id => membership.id, :use_route => :coursewareable)
     end
 
     context 'being logged in as a owner' do
-      before(:all) do
-        setup_controller_request_and_response
-        @controller.send(:auto_login, classroom.owner)
-      end
+      let(:owner) { classroom.owner }
 
       it { should redirect_to(memberships_path) }
       it { classroom.memberships.should be_empty }
