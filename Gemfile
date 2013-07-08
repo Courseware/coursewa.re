@@ -55,7 +55,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'guard-rspec'
   gem 'rb-inotify'
-  gem 'rspec-rails', '2.12.0'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'capybara'

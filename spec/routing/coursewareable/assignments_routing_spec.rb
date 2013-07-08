@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe Coursewareable::AssignmentsController do
 
-  before do
-    @routes = Coursewareable::Engine.routes
-  end
+  routes { Coursewareable::Engine.routes }
 
   describe 'routing' do
     it 'for new assignment' do
