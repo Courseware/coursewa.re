@@ -88,7 +88,7 @@ IntercomRails.config do |config|
   #   * :custom attaches the inbox open event to an anchor with an
   #             id of #Intercom.
   #
-  config.inbox.style = :default
+  # config.inbox.style = :default
   # config.inbox.style = :custom
 
   # == Inbox Counter
