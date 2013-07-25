@@ -106,7 +106,8 @@
      * Handle a friendly modal message if assetable object is not available yet
      */
     redactor_unsaved_modal: function( selector ) {
-      if ( $( selector ).val().length === 0 ) {
+      var $selector = $( selector );
+      if ( $selector.get(0) && ( $selector.val().length === 0 ) ) {
         // TODO: add support for a localized message
         return '<div id="redactor_modal_content">Please save this page first.' +
           '</div><div id="redactor_modal_footer">' +
