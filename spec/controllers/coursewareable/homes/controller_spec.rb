@@ -6,7 +6,7 @@ describe Coursewareable::HomesController do
   describe 'GET index' do
     before { get(:index, :use_route => :coursewareable) }
 
-    it { should render_template(:index) }
+    it { should render_template('coursewareable/sessions/new') }
 
     context 'when logged in' do
       before(:all) do
