@@ -48,23 +48,13 @@ describe Coursewareable::HomesController do
     end
   end
 
-  describe 'GET about' do
-    before { get(:about, :use_route => :coursewareable) }
-    it { should render_template(:about) }
-  end
-
-  describe 'GET contact' do
-    before { get(:contact, :use_route => :coursewareable) }
-    it { should render_template(:contact) }
-  end
-
   describe 'POST feedback' do
     let(:params) { {:use_route => :coursewareable} }
     before do
       post(:feedback, params)
     end
 
-    it { should redirect_to(contact_home_path) }
+    it { should redirect_to(root_path) }
 
     context 'with valid params' do
       let(:params) do
@@ -73,7 +63,7 @@ describe Coursewareable::HomesController do
         :val1 => 1, :val2 => 2, :sum => 3}
       end
 
-      it { redirect_to(contact_home_path) }
+      it { redirect_to(root_path) }
       it {
         ActionMailer::Base.deliveries.last.subject.should match(params[:name])}
     end

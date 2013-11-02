@@ -30,8 +30,6 @@ Coursewareable::Engine.routes.draw do
 
     resource(:home, :path => '/', :only => [:index] ) do
       get :dashboard
-      get :about
-      get :contact
       post :feedback
       post :survey
     end

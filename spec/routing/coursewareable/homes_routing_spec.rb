@@ -13,14 +13,6 @@ describe Coursewareable::HomesController do
       get('/dashboard').should route_to('coursewareable/homes#dashboard')
     end
 
-    it 'for about page' do
-      get('/about').should route_to('coursewareable/homes#about')
-    end
-
-    it 'for contact page' do
-      get('/contact').should route_to('coursewareable/homes#contact')
-    end
-
     it 'for feedback' do
       post('/feedback').should route_to('coursewareable/homes#feedback')
     end

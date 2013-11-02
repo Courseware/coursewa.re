@@ -25,25 +25,13 @@ module Coursewareable
       render(:partial => 'shared/timeline') if request.xhr?
     end
 
-    # About page
-    def about
-    end
-
-    # Contact/Feedback page
-    def contact
-      @categories = [
-        [_('General support question'), :general],
-        [_('Everything but support'), :other],
-      ]
-    end
-
     # Feedback form processing
     def feedback
       sum = params[:val1].to_i + params[:val2].to_i
       [:email, :name, :message, :sum].each do |key|
         if params[key].blank? or (key == :sum and sum != params[:sum].to_i)
           flash[:alert] = _('Please fill in all the fields first.')
-          redirect_to(contact_home_path) and return
+          redirect_to(root_path) and return
         end
       end
 
@@ -56,7 +44,7 @@ module Coursewareable
       end
 
       flash[:success] = _('Thank you. Your message is on its way to us.')
-      redirect_to(contact_home_path)
+      redirect_to(root_path)
     end
 
     # User feedback survey handler
