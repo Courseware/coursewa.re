@@ -3,6 +3,8 @@
 The Courseware Project / coursewa.re
 ====================================
 
+[![Build Status](https://travis-ci.org/Courseware/coursewa.re.png?branch=master)](https://travis-ci.org/Courseware/coursewa.re)
+
 The platform that helps people build social learning environments.
 
 Below you can find some developer oriented docs to help you bring up the
