@@ -47,7 +47,7 @@ describe 'Sessions' do
 
     click_button 'submit_login'
 
-    page.should_not have_css('#login')
+    page.should have_css('#login')
   end
 
   it 'should handle logout' do

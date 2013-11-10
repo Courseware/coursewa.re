@@ -4,7 +4,6 @@ describe 'Home' do
   context 'when not logged in' do
     it 'should show dasboard' do
       visit root_url
-      page.should have_css('body.static')
       page.should_not have_css('#new-sessions')
     end
   end
