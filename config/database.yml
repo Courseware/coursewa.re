@@ -17,5 +17,3 @@ development:
 
 test:
   <<: *sqlite
-  # /dev/shm means shared memory, fixes any :memory: option hacks
-  database: '/dev/shm/courseware-tests.sqlite3'
