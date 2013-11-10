@@ -109,4 +109,24 @@ describe 'Users' do
       'user_associations_attributes_0_send_announcements')
     page.should have_css('#notifications .alert-box.success')
   end
+
+  it 'should be able to send delete account request' do
+    user = Fabricate(:confirmed_user)
+    sign_in_with(user.email)
+
+    visit request_deletion_users_url
+
+    page.should have_content('Delete your account')
+    page.should have_field('message')
+    page.should have_button('Send request')
+
+    within('#delete') do
+      fill_in 'message', :with => Faker::Lorem.paragraph
+    end
+
+    click_button 'delete_button'
+
+    user.reload.id.should eq(user.id)
+    page.should have_css('#notifications .alert-box.success')
+  end
 end

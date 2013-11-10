@@ -1,0 +1,24 @@
+= title _('Delete your account')
+
+#delete
+  .eight.columns
+    .row
+      %p
+        We're sorry to see you go. Right now, we can only remove your account manually.
+        Please take a moment and let us know how we can make Coursewa.re better,
+        or if there\'s anything we could have done differently.
+
+    .row
+      = form_tag request_deletion_users_path do
+
+        .row
+          .two.columns
+            = label_tag(:message, _('Message'), :class => [:right, :inline])
+          .ten.columns
+            = text_area_tag(:message, nil, :rows => 7, :required => true, :placeholder => _('I just had to see what this button does... :-)'))
+
+        .row
+          .ten.columns.offset-by-two
+            = submit_tag(_('Send request'), :id => 'delete_button', :class => 'button primary')
+
+= render(:partial => 'sidebar')
