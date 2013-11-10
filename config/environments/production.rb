@@ -70,7 +70,7 @@ Courseware::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Setup default url for helping roadie gem
-  config.action_mailer.default_url_options = {:host => 'coursewa.re'}
+  config.action_mailer.default_url_options = {:host => 'open.coursewa.re'}
 
   # Use Amazon AWS for delivery
   config.action_mailer.delivery_method = :amazon_ses
@@ -81,12 +81,9 @@ Courseware::Application.configure do
     :storage => :s3,
     :s3_protocol => 'https',
     :s3_credentials => {
-      :bucket => 'coursewa-re',
+      :bucket => 'your-s3-bucket',
       :access_key_id => aws_config['production']['access_key_id'],
       :secret_access_key => aws_config['production']['secret_access_key']
     }
   }
-
-  # Enable Party Foul exceptions notifier
-  config.middleware.use('PartyFoul::Middleware')
 end

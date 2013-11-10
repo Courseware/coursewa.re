@@ -3,7 +3,7 @@ ruby '2.0.0'
 
 gem 'rails', '~> 3.2'
 # Load the Coursewareable engine
-gem 'coursewareable', :git => 'https://0de5ffe2dda4bfcb19b1615a99295eafe7375bdc:x-oauth-basic@github.com/stas/coursewareable.git'
+gem 'coursewareable', :github => 'Courseware/coursewareable'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
@@ -22,8 +22,6 @@ group :production do
   gem 'pg'
   gem 'puma'
   gem 'aws-sdk'
-  gem 'party_foul'
-  gem 'intercom-rails'
 end
 
 group :development do

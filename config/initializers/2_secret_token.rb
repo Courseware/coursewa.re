@@ -5,5 +5,5 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 Courseware::Application.config.secret_token = %(
-  e8696e0eb758708a1f02e5350222a627c419e7d09434c5da733d044f22677e6a3b572892f29
+  YOUR_SECRET_TOKEN
 )

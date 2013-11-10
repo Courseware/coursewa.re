@@ -32,7 +32,7 @@ If you are using Vim, consider [my `.vimrc`](https://github.com/stas/dotfiles/bl
 We pretty much follow [GitHub style](https://github.com/styleguide/ruby).
 Please get some time reading what's there and setup your editor.
 
-We use YARD for documentation instead of TomDoc. The simple rule is to have
+We use YARD for documentation. The simple rule is to have
 at least one line that describes the module, class or method you wrote.
 
 ### Check your code before pushing!

@@ -6,11 +6,11 @@ require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 
 set :codename, 'coursewa.re'
 
-set :port, '8000'
+set :port, '22'
 set :user, 'deployer'
-set :domain, 'lipsett.nerd.ro'
+set :domain, 'your.host.name'
 set :deploy_to, "/home/#{user}/#{codename}"
-set :repository, 'git@github.com:stas/coursewa.re.git'
+set :repository, 'git@github.com:Courseware/coursewa.re.git'
 set :branch, 'master'
 
 set :pid_file, "#{deploy_to}/shared/tmp/pids/#{rails_env}.pid"
