@@ -1,4 +1,4 @@
-![Coursewa.re Logo](http://coursewa.re/logo.png)
+![Coursewa.re Logo](https://raw.github.com/Courseware/coursewa.re/master/public/logo.png)
 
 The Courseware Project / coursewa.re
 ====================================
